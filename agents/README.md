@@ -4,55 +4,54 @@
 
 ## 智能体概览
 
-本项目包含 **28 个专业智能体**，覆盖软件开发的各个方面。
+本项目包含 **10 个专业智能体**，覆盖软件开发的各个方面。通过整合相似职责的智能体，减少重复，提高可维护性。
 
 ### 核心智能体
 
-| 智能体                                    | 角色       | 触发场景                       |
-| ----------------------------------------- | ---------- | ------------------------------ |
-| [orchestrator](orchestrator.md)           | 协调器     | 复杂任务、多智能体协作         |
-| [planner](planner.md)                     | 规划师     | 功能实现、架构变更、复杂重构   |
-| [architect](architect.md)                 | 架构师     | 系统设计、技术决策、可扩展性   |
-| [tdd-guide](tdd-guide.md)                 | TDD专家    | 新功能、Bug修复、重构          |
-| [code-reviewer](code-reviewer.md)         | 代码审查   | TypeScript/JavaScript 代码变更 |
-| [security-reviewer](security-reviewer.md) | 安全审查   | 用户输入、认证、敏感数据       |
-| [database-reviewer](database-reviewer.md) | 数据库审查 | SQL、迁移、模式设计            |
+| 智能体                              | 角色     | 触发场景                     |
+| ----------------------------------- | -------- | ---------------------------- |
+| [orchestrator](orchestrator.md)     | 协调器   | 复杂任务、多智能体协作       |
+| [planner](planner.md)               | 规划师   | 功能实现、架构变更、复杂重构 |
+| [architect](architect.md)           | 架构师   | 系统设计、技术决策、云架构   |
+| [code-reviewer](code-reviewer.md)   | 代码审查 | 所有代码变更（多语言支持）   |
+| [build-resolver](build-resolver.md) | 构建修复 | 构建失败、类型错误（多语言） |
+| [qa](qa.md)                         | QA工程师 | 测试策略、TDD、E2E测试       |
+| [devops](devops.md)                 | DevOps   | CI/CD、Git工作流、部署自动化 |
+| [fullstack](fullstack.md)           | 全栈专家 | ML、移动、数据、UX、反馈分析 |
 
-### 语言特定审查器
+## 智能体职责
 
-| 智能体                                | 角色       | 触发场景           |
-| ------------------------------------- | ---------- | ------------------ |
-| [python-reviewer](python-reviewer.md) | Python审查 | Python 代码变更    |
-| [go-reviewer](go-reviewer.md)         | Go审查     | Go 代码变更        |
-| [rust-reviewer](rust-reviewer.md)     | Rust审查   | Rust 代码变更      |
-| [swift-reviewer](swift-reviewer.md)   | Swift审查  | Swift/iOS 代码变更 |
-| [java-reviewer](java-reviewer.md)     | Java审查   | Java 代码变更      |
-| [kotlin-reviewer](kotlin-reviewer.md) | Kotlin审查 | Kotlin 代码变更    |
+### orchestrator
 
-### 专用智能体
+智能体协调器，负责分析复杂任务并协调多个智能体协作完成。当任务涉及多个领域、需要多步骤协作或不确定使用哪个智能体时使用。
 
-| 智能体                                          | 角色       | 触发场景                   |
-| ----------------------------------------------- | ---------- | -------------------------- |
-| [build-error-resolver](build-error-resolver.md) | 构建修复   | TypeScript/JS 构建失败     |
-| [go-build-resolver](go-build-resolver.md)       | Go构建修复 | Go 构建失败                |
-| [e2e-runner](e2e-runner.md)                     | E2E测试    | 关键用户流程测试           |
-| [refactor-cleaner](refactor-cleaner.md)         | 重构清理   | 死代码、重复项、未使用依赖 |
-| [doc-updater](doc-updater.md)                   | 文档更新   | 代码映射、README、指南     |
+### planner
 
-### 专业领域智能体
+复杂功能和重构的专家规划专家。当用户请求功能实现、架构变更或复杂重构时，请主动使用。计划任务自动激活。
 
-| 智能体                                            | 角色         | 触发场景                     |
-| ------------------------------------------------- | ------------ | ---------------------------- |
-| [performance-optimizer](performance-optimizer.md) | 性能优化     | 性能瓶颈、优化建议           |
-| [devops-engineer](devops-engineer.md)             | DevOps工程师 | CI/CD、基础设施、部署        |
-| [qa-engineer](qa-engineer.md)                     | QA工程师     | 测试策略、质量保证           |
-| [ml-engineer](ml-engineer.md)                     | ML工程师     | 模型训练、MLOps              |
-| [mobile-developer](mobile-developer.md)           | 移动开发     | React Native/Flutter         |
-| [data-engineer](data-engineer.md)                 | 数据工程师   | 数据管道、ETL                |
-| [ux-designer](ux-designer.md)                     | UX设计师     | 用户体验、交互设计           |
-| [cloud-architect](cloud-architect.md)             | 云架构师     | 云服务选型、成本优化         |
-| [feedback-analyst](feedback-analyst.md)           | 反馈分析     | 调用分析、改进建议           |
-| [git-workflow](git-workflow.md)                   | Git版本控制  | 分支策略、合并冲突、版本发布 |
+### architect
+
+软件架构专家，整合系统设计、云架构和技术决策能力。负责设计可扩展系统架构、评估技术权衡、推荐模式和最佳实践、进行云服务选型和成本优化。在规划新功能、重构大型系统或进行架构决策时主动使用。
+
+### code-reviewer
+
+专业代码审查专家，整合多语言审查能力。主动审查代码的质量、安全性和可维护性。支持 Python、Go、Rust、Swift、Java、Kotlin、TypeScript/JavaScript。在编写或修改代码后立即使用。
+
+### build-resolver
+
+构建错误解决专家，整合多语言构建问题修复能力。支持 TypeScript/JavaScript、Python、Go、Rust、Swift、Java/Kotlin 等语言的构建错误、类型错误、lint 警告。以最小改动修复问题，专注于快速使构建通过。
+
+### qa
+
+QA工程师专家，整合测试策略、TDD实践和E2E测试能力。负责测试策略设计、测试驱动开发、端到端测试、测试自动化。在编写新功能、修复错误或重构代码时主动使用。
+
+### devops
+
+DevOps 和 Git 工作流专家，整合 CI/CD、基础设施、部署自动化和版本控制能力。负责设计 CI/CD 流水线、管理基础设施即代码、处理 Git 分支策略和合并冲突、自动化部署和回滚。
+
+### fullstack
+
+全栈开发专家，整合机器学习、移动开发、数据工程、UX设计和反馈分析能力。负责机器学习模型训练部署、React Native/Flutter移动开发、数据管道ETL设计、用户体验设计、分析用户反馈数据。在涉及这些专业领域时主动使用。
 
 ## 快速开始
 
@@ -62,38 +61,43 @@
 
 ### 智能体协调
 
-查看 [orchestrator.md](orchestrator.md) 了解完整的智能体协调指南，包括：
-
-- 18个智能体的详细说明
-- 任务分析与智能体选择
-- 4种协作模式
-- 标准工作流程
-- 触发规则与决策树
+查看 [orchestrator.md](orchestrator.md) 了解完整的智能体协调指南。
 
 ### 常用工作流
 
 ```
-功能开发：planner → architect → tdd-guide → code-reviewer → security-reviewer
-Bug修复：tdd-guide → code-reviewer
-代码审查：根据语言选择 reviewer → security-reviewer（如涉及安全）
-构建失败：build-error-resolver / go-build-resolver
-性能优化：performance-optimizer → code-reviewer
-CI/CD配置：devops-engineer → security-reviewer
-测试策略：qa-engineer → tdd-guide
-版本控制：git-workflow → code-reviewer
-机器学习：ml-engineer → devops-engineer
-移动开发：mobile-developer → qa-engineer
-数据管道：data-engineer → performance-optimizer
-用户体验：ux-designer → code-reviewer
-云架构：cloud-architect → devops-engineer
+功能开发：planner → architect → qa(code) → code-reviewer
+Bug修复：qa(tdd) → code-reviewer
+构建失败：build-resolver
+代码审查：code-reviewer（自动识别语言）
+测试策略：qa
+CI/CD配置：devops
+版本控制：devops(git)
+机器学习：fullstack(ml)
+移动开发：fullstack(mobile)
+数据管道：fullstack(data)
+用户体验：fullstack(ux)
+云架构：architect
 ```
+
+## 合并历史
+
+| 原智能体                                           | 合并到         | 原因           |
+| -------------------------------------------------- | -------------- | -------------- |
+| python/go/rust/swift/java/kotlin-reviewer          | code-reviewer  | 多语言整合     |
+| go-build-resolver                                  | build-resolver | 多语言整合     |
+| tdd-guide + e2e-runner                             | qa             | 测试能力整合   |
+| devops-engineer + git-workflow                     | devops         | DevOps+Git整合 |
+| cloud-architect                                    | architect      | 架构能力整合   |
+| ml/mobile/data/ux/feedback-engineer                | fullstack      | 全栈能力整合   |
+| security/database/refactor/performance/doc-updater | 保留独立       | 职责独特       |
 
 ## 扩展指南
 
 ### 添加新智能体
 
 1. 创建 `agents/<name>.md` 文件
-2. 包含 frontmatter：`name`, `description`
+2. 包含 frontmatter：`name`, `description`, `mcp_servers`, `builtin_tools`
 3. 定义核心职责、工作流程
 4. 更新本 README 和 [orchestrator.md](orchestrator.md)
 
@@ -103,6 +107,15 @@ CI/CD配置：devops-engineer → security-reviewer
 ---
 name: <name>
 description: <简短描述，说明何时使用>
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # <智能体名称>
@@ -117,12 +130,4 @@ description: <简短描述，说明何时使用>
 ## 工作流程
 
 ### 1. 步骤1
-
-### 2. 步骤2
-
-## 协作说明
-
-完成后委托给：
-
-- **下一步1** → 使用 `agent-name` 智能体
 ```
