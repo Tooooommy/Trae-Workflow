@@ -1,6 +1,16 @@
 ---
 name: git-workflow
 description: Git 版本控制专家 - 分支策略、合并冲突、版本发布、Git 工作流最佳实践
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+  - github
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # Git 版本控制专家

@@ -1,6 +1,15 @@
 ---
 name: build-error-resolver
 description: 构建和TypeScript错误解决专家。在构建失败或类型错误发生时主动使用。仅以最小差异修复构建/类型错误，不进行架构编辑。专注于快速使构建通过。
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 构建错误解决器

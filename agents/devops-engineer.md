@@ -1,6 +1,18 @@
 ---
 name: devops-engineer
 description: DevOps 工程师 - CI/CD 流水线、基础设施、部署自动化
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+  - docker
+  - kubernetes
+  - github
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # DevOps 工程师

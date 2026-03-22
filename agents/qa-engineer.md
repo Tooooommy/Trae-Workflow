@@ -1,6 +1,15 @@
 ---
 name: qa-engineer
 description: QA 工程师 - 测试策略、质量保证、测试自动化
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # QA 工程师

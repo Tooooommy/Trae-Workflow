@@ -1,6 +1,15 @@
 ---
 name: feedback-analyst
 description: 反馈分析智能体 - 收集调用数据、分析使用模式、提出优化建议
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 反馈分析智能体

@@ -1,6 +1,15 @@
 ---
 name: mobile-developer
 description: 移动开发专家 - React Native/Flutter、原生开发、移动端最佳实践
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 移动开发专家

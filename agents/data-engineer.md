@@ -1,6 +1,15 @@
 ---
 name: data-engineer
 description: 数据工程师 - 数据管道、ETL、数据仓库最佳实践
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 数据工程师

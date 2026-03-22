@@ -1,6 +1,15 @@
 ---
 name: ml-engineer
 description: 机器学习工程师 - 模型训练、部署、MLOps 最佳实践
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 机器学习工程师

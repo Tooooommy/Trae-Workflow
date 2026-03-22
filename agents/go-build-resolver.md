@@ -1,6 +1,15 @@
 ---
 name: go-build-resolver
 description: Go 构建、vet 和编译错误解决专家。以最小改动修复构建错误、go vet 问题和 linter 警告。在 Go 构建失败时使用。
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # Go 构建错误解决器

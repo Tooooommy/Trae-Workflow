@@ -1,6 +1,15 @@
 ---
 name: performance-optimizer
 description: 性能优化专家 - 分析性能瓶颈、优化建议、监控配置
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 性能优化专家

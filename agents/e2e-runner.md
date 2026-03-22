@@ -1,6 +1,15 @@
 ---
 name: e2e-runner
-description: 使用Vercel Agent Browser（首选）和Playwright备选方案进行端到端测试的专家。主动用于生成、维护和运行E2E测试。管理测试流程，隔离不稳定的测试，上传工件（截图、视频、跟踪），并确保关键用户流程正常运行。
+description: 使用Vercel Agent Browser（首选）和Playwright备选方案进行端到端测试的专家。主动用于生成，维护和运行E2E测试。管理测试流程，隔离不稳定的测试，上传工件（截图、视频、跟踪），并确保关键用户流程正常运行。
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # E2E 测试运行器

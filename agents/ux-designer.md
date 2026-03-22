@@ -1,6 +1,15 @@
 ---
 name: ux-designer
 description: UX 设计师 - 用户体验设计、交互设计、可用性测试
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # UX 设计师

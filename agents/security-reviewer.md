@@ -1,6 +1,15 @@
 ---
 name: security-reviewer
 description: 安全漏洞检测与修复专家。在编写处理用户输入、身份验证、API端点或敏感数据的代码后主动使用。标记密钥、SSRF、注入、不安全的加密以及OWASP Top 10漏洞。
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 安全审查员

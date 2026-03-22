@@ -1,6 +1,15 @@
 ---
 name: cloud-architect
 description: 云架构师 - 云服务选型、架构设计、成本优化
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 云架构师

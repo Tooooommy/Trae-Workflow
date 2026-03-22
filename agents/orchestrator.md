@@ -1,6 +1,15 @@
 ---
 name: orchestrator
 description: 智能体协调器，负责分析复杂任务并协调多个智能体协作完成。当任务涉及多个领域、需要多步骤协作或不确定使用哪个智能体时使用。
+mcp_servers:
+  - memory
+  - sequential-thinking
+  - context7
+builtin_tools:
+  - read
+  - filesystem
+  - terminal
+  - web-search
 ---
 
 # 智能体协调器
