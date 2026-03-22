@@ -83,15 +83,15 @@ npm run lint 2>/dev/null || npx eslint . --ext .ts,.tsx,.js,.jsx
 
 ### Python
 
-| 问题 | 说明 |
-|------|------|
-| SQL注入 | f-string SQL — 使用参数化查询 |
-| 命令注入 | subprocess 未验证输入 — 使用列表参数 |
-| 裸 except | `except: pass` — 捕获具体异常 |
-| 类型提示 | 公共函数缺少类型注解 |
-| Pythonic | 使用列表推导而非 C 风格循环 |
+| 问题           | 说明                                   |
+| -------------- | -------------------------------------- |
+| SQL注入        | f-string SQL — 使用参数化查询          |
+| 命令注入       | subprocess 未验证输入 — 使用列表参数   |
+| 裸 except      | `except: pass` — 捕获具体异常          |
+| 类型提示       | 公共函数缺少类型注解                   |
+| Pythonic       | 使用列表推导而非 C 风格循环            |
 | 不安全反序列化 | `pickle.loads()`、`yaml.unsafe_load()` |
-| 弱加密 | MD5/SHA1 用于安全用途 |
+| 弱加密         | MD5/SHA1 用于安全用途                  |
 
 ```python
 # BAD: SQL injection
@@ -104,14 +104,14 @@ cursor.execute(query, (user_id,))
 
 ### Go
 
-| 问题 | 说明 |
-|------|------|
-| 忽略错误 | `_ = func()` — 使用 if err != nil |
-| 错误无上下文 | `return err` 无包装 — 使用 `fmt.Errorf("context: %w", err)` |
-| Goroutine 泄漏 | 无 context 取消 — 使用 `context.Context` |
-| 互斥锁 | 未使用 `defer mu.Unlock()` |
-| 字符串字节 | 混用 string 和 []byte |
-| 不安全 TLS | `InsecureSkipVerify: true` |
+| 问题           | 说明                                                        |
+| -------------- | ----------------------------------------------------------- |
+| 忽略错误       | `_ = func()` — 使用 if err != nil                           |
+| 错误无上下文   | `return err` 无包装 — 使用 `fmt.Errorf("context: %w", err)` |
+| Goroutine 泄漏 | 无 context 取消 — 使用 `context.Context`                    |
+| 互斥锁         | 未使用 `defer mu.Unlock()`                                  |
+| 字符串字节     | 混用 string 和 []byte                                       |
+| 不安全 TLS     | `InsecureSkipVerify: true`                                  |
 
 ```go
 // BAD: Ignoring error
@@ -126,14 +126,14 @@ if err != nil {
 
 ### Rust
 
-| 问题 | 说明 |
-|------|------|
+| 问题          | 说明                                                      |
+| ------------- | --------------------------------------------------------- |
 | unwrap() 滥用 | 生产代码使用 `unwrap()` — 使用 `?` 或 `expect()` 带上下文 |
-| 不安全代码 | `unsafe` 块无论证 |
-| 所有权 | 不必要的 `.clone()` — 考虑借用 |
-| 错误类型 | 混用错误类型 — 使用 `thiserror` 或 `anyhow` |
-| Send/Sync | 跨线程传递非线程安全类型 |
-| 生命周期 | 复杂的生命周期标注 |
+| 不安全代码    | `unsafe` 块无论证                                         |
+| 所有权        | 不必要的 `.clone()` — 考虑借用                            |
+| 错误类型      | 混用错误类型 — 使用 `thiserror` 或 `anyhow`               |
+| Send/Sync     | 跨线程传递非线程安全类型                                  |
+| 生命周期      | 复杂的生命周期标注                                        |
 
 ```rust
 // BAD: unwrap in production
@@ -145,14 +145,14 @@ let value = map.get("key").expect("key should exist in config");
 
 ### Swift
 
-| 问题 | 说明 |
-|------|------|
-| 强制解包 | `!` 导致崩溃 — 使用 `if let`/`guard let` |
-| 隐式解包 | 过度使用 `!` 类型 |
-| Sendable 违规 | 跨 actor 边界传递非 Sendable |
-| Task 泄漏 | 创建 Task 未存储或取消 |
-| MainActor 违规 | UI 更新不在主线程 |
-| 循环引用 | 闭包中 `self` 未使用 `[weak self]` |
+| 问题           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| 强制解包       | `!` 导致崩溃 — 使用 `if let`/`guard let` |
+| 隐式解包       | 过度使用 `!` 类型                        |
+| Sendable 违规  | 跨 actor 边界传递非 Sendable             |
+| Task 泄漏      | 创建 Task 未存储或取消                   |
+| MainActor 违规 | UI 更新不在主线程                        |
+| 循环引用       | 闭包中 `self` 未使用 `[weak self]`       |
 
 ```swift
 // BAD: Forced unwrap
@@ -166,14 +166,14 @@ if let value = dictionary["key"] {
 
 ### Java/Kotlin
 
-| 问题 | 说明 |
-|------|------|
-| SQL注入 | 字符串拼接 — 使用 PreparedStatement |
-| XXE漏洞 | XML 解析未禁用外部实体 |
-| 资源泄漏 | 线程池、连接未关闭 |
-| 空安全(Kotlin) | 过度使用 `!!` — 使用安全调用 `?.` |
-| 协程泄漏(Kotlin) | 启动协程未取消 |
-| 异常吞没 | 空 catch 块 |
+| 问题             | 说明                                |
+| ---------------- | ----------------------------------- |
+| SQL注入          | 字符串拼接 — 使用 PreparedStatement |
+| XXE漏洞          | XML 解析未禁用外部实体              |
+| 资源泄漏         | 线程池、连接未关闭                  |
+| 空安全(Kotlin)   | 过度使用 `!!` — 使用安全调用 `?.`   |
+| 协程泄漏(Kotlin) | 启动协程未取消                      |
+| 异常吞没         | 空 catch 块                         |
 
 ```kotlin
 // BAD: Kotlin !! abuse
@@ -185,13 +185,13 @@ val value = map["key"] ?: throw IllegalStateException("key should exist")
 
 ### TypeScript/JavaScript
 
-| 问题 | 说明 |
-|------|------|
+| 问题     | 说明                          |
+| -------- | ----------------------------- |
 | 类型安全 | `any` 类型滥用 — 添加类型注解 |
-| 异步错误 | 未处理的 Promise 拒绝 |
-| 依赖注入 | 直接实例化 — 使用 DI 容器 |
-| N+1 查询 | 循环中查询 — 使用 JOIN |
-| 状态泄漏 | React 组件中的内存泄漏 |
+| 异步错误 | 未处理的 Promise 拒绝         |
+| 依赖注入 | 直接实例化 — 使用 DI 容器     |
+| N+1 查询 | 循环中查询 — 使用 JOIN        |
+| 状态泄漏 | React 组件中的内存泄漏        |
 
 ```typescript
 // BAD: Using any type
@@ -240,10 +240,10 @@ Fix: Use parameterized query
 
 完成后根据问题类型委托：
 
-| 问题类型 | 委托目标 |
-|----------|----------|
-| 安全漏洞 | `security-reviewer` |
-| 数据库问题 | `database-reviewer` |
-| 构建错误 | `build-resolver` |
-| 性能问题 | `performance-optimizer` |
-| 需要重构 | `refactor-cleaner` |
+| 问题类型   | 委托目标                |
+| ---------- | ----------------------- |
+| 安全漏洞   | `security-reviewer`     |
+| 数据库问题 | `database-reviewer`     |
+| 构建错误   | `build-resolver`        |
+| 性能问题   | `performance-optimizer` |
+| 需要重构   | `refactor-cleaner`      |

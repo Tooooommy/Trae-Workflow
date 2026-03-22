@@ -26,15 +26,15 @@ builtin_tools:
 
 ## 支持的测试框架
 
-| 语言 | 单元测试 | 集成测试 | E2E 测试 |
-|------|----------|----------|----------|
-| TypeScript | Jest, Vitest | Supertest | Playwright, Agent Browser |
-| Python | pytest, unittest | pytest | Playwright |
-| Go | testing, testify | testing | Playwright |
-| Rust | #[test], cargo test | - | - |
-| Swift | XCTest | - | XCUITest |
-| Java | JUnit, TestNG | Spring Test | Selenium, Playwright |
-| Kotlin | JUnit, Kotest | Spring Test | Playwright |
+| 语言       | 单元测试            | 集成测试    | E2E 测试                  |
+| ---------- | ------------------- | ----------- | ------------------------- |
+| TypeScript | Jest, Vitest        | Supertest   | Playwright, Agent Browser |
+| Python     | pytest, unittest    | pytest      | Playwright                |
+| Go         | testing, testify    | testing     | Playwright                |
+| Rust       | #[test], cargo test | -           | -                         |
+| Swift      | XCTest              | -           | XCUITest                  |
+| Java       | JUnit, TestNG       | Spring Test | Selenium, Playwright      |
+| Kotlin     | JUnit, Kotest       | Spring Test | Playwright                |
 
 ## TDD 工作流
 
@@ -124,11 +124,11 @@ npx playwright show-report
      ┌─────────────┐
 ```
 
-| 层级 | 比例 | 目标 |
-|------|------|------|
-| E2E | 10% | 关键用户旅程 |
-| 集成 | 30% | API、数据库交互 |
-| 单元 | 60% | 业务逻辑、边界情况 |
+| 层级 | 比例 | 目标               |
+| ---- | ---- | ------------------ |
+| E2E  | 10%  | 关键用户旅程       |
+| 集成 | 30%  | API、数据库交互    |
+| 单元 | 60%  | 业务逻辑、边界情况 |
 
 ## 边界情况测试清单
 
@@ -164,9 +164,9 @@ npx playwright show-report
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 代码审查 | `code-reviewer` |
-| 构建错误 | `build-resolver` |
+| 任务     | 委托目标                |
+| -------- | ----------------------- |
+| 代码审查 | `code-reviewer`         |
+| 构建错误 | `build-resolver`        |
 | 性能问题 | `performance-optimizer` |
-| 安全问题 | `security-reviewer` |
+| 安全问题 | `security-reviewer`     |

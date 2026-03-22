@@ -49,13 +49,13 @@ print(classification_report(y_test, predictions))
 
 ### MLOps 工具
 
-| 阶段 | 工具 |
-|------|------|
-| 实验跟踪 | MLflow, Weights & Biases |
-| 模型注册 | MLflow Model Registry |
-| 特征存储 | Feast, Tecton |
+| 阶段     | 工具                           |
+| -------- | ------------------------------ |
+| 实验跟踪 | MLflow, Weights & Biases       |
+| 模型注册 | MLflow Model Registry          |
+| 特征存储 | Feast, Tecton                  |
 | 模型服务 | TensorFlow Serving, TorchServe |
-| 监控 | Prometheus, Grafana |
+| 监控     | Prometheus, Grafana            |
 
 ### 部署检查清单
 
@@ -69,11 +69,11 @@ print(classification_report(y_test, predictions))
 
 ### 框架选择
 
-| 场景 | 推荐框架 | 原因 |
-|------|----------|------|
-| 跨平台快速开发 | React Native | JS 生态，组件复用 |
-| 高性能原生体验 | Flutter | 自绘引擎，一致性 |
-| 特定平台 | Swift/Kotlin | 完全原生，最佳性能 |
+| 场景           | 推荐框架     | 原因               |
+| -------------- | ------------ | ------------------ |
+| 跨平台快速开发 | React Native | JS 生态，组件复用  |
+| 高性能原生体验 | Flutter      | 自绘引擎，一致性   |
+| 特定平台       | Swift/Kotlin | 完全原生，最佳性能 |
 
 ### React Native 最佳实践
 
@@ -148,12 +148,12 @@ flutter analyze
 
 ### ETL 工具
 
-| 工具 | 场景 | 优点 |
-|------|------|------|
-| Airflow | 复杂编排 | 丰富的操作符，监控 |
-| Prefect | 现代替代 | Python 原生，更简洁 |
-| dbt | 数据转换 | SQL 中心，版本控制 |
-| Spark | 大规模处理 | 分布式，内存计算 |
+| 工具    | 场景       | 优点                |
+| ------- | ---------- | ------------------- |
+| Airflow | 复杂编排   | 丰富的操作符，监控  |
+| Prefect | 现代替代   | Python 原生，更简洁 |
+| dbt     | 数据转换   | SQL 中心，版本控制  |
+| Spark   | 大规模处理 | 分布式，内存计算    |
 
 ### SQL 查询优化
 
@@ -199,11 +199,11 @@ CREATE INDEX idx_orders_status ON orders(status);
 
 ### 响应式设计断点
 
-| 设备 | 断点 |
-|------|------|
-| 手机 | < 640px |
+| 设备 | 断点           |
+| ---- | -------------- |
+| 手机 | < 640px        |
 | 平板 | 640px - 1024px |
-| 桌面 | > 1024px |
+| 桌面 | > 1024px       |
 
 ## 反馈分析
 
@@ -225,18 +225,21 @@ CREATE INDEX idx_orders_status ON orders(status);
 ## 反馈分析报告
 
 ### 概述
+
 - 总反馈数: 1,234
 - NPS: +45
 - 满意度: 4.2/5
 
 ### 主要主题
-| 主题 | 提及次数 | 趋势 |
-|------|----------|------|
-| 性能问题 | 234 | ↓ |
-| 新功能请求 | 189 | → |
-| UI 问题 | 156 | ↑ |
+
+| 主题       | 提及次数 | 趋势 |
+| ---------- | -------- | ---- |
+| 性能问题   | 234      | ↓    |
+| 新功能请求 | 189      | →    |
+| UI 问题    | 156      | ↑    |
 
 ### 行动项
+
 1. 优化首屏加载时间 (P0)
 2. 添加暗黑模式 (P1)
 3. 简化结账流程 (P1)
@@ -270,10 +273,10 @@ CREATE INDEX idx_orders_status ON orders(status);
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 代码审查 | `code-reviewer` |
-| 性能优化 | `performance-optimizer` |
-| 安全问题 | `security-reviewer` |
-| 数据库问题 | `database-reviewer` |
-| 测试覆盖 | `qa` |
+| 任务       | 委托目标                |
+| ---------- | ----------------------- |
+| 代码审查   | `code-reviewer`         |
+| 性能优化   | `performance-optimizer` |
+| 安全问题   | `security-reviewer`     |
+| 数据库问题 | `database-reviewer`     |
+| 测试覆盖   | `qa`                    |

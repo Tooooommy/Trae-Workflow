@@ -50,8 +50,8 @@ builtin_tools:
 ### 4. 权衡分析
 
 | 决策 | 优点 | 缺点 | 替代方案 | 最终选择 |
-|------|------|------|----------|----------|
-| ... | ... | ... | ... | ... |
+| ---- | ---- | ---- | -------- | -------- |
+| ...  | ...  | ...  | ...      | ...      |
 
 ## 架构原则
 
@@ -80,13 +80,13 @@ builtin_tools:
 
 ### 主要云平台
 
-| 场景 | AWS | GCP | Azure |
-|------|-----|-----|-------|
-| 计算 | EC2, ECS, EKS | Compute Engine, GKE | VM, AKS |
-| 存储 | S3 | Cloud Storage | Blob Storage |
-| 数据库 | RDS, DynamoDB | Cloud SQL, Firestore | SQL Database, CosmosDB |
-| CDN | CloudFront | Cloud CDN | Azure CDN |
-| 无服务器 | Lambda | Cloud Functions | Azure Functions |
+| 场景     | AWS           | GCP                  | Azure                  |
+| -------- | ------------- | -------------------- | ---------------------- |
+| 计算     | EC2, ECS, EKS | Compute Engine, GKE  | VM, AKS                |
+| 存储     | S3            | Cloud Storage        | Blob Storage           |
+| 数据库   | RDS, DynamoDB | Cloud SQL, Firestore | SQL Database, CosmosDB |
+| CDN      | CloudFront    | Cloud CDN            | Azure CDN              |
+| 无服务器 | Lambda        | Cloud Functions      | Azure Functions        |
 
 ### 成本优化策略
 
@@ -201,10 +201,10 @@ aws ce get-cost-and-usage --time-period Start=2024-01-01,End=2024-01-31
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 代码审查 | `code-reviewer` |
-| 安全审查 | `security-reviewer` |
-| 数据库设计 | `database-reviewer` |
-| 部署实施 | `devops` |
-| 性能优化 | `performance-optimizer` |
+| 任务       | 委托目标                |
+| ---------- | ----------------------- |
+| 代码审查   | `code-reviewer`         |
+| 安全审查   | `security-reviewer`     |
+| 数据库设计 | `database-reviewer`     |
+| 部署实施   | `devops`                |
+| 性能优化   | `performance-optimizer` |

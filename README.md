@@ -1,12 +1,12 @@
 # Trae Workflow - Trae 配置项目
 
-Trae Workflow — 智能体指令配置项目，提供生产就绪的 AI 编码插件，包含 28 个专业智能体、70+ 项技能以及用于软件开发的自动化工作流。
+Trae Workflow — 智能体指令配置项目，提供生产就绪的 AI 编码插件，包含 14 个专业智能体、89 项技能以及用于软件开发的自动化工作流。
 
 ## 📋 项目概述
 
 本项目为 Trae IDE 提供了一套完整的配置，包括：
 
-- **28 个专业智能体**：覆盖规划、架构、测试、审查、安全、DevOps、ML、Git 等各个方面
+- **14 个专业智能体**：覆盖规划、架构、测试、审查、安全、DevOps、全栈开发等各个方面（已优化整合）
 - **89 项技能**：涵盖测试驱动开发、代码审查、部署模式、认证、实时通信等
 - **完整的规则体系**：通用规则 + 语言特定规则
 - **16+ MCP 服务器配置**：优化的 MCP 服务器配置
@@ -173,19 +173,24 @@ Trae Workflow/                    # 本仓库
 ├── setup.sh                      # Linux/macOS 配置脚本
 ├── mcp.json                      # MCP 服务器配置
 ├── tracking.json                 # 跟踪分析配置
-├── agents/                       # 智能体配置（28 个）
+├── agents/                       # 智能体配置（14 个）
 │   ├── orchestrator.md           # 智能体协调器（总览）
-│   ├── planner.md
-│   ├── architect.md
-│   ├── tdd-guide.md
-│   ├── code-reviewer.md
-│   ├── feedback-analyst.md       # 反馈分析智能体
-│   ├── AGENT_WORKFLOW.md         # 智能体调用关系图
-│   └── ...
-├── trae-agents/                  # Trae IDE 智能体模板（29 个，可直接导入）
+│   ├── planner.md                # 规划师
+│   ├── architect.md              # 架构师（含云架构）
+│   ├── code-reviewer.md          # 代码审查（多语言）
+│   ├── build-resolver.md         # 构建修复（多语言）
+│   ├── qa.md                     # QA工程师（TDD+E2E）
+│   ├── devops.md                 # DevOps（含Git）
+│   ├── fullstack.md              # 全栈专家（ML/移动/数据/UX）
+│   ├── security-reviewer.md      # 安全审查
+│   ├── database-reviewer.md      # 数据库审查
+│   ├── performance-optimizer.md  # 性能优化
+│   ├── refactor-cleaner.md       # 重构清理
+│   ├── doc-updater.md            # 文档更新
+│   └── README.md                 # 智能体说明
+├── trae-agents/                  # Trae IDE 智能体模板（可直接导入）
 │   ├── README.md                 # 使用说明
-│   ├── orchestrator.md           # 模板文件
-│   └── ...
+│   └── ...                       # 与 agents 同步
 ├── skills/                       # 技能配置（89 个）
 │   ├── tdd-workflow/
 │   ├── verification-loop/
@@ -226,53 +231,43 @@ my-project/                       # 你的项目（手动复制）
 
 ## 🤖 可用智能体
 
-### 核心智能体
+### 核心智能体（8个）
 
-| 智能体            | 目的               | 何时使用                   |
-| ----------------- | ------------------ | -------------------------- |
-| orchestrator      | 智能体协调器       | 复杂任务、多智能体协作     |
-| planner           | 实施规划           | 复杂功能、重构             |
-| architect         | 系统设计与可扩展性 | 架构决策                   |
-| tdd-guide         | 测试驱动开发       | 新功能、错误修复           |
-| code-reviewer     | 代码质量审查       | TypeScript/JavaScript 代码 |
-| security-reviewer | 漏洞检测           | 提交前、敏感代码           |
+| 智能体         | 目的             | 何时使用               |
+| -------------- | ---------------- | ---------------------- |
+| orchestrator   | 智能体协调器     | 复杂任务、多智能体协作 |
+| planner        | 实施规划         | 复杂功能、重构         |
+| architect      | 系统架构+云架构  | 架构决策、云服务选型   |
+| code-reviewer  | 多语言代码审查   | 所有代码变更           |
+| build-resolver | 多语言构建修复   | 构建失败、类型错误     |
+| qa             | 测试策略+TDD+E2E | 新功能、错误修复       |
+| devops         | CI/CD+Git工作流  | 部署、分支管理         |
+| fullstack      | 全栈开发专家     | ML、移动、数据、UX     |
 
-### 语言特定审查器
+### 专用智能体（5个）
 
-| 智能体          | 目的            | 何时使用       |
-| --------------- | --------------- | -------------- |
-| python-reviewer | Python 代码审查 | Python 项目    |
-| go-reviewer     | Go 代码审查     | Go 项目        |
-| rust-reviewer   | Rust 代码审查   | Rust 项目      |
-| swift-reviewer  | Swift 代码审查  | Swift/iOS 项目 |
-| java-reviewer   | Java 代码审查   | Java 项目      |
-| kotlin-reviewer | Kotlin 代码审查 | Kotlin 项目    |
+| 智能体                | 目的         | 何时使用           |
+| --------------------- | ------------ | ------------------ |
+| security-reviewer     | 安全漏洞检测 | 提交前、敏感代码   |
+| database-reviewer     | 数据库专家   | 模式设计、查询优化 |
+| performance-optimizer | 性能优化专家 | 性能瓶颈分析       |
+| refactor-cleaner      | 清理无用代码 | 代码维护           |
+| doc-updater           | 文档更新     | 更新文档           |
 
-### 专用智能体
+### 合并说明
 
-| 智能体               | 目的               | 何时使用           |
-| -------------------- | ------------------ | ------------------ |
-| build-error-resolver | 修复构建/类型错误  | 构建失败时         |
-| go-build-resolver    | Go 构建错误        | Go 构建失败        |
-| database-reviewer    | 数据库专家         | 模式设计、查询优化 |
-| e2e-runner           | 端到端测试         | 关键用户流程       |
-| refactor-cleaner     | 清理无用代码       | 代码维护           |
-| doc-updater          | 文档和代码地图更新 | 更新文档           |
+为减少重复、提高可维护性，原 28 个智能体已合并为 14 个：
 
-### 新增专业智能体
+| 合并前                         | 合并后         | 说明           |
+| ------------------------------ | -------------- | -------------- |
+| 6个语言审查器                  | code-reviewer  | 多语言整合     |
+| 2个构建修复器                  | build-resolver | 多语言整合     |
+| tdd-guide + e2e-runner         | qa             | 测试能力整合   |
+| devops-engineer + git-workflow | devops         | DevOps+Git整合 |
+| 架构 + 云架构                  | architect      | 架构能力整合   |
+| ML/移动/数据/UX/反馈           | fullstack      | 全栈能力整合   |
 
-| 智能体                | 目的           | 何时使用               |
-| --------------------- | -------------- | ---------------------- |
-| performance-optimizer | 性能优化专家   | 性能瓶颈分析、优化建议 |
-| devops-engineer       | DevOps 工程师  | CI/CD、基础设施、部署  |
-| qa-engineer           | QA 工程师      | 测试策略、质量保证     |
-| ml-engineer           | 机器学习工程师 | 模型训练、MLOps        |
-| mobile-developer      | 移动开发专家   | React Native/Flutter   |
-| data-engineer         | 数据工程师     | 数据管道、ETL          |
-| ux-designer           | UX 设计师      | 用户体验、交互设计     |
-| cloud-architect       | 云架构师       | 云服务选型、架构设计   |
-
-> 💡 **提示**：查看 [agents/orchestrator.md](agents/orchestrator.md) 了解完整的智能体协调指南。
+> 💡 **提示**：查看 [agents/README.md](agents/README.md) 了解完整的智能体说明。
 
 ## 🛠️ MCP 服务器
 

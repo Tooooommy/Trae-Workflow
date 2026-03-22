@@ -114,42 +114,42 @@ ls Cargo.toml 2>/dev/null && echo "Rust" && cargo build
 
 #### TypeScript/JavaScript
 
-| 错误 | 修复 |
-|------|------|
-| `implicitly has 'any' type` | 添加类型注解 |
-| `Object is possibly 'undefined'` | 可选链 `?.` 或空值检查 |
-| `Property does not exist` | 添加到接口或使用可选 `?` |
-| `Cannot find module` | 检查路径、安装包、修复导入 |
-| `Type 'X' is not assignable to 'Y'` | 类型转换或添加类型断言 |
+| 错误                                | 修复                       |
+| ----------------------------------- | -------------------------- |
+| `implicitly has 'any' type`         | 添加类型注解               |
+| `Object is possibly 'undefined'`    | 可选链 `?.` 或空值检查     |
+| `Property does not exist`           | 添加到接口或使用可选 `?`   |
+| `Cannot find module`                | 检查路径、安装包、修复导入 |
+| `Type 'X' is not assignable to 'Y'` | 类型转换或添加类型断言     |
 
 #### Python
 
-| 错误 | 修复 |
-|------|------|
-| `SyntaxError` | 修复语法 |
-| `IndentationError` | 检查缩进（4空格） |
-| `ImportError` | 安装缺失模块或修复导入路径 |
-| `NameError` | 检查变量名拼写 |
-| `TypeError` | 修复参数类型 |
+| 错误               | 修复                       |
+| ------------------ | -------------------------- |
+| `SyntaxError`      | 修复语法                   |
+| `IndentationError` | 检查缩进（4空格）          |
+| `ImportError`      | 安装缺失模块或修复导入路径 |
+| `NameError`        | 检查变量名拼写             |
+| `TypeError`        | 修复参数类型               |
 
 #### Go
 
-| 错误 | 修复 |
-|------|------|
-| `undefined: X` | 添加导入或修正拼写 |
-| `cannot use X as type Y` | 类型转换或解引用 |
-| `X does not implement Y` | 使用正确的接收器实现方法 |
-| `import cycle not allowed` | 将共享类型提取到新包 |
-| `cannot find package` | `go get pkg@version` 或 `go mod tidy` |
-| `declared but not used` | 删除或使用 `_` |
+| 错误                       | 修复                                  |
+| -------------------------- | ------------------------------------- |
+| `undefined: X`             | 添加导入或修正拼写                    |
+| `cannot use X as type Y`   | 类型转换或解引用                      |
+| `X does not implement Y`   | 使用正确的接收器实现方法              |
+| `import cycle not allowed` | 将共享类型提取到新包                  |
+| `cannot find package`      | `go get pkg@version` 或 `go mod tidy` |
+| `declared but not used`    | 删除或使用 `_`                        |
 
 #### Rust
 
-| 错误 | 修复 |
-|------|------|
-| `cannot find type` | 添加 `use` 导入 |
-| `mismatched types` | 类型注解或转换 |
-| `field not found` | 检查结构体字段名 |
+| 错误                      | 修复               |
+| ------------------------- | ------------------ |
+| `cannot find type`        | 添加 `use` 导入    |
+| `mismatched types`        | 类型注解或转换     |
+| `field not found`         | 检查结构体字段名   |
 | `expected struct variant` | 使用正确的类型构造 |
 
 ## 关键原则
@@ -161,7 +161,7 @@ ls Cargo.toml 2>/dev/null && echo "Rust" && cargo build
 
 ## 输出格式
 
-```
+````
 ## Build Resolution Report
 
 ### Errors Fixed
@@ -176,9 +176,10 @@ ls Cargo.toml 2>/dev/null && echo "Rust" && cargo build
 ```bash
 ✓ TypeScript: npx tsc --noEmit passed
 ✓ Build: npm run build succeeded
-```
+````
 
 **Result**: BUILD PASSED — 2 errors resolved with minimal changes
+
 ```
 
 ## 委托说明
@@ -189,3 +190,4 @@ ls Cargo.toml 2>/dev/null && echo "Rust" && cargo build
 | 安全漏洞 | `security-reviewer` |
 | 性能问题 | `performance-optimizer` |
 | 需要重构 | `refactor-cleaner` |
+```
