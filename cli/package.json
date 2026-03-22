@@ -1,0 +1,32 @@
+{
+  "name": "trae-workflow-cli",
+  "version": "1.0.0",
+  "description": "Trae Workflow CLI - Install and manage Trae Workflow from GitHub",
+  "main": "index.js",
+  "bin": {
+    "traew": "./bin/trae.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trae",
+    "workflow",
+    "cli",
+    "setup"
+  ],
+  "author": "Trae Workflow",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "ora": "^5.4.1",
+    "fs-extra": "^11.2.0",
+    "tar": "^6.2.0",
+    "adm-zip": "^0.5.10"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

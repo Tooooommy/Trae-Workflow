@@ -1,0 +1,143 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "跨会话持久化记忆 - 存储和检索上下文信息"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "链式思维推理 - 复杂问题的逐步分析"
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server"],
+      "description": "实时文档查找 - 快速查找技术文档"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${PROJECT_PATH}"],
+      "description": "文件系统操作 - 读写项目文件",
+      "env": {
+        "PROJECT_PATH": "."
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+      },
+      "description": "GitHub 操作 - 管理 PR、Issue 和仓库"
+    },
+    "exa-web-search": {
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server"],
+      "env": {
+        "EXA_API_KEY": "${EXA_API_KEY}"
+      },
+      "description": "网络搜索 - 研究和获取最新信息"
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--project-ref=${SUPABASE_PROJECT_REF}"],
+      "description": "Supabase 数据库 - 数据库操作和管理"
+    },
+    "vercel": {
+      "type": "http",
+      "url": "https://mcp.vercel.com",
+      "description": "Vercel 部署 - 管理部署和项目"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "${POSTGRES_URL}"
+      },
+      "description": "PostgreSQL 数据库 - 直接数据库查询和操作"
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      },
+      "description": "Slack 集成 - 发送消息和管理频道"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "description": "浏览器自动化 - 网页抓取和截图"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Brave 搜索 - 隐私友好的网络搜索"
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-maps"],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "${GOOGLE_MAPS_API_KEY}"
+      },
+      "description": "Google Maps - 地理位置和路线规划"
+    },
+    "aws-kb-retrieval": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-aws-kb-retrieval"],
+      "env": {
+        "AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+        "AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+        "AWS_REGION": "${AWS_REGION}"
+      },
+      "description": "AWS 知识库 - AWS 服务文档检索"
+    },
+    "docker": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "mcp/docker"],
+      "description": "Docker 操作 - 管理容器和镜像"
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": ["-y", "@kubernetes/mcp-server-kubernetes"],
+      "description": "Kubernetes - 集群管理和部署"
+    }
+  },
+  "disabledMcpServers": [
+    "firecrawl",
+    "railway",
+    "clickhouse",
+    "cloudflare-docs",
+    "cloudflare-workers-builds",
+    "cloudflare-workers-bindings",
+    "cloudflare-observability",
+    "magic"
+  ],
+  "_comments": {
+    "usage": "复制需要的服务器到您的 `mcp.json` 文件中",
+    "env_vars": "使用环境变量替换 ${VAR_NAME} 占位符",
+    "enabled_servers": "默认启用 16 个服务器，可根据需求启用其他服务器",
+    "performance": "保持启用的 MCP 服务器数量在 10 个以下以保留上下文窗口",
+    "categories": {
+      "core": ["memory", "sequential-thinking", "context7"],
+      "development": ["filesystem", "github"],
+      "research": ["exa-web-search", "brave-search"],
+      "database": ["supabase", "postgres"],
+      "deployment": ["vercel", "docker", "kubernetes"],
+      "communication": ["slack"],
+      "automation": ["puppeteer"],
+      "cloud": ["aws-kb-retrieval"],
+      "location": ["google-maps"]
+    },
+    "setup": {
+      "step1": "设置环境变量：GITHUB_PAT, EXA_API_KEY, SUPABASE_PROJECT_REF, POSTGRES_URL 等",
+      "step2": "根据项目需求启用/禁用服务器",
+      "step3": "重启 Trae IDE 以应用更改"
+    }
+  }
+}

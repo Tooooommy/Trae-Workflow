@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "storage": {
+    "type": "sqlite",
+    "path": "~/.trae-cn/analytics.db",
+    "retentionDays": 90,
+    "backupIntervalDays": 7
+  },
+  "tracking": {
+    "skills": {
+      "enabled": true,
+      "trackContext": true,
+      "trackOutcome": true,
+      "trackFeedback": true,
+      "excludedSkills": []
+    },
+    "agents": {
+      "enabled": true,
+      "trackTrigger": true,
+      "trackContext": true,
+      "trackOutcome": true,
+      "trackRecommendations": true,
+      "excludedAgents": []
+    },
+    "workflows": {
+      "enabled": true,
+      "trackSteps": true,
+      "trackDuration": true,
+      "trackSuccess": true
+    }
+  },
+  "metrics": {
+    "collectIntervalMinutes": 60,
+    "aggregationLevels": ["hourly", "daily", "weekly", "monthly"],
+    "customMetrics": [
+      {
+        "name": "skill_success_rate",
+        "type": "percentage",
+        "source": "skill_invocations",
+        "calculation": "AVG(success)"
+      },
+      {
+        "name": "agent_avg_duration",
+        "type": "average",
+        "source": "agent_invocations",
+        "calculation": "AVG(duration_ms)"
+      },
+      {
+        "name": "user_satisfaction",
+        "type": "average",
+        "source": "skill_invocations",
+        "calculation": "AVG(rating)",
+        "filter": "rating IS NOT NULL"
+      }
+    ]
+  },
+  "alerts": {
+    "enabled": true,
+    "rules": [
+      {
+        "name": "low_success_rate",
+        "condition": "success_rate < 0.8",
+        "severity": "warning",
+        "message": "{{name}} 成功率低于 80%"
+      },
+      {
+        "name": "low_rating",
+        "condition": "avg_rating < 3.5",
+        "severity": "warning",
+        "message": "{{name}} 评分低于 3.5"
+      },
+      {
+        "name": "high_failure_rate",
+        "condition": "failure_rate > 0.2",
+        "severity": "critical",
+        "message": "{{name}} 失败率超过 20%"
+      },
+      {
+        "name": "slow_response",
+        "condition": "avg_duration_ms > 60000",
+        "severity": "info",
+        "message": "{{name}} 平均响应时间超过 60 秒"
+      }
+    ],
+    "notifications": {
+      "channels": ["console", "file"],
+      "logFile": "~/.trae-cn/analytics-alerts.log"
+    }
+  },
+  "reports": {
+    "enabled": true,
+    "schedule": {
+      "daily": {
+        "enabled": true,
+        "time": "23:00",
+        "output": "~/.trae-cn/reports/daily"
+      },
+      "weekly": {
+        "enabled": true,
+        "day": "sunday",
+        "time": "23:00",
+        "output": "~/.trae-cn/reports/weekly"
+      },
+      "monthly": {
+        "enabled": true,
+        "day": 1,
+        "time": "00:00",
+        "output": "~/.trae-cn/reports/monthly"
+      }
+    },
+    "format": "markdown",
+    "includeSections": [
+      "summary",
+      "topItems",
+      "issues",
+      "trends",
+      "suggestions"
+    ]
+  },
+  "improvements": {
+    "autoSuggest": true,
+    "suggestionRules": [
+      {
+        "trigger": "rating < 3.5",
+        "suggestion": "考虑优化 {{name}} 内容，收集用户反馈",
+        "priority": "high"
+      },
+      {
+        "trigger": "calls == 0 AND days > 30",
+        "suggestion": "{{name}} 30 天内未被使用，考虑移除或合并",
+        "priority": "low"
+      },
+      {
+        "trigger": "success_rate < 0.7",
+        "suggestion": "{{name}} 成功率低，需要改进错误处理",
+        "priority": "critical"
+      },
+      {
+        "trigger": "co_occurrence > 5",
+        "suggestion": "{{skill1}} 和 {{skill2}} 经常一起使用，考虑创建组合工作流",
+        "priority": "medium"
+      }
+    ],
+    "maxSuggestions": 10,
+    "autoCreateIssues": false
+  },
+  "privacy": {
+    "anonymizeUserData": true,
+    "excludeSensitiveFields": ["password", "token", "secret", "key"],
+    "dataExportFormat": "json",
+    "gdprCompliant": true
+  },
+  "integration": {
+    "exportTo": [],
+    "webhooks": [],
+    "apiEndpoint": null
+  },
+  "_comments": {
+    "purpose": "SKILL 和 Agent 调用跟踪配置，用于持续改进",
+    "storage": "数据存储在 SQLite 数据库中，支持 90 天保留",
+    "metrics": "自动收集成功率、响应时间、用户满意度等指标",
+    "alerts": "支持自定义告警规则，当指标低于阈值时触发",
+    "reports": "支持日报、周报、月报自动生成",
+    "improvements": "基于数据分析自动生成改进建议"
+  }
+}
