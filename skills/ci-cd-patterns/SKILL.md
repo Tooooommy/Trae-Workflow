@@ -16,13 +16,13 @@ description: CI/CD 流水线模式、自动化部署和持续交付最佳实践�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| GitHub Actions | N/A | 最新 |
-| GitLab CI | 15+ | 最新 |
-| Docker | 24+ | 27+ |
-| kubectl | 1.28+ | 最新 |
-| Helm | 3.12+ | 最新 |
+| 技术           | 最低版本 | 推荐版本 |
+| -------------- | -------- | -------- |
+| GitHub Actions | N/A      | 最新     |
+| GitLab CI      | 15+      | 最新     |
+| Docker         | 24+      | 27+      |
+| kubectl        | 1.28+    | 最新     |
+| Helm           | 3.12+    | 最新     |
 
 ## 核心原则
 
@@ -63,69 +63,69 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Lint
-      run: npm run lint
-    
-    - name: Type check
-      run: npm run typecheck
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
 
   test:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run tests
-      run: npm run test:coverage
-    
-    - name: Upload coverage
-      uses: codecov/codecov-action@v3
-      with:
-        files: ./coverage/lcov.info
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
 
   build:
     runs-on: ubuntu-latest
     needs: test
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build
-      run: npm run build
-    
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: build
-        path: dist/
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist/
 ```
 
 ### Docker 构建和推送
@@ -142,37 +142,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    
-    - name: Login to Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Extract metadata
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ghcr.io/${{ github.repository }}
-        tags: |
-          type=ref,event=branch
-          type=semver,pattern={{version}}
-          type=sha,prefix=
-    
-    - name: Build and push
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha,prefix=
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 ```
 
 ### 部署到 Kubernetes
@@ -189,24 +189,24 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-    
-    - name: Configure kubeconfig
-      run: |
-        mkdir -p ~/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
-    
-    - name: Deploy
-      run: |
-        kubectl apply -f k8s/
-        kubectl rollout status deployment/myapp -n production
-    
-    - name: Verify deployment
-      run: |
-        kubectl wait --for=condition=available --timeout=300s deployment/myapp -n production
+      - uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
+
+      - name: Deploy
+        run: |
+          kubectl apply -f k8s/
+          kubectl rollout status deployment/myapp -n production
+
+      - name: Verify deployment
+        run: |
+          kubectl wait --for=condition=available --timeout=300s deployment/myapp -n production
 ```
 
 ## GitLab CI 模式
@@ -221,7 +221,7 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: "20"
+  NODE_VERSION: '20'
 
 .node_template:
   image: node:${NODE_VERSION}
@@ -289,20 +289,20 @@ deploy_blue_green:
     - |
       # 确定当前活跃环境
       CURRENT=$(kubectl get service myapp -o jsonpath='{.spec.selector.version}')
-      
+
       # 部署到非活跃环境
       if [ "$CURRENT" = "blue" ]; then
         TARGET="green"
       else
         TARGET="blue"
       fi
-      
+
       kubectl apply -f k8s/deployment-${TARGET}.yaml
       kubectl wait --for=condition=available deployment/myapp-${TARGET}
-      
+
       # 切换流量
       kubectl patch service myapp -p '{"spec":{"selector":{"version":"'$TARGET'"}}}'
-      
+
       # 清理旧环境
       kubectl delete deployment myapp-${CURRENT} --ignore-not-found
 ```
@@ -315,7 +315,7 @@ deploy_canary:
     - |
       # 部署金丝雀版本 (10% 流量)
       kubectl apply -f k8s/canary.yaml
-      
+
       # 监控指标
       for i in {1..10}; do
         ERROR_RATE=$(curl -s http://prometheus/api/v1/query?query=error_rate | jq -r '.data.result[0].value[1]')
@@ -326,7 +326,7 @@ deploy_canary:
         fi
         sleep 60
       done
-      
+
       # 逐步增加流量
       kubectl patch deployment myapp-canary -p '{"spec":{"replicas":3}}'
 ```
@@ -455,13 +455,13 @@ cache:
 
 ## 快速参考
 
-| 阶段 | 任务 | 工具 |
-|------|------|------|
-| Lint | 代码检查 | ESLint, Prettier |
-| Test | 单元/集成测试 | Jest, Vitest |
-| Build | 构建产物 | Webpack, Vite |
-| Scan | 安全扫描 | Trivy, Semgrep |
-| Deploy | 部署应用 | kubectl, Helm |
-| Monitor | 监控告警 | Prometheus |
+| 阶段    | 任务          | 工具             |
+| ------- | ------------- | ---------------- |
+| Lint    | 代码检查      | ESLint, Prettier |
+| Test    | 单元/集成测试 | Jest, Vitest     |
+| Build   | 构建产物      | Webpack, Vite    |
+| Scan    | 安全扫描      | Trivy, Semgrep   |
+| Deploy  | 部署应用      | kubectl, Helm    |
+| Monitor | 监控告警      | Prometheus       |
 
 **记住**：流水线应该是快速、可靠和可重复的。每个阶段都应该有明确的失败条件和回滚策略。

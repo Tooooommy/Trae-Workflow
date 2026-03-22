@@ -69,10 +69,10 @@ my-remix-app/
 
 ```tsx
 // app/routes/\_dashboard.products.$id.tsx
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { db } from "~/lib/db";
-import { requireUserId } from "~/lib/session/server";
+import { json, type LoaderFunctionArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { db } from '~/lib/db';
+import { requireUserId } from '~/lib/session/server';
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   // 1. 验证用户会话
@@ -86,7 +86,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   });
 
   if (!product) {
-    throw new Response("产品未找到", { status: 404 });
+    throw new Response('产品未找到', { status: 404 });
   }
 
   // 3. 返回 JSON 数据，Remix 会自动序列化
@@ -108,17 +108,17 @@ export default function ProductDetailPage() {
 
 ```tsx
 // app/routes/\_dashboard.products.new.tsx
-import { json, type ActionFunctionArgs, redirect } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
-import { z } from "zod";
-import { db } from "~/lib/db";
-import { requireUserId } from "~/lib/session/server";
-import { Button } from "~/components/ui/button";
+import { json, type ActionFunctionArgs, redirect } from '@remix-run/node';
+import { Form, useActionData } from '@remix-run/react';
+import { z } from 'zod';
+import { db } from '~/lib/db';
+import { requireUserId } from '~/lib/session/server';
+import { Button } from '~/components/ui/button';
 
 // 使用 Zod 定义验证模式
 const CreateProductSchema = z.object({
-  name: z.string().min(1, "名称不能为空"),
-  price: z.coerce.number().positive("价格必须为正数"),
+  name: z.string().min(1, '名称不能为空'),
+  price: z.coerce.number().positive('价格必须为正数'),
 });
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -129,10 +129,7 @@ export async function action({ request }: ActionFunctionArgs) {
   // 1. 验证输入
   const validation = CreateProductSchema.safeParse(rawData);
   if (!validation.success) {
-    return json(
-      { errors: validation.error.flatten().fieldErrors },
-      { status: 400 },
-    );
+    return json({ errors: validation.error.flatten().fieldErrors }, { status: 400 });
   }
 
   // 2. 数据库操作（在事务中）
@@ -144,12 +141,12 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     });
   } catch (error) {
-    console.error("创建产品失败:", error);
-    return json({ error: "创建失败，请重试" }, { status: 500 });
+    console.error('创建产品失败:', error);
+    return json({ error: '创建失败，请重试' }, { status: 500 });
   }
 
   // 3. 成功重定向
-  return redirect("/dashboard/products");
+  return redirect('/dashboard/products');
 }
 
 export default function NewProductPage() {
@@ -160,16 +157,12 @@ export default function NewProductPage() {
       <div>
         <label htmlFor="name">产品名称</label>
         <input type="text" id="name" name="name" />
-        {actionData?.errors?.name && (
-          <p className="text-red-600">{actionData.errors.name}</p>
-        )}
+        {actionData?.errors?.name && <p className="text-red-600">{actionData.errors.name}</p>}
       </div>
       <div>
         <label htmlFor="price">价格</label>
         <input type="number" step="0.01" id="price" name="price" />
-        {actionData?.errors?.price && (
-          <p className="text-red-600">{actionData.errors.price}</p>
-        )}
+        {actionData?.errors?.price && <p className="text-red-600">{actionData.errors.price}</p>}
       </div>
       <Button type="submit">创建</Button>
     </Form>
@@ -261,7 +254,7 @@ model Session {
 
 ```ts
 // lib/db/index.ts
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 // 防止开发环境中的热重载导致过多 Prisma 实例
 const globalForPrisma = globalThis as unknown as {
@@ -270,7 +263,7 @@ const globalForPrisma = globalThis as unknown as {
 
 export const db = globalForPrisma.prisma ?? new PrismaClient();
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
 ```
 
 ## 安全实践 (Security)
@@ -358,8 +351,8 @@ export async function requireUserId(request: Request) {
 ```tsx
 // 在根 loader 中验证全局会话
 // app/root.tsx
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { getUserId } from "~/lib/session/server";
+import { json, type LoaderFunctionArgs } from '@remix-run/node';
+import { getUserId } from '~/lib/session/server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const userId = await getUserId(request); // 不强制重定向
@@ -370,9 +363,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
 ```tsx
 // 在需要认证的路由中使用 requireUserId
 // app/routes/\_dashboard.tsx
-import { type LoaderFunctionArgs, redirect } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
-import { requireUserId } from "~/lib/session/server";
+import { type LoaderFunctionArgs, redirect } from '@remix-run/node';
+import { Outlet } from '@remix-run/react';
+import { requireUserId } from '~/lib/session/server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   // 如果未登录，重定向到登录页
@@ -438,31 +431,31 @@ export default function DashboardLayout() {
 
 ```tsx
 // tests/unit/lib/validation/product.test.ts
-import { describe, expect, it } from "vitest";
-import { z } from "zod";
-import { validateFormData } from "~/lib/validation";
+import { describe, expect, it } from 'vitest';
+import { z } from 'zod';
+import { validateFormData } from '~/lib/validation';
 
 const TestSchema = z.object({
   name: z.string().min(1),
   price: z.number().positive(),
 });
 
-describe("validateFormData", () => {
-  it("验证有效数据成功", async () => {
+describe('validateFormData', () => {
+  it('验证有效数据成功', async () => {
     const formData = new FormData();
-    formData.append("name", "有效产品");
-    formData.append("price", "29.99");
+    formData.append('name', '有效产品');
+    formData.append('price', '29.99');
 
     const result = await validateFormData(formData, TestSchema);
 
     expect(result.success).toBe(true);
-    expect(result.data).toEqual({ name: "有效产品", price: 29.99 });
+    expect(result.data).toEqual({ name: '有效产品', price: 29.99 });
   });
 
-  it("验证无效数据返回错误", async () => {
+  it('验证无效数据返回错误', async () => {
     const formData = new FormData();
-    formData.append("name", "");
-    formData.append("price", "-10");
+    formData.append('name', '');
+    formData.append('price', '-10');
 
     const result = await validateFormData(formData, TestSchema);
 
@@ -476,62 +469,60 @@ describe("validateFormData", () => {
 
 ```tsx
 // tests/integration/routes/dashboard.products.new.test.ts
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { createRequest, json } from "@remix-run/node";
-import { action, loader } from "~/routes/\_dashboard.products.new";
-import { db } from "~/lib/db";
-import { requireUserId } from "~/lib/session/server";
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { createRequest, json } from '@remix-run/node';
+import { action, loader } from '~/routes/\_dashboard.products.new';
+import { db } from '~/lib/db';
+import { requireUserId } from '~/lib/session/server';
 
 // 模拟依赖
-vi.mock("~/lib/db");
-vi.mock("~/lib/session/server");
+vi.mock('~/lib/db');
+vi.mock('~/lib/session/server');
 
-describe("/dashboard/products/new 路由", () => {
+describe('/dashboard/products/new 路由', () => {
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
-  describe("loader", () => {
-    it("已登录用户返回 null", async () => {
-      vi.mocked(requireUserId).mockResolvedValue("user-123");
-      const request = createRequest("http://localhost/dashboard/products/new");
+  describe('loader', () => {
+    it('已登录用户返回 null', async () => {
+      vi.mocked(requireUserId).mockResolvedValue('user-123');
+      const request = createRequest('http://localhost/dashboard/products/new');
 
       const response = await loader({ request, params: {}, context: {} });
 
       expect(response).toEqual(null);
     });
 
-    it("未登录用户重定向", async () => {
+    it('未登录用户重定向', async () => {
       vi.mocked(requireUserId).mockRejectedValue(
-        new Response(null, { status: 302, headers: { Location: "/login" } }),
+        new Response(null, { status: 302, headers: { Location: '/login' } })
       );
-      const request = createRequest("http://localhost/dashboard/products/new");
+      const request = createRequest('http://localhost/dashboard/products/new');
 
-      await expect(
-        loader({ request, params: {}, context: {} }),
-      ).rejects.toThrow();
+      await expect(loader({ request, params: {}, context: {} })).rejects.toThrow();
     });
   });
 
-  describe("action", () => {
-    it("验证成功时创建产品并重定向", async () => {
-      vi.mocked(requireUserId).mockResolvedValue("user-123");
+  describe('action', () => {
+    it('验证成功时创建产品并重定向', async () => {
+      vi.mocked(requireUserId).mockResolvedValue('user-123');
       vi.mocked(db.product.create).mockResolvedValue({} as any);
 
       const formData = new FormData();
-      formData.append("name", "测试产品");
-      formData.append("price", "99.99");
-      const request = createRequest("http://localhost/dashboard/products/new", {
-        method: "POST",
+      formData.append('name', '测试产品');
+      formData.append('price', '99.99');
+      const request = createRequest('http://localhost/dashboard/products/new', {
+        method: 'POST',
         body: formData,
       });
 
       const response = await action({ request, params: {}, context: {} });
 
       expect(response.status).toBe(302);
-      expect(response.headers.get("Location")).toBe("/dashboard/products");
+      expect(response.headers.get('Location')).toBe('/dashboard/products');
       expect(db.product.create).toHaveBeenCalledWith({
-        data: { name: "测试产品", price: 99.99, userId: "user-123" },
+        data: { name: '测试产品', price: 99.99, userId: 'user-123' },
       });
     });
   });
@@ -542,16 +533,16 @@ describe("/dashboard/products/new 路由", () => {
 
 ```tsx
 // tests/unit/components/ui/button.test.tsx
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Button } from "~/components/ui/button";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from '~/components/ui/button';
+import { describe, expect, it, vi } from 'vitest';
 
-describe("Button", () => {
-  it("渲染子内容并响应点击", () => {
+describe('Button', () => {
+  it('渲染子内容并响应点击', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>点击我</Button>);
 
-    const button = screen.getByRole("button", { name: "点击我" });
+    const button = screen.getByRole('button', { name: '点击我' });
     expect(button).toBeInTheDocument();
 
     fireEvent.click(button);
@@ -564,30 +555,30 @@ describe("Button", () => {
 
 ```ts
 // tests/e2e/dashboard.spec.ts
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
 // 测试前进行登录
 test.beforeEach(async ({ page }) => {
-  await page.goto("/login");
-  await page.fill('input[name="email"]', "test@example.com");
-  await page.fill('input[name="password"]', "password123");
+  await page.goto('/login');
+  await page.fill('input[name="email"]', 'test@example.com');
+  await page.fill('input[name="password"]', 'password123');
   await page.click('button[type="submit"]');
-  await page.waitForURL("/dashboard");
+  await page.waitForURL('/dashboard');
 });
 
-test("用户创建新产品", async ({ page }) => {
-  await page.goto("/dashboard/products");
-  await page.click("text=新建产品");
+test('用户创建新产品', async ({ page }) => {
+  await page.goto('/dashboard/products');
+  await page.click('text=新建产品');
 
-  await expect(page).toHaveURL("/dashboard/products/new");
-  await page.fill('input[name="name"]', "Playwright 测试产品");
-  await page.fill('input[name="price"]', "49.99");
+  await expect(page).toHaveURL('/dashboard/products/new');
+  await page.fill('input[name="name"]', 'Playwright 测试产品');
+  await page.fill('input[name="price"]', '49.99');
   await page.click('button[type="submit"]');
 
   // 等待重定向并验证
-  await page.waitForURL("/dashboard/products");
-  await expect(page.getByText("Playwright 测试产品")).toBeVisible();
-  await expect(page.getByText("$49.99")).toBeVisible();
+  await page.waitForURL('/dashboard/products');
+  await expect(page.getByText('Playwright 测试产品')).toBeVisible();
+  await expect(page.getByText('$49.99')).toBeVisible();
 });
 ```
 

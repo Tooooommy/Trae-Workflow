@@ -1,10 +1,10 @@
 ---
 alwaysApply: false
 globs:
-  - "**/index.js"
-  - "**/App.tsx"
-  - "**/android/**"
-  - "**/ios/**"
+  - '**/index.js'
+  - '**/App.tsx'
+  - '**/android/**'
+  - '**/ios/**'
 ---
 
 # React Native CLI 项目规范与指南
@@ -13,8 +13,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: React Native CLI, TypeScript, React Navigation
-* 架构: 原生模块集成，自定义原生代码
+- 技术栈: React Native CLI, TypeScript, React Navigation
+- 架构: 原生模块集成，自定义原生代码
 
 ## 关键规则
 
@@ -61,16 +61,16 @@ project/
 
 ```tsx
 // App.tsx
-import React from 'react'
-import { StatusBar } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Provider } from 'react-redux'
-import { store } from './store'
-import { HomeScreen, ProfileScreen, LoginScreen } from './screens'
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { HomeScreen, ProfileScreen, LoginScreen } from './screens';
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
   return (
@@ -86,17 +86,17 @@ const App: React.FC = () => {
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 // index.js
-import { AppRegistry } from 'react-native'
-import App from './App'
-import { name as appName } from './app.json'
+import { AppRegistry } from 'react-native';
+import App from './App';
+import { name as appName } from './app.json';
 
-AppRegistry.registerComponent(appName, () => App)
+AppRegistry.registerComponent(appName, () => App);
 ```
 
 ### 原生模块 (Android)
@@ -172,27 +172,27 @@ RCT_EXPORT_METHOD(getDeviceName:(RCTPromiseResolveBlock)resolve rejecter:(RCTPro
 
 ```tsx
 // src/native/NativeModule.ts
-import { NativeModules } from 'react-native'
+import { NativeModules } from 'react-native';
 
 interface NativeModuleInterface {
-  getDeviceName(): Promise<string>
+  getDeviceName(): Promise<string>;
 }
 
-const { NativeModule } = NativeModules
+const { NativeModule } = NativeModules;
 
-export default NativeModule as NativeModuleInterface
+export default NativeModule as NativeModuleInterface;
 
 // 使用
-import NativeModule from './native/NativeModule'
+import NativeModule from './native/NativeModule';
 
 const getDeviceName = async () => {
   try {
-    const name = await NativeModule.getDeviceName()
-    console.log('Device name:', name)
+    const name = await NativeModule.getDeviceName();
+    console.log('Device name:', name);
   } catch (error) {
-    console.error('Error getting device name:', error)
+    console.error('Error getting device name:', error);
   }
-}
+};
 ```
 
 ## 开发命令

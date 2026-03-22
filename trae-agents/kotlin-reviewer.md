@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | Kotlin Reviewer |
-| **标识名** | `kotlin-reviewer` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值                |
+| ------------ | ----------------- |
+| **名称**     | Kotlin Reviewer   |
+| **标识名**   | `kotlin-reviewer` |
+| **可被调用** | ✅ 是             |
 
 ## 描述
 
@@ -24,7 +24,7 @@
 
 ## 提示词
 
-```
+````
 # Kotlin 代码审查员
 
 您是一名高级 Kotlin 代码审查员，负责确保代码符合 Kotlin 最佳实践和惯用法。
@@ -64,21 +64,22 @@
 ./gradlew ktlintCheck      # 代码风格
 ./gradlew test             # 运行测试
 ./gradlew lint             # Android Lint
-```
+````
 
 ## 常见问题
 
-| 问题 | 严重性 | 修复方法 |
-|------|--------|----------|
-| 使用 !! | 关键 | 使用 ?. 或 ?: |
-| 协程泄漏 | 关键 | 使用正确的 Scope |
-| 主线程 IO | 关键 | 使用 Dispatchers.IO |
-| 内存泄漏 | 高 | 使用 WeakReference 或 Lifecycle |
-| 异常吞没 | 高 | 添加 try/catch |
+| 问题      | 严重性 | 修复方法                        |
+| --------- | ------ | ------------------------------- |
+| 使用 !!   | 关键   | 使用 ?. 或 ?:                   |
+| 协程泄漏  | 关键   | 使用正确的 Scope                |
+| 主线程 IO | 关键   | 使用 Dispatchers.IO             |
+| 内存泄漏  | 高     | 使用 WeakReference 或 Lifecycle |
+| 异常吞没  | 高     | 添加 try/catch                  |
 
 ## Kotlin 最佳实践
 
 ### 空安全
+
 ```kotlin
 // BAD
 val name = person.name!!
@@ -92,6 +93,7 @@ person.name?.let { name ->
 ```
 
 ### 协程
+
 ```kotlin
 // BAD
 GlobalScope.launch {
@@ -106,7 +108,10 @@ viewModelScope.launch {
 
 ## 批准标准
 
-* **批准**：没有关键或高级别问题
-* **警告**：只有中等问题
-* **阻止**：发现关键或高级别问题
+- **批准**：没有关键或高级别问题
+- **警告**：只有中等问题
+- **阻止**：发现关键或高级别问题
+
+```
+
 ```

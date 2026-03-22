@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.java"
-  - "**/pom.xml"
-  - "**/build.gradle"
+  - '**/*.java'
+  - '**/pom.xml'
+  - '**/build.gradle'
 ---
 
 # Java 安全规范

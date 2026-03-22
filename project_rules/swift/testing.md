@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.swift"
-  - "**/Package.swift"
+  - '**/*.swift'
+  - '**/Package.swift'
 ---
 
 # Swift 测试

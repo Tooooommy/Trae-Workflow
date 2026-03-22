@@ -6,14 +6,14 @@
 
 每个模板包含以下信息：
 
-| 字段 | 说明 |
-|------|------|
-| **名称** | 智能体显示名称 |
-| **标识名** | 英文标识名，用于被其他智能体调用 |
-| **描述** | 智能体功能描述 |
-| **何时调用** | 触发条件，描述何时调用此智能体 |
-| **工具配置** | 需要的 MCP 服务器和内置工具 |
-| **提示词** | 智能体提示词 |
+| 字段         | 说明                             |
+| ------------ | -------------------------------- |
+| **名称**     | 智能体显示名称                   |
+| **标识名**   | 英文标识名，用于被其他智能体调用 |
+| **描述**     | 智能体功能描述                   |
+| **何时调用** | 触发条件，描述何时调用此智能体   |
+| **工具配置** | 需要的 MCP 服务器和内置工具      |
+| **提示词**   | 智能体提示词                     |
 
 ## 使用方法
 
@@ -31,12 +31,12 @@
 
 从模板文件复制以下内容到对应字段：
 
-| 模板字段 | Trae IDE 字段 |
-|----------|--------------|
-| 名称 | 名称 |
-| 提示词 | 提示词 |
-| 何时调用 | 何时调用 |
-| 标识名 | 英文标识名（需开启"可被其他智能体调用"） |
+| 模板字段 | Trae IDE 字段                            |
+| -------- | ---------------------------------------- |
+| 名称     | 名称                                     |
+| 提示词   | 提示词                                   |
+| 何时调用 | 何时调用                                 |
+| 标识名   | 英文标识名（需开启"可被其他智能体调用"） |
 
 ### 步骤 4：配置选项
 
@@ -49,55 +49,55 @@
 
 ### 核心智能体
 
-| 智能体 | 标识名 | 用途 | 文件 |
-|--------|--------|------|------|
-| Orchestrator | `orchestrator` | 任务协调、多智能体协作 | [orchestrator.md](orchestrator.md) |
-| Architect | `architect` | 系统架构设计 | [architect.md](architect.md) |
-| Planner | `planner` | 实施规划 | [planner.md](planner.md) |
-| TDD Guide | `tdd-guide` | 测试驱动开发 | [tdd-guide.md](tdd-guide.md) |
-| Code Reviewer | `code-reviewer` | TS/JS 代码审查 | [code-reviewer.md](code-reviewer.md) |
-| Security Reviewer | `security-reviewer` | 安全审查 | [security-reviewer.md](security-reviewer.md) |
+| 智能体            | 标识名              | 用途                   | 文件                                         |
+| ----------------- | ------------------- | ---------------------- | -------------------------------------------- |
+| Orchestrator      | `orchestrator`      | 任务协调、多智能体协作 | [orchestrator.md](orchestrator.md)           |
+| Architect         | `architect`         | 系统架构设计           | [architect.md](architect.md)                 |
+| Planner           | `planner`           | 实施规划               | [planner.md](planner.md)                     |
+| TDD Guide         | `tdd-guide`         | 测试驱动开发           | [tdd-guide.md](tdd-guide.md)                 |
+| Code Reviewer     | `code-reviewer`     | TS/JS 代码审查         | [code-reviewer.md](code-reviewer.md)         |
+| Security Reviewer | `security-reviewer` | 安全审查               | [security-reviewer.md](security-reviewer.md) |
 
 ### 语言特定审查器
 
-| 智能体 | 标识名 | 语言 | 文件 |
-|--------|--------|------|------|
+| 智能体          | 标识名            | 语言   | 文件                                     |
+| --------------- | ----------------- | ------ | ---------------------------------------- |
 | Python Reviewer | `python-reviewer` | Python | [python-reviewer.md](python-reviewer.md) |
-| Go Reviewer | `go-reviewer` | Go | [go-reviewer.md](go-reviewer.md) |
-| Rust Reviewer | `rust-reviewer` | Rust | [rust-reviewer.md](rust-reviewer.md) |
-| Swift Reviewer | `swift-reviewer` | Swift | [swift-reviewer.md](swift-reviewer.md) |
-| Java Reviewer | `java-reviewer` | Java | [java-reviewer.md](java-reviewer.md) |
+| Go Reviewer     | `go-reviewer`     | Go     | [go-reviewer.md](go-reviewer.md)         |
+| Rust Reviewer   | `rust-reviewer`   | Rust   | [rust-reviewer.md](rust-reviewer.md)     |
+| Swift Reviewer  | `swift-reviewer`  | Swift  | [swift-reviewer.md](swift-reviewer.md)   |
+| Java Reviewer   | `java-reviewer`   | Java   | [java-reviewer.md](java-reviewer.md)     |
 | Kotlin Reviewer | `kotlin-reviewer` | Kotlin | [kotlin-reviewer.md](kotlin-reviewer.md) |
 
 ### 专用智能体
 
-| 智能体 | 标识名 | 用途 | 文件 |
-|--------|--------|------|------|
-| Build Error Resolver | `build-error-resolver` | 构建错误修复 | [build-error-resolver.md](build-error-resolver.md) |
-| Go Build Resolver | `go-build-resolver` | Go 构建错误修复 | [go-build-resolver.md](go-build-resolver.md) |
-| Database Reviewer | `database-reviewer` | 数据库审查 | [database-reviewer.md](database-reviewer.md) |
-| Performance Optimizer | `performance-optimizer` | 性能优化 | [performance-optimizer.md](performance-optimizer.md) |
-| E2E Runner | `e2e-runner` | E2E 测试 | [e2e-runner.md](e2e-runner.md) |
-| Refactor Cleaner | `refactor-cleaner` | 死代码清理 | [refactor-cleaner.md](refactor-cleaner.md) |
-| Doc Updater | `doc-updater` | 文档更新 | [doc-updater.md](doc-updater.md) |
-| Feedback Analyst | `feedback-analyst` | 反馈分析 | [feedback-analyst.md](feedback-analyst.md) |
+| 智能体                | 标识名                  | 用途            | 文件                                                 |
+| --------------------- | ----------------------- | --------------- | ---------------------------------------------------- |
+| Build Error Resolver  | `build-error-resolver`  | 构建错误修复    | [build-error-resolver.md](build-error-resolver.md)   |
+| Go Build Resolver     | `go-build-resolver`     | Go 构建错误修复 | [go-build-resolver.md](go-build-resolver.md)         |
+| Database Reviewer     | `database-reviewer`     | 数据库审查      | [database-reviewer.md](database-reviewer.md)         |
+| Performance Optimizer | `performance-optimizer` | 性能优化        | [performance-optimizer.md](performance-optimizer.md) |
+| E2E Runner            | `e2e-runner`            | E2E 测试        | [e2e-runner.md](e2e-runner.md)                       |
+| Refactor Cleaner      | `refactor-cleaner`      | 死代码清理      | [refactor-cleaner.md](refactor-cleaner.md)           |
+| Doc Updater           | `doc-updater`           | 文档更新        | [doc-updater.md](doc-updater.md)                     |
+| Feedback Analyst      | `feedback-analyst`      | 反馈分析        | [feedback-analyst.md](feedback-analyst.md)           |
 
 ### 专业领域智能体
 
-| 智能体 | 标识名 | 用途 | 文件 |
-|--------|--------|------|------|
-| DevOps Engineer | `devops-engineer` | CI/CD 和部署 | [devops-engineer.md](devops-engineer.md) |
-| QA Engineer | `qa-engineer` | 测试策略 | [qa-engineer.md](qa-engineer.md) |
-| ML Engineer | `ml-engineer` | 机器学习 | [ml-engineer.md](ml-engineer.md) |
-| Mobile Developer | `mobile-developer` | 移动开发 | [mobile-developer.md](mobile-developer.md) |
-| Data Engineer | `data-engineer` | 数据管道 | [data-engineer.md](data-engineer.md) |
-| UX Designer | `ux-designer` | 用户体验 | [ux-designer.md](ux-designer.md) |
-| Cloud Architect | `cloud-architect` | 云架构 | [cloud-architect.md](cloud-architect.md) |
+| 智能体           | 标识名             | 用途         | 文件                                       |
+| ---------------- | ------------------ | ------------ | ------------------------------------------ |
+| DevOps Engineer  | `devops-engineer`  | CI/CD 和部署 | [devops-engineer.md](devops-engineer.md)   |
+| QA Engineer      | `qa-engineer`      | 测试策略     | [qa-engineer.md](qa-engineer.md)           |
+| ML Engineer      | `ml-engineer`      | 机器学习     | [ml-engineer.md](ml-engineer.md)           |
+| Mobile Developer | `mobile-developer` | 移动开发     | [mobile-developer.md](mobile-developer.md) |
+| Data Engineer    | `data-engineer`    | 数据管道     | [data-engineer.md](data-engineer.md)       |
+| UX Designer      | `ux-designer`      | 用户体验     | [ux-designer.md](ux-designer.md)           |
+| Cloud Architect  | `cloud-architect`  | 云架构       | [cloud-architect.md](cloud-architect.md)   |
 
 ### 版本控制智能体
 
-| 智能体 | 标识名 | 用途 | 文件 |
-|--------|--------|------|------|
+| 智能体       | 标识名         | 用途         | 文件                               |
+| ------------ | -------------- | ------------ | ---------------------------------- |
 | Git Workflow | `git-workflow` | Git 版本控制 | [git-workflow.md](git-workflow.md) |
 
 ## 调用方式
@@ -118,25 +118,25 @@
 
 ### MCP 服务器
 
-| 服务器 | 用途 |
-|--------|------|
-| `memory` | 跨会话记忆 |
-| `sequential-thinking` | 链式思维推理 |
-| `context7` | 实时文档查找 |
-| `github` | GitHub 操作 |
-| `postgres` | PostgreSQL 数据库 |
-| `docker` | Docker 操作 |
-| `kubernetes` | Kubernetes 操作 |
+| 服务器                | 用途              |
+| --------------------- | ----------------- |
+| `memory`              | 跨会话记忆        |
+| `sequential-thinking` | 链式思维推理      |
+| `context7`            | 实时文档查找      |
+| `github`              | GitHub 操作       |
+| `postgres`            | PostgreSQL 数据库 |
+| `docker`              | Docker 操作       |
+| `kubernetes`          | Kubernetes 操作   |
 
 ### 内置工具
 
-| 工具 | 用途 |
-|------|------|
-| `read` | 文件读取 |
+| 工具         | 用途         |
+| ------------ | ------------ |
+| `read`       | 文件读取     |
 | `filesystem` | 文件系统操作 |
-| `terminal` | 终端命令 |
-| `web-search` | 网络搜索 |
-| `preview` | 预览 |
+| `terminal`   | 终端命令     |
+| `web-search` | 网络搜索     |
+| `preview`    | 预览         |
 
 ## 自定义修改
 
@@ -163,13 +163,13 @@
 
 ### 标准工作流程
 
-| 场景 | 调用链 |
-|------|--------|
+| 场景     | 调用链                                                              |
+| -------- | ------------------------------------------------------------------- |
 | 功能开发 | `planner` → `architect` → `tdd-guide` → `*-reviewer` → `e2e-runner` |
-| Bug修复 | `tdd-guide` → `*-reviewer` → 验证 |
-| 构建失败 | `build-error-resolver` / `go-build-resolver` |
-| 代码审查 | 根据语言选择 `*-reviewer` → `security-reviewer`(如涉及安全) |
-| 性能优化 | `performance-optimizer` → 根据问题类型委托 |
+| Bug修复  | `tdd-guide` → `*-reviewer` → 验证                                   |
+| 构建失败 | `build-error-resolver` / `go-build-resolver`                        |
+| 代码审查 | 根据语言选择 `*-reviewer` → `security-reviewer`(如涉及安全)         |
+| 性能优化 | `performance-optimizer` → 根据问题类型委托                          |
 
 ### 协作规则
 

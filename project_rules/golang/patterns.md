@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.go"
-  - "**/go.mod"
-  - "**/go.sum"
+  - '**/*.go'
+  - '**/go.mod'
+  - '**/go.sum'
 ---
 
 # Go 模式

@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/components/**"
-  - "**/*.tsx"
+  - '**/components/**'
+  - '**/*.tsx'
 ---
 
 # React 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: React 18+, TypeScript, 状态管理 (Zustand/Jotai/Redux)
-* 架构: 组件化、函数式组件、Hooks
+- 技术栈: React 18+, TypeScript, 状态管理 (Zustand/Jotai/Redux)
+- 架构: 组件化、函数式组件、Hooks
 
 ## 关键规则
 
@@ -44,15 +44,15 @@ export function Button({ variant = 'primary', children, onClick }: ButtonProps) 
 // 自定义 Hook
 function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(() => {
-    const stored = localStorage.getItem(key)
-    return stored ? JSON.parse(stored) : initialValue
-  })
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : initialValue;
+  });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value))
-  }, [key, value])
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
 
-  return [value, setValue] as const
+  return [value, setValue] as const;
 }
 ```
 
@@ -60,19 +60,19 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 
 ```typescript
 // Zustand Store
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 interface UserStore {
-  user: User | null
-  setUser: (user: User) => void
-  logout: () => void
+  user: User | null;
+  setUser: (user: User) => void;
+  logout: () => void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
   user: null,
   setUser: (user) => set({ user }),
   logout: () => set({ user: null }),
-}))
+}));
 ```
 
 ### 文件组织

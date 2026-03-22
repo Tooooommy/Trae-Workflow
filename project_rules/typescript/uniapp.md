@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/manifest.json"
-  - "**/pages.json"
+  - '**/manifest.json'
+  - '**/pages.json'
 ---
 
 # uni-app 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Vue 3, TypeScript, uni-app
-* 架构: 多端统一，条件编译
+- 技术栈: Vue 3, TypeScript, uni-app
+- 架构: 多端统一，条件编译
 
 ## 关键规则
 
@@ -57,35 +57,35 @@ src/
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app'
+import { ref, onMounted } from 'vue';
+import { onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app';
 
-const list = ref<any[]>([])
-const loading = ref(false)
+const list = ref<any[]>([]);
+const loading = ref(false);
 
 const loadData = async () => {
-  loading.value = true
+  loading.value = true;
   try {
-    const data = await api.getList()
-    list.value = data
+    const data = await api.getList();
+    list.value = data;
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 
 onMounted(() => {
-  loadData()
-})
+  loadData();
+});
 
 onPullDownRefresh(() => {
   loadData().finally(() => {
-    uni.stopPullDownRefresh()
-  })
-})
+    uni.stopPullDownRefresh();
+  });
+});
 
 onReachBottom(() => {
-  loadMore()
-})
+  loadMore();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -107,21 +107,21 @@ onReachBottom(() => {
 
 <script setup lang="ts">
 interface Props {
-  name: string
-  avatar?: string
+  name: string;
+  avatar?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  avatar: '/static/default-avatar.png'
-})
+  avatar: '/static/default-avatar.png',
+});
 
 const emit = defineEmits<{
-  click: [value: { name: string }]
-}>()
+  click: [value: { name: string }];
+}>();
 
 const handleClick = () => {
-  emit('click', { name: props.name })
-}
+  emit('click', { name: props.name });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -152,13 +152,21 @@ const handleClick = () => {
     "color": "#999",
     "selectedColor": "#007aff",
     "list": [
-      { "pagePath": "pages/index/index", "text": "首页", "iconPath": "static/icons/home.png", "selectedIconPath": "static/icons/home-active.png" },
-      { "pagePath": "pages/user/user", "text": "我的", "iconPath": "static/icons/user.png", "selectedIconPath": "static/icons/user-active.png" }
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/icons/user.png",
+        "selectedIconPath": "static/icons/user-active.png"
+      }
     ]
   },
-  "subPackages": [
-    { "root": "subpackages/packageA", "pages": [{ "path": "detail/detail" }] }
-  ]
+  "subPackages": [{ "root": "subpackages/packageA", "pages": [{ "path": "detail/detail" }] }]
 }
 ```
 
@@ -168,9 +176,7 @@ const handleClick = () => {
 <template>
   <view>
     <!-- #ifdef MP-WEIXIN -->
-    <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
-      获取手机号
-    </button>
+    <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button>
     <!-- #endif -->
 
     <!-- #ifdef H5 -->
@@ -186,14 +192,14 @@ const handleClick = () => {
 <script setup lang="ts">
 // #ifdef MP-WEIXIN
 const getPhoneNumber = (e: any) => {
-  console.log(e.detail.code)
-}
+  console.log(e.detail.code);
+};
 // #endif
 
 // #ifdef H5
 const getPhoneH5 = () => {
   // H5 逻辑
-}
+};
 // #endif
 </script>
 ```

@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.py"
-  - "**/*.pyi"
+  - '**/*.py'
+  - '**/*.pyi'
 ---
 
 # Python 测试

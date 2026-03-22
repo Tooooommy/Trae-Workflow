@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/project.config.json"
-  - "**/app.json"
+  - '**/project.config.json'
+  - '**/app.json'
 ---
 
 # 微信小程序项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: WXML, WXSS, JavaScript/TypeScript
-* 架构: 双线程模型（渲染层 + 逻辑层）
+- 技术栈: WXML, WXSS, JavaScript/TypeScript
+- 架构: 双线程模型（渲染层 + 逻辑层）
 
 ## 关键规则
 
@@ -49,10 +49,7 @@ miniprogram/
 
 ```json
 {
-  "pages": [
-    "pages/index/index",
-    "pages/user/user"
-  ],
+  "pages": ["pages/index/index", "pages/user/user"],
   "window": {
     "navigationBarTitleText": "小程序",
     "navigationBarBackgroundColor": "#ffffff",
@@ -63,13 +60,21 @@ miniprogram/
     "color": "#999",
     "selectedColor": "#07c160",
     "list": [
-      { "pagePath": "pages/index/index", "text": "首页", "iconPath": "assets/icons/home.png", "selectedIconPath": "assets/icons/home-active.png" },
-      { "pagePath": "pages/user/user", "text": "我的", "iconPath": "assets/icons/user.png", "selectedIconPath": "assets/icons/user-active.png" }
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "assets/icons/user.png",
+        "selectedIconPath": "assets/icons/user-active.png"
+      }
     ]
   },
-  "subpackages": [
-    { "root": "subpackages/packageA", "pages": ["detail/detail"] }
-  ],
+  "subpackages": [{ "root": "subpackages/packageA", "pages": ["detail/detail"] }],
   "lazyCodeLoading": "requiredComponents"
 }
 ```
@@ -80,32 +85,32 @@ miniprogram/
 Page({
   data: {
     list: [],
-    loading: false
+    loading: false,
   },
 
   onLoad(options) {
-    this.loadData(options.id)
+    this.loadData(options.id);
   },
 
   onPullDownRefresh() {
-    this.loadData()
+    this.loadData();
   },
 
   onReachBottom() {
-    this.loadMore()
+    this.loadMore();
   },
 
   async loadData(id) {
-    this.setData({ loading: true })
+    this.setData({ loading: true });
     try {
-      const list = await api.getList(id)
-      this.setData({ list })
+      const list = await api.getList(id);
+      this.setData({ list });
     } finally {
-      this.setData({ loading: false })
-      wx.stopPullDownRefresh()
+      this.setData({ loading: false });
+      wx.stopPullDownRefresh();
     }
-  }
-})
+  },
+});
 ```
 
 ### 组件定义
@@ -114,36 +119,36 @@ Page({
 Component({
   options: {
     multipleSlots: true,
-    styleIsolation: 'apply-shared'
+    styleIsolation: 'apply-shared',
   },
 
   properties: {
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     show: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
 
   data: {
-    visible: false
+    visible: false,
   },
 
   lifetimes: {
     attached() {
-      this.setData({ visible: this.properties.show })
-    }
+      this.setData({ visible: this.properties.show });
+    },
   },
 
   methods: {
     handleClose() {
-      this.triggerEvent('close')
-    }
-  }
-})
+      this.triggerEvent('close');
+    },
+  },
+});
 ```
 
 ## 环境配置

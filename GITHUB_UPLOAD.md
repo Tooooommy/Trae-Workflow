@@ -200,6 +200,7 @@ git push origin --force --all
 ### 1. 添加仓库描述和主题
 
 在仓库 Settings → General 中：
+
 - Description: `Trae Workflow - 智能体指令配置项目，提供 28 个专业智能体、89 项技能`
 - Website: 项目主页或文档链接
 - Topics: `trae`, `ai`, `agents`, `skills`, `workflow`, `configuration`
@@ -207,6 +208,7 @@ git push origin --force --all
 ### 2. 创建 README.md
 
 确保 README.md 包含：
+
 - 项目简介
 - 安装指南
 - 使用方法
@@ -242,6 +244,7 @@ SOFTWARE." > LICENSE
 ### 4. 启用 GitHub Pages（可选）
 
 如果需要文档网站：
+
 1. Settings → Pages
 2. Source: Deploy from a branch
 3. Branch: main / root
@@ -250,6 +253,7 @@ SOFTWARE." > LICENSE
 ## 分支保护建议
 
 对于 main 分支，建议设置保护规则：
+
 1. Settings → Branches → Add rule
 2. Branch name pattern: `main`
 3. 勾选：

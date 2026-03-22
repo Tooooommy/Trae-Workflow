@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/app.json"
-  - "**/App.tsx"
-  - "**/eas.json"
+  - '**/app.json'
+  - '**/App.tsx'
+  - '**/eas.json'
 ---
 
 # Expo 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Expo SDK 50+, React Native, TypeScript
-* 架构: Expo Router 或 React Navigation
+- 技术栈: Expo SDK 50+, React Native, TypeScript
+- 架构: Expo Router 或 React Navigation
 
 ## 关键规则
 
@@ -75,10 +75,7 @@ eas.json                   # EAS Build 配置
       },
       "package": "com.myapp.app"
     },
-    "plugins": [
-      "expo-router",
-      "expo-secure-store"
-    ],
+    "plugins": ["expo-router", "expo-secure-store"],
     "scheme": "myapp"
   }
 }
@@ -88,8 +85,8 @@ eas.json                   # EAS Build 配置
 
 ```tsx
 // app/_layout.tsx
-import { Stack } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 export default function RootLayout() {
   return (
@@ -101,12 +98,12 @@ export default function RootLayout() {
         <Stack.Screen name="user/[id]" options={{ title: 'User Details' }} />
       </Stack>
     </>
-  )
+  );
 }
 
 // app/(tabs)/_layout.tsx
-import { Tabs } from 'expo-router'
-import { Ionicons } from '@expo/vector-icons'
+import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   return (
@@ -126,7 +123,7 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-  )
+  );
 }
 ```
 
@@ -134,22 +131,26 @@ export default function TabLayout() {
 
 ```tsx
 // app/(tabs)/home.tsx
-import { View, Text, FlatList, ActivityIndicator } from 'react-native'
-import { useQuery } from '@tanstack/react-query'
-import { userService } from '@/services/userService'
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import { userService } from '@/services/userService';
 
 export default function HomeScreen() {
-  const { data: users, isLoading, error } = useQuery({
+  const {
+    data: users,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['users'],
     queryFn: userService.getUsers,
-  })
+  });
 
   if (isLoading) {
-    return <ActivityIndicator size="large" />
+    return <ActivityIndicator size="large" />;
   }
 
   if (error) {
-    return <Text>Error loading users</Text>
+    return <Text>Error loading users</Text>;
   }
 
   return (
@@ -160,7 +161,7 @@ export default function HomeScreen() {
         renderItem={({ item }) => <Text>{item.name}</Text>}
       />
     </View>
-  )
+  );
 }
 ```
 

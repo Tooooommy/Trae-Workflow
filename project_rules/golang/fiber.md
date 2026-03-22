@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/fiber.go"
-  - "**/main.go"
+  - '**/fiber.go'
+  - '**/main.go'
 ---
 
 # Fiber 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Go 1.22+, Fiber v2, GORM, PostgreSQL
-* 架构: Handler-Service-Repository 三层架构
+- 技术栈: Go 1.22+, Fiber v2, GORM, PostgreSQL
+- 架构: Handler-Service-Repository 三层架构
 
 ## 关键规则
 

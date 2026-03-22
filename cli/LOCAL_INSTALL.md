@@ -22,6 +22,7 @@ npm install
 ```
 
 这会安装 package.json 中定义的所有依赖项：
+
 - axios
 - chalk
 - commander
@@ -117,6 +118,7 @@ npm unlink trae-workflow-cli
 ### 问题：`traew` 命令未找到
 
 **解决方案**：
+
 1. 确认已运行 `npm link`
 2. 检查 npm 全局路径：
    ```bash
@@ -127,6 +129,7 @@ npm unlink trae-workflow-cli
 ### 问题：权限错误
 
 **解决方案**：
+
 ```bash
 # Windows（以管理员身份运行 PowerShell）
 # Linux/macOS（使用 sudo）
@@ -136,6 +139,7 @@ sudo npm link
 ### 问题：依赖安装失败
 
 **解决方案**：
+
 ```bash
 # 清除 npm 缓存
 npm cache clean --force

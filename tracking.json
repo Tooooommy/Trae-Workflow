@@ -110,13 +110,7 @@
       }
     },
     "format": "markdown",
-    "includeSections": [
-      "summary",
-      "topItems",
-      "issues",
-      "trends",
-      "suggestions"
-    ]
+    "includeSections": ["summary", "topItems", "issues", "trends", "suggestions"]
   },
   "improvements": {
     "autoSuggest": true,

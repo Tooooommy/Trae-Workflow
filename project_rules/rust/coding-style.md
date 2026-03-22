@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.rs"
-  - "**/Cargo.toml"
+  - '**/*.rs'
+  - '**/Cargo.toml'
 ---
 
 # Rust 编码风格
@@ -11,13 +11,13 @@ globs:
 
 ## 命名约定
 
-| 类型 | 约定 | 示例 |
-|------|------|------|
-| 类型/结构体 | PascalCase | `UserAccount` |
-| 函数/方法 | snake_case | `create_user` |
-| 常量 | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS` |
-| 模块 | snake_case | `user_service` |
-| 生命周期 | 单引号小写 | `'a`, `'static` |
+| 类型        | 约定                 | 示例              |
+| ----------- | -------------------- | ----------------- |
+| 类型/结构体 | PascalCase           | `UserAccount`     |
+| 函数/方法   | snake_case           | `create_user`     |
+| 常量        | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS` |
+| 模块        | snake_case           | `user_service`    |
+| 生命周期    | 单引号小写           | `'a`, `'static`   |
 
 ## 错误处理
 

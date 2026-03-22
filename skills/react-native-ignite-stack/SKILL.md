@@ -144,8 +144,8 @@ danger: '#FF3B30',
 
 ```ts
 // app/theme/index.ts
-import { createTamagui } from "tamagui";
-import { tokens } from "./tokens";
+import { createTamagui } from 'tamagui';
+import { tokens } from './tokens';
 
 // 创建完整的 Tamagui 配置
 export const config = createTamagui({
@@ -161,12 +161,12 @@ export const config = createTamagui({
       primary: tokens.color.primary,
     },
     dark: {
-      background: "#000000",
-      backgroundHover: "#1c1c1e",
-      text: "#ffffff",
-      textSubtle: "#8e8e93",
-      border: "#38383a",
-      primary: "#0a84ff",
+      background: '#000000',
+      backgroundHover: '#1c1c1e',
+      text: '#ffffff',
+      textSubtle: '#8e8e93',
+      border: '#38383a',
+      primary: '#0a84ff',
     },
   },
   // 可以在此处添加自定义字体、动画等
@@ -174,7 +174,7 @@ export const config = createTamagui({
 
 export type AppConfig = typeof config;
 // 为 Tamagui 的样式属性提供类型支持
-declare module "tamagui" {
+declare module 'tamagui' {
   interface TamaguiCustomConfig extends AppConfig {}
 }
 ```
@@ -183,22 +183,22 @@ declare module "tamagui" {
 
 ```tsx
 // app/components/ui/button.tsx
-import { styled, YStack, Text, GetProps } from "tamagui";
-import { TouchableOpacity } from "react-native";
+import { styled, YStack, Text, GetProps } from 'tamagui';
+import { TouchableOpacity } from 'react-native';
 
 // 使用 styled 创建高性能的样式化组件
 export const ButtonFrame = styled(YStack, {
-  name: "Button", // 有助于调试
-  tag: "button", // 在 Web 上渲染为 <button>，在 Native 上使用 TouchableOpacity
-  backgroundColor: "$primary",
-  borderRadius: "$4",
-  paddingHorizontal: "$4",
-  paddingVertical: "$3",
-  alignItems: "center",
-  justifyContent: "center",
-  cursor: "pointer",
+  name: 'Button', // 有助于调试
+  tag: 'button', // 在 Web 上渲染为 <button>，在 Native 上使用 TouchableOpacity
+  backgroundColor: '$primary',
+  borderRadius: '$4',
+  paddingHorizontal: '$4',
+  paddingVertical: '$3',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
   hoverStyle: {
-    backgroundColor: "$primaryAccent",
+    backgroundColor: '$primaryAccent',
   },
   pressStyle: {
     opacity: 0.8,
@@ -206,28 +206,28 @@ export const ButtonFrame = styled(YStack, {
   variants: {
     size: {
       small: {
-        paddingHorizontal: "$3",
-        paddingVertical: "$2",
+        paddingHorizontal: '$3',
+        paddingVertical: '$2',
       },
       large: {
-        paddingHorizontal: "$5",
-        paddingVertical: "$4",
+        paddingHorizontal: '$5',
+        paddingVertical: '$4',
       },
     },
     variant: {
       outlined: {
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         borderWidth: 1,
-        borderColor: "$primary",
+        borderColor: '$primary',
       },
       ghost: {
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
       },
     },
     disabled: {
       true: {
         opacity: 0.5,
-        cursor: "not-allowed",
+        cursor: 'not-allowed',
       },
     },
   } as const,
@@ -262,9 +262,9 @@ export const Button = ButtonFrame.styleable<
 
 ```tsx
 // app/screens/welcome/screen.tsx
-import { SafeAreaView, ScrollView } from "react-native";
-import { Button, Text, YStack, XStack } from "tamagui";
-import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView, ScrollView } from 'react-native';
+import { Button, Text, YStack, XStack } from 'tamagui';
+import { useNavigation } from '@react-navigation/native';
 
 export function WelcomeScreen() {
   const navigation = useNavigation();
@@ -281,8 +281,8 @@ export function WelcomeScreen() {
           </Text>
 
           <YStack space="3" marginTop="6">
-            <Button title="主要操作" onPress={() => navigation.navigate("Demo" as never)} />
-            <Button title="次要操作" variant="outlined" onPress={() => console.log("Pressed")} />
+            <Button title="主要操作" onPress={() => navigation.navigate('Demo' as never)} />
+            <Button title="次要操作" variant="outlined" onPress={() => console.log('Pressed')} />
             <Button
               title="禁用按钮"
               disabled
@@ -295,8 +295,8 @@ export function WelcomeScreen() {
             flexWrap="wrap"
             gap="$2"
             $gtSm={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              flexDirection: 'row',
+              justifyContent: 'space-between',
             }}
           >
             <YStack
@@ -324,13 +324,13 @@ export function WelcomeScreen() {
 
 ```ts
 // app/models/root-store.ts
-import { Instance, types } from "mobx-state-tree";
-import { withEnvironment } from "./extensions/with-environment";
-import { withRootStore } from "./extensions/with-root-store";
-import { UserModel, User } from "./user";
+import { Instance, types } from 'mobx-state-tree';
+import { withEnvironment } from './extensions/with-environment';
+import { withRootStore } from './extensions/with-root-store';
+import { UserModel, User } from './user';
 
 export const RootStoreModel = types
-  .model("RootStore")
+  .model('RootStore')
   .props({
     user: types.optional(UserModel, {} as User),
     sessionToken: types.maybe(types.string),
@@ -357,35 +357,35 @@ export interface RootStore extends Instance<typeof RootStoreModel> {}
 // 定义统一的 API 错误处理
 export type ApiResponse<D = any> =
   | {
-      kind: "ok";
+      kind: 'ok';
       data: D;
     }
   | {
-      kind: "bad-data";
+      kind: 'bad-data';
       data: any;
       message?: string;
     }
   | {
-      kind: "timeout";
+      kind: 'timeout';
     }
   | {
-      kind: "cannot-connect";
+      kind: 'cannot-connect';
     }
   | {
-      kind: "forbidden";
+      kind: 'forbidden';
     }
   | {
-      kind: "not-found";
+      kind: 'not-found';
     }
   | {
-      kind: "rejected";
+      kind: 'rejected';
     }
   | {
-      kind: "unknown";
+      kind: 'unknown';
       temporary: boolean;
     }
   | {
-      kind: "unauthorized";
+      kind: 'unauthorized';
     };
 ```
 
@@ -503,47 +503,47 @@ return { kind: 'ok', data: response.data }
 
 ```ts
 // test/services/api/api.test.ts
-import { Api } from "../../../app/services/api/api";
-import { ApiResponseKind } from "../../../app/services/api/api-problem";
+import { Api } from '../../../app/services/api/api';
+import { ApiResponseKind } from '../../../app/services/api/api-problem';
 
-describe("Api 服务", () => {
+describe('Api 服务', () => {
   let api: Api;
 
   beforeEach(() => {
-    api = new Api({ url: "https://api.example.com", timeout: 5000 });
+    api = new Api({ url: 'https://api.example.com', timeout: 5000 });
   });
 
-  describe("login", () => {
-    it("使用有效凭据返回 token", async () => {
+  describe('login', () => {
+    it('使用有效凭据返回 token', async () => {
       // 模拟 apisauce
       const mockPost = jest.fn().mockResolvedValue({
         ok: true,
-        data: { token: "fake-jwt-token" },
+        data: { token: 'fake-jwt-token' },
       });
       api.apisauce.post = mockPost;
 
-      const result = await api.login("user@example.com", "password123");
+      const result = await api.login('user@example.com', 'password123');
 
-      expect(result.kind).toBe("ok");
-      if (result.kind === "ok") {
-        expect(result.data.token).toBe("fake-jwt-token");
+      expect(result.kind).toBe('ok');
+      if (result.kind === 'ok') {
+        expect(result.data.token).toBe('fake-jwt-token');
       }
-      expect(mockPost).toHaveBeenCalledWith("/auth/login", {
-        email: "user@example.com",
-        password: "password123",
+      expect(mockPost).toHaveBeenCalledWith('/auth/login', {
+        email: 'user@example.com',
+        password: 'password123',
       });
     });
 
-    it("使用无效凭据返回错误", async () => {
+    it('使用无效凭据返回错误', async () => {
       const mockPost = jest.fn().mockResolvedValue({
         ok: false,
-        data: { error: "Invalid credentials" },
+        data: { error: 'Invalid credentials' },
       });
       api.apisauce.post = mockPost;
 
-      const result = await api.login("wrong@example.com", "wrong");
+      const result = await api.login('wrong@example.com', 'wrong');
 
-      expect(result.kind).toBe("bad-data");
+      expect(result.kind).toBe('bad-data');
     });
   });
 });
@@ -553,30 +553,30 @@ describe("Api 服务", () => {
 
 ```tsx
 // test/components/ui/button.test.tsx
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
-import { Button } from "../../../app/components/ui/button";
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react-native';
+import { Button } from '../../../app/components/ui/button';
 
-describe("Button 组件", () => {
-  it("渲染标题文本", () => {
+describe('Button 组件', () => {
+  it('渲染标题文本', () => {
     render(<Button title="点击我" />);
-    expect(screen.getByText("点击我")).toBeTruthy();
+    expect(screen.getByText('点击我')).toBeTruthy();
   });
 
-  it("点击时触发 onPress 回调", () => {
+  it('点击时触发 onPress 回调', () => {
     const onPressMock = jest.fn();
     render(<Button title="点击" onPress={onPressMock} />);
 
-    fireEvent.press(screen.getByText("点击"));
+    fireEvent.press(screen.getByText('点击'));
 
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });
 
-  it("禁用时不触发 onPress", () => {
+  it('禁用时不触发 onPress', () => {
     const onPressMock = jest.fn();
     render(<Button title="禁用按钮" disabled onPress={onPressMock} />);
 
-    fireEvent.press(screen.getByText("禁用按钮"));
+    fireEvent.press(screen.getByText('禁用按钮'));
 
     expect(onPressMock).not.toHaveBeenCalled();
   });
@@ -587,7 +587,7 @@ describe("Button 组件", () => {
 
 ```javascript
 // e2e/firstTest.spec.js
-describe("登录流程", () => {
+describe('登录流程', () => {
   beforeAll(async () => {
     await device.launchApp();
   });
@@ -596,17 +596,17 @@ describe("登录流程", () => {
     await device.reloadReactNative();
   });
 
-  it("应该显示欢迎屏幕", async () => {
-    await expect(element(by.text("欢迎使用"))).toBeVisible();
+  it('应该显示欢迎屏幕', async () => {
+    await expect(element(by.text('欢迎使用'))).toBeVisible();
   });
 
-  it("登录后应导航到主页", async () => {
-    await element(by.id("emailInput")).typeText("user@example.com");
-    await element(by.id("passwordInput")).typeText("password123");
-    await element(by.text("登录")).tap();
+  it('登录后应导航到主页', async () => {
+    await element(by.id('emailInput')).typeText('user@example.com');
+    await element(by.id('passwordInput')).typeText('password123');
+    await element(by.text('登录')).tap();
 
     // 等待导航并断言
-    await waitFor(element(by.text("主页")))
+    await waitFor(element(by.text('主页')))
       .toBeVisible()
       .withTimeout(5000);
   });

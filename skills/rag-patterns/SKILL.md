@@ -16,13 +16,13 @@ description: RAG (检索增强生成) 模式、向量数据库、文档处理和
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| OpenAI API | gpt-4o-mini | gpt-4o |
-| Pinecone | 3.0+ | 最新 |
-| LangChain | 0.1+ | 最新 |
-| text-embedding-3-small | 最新 | text-embedding-3-large |
-| TypeScript | 5.0+ | 最新 |
+| 技术                   | 最低版本    | 推荐版本               |
+| ---------------------- | ----------- | ---------------------- |
+| OpenAI API             | gpt-4o-mini | gpt-4o                 |
+| Pinecone               | 3.0+        | 最新                   |
+| LangChain              | 0.1+        | 最新                   |
+| text-embedding-3-small | 最新        | text-embedding-3-large |
+| TypeScript             | 5.0+        | 最新                   |
 
 ## 核心架构
 
@@ -144,20 +144,17 @@ class SemanticChunker {
   async chunk(text: string): Promise<Chunk[]> {
     // 按句子分割
     const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-    
+
     // 获取句子嵌入
     const embeddings = await this.getEmbeddings(sentences);
-    
+
     // 计算相邻句子相似度
     const chunks: Chunk[] = [];
     let currentSentences: string[] = [sentences[0]];
-    
+
     for (let i = 1; i < sentences.length; i++) {
-      const similarity = this.cosineSimilarity(
-        embeddings[i - 1],
-        embeddings[i]
-      );
-      
+      const similarity = this.cosineSimilarity(embeddings[i - 1], embeddings[i]);
+
       if (similarity < this.similarityThreshold) {
         // 语义断点，创建新块
         chunks.push({
@@ -170,7 +167,7 @@ class SemanticChunker {
         currentSentences.push(sentences[i]);
       }
     }
-    
+
     // 添加最后一个块
     if (currentSentences.length > 0) {
       chunks.push({
@@ -179,7 +176,7 @@ class SemanticChunker {
         metadata: { position: chunks.length },
       });
     }
-    
+
     return chunks;
   }
 
@@ -334,17 +331,10 @@ class HybridRetriever implements Retriever {
     const keywordResults = this.bm25Search(keywords, k * 2);
 
     // 融合结果 (RRF)
-    return this.reciprocalRankFusion(
-      [vectorResults, keywordResults],
-      k
-    );
+    return this.reciprocalRankFusion([vectorResults, keywordResults], k);
   }
 
-  private reciprocalRankFusion(
-    resultSets: Chunk[][],
-    k: number,
-    rrfK = 60
-  ): Chunk[] {
+  private reciprocalRankFusion(resultSets: Chunk[][], k: number, rrfK = 60): Chunk[] {
     const scores = new Map<string, number>();
 
     for (const results of resultSets) {
@@ -396,11 +386,7 @@ class Reranker {
     this.client = client;
   }
 
-  async rerank(
-    query: string,
-    chunks: Chunk[],
-    topK: number
-  ): Promise<Chunk[]> {
+  async rerank(query: string, chunks: Chunk[], topK: number): Promise<Chunk[]> {
     const scored = await Promise.all(
       chunks.map(async (chunk) => {
         const score = await this.scoreRelevance(query, chunk.content);
@@ -414,10 +400,7 @@ class Reranker {
       .map((s) => s.chunk);
   }
 
-  private async scoreRelevance(
-    query: string,
-    content: string
-  ): Promise<number> {
+  private async scoreRelevance(query: string, content: string): Promise<number> {
     const response = await this.client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
@@ -449,11 +432,7 @@ class RAGPipeline {
   private reranker: Reranker;
   private client: OpenAI;
 
-  constructor(
-    retriever: Retriever,
-    reranker: Reranker,
-    client: OpenAI
-  ) {
+  constructor(retriever: Retriever, reranker: Reranker, client: OpenAI) {
     this.retriever = retriever;
     this.reranker = reranker;
     this.client = client;
@@ -470,9 +449,7 @@ class RAGPipeline {
     const reranked = await this.reranker.rerank(question, initialResults, 5);
 
     // 3. 构建上下文
-    const context = reranked
-      .map((c, i) => `[${i + 1}] ${c.content}`)
-      .join('\n\n');
+    const context = reranked.map((c, i) => `[${i + 1}] ${c.content}`).join('\n\n');
 
     // 4. 生成答案
     const response = await this.client.chat.completions.create({
@@ -563,10 +540,7 @@ interface RetrievalMetrics {
   mrr: number;
 }
 
-function evaluateRetrieval(
-  retrieved: string[],
-  relevant: string[]
-): RetrievalMetrics {
+function evaluateRetrieval(retrieved: string[], relevant: string[]): RetrievalMetrics {
   const retrievedSet = new Set(retrieved);
   const relevantSet = new Set(relevant);
 
@@ -623,12 +597,12 @@ Ground Truth: ${groundTruth}`,
 
 ## 快速参考
 
-| 组件 | 用途 | 工具选择 |
-|------|------|----------|
-| 文档分块 | 切分长文档 | 语义分块、固定大小 |
-| 向量化 | 文本转向量 | OpenAI、Cohere |
-| 向量存储 | 存储和检索 | Pinecone、Weaviate、Milvus |
-| 检索策略 | 提高召回率 | 混合检索、重排序 |
-| 答案生成 | 生成最终答案 | GPT-4、Claude |
+| 组件     | 用途         | 工具选择                   |
+| -------- | ------------ | -------------------------- |
+| 文档分块 | 切分长文档   | 语义分块、固定大小         |
+| 向量化   | 文本转向量   | OpenAI、Cohere             |
+| 向量存储 | 存储和检索   | Pinecone、Weaviate、Milvus |
+| 检索策略 | 提高召回率   | 混合检索、重排序           |
+| 答案生成 | 生成最终答案 | GPT-4、Claude              |
 
 **记住**：RAG 的质量取决于检索准确性和上下文相关性。持续评估和优化检索策略是关键。

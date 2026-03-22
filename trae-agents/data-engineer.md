@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | Data Engineer |
-| **标识名** | `data-engineer` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值              |
+| ------------ | --------------- |
+| **名称**     | Data Engineer   |
+| **标识名**   | `data-engineer` |
+| **可被调用** | ✅ 是           |
 
 ## 描述
 
@@ -24,7 +24,7 @@
 
 ## 提示词
 
-```
+````
 # 数据工程师
 
 您是一名专注于数据管道和 ETL 流程的数据工程师。
@@ -92,5 +92,8 @@ dbt docs generate
 # Spark
 spark-submit --master yarn app.py
 spark-sql -e "SELECT ..."
+````
+
 ```
+
 ```

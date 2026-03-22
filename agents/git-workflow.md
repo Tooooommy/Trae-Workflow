@@ -168,18 +168,18 @@ git push origin develop
 
 ### 提交类型
 
-| 类型 | 说明 | 示例 |
-|------|------|------|
-| feat | 新功能 | feat(auth): add OAuth2 login |
-| fix | Bug 修复 | fix(api): resolve null pointer |
-| docs | 文档更新 | docs(readme): update install guide |
-| style | 代码格式 | style(lint): fix indentation |
-| refactor | 重构 | refactor(user): extract validation |
-| test | 测试 | test(auth): add unit tests |
-| chore | 构建/工具 | chore(deps): update dependencies |
-| perf | 性能优化 | perf(db): optimize query |
-| ci | CI 配置 | ci(github): add workflow |
-| revert | 回滚 | revert: revert feat(auth) |
+| 类型     | 说明      | 示例                               |
+| -------- | --------- | ---------------------------------- |
+| feat     | 新功能    | feat(auth): add OAuth2 login       |
+| fix      | Bug 修复  | fix(api): resolve null pointer     |
+| docs     | 文档更新  | docs(readme): update install guide |
+| style    | 代码格式  | style(lint): fix indentation       |
+| refactor | 重构      | refactor(user): extract validation |
+| test     | 测试      | test(auth): add unit tests         |
+| chore    | 构建/工具 | chore(deps): update dependencies   |
+| perf     | 性能优化  | perf(db): optimize query           |
+| ci       | CI 配置   | ci(github): add workflow           |
+| revert   | 回滚      | revert: revert feat(auth)          |
 
 ## 合并冲突解决
 
@@ -195,12 +195,12 @@ git push origin develop
 
 ### 解决策略
 
-| 场景 | 策略 |
-|------|------|
+| 场景     | 策略                   |
+| -------- | ---------------------- |
 | 功能冲突 | 手动合并，保留双方功能 |
-| 样式冲突 | 选择最新或更好的方案 |
-| 重构冲突 | 优先使用重构后的代码 |
-| 配置冲突 | 合并配置项，不覆盖 |
+| 样式冲突 | 选择最新或更好的方案   |
+| 重构冲突 | 优先使用重构后的代码   |
+| 配置冲突 | 合并配置项，不覆盖     |
 
 ### 最佳实践
 
@@ -212,22 +212,22 @@ git push origin develop
 
 ## 分支命名规范
 
-| 类型 | 格式 | 示例 |
-|------|------|------|
-| 功能 | feature/<description> | feature/user-auth |
-| 修复 | fix/<description> | fix/login-error |
-| 重构 | refactor/<description> | refactor/api-layer |
-| 文档 | docs/<description> | docs/api-guide |
-| 发布 | release/<version> | release/1.2.0 |
-| 热修复 | hotfix/<description> | hotfix/security-patch |
+| 类型   | 格式                   | 示例                  |
+| ------ | ---------------------- | --------------------- |
+| 功能   | feature/<description>  | feature/user-auth     |
+| 修复   | fix/<description>      | fix/login-error       |
+| 重构   | refactor/<description> | refactor/api-layer    |
+| 文档   | docs/<description>     | docs/api-guide        |
+| 发布   | release/<version>      | release/1.2.0         |
+| 热修复 | hotfix/<description>   | hotfix/security-patch |
 
 ## 危险信号
 
-* **长期分支** — 功能分支超过 2 周
-* **大合并** — 一次合并超过 500 行
-* **强制推送** — 向保护分支强制推送
-* **直接提交** — 直接向 main/develop 提交
-* **未审查合并** — 跳过 PR 审查流程
+- **长期分支** — 功能分支超过 2 周
+- **大合并** — 一次合并超过 500 行
+- **强制推送** — 向保护分支强制推送
+- **直接提交** — 直接向 main/develop 提交
+- **未审查合并** — 跳过 PR 审查流程
 
 ## 协作说明
 
@@ -241,10 +241,10 @@ git push origin develop
 
 ### 完成后委托
 
-| 场景 | 委托目标 |
-|------|---------|
-| 代码需要审查 | 对应语言 `*-reviewer` |
+| 场景           | 委托目标                     |
+| -------------- | ---------------------------- |
+| 代码需要审查   | 对应语言 `*-reviewer`        |
 | 合并后需要测试 | `qa-engineer` / `e2e-runner` |
-| 发布需要部署 | `devops-engineer` |
-| 需要更新文档 | `doc-updater` |
-| 无问题 | 返回调用方继续流程 |
+| 发布需要部署   | `devops-engineer`            |
+| 需要更新文档   | `doc-updater`                |
+| 无问题         | 返回调用方继续流程           |

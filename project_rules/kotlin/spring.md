@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/build.gradle.kts"
-  - "**/Application.kt"
+  - '**/build.gradle.kts'
+  - '**/Application.kt'
 ---
 
 # Kotlin Spring Boot 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Kotlin 1.9+, Spring Boot 3, Spring Data JPA, PostgreSQL
-* 架构: 分层架构, 协程支持
+- 技术栈: Kotlin 1.9+, Spring Boot 3, Spring Data JPA, PostgreSQL
+- 架构: 分层架构, 协程支持
 
 ## 关键规则
 

@@ -17,14 +17,14 @@ description: OAuth2/JWT/OIDC 认证授权模式 - 用户身份验证与会话管
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| JWT | - | JWT.io 规范 |
-| OAuth 2.0 | - | RFC 6749 |
-| OIDC | - | OpenID Connect 1.0 |
-| bcrypt | 5.0+ | 最新 |
-| passport.js | 0.6+ | 最新 |
-| jose | 5.0+ | 最新 |
+| 技术        | 最低版本 | 推荐版本           |
+| ----------- | -------- | ------------------ |
+| JWT         | -        | JWT.io 规范        |
+| OAuth 2.0   | -        | RFC 6749           |
+| OIDC        | -        | OpenID Connect 1.0 |
+| bcrypt      | 5.0+     | 最新               |
+| passport.js | 0.6+     | 最新               |
+| jose        | 5.0+     | 最新               |
 
 ## 核心模式
 
@@ -80,12 +80,12 @@ async function refreshAccessToken(refreshToken: string): Promise<TokenResponse> 
 
 ## 认证方案对比
 
-| 方案 | 适用场景 | 优点 | 缺点 |
-|------|----------|------|------|
-| JWT | 无状态 API | 可扩展、自包含 | 无法撤销 |
-| Session | 传统 Web | 可控、安全 | 需要存储 |
-| OAuth | 社交登录 | 用户体验好 | 依赖第三方 |
-| API Key | 服务间调用 | 简单直接 | 权限粒度粗 |
+| 方案    | 适用场景   | 优点           | 缺点       |
+| ------- | ---------- | -------------- | ---------- |
+| JWT     | 无状态 API | 可扩展、自包含 | 无法撤销   |
+| Session | 传统 Web   | 可控、安全     | 需要存储   |
+| OAuth   | 社交登录   | 用户体验好     | 依赖第三方 |
+| API Key | 服务间调用 | 简单直接       | 权限粒度粗 |
 
 ## 安全最佳实践
 
@@ -131,11 +131,11 @@ async function verifyToken(token: string) {
 ```typescript
 function authMiddleware(req, res, next) {
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   if (!token) {
     return res.status(401).json({ error: 'No token provided' });
   }
-  
+
   try {
     const payload = verifyToken(token);
     req.user = payload;
@@ -179,21 +179,23 @@ const roles: Record<string, Role> = {
 };
 
 function hasPermission(role: string, resource: string, action: string): boolean {
-  return roles[role]?.permissions.some(
-    p => (p.resource === '*' || p.resource === resource) && p.action === action
-  ) ?? false;
+  return (
+    roles[role]?.permissions.some(
+      (p) => (p.resource === '*' || p.resource === resource) && p.action === action
+    ) ?? false
+  );
 }
 ```
 
 ## 常见安全漏洞防护
 
-| 漏洞 | 防护措施 |
-|------|----------|
-| 暴力破解 | 速率限制、账户锁定 |
-| 会话劫持 | HTTPS、HttpOnly Cookie |
-| CSRF | CSRF Token、SameSite Cookie |
-| XSS | 输入验证、输出编码 |
-| SQL 注入 | 参数化查询 |
+| 漏洞     | 防护措施                    |
+| -------- | --------------------------- |
+| 暴力破解 | 速率限制、账户锁定          |
+| 会话劫持 | HTTPS、HttpOnly Cookie      |
+| CSRF     | CSRF Token、SameSite Cookie |
+| XSS      | 输入验证、输出编码          |
+| SQL 注入 | 参数化查询                  |
 
 ## 快速参考
 

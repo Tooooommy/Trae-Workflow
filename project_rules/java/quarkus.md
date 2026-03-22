@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/pom.xml"
-  - "**/build.gradle"
-  - "**/application.properties"
+  - '**/pom.xml'
+  - '**/build.gradle'
+  - '**/application.properties'
 ---
 
 # Quarkus 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Java 21+, Quarkus 3, Hibernate ORM, PostgreSQL
-* 架构: 云原生, 响应式
+- 技术栈: Java 21+, Quarkus 3, Hibernate ORM, PostgreSQL
+- 架构: 云原生, 响应式
 
 ## 关键规则
 

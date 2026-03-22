@@ -58,6 +58,7 @@ main (生产分支)
 ```
 
 **适用场景**：
+
 - 有计划的发布周期
 - 需要维护多个版本
 - 严格的发布流程
@@ -73,6 +74,7 @@ main (主干)
 ```
 
 **适用场景**：
+
 - 持续集成/持续部署
 - 高频发布
 - 团队经验丰富
@@ -86,6 +88,7 @@ main (主分支，始终可部署)
 ```
 
 **适用场景**：
+
 - 小型团队
 - 单一版本
 - 快速迭代
@@ -104,40 +107,40 @@ main (主分支，始终可部署)
 
 ### 提交类型
 
-| 类型 | 说明 | 示例 |
-|------|------|------|
-| feat | 新功能 | feat(auth): add OAuth2 login |
-| fix | Bug 修复 | fix(api): resolve null pointer |
-| docs | 文档更新 | docs(readme): update install guide |
-| style | 代码格式 | style(lint): fix indentation |
-| refactor | 重构 | refactor(user): extract validation |
-| test | 测试 | test(auth): add unit tests |
-| chore | 构建/工具 | chore(deps): update dependencies |
-| perf | 性能优化 | perf(db): optimize query |
-| ci | CI 配置 | ci(github): add workflow |
-| revert | 回滚 | revert: revert feat(auth) |
+| 类型     | 说明      | 示例                               |
+| -------- | --------- | ---------------------------------- |
+| feat     | 新功能    | feat(auth): add OAuth2 login       |
+| fix      | Bug 修复  | fix(api): resolve null pointer     |
+| docs     | 文档更新  | docs(readme): update install guide |
+| style    | 代码格式  | style(lint): fix indentation       |
+| refactor | 重构      | refactor(user): extract validation |
+| test     | 测试      | test(auth): add unit tests         |
+| chore    | 构建/工具 | chore(deps): update dependencies   |
+| perf     | 性能优化  | perf(db): optimize query           |
+| ci       | CI 配置   | ci(github): add workflow           |
+| revert   | 回滚      | revert: revert feat(auth)          |
 
 ### Scope 示例
 
-| Scope | 说明 |
-|-------|------|
-| api | API 相关 |
-| auth | 认证授权 |
-| db | 数据库 |
-| ui | 用户界面 |
-| core | 核心功能 |
-| deps | 依赖管理 |
+| Scope | 说明     |
+| ----- | -------- |
+| api   | API 相关 |
+| auth  | 认证授权 |
+| db    | 数据库   |
+| ui    | 用户界面 |
+| core  | 核心功能 |
+| deps  | 依赖管理 |
 
 ## 合并策略
 
 ### Merge vs Rebase
 
-| 场景 | 推荐方式 | 原因 |
-|------|---------|------|
+| 场景                   | 推荐方式        | 原因         |
+| ---------------------- | --------------- | ------------ |
 | 功能分支合并到 develop | Merge (--no-ff) | 保留分支历史 |
-| 本地分支同步主分支 | Rebase | 保持历史整洁 |
-| 已推送分支 | Merge | 避免强制推送 |
-| 私有分支 | Rebase | 保持历史清晰 |
+| 本地分支同步主分支     | Rebase          | 保持历史整洁 |
+| 已推送分支             | Merge           | 避免强制推送 |
+| 私有分支               | Rebase          | 保持历史清晰 |
 
 ### 冲突解决流程
 
@@ -159,12 +162,12 @@ git rebase --continue
 
 ### 冲突解决策略
 
-| 场景 | 策略 |
-|------|------|
+| 场景     | 策略                   |
+| -------- | ---------------------- |
 | 功能冲突 | 手动合并，保留双方功能 |
-| 样式冲突 | 选择最新或更好的方案 |
-| 重构冲突 | 优先使用重构后的代码 |
-| 配置冲突 | 合并配置项，不覆盖 |
+| 样式冲突 | 选择最新或更好的方案   |
+| 重构冲突 | 优先使用重构后的代码   |
+| 配置冲突 | 合并配置项，不覆盖     |
 
 ## 版本发布流程
 
@@ -309,42 +312,42 @@ git revert <commit-hash>
 
 ## 危险信号
 
-* **长期分支** — 功能分支超过 2 周
-* **大合并** — 一次合并超过 500 行
-* **强制推送** — 向保护分支强制推送
-* **直接提交** — 直接向 main/develop 提交
-* **未审查合并** — 跳过 PR 审查流程
-* **敏感信息** — 提交包含密钥或凭证
+- **长期分支** — 功能分支超过 2 周
+- **大合并** — 一次合并超过 500 行
+- **强制推送** — 向保护分支强制推送
+- **直接提交** — 直接向 main/develop 提交
+- **未审查合并** — 跳过 PR 审查流程
+- **敏感信息** — 提交包含密钥或凭证
 
 ## 工具集成
 
 ### Git Hooks
 
-| Hook | 用途 |
-|------|------|
-| pre-commit | 提交前检查 |
+| Hook       | 用途         |
+| ---------- | ------------ |
+| pre-commit | 提交前检查   |
 | commit-msg | 验证提交消息 |
-| pre-push | 推送前检查 |
-| pre-rebase | 变基前检查 |
+| pre-push   | 推送前检查   |
+| pre-rebase | 变基前检查   |
 
 ### 推荐工具
 
-| 工具 | 用途 |
-|------|------|
-| commitlint | 提交消息规范检查 |
-| husky | Git Hooks 管理 |
-| standard-version | 自动化版本管理 |
-| semantic-release | 自动化发布流程 |
-| git-cz | 交互式提交工具 |
+| 工具             | 用途             |
+| ---------------- | ---------------- |
+| commitlint       | 提交消息规范检查 |
+| husky            | Git Hooks 管理   |
+| standard-version | 自动化版本管理   |
+| semantic-release | 自动化发布流程   |
+| git-cz           | 交互式提交工具   |
 
 ## 技术栈版本
 
-| 工具 | 版本 | 说明 |
-|------|------|------|
-| Git | 2.40+ | 版本控制系统 |
-| GitHub | - | 代码托管平台 |
-| GitLab | - | 代码托管平台 |
-| Bitbucket | - | 代码托管平台 |
+| 工具      | 版本  | 说明         |
+| --------- | ----- | ------------ |
+| Git       | 2.40+ | 版本控制系统 |
+| GitHub    | -     | 代码托管平台 |
+| GitLab    | -     | 代码托管平台 |
+| Bitbucket | -     | 代码托管平台 |
 
 ## 相关技能
 

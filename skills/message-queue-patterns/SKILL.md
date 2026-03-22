@@ -17,23 +17,23 @@ description: 消息队列模式 - RabbitMQ/Kafka/SQS 消息处理最佳实践
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| RabbitMQ | 3.12+ | 最新 |
-| Apache Kafka | 3.0+ | 最新 |
-| AWS SQS | - | 最新 |
-| BullMQ | 4.0+ | 最新 |
-| Redis | 7.0+ | 最新 |
+| 技术         | 最低版本 | 推荐版本 |
+| ------------ | -------- | -------- |
+| RabbitMQ     | 3.12+    | 最新     |
+| Apache Kafka | 3.0+     | 最新     |
+| AWS SQS      | -        | 最新     |
+| BullMQ       | 4.0+     | 最新     |
+| Redis        | 7.0+     | 最新     |
 
 ## 消息队列对比
 
-| 特性 | RabbitMQ | Kafka | SQS | Redis |
-|------|----------|-------|-----|-------|
+| 特性     | RabbitMQ | Kafka    | SQS      | Redis    |
+| -------- | -------- | -------- | -------- | -------- |
 | 消息顺序 | 队列级别 | 分区级别 | 最佳努力 | 队列级别 |
-| 持久化 | 可选 | 默认 | 默认 | 可选 |
-| 吞吐量 | 中 | 高 | 中 | 高 |
-| 延迟 | 低 | 中 | 中 | 极低 |
-| 适用场景 | 传统消息 | 日志流 | 云原生 | 轻量队列 |
+| 持久化   | 可选     | 默认     | 默认     | 可选     |
+| 吞吐量   | 中       | 高       | 中       | 高       |
+| 延迟     | 低       | 中       | 中       | 极低     |
+| 适用场景 | 传统消息 | 日志流   | 云原生   | 轻量队列 |
 
 ## RabbitMQ 实现
 
@@ -53,23 +53,16 @@ class RabbitMQProducer {
 
   async publish(exchange: string, routingKey: string, message: object) {
     await this.channel.assertExchange(exchange, 'topic', { durable: true });
-    
-    this.channel.publish(
-      exchange,
-      routingKey,
-      Buffer.from(JSON.stringify(message)),
-      { persistent: true }
-    );
+
+    this.channel.publish(exchange, routingKey, Buffer.from(JSON.stringify(message)), {
+      persistent: true,
+    });
   }
 
   async sendToQueue(queue: string, message: object) {
     await this.channel.assertQueue(queue, { durable: true });
-    
-    this.channel.sendToQueue(
-      queue,
-      Buffer.from(JSON.stringify(message)),
-      { persistent: true }
-    );
+
+    this.channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
   }
 
   async close() {
@@ -92,15 +85,12 @@ class RabbitMQConsumer {
     this.channel.prefetch(10);
   }
 
-  async consume(
-    queue: string,
-    handler: (message: any) => Promise<void>
-  ) {
+  async consume(queue: string, handler: (message: any) => Promise<void>) {
     await this.channel.assertQueue(queue, { durable: true });
-    
+
     this.channel.consume(queue, async (msg) => {
       if (!msg) return;
-      
+
       try {
         const content = JSON.parse(msg.content.toString());
         await handler(content);
@@ -138,7 +128,7 @@ class KafkaProducer {
   async send(topic: string, messages: { key: string; value: object }[]) {
     await this.producer.send({
       topic,
-      messages: messages.map(m => ({
+      messages: messages.map((m) => ({
         key: m.key,
         value: JSON.stringify(m.value),
       })),
@@ -170,7 +160,7 @@ class KafkaConsumer {
 
   async subscribe(topic: string, handler: (message: any) => Promise<void>) {
     await this.consumer.subscribe({ topic, fromBeginning: false });
-    
+
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
         const value = JSON.parse(message.value?.toString() || '{}');
@@ -205,7 +195,7 @@ class SQSProducer {
       MessageBody: JSON.stringify(message),
       DelaySeconds: delaySeconds,
     });
-    
+
     return this.client.send(command);
   }
 
@@ -217,7 +207,7 @@ class SQSProducer {
         MessageBody: JSON.stringify(msg),
       })),
     });
-    
+
     return this.client.send(command);
   }
 }
@@ -242,7 +232,7 @@ class SQSConsumer {
     options = { maxMessages: 10, waitTime: 20 }
   ) {
     this.running = true;
-    
+
     while (this.running) {
       const result = await this.client.send(
         new ReceiveMessageCommand({
@@ -251,9 +241,9 @@ class SQSConsumer {
           WaitTimeSeconds: options.waitTime,
         })
       );
-      
+
       if (!result.Messages) continue;
-      
+
       for (const message of result.Messages) {
         try {
           const body = JSON.parse(message.Body || '{}');
@@ -288,11 +278,11 @@ class SQSConsumer {
 ```typescript
 class PubSub {
   private exchange = 'events';
-  
+
   async publish(event: string, data: object) {
     await this.producer.publish(this.exchange, event, data);
   }
-  
+
   async subscribe(event: string, handler: (data: any) => Promise<void>) {
     const queue = `${event}-queue`;
     await this.consumer.bindQueue(queue, this.exchange, event);
@@ -308,7 +298,7 @@ class WorkQueue {
   async enqueue(queue: string, task: object) {
     await this.producer.sendToQueue(queue, task);
   }
-  
+
   async process(queue: string, worker: (task: any) => Promise<void>) {
     await this.consumer.consume(queue, async (task) => {
       await worker(task);
@@ -343,25 +333,25 @@ const queueConfig = {
 
 ## 可靠性保证
 
-| 机制 | 说明 |
-|------|------|
-| 消息确认 | 处理成功后确认 |
-| 持久化 | 消息写入磁盘 |
-| 重试 | 失败后重新投递 |
+| 机制     | 说明             |
+| -------- | ---------------- |
+| 消息确认 | 处理成功后确认   |
+| 持久化   | 消息写入磁盘     |
+| 重试     | 失败后重新投递   |
 | 死信队列 | 超过重试次数转入 |
-| 幂等性 | 重复消息安全处理 |
+| 幂等性   | 重复消息安全处理 |
 
 ## 幂等性实现
 
 ```typescript
 class IdempotentHandler {
   private processed = new Set<string>();
-  
+
   async handle(message: { id: string; data: any }) {
     if (this.processed.has(message.id)) {
       return;
     }
-    
+
     await this.process(message.data);
     this.processed.add(message.id);
   }
@@ -373,7 +363,9 @@ class IdempotentHandler {
 ```typescript
 // RabbitMQ
 channel.sendToQueue(queue, Buffer.from(JSON.stringify(msg)));
-channel.consume(queue, (msg) => { channel.ack(msg); });
+channel.consume(queue, (msg) => {
+  channel.ack(msg);
+});
 
 // Kafka
 await producer.send({ topic, messages: [{ key, value }] });

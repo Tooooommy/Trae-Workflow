@@ -16,13 +16,13 @@ description: Angular 模块设计、RxJS 响应式编程、依赖注入和性能
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Angular | 17+ | 18+ |
-| RxJS | 7.8+ | 最新 |
-| TypeScript | 5.2+ | 最新 |
-| Angular CLI | 17+ | 最新 |
-| NgRx | 17+ | 最新 (可选) |
+| 技术        | 最低版本 | 推荐版本    |
+| ----------- | -------- | ----------- |
+| Angular     | 17+      | 18+         |
+| RxJS        | 7.8+     | 最新        |
+| TypeScript  | 5.2+     | 最新        |
+| Angular CLI | 17+      | 最新        |
+| NgRx        | 17+      | 最新 (可选) |
 
 ## 核心原则
 
@@ -30,19 +30,9 @@ description: Angular 模块设计、RxJS 响应式编程、依赖注入和性能
 
 ```typescript
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    SharedModule,
-  ],
-  declarations: [
-    UserListComponent,
-    UserDetailComponent,
-    UserFormComponent,
-  ],
-  providers: [
-    UserService,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  declarations: [UserListComponent, UserDetailComponent, UserFormComponent],
+  providers: [UserService],
 })
 export class UserModule {}
 ```
@@ -82,11 +72,7 @@ export class UserListComponent {
 @Component({
   selector: 'app-search',
   template: `
-    <input
-      type="text"
-      [formControl]="searchControl"
-      placeholder="Search..."
-    />
+    <input type="text" [formControl]="searchControl" placeholder="Search..." />
     <app-search-results [results]="results$ | async"></app-search-results>
   `,
 })
@@ -100,8 +86,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       debounceTime(300),
       distinctUntilChanged(),
-      filter(query => query!.length >= 3),
-      switchMap(query => this.searchService.search(query!)),
+      filter((query) => query!.length >= 3),
+      switchMap((query) => this.searchService.search(query!)),
       catchError(() => of([]))
     );
   }
@@ -137,10 +123,7 @@ export class UserService {
 
 // 模块级提供
 @NgModule({
-  providers: [
-    UserService,
-    { provide: API_URL, useValue: 'https://api.example.com' },
-  ],
+  providers: [UserService, { provide: API_URL, useValue: 'https://api.example.com' }],
 })
 export class CoreModule {}
 
@@ -208,10 +191,10 @@ export class UserStore {
     error: null,
   });
 
-  readonly users$ = this.state$.pipe(map(s => s.users));
-  readonly selectedUser$ = this.state$.pipe(map(s => s.selectedUser));
-  readonly loading$ = this.state$.pipe(map(s => s.loading));
-  readonly error$ = this.state$.pipe(map(s => s.error));
+  readonly users$ = this.state$.pipe(map((s) => s.users));
+  readonly selectedUser$ = this.state$.pipe(map((s) => s.selectedUser));
+  readonly loading$ = this.state$.pipe(map((s) => s.loading));
+  readonly error$ = this.state$.pipe(map((s) => s.error));
 
   constructor(private userService: UserService) {}
 
@@ -219,8 +202,8 @@ export class UserStore {
     this.updateState({ loading: true, error: null });
 
     this.userService.getUsers().subscribe({
-      next: users => this.updateState({ users, loading: false }),
-      error: error => this.updateState({ error, loading: false }),
+      next: (users) => this.updateState({ users, loading: false }),
+      error: (error) => this.updateState({ error, loading: false }),
     });
   }
 
@@ -248,10 +231,12 @@ export class UserListComponent {
 
   users$ = this.refresh$.pipe(
     startWith(void 0),
-    switchMap(() => this.userService.getUsers().pipe(
-      retry(3),
-      catchError(() => of([]))
-    ))
+    switchMap(() =>
+      this.userService.getUsers().pipe(
+        retry(3),
+        catchError(() => of([]))
+      )
+    )
   );
 
   constructor(private userService: UserService) {}
@@ -263,10 +248,7 @@ export class UserListComponent {
 ```typescript
 @Component({
   template: `
-    <app-dashboard
-      [stats]="stats$ | async"
-      [chart]="chartData$ | async"
-    ></app-dashboard>
+    <app-dashboard [stats]="stats$ | async" [chart]="chartData$ | async"></app-dashboard>
   `,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
@@ -277,18 +259,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const userId$ = this.route.paramMap.pipe(
-      map(params => params.get('userId')),
+      map((params) => params.get('userId')),
       filter(Boolean)
     );
 
     this.stats$ = userId$.pipe(
       takeUntil(this.destroy$),
-      switchMap(id => this.statsService.getStats(id))
+      switchMap((id) => this.statsService.getStats(id))
     );
 
     this.chartData$ = userId$.pipe(
       takeUntil(this.destroy$),
-      switchMap(id => this.chartService.getData(id))
+      switchMap((id) => this.chartService.getData(id))
     );
   }
 
@@ -383,9 +365,7 @@ export class CardComponent {}
 ```typescript
 @Component({
   selector: 'app-dynamic-container',
-  template: `
-    <ng-template #container></ng-template>
-  `,
+  template: ` <ng-template #container></ng-template> `,
 })
 export class DynamicContainerComponent implements AfterViewInit {
   @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
@@ -413,15 +393,15 @@ export class DynamicContainerComponent implements AfterViewInit {
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div formGroupName="personal">
-        <input formControlName="name" placeholder="Name">
+        <input formControlName="name" placeholder="Name" />
         <app-error [control]="form.get('personal.name')"></app-error>
       </div>
 
       <div formArrayName="addresses">
         <div *ngFor="let address of addresses.controls; let i = index">
           <div [formGroupName]="i">
-            <input formControlName="street">
-            <input formControlName="city">
+            <input formControlName="street" />
+            <input formControlName="city" />
           </div>
           <button type="button" (click)="removeAddress(i)">Remove</button>
         </div>
@@ -451,10 +431,12 @@ export class UserFormComponent implements OnInit {
   }
 
   addAddress(): void {
-    this.addresses.push(this.fb.group({
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-    }));
+    this.addresses.push(
+      this.fb.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+      })
+    );
   }
 
   removeAddress(index: number): void {
@@ -485,10 +467,13 @@ export function passwordMatchValidator(
 }
 
 // 使用
-this.form = this.fb.group({
-  password: ['', Validators.required],
-  confirmPassword: ['', Validators.required],
-}, { validators: passwordMatchValidator('password', 'confirmPassword') });
+this.form = this.fb.group(
+  {
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
+  },
+  { validators: passwordMatchValidator('password', 'confirmPassword') }
+);
 ```
 
 ## 性能优化
@@ -561,9 +546,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
     return this.authService.isAuthenticated$.pipe(
-      map(isAuth => isAuth || this.router.createUrlTree(['/login'], {
-        queryParams: { redirect: state.url },
-      }))
+      map(
+        (isAuth) =>
+          isAuth ||
+          this.router.createUrlTree(['/login'], {
+            queryParams: { redirect: state.url },
+          })
+      )
     );
   }
 }
@@ -602,9 +591,7 @@ describe('UserListComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [UserListComponent],
-      providers: [
-        { provide: UserService, useValue: mockUserService },
-      ],
+      providers: [{ provide: UserService, useValue: mockUserService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserListComponent);
@@ -645,7 +632,7 @@ describe('UserService', () => {
   it('should fetch users', () => {
     const mockUsers = [{ id: '1', name: 'Alice' }];
 
-    service.getUsers().subscribe(users => {
+    service.getUsers().subscribe((users) => {
       expect(users).toEqual(mockUsers);
     });
 
@@ -658,13 +645,13 @@ describe('UserService', () => {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| OnPush | 减少变更检测 |
-| Async Pipe | 自动订阅 |
-| Resolver | 预加载数据 |
-| Guards | 路由保护 |
-| Pure Pipe | 纯函数缓存 |
-| TrackBy | 列表优化 |
+| 模式       | 用途         |
+| ---------- | ------------ |
+| OnPush     | 减少变更检测 |
+| Async Pipe | 自动订阅     |
+| Resolver   | 预加载数据   |
+| Guards     | 路由保护     |
+| Pure Pipe  | 纯函数缓存   |
+| TrackBy    | 列表优化     |
 
 **记住**：Angular 的依赖注入和 RxJS 是其核心优势。充分利用 OnPush 策略和 async pipe 来优化性能。

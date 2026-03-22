@@ -70,10 +70,10 @@ npx jest --coverage
 
 ### 完成后委托
 
-| 场景 | 委托目标 |
-|------|---------|
-| 需要代码修复 | `tdd-guide` |
-| 需要代码审查 | 对应语言 `*-reviewer` |
-| 需要安全测试 | `security-reviewer` |
-| 需要 E2E 测试 | `e2e-runner` |
-| 需要性能测试 | `performance-optimizer` |
+| 场景          | 委托目标                |
+| ------------- | ----------------------- |
+| 需要代码修复  | `tdd-guide`             |
+| 需要代码审查  | 对应语言 `*-reviewer`   |
+| 需要安全测试  | `security-reviewer`     |
+| 需要 E2E 测试 | `e2e-runner`            |
+| 需要性能测试  | `performance-optimizer` |

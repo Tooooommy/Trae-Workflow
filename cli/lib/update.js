@@ -10,7 +10,7 @@ function log(message, level = 'info') {
     info: chalk.cyan,
     success: chalk.green,
     warning: chalk.yellow,
-    error: chalk.red
+    error: chalk.red,
   };
   console.log(colors[level](message));
 }
@@ -22,7 +22,7 @@ function getSpinner(text) {
 async function getLatestRelease(repo) {
   const spinner = getSpinner('Checking for updates...');
   spinner.start();
-  
+
   try {
     const response = await axios.get(`${GITHUB_API_BASE}/repos/${repo}/releases/latest`);
     spinner.stop();
@@ -38,15 +38,15 @@ async function update() {
     const release = await getLatestRelease(DEFAULT_REPO);
     const latestVersion = release.tag_name;
     const currentVersion = require('../package.json').version;
-    
+
     log(`Current version: ${currentVersion}`, 'info');
     log(`Latest version: ${latestVersion}`, 'info');
-    
+
     if (latestVersion === currentVersion) {
       log('You are already using the latest version', 'success');
       return;
     }
-    
+
     log('New version available!', 'warning');
     log(`Run: trae install ${DEFAULT_REPO}`, 'info');
   } catch (error) {

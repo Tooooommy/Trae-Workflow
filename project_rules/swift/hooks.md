@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.swift"
-  - "**/Package.swift"
+  - '**/*.swift'
+  - '**/Package.swift'
 ---
 
 # Swift 钩子
@@ -11,9 +11,9 @@ globs:
 
 ## PostToolUse 钩子
 
-* **SwiftFormat**: 在编辑后自动格式化 `.swift` 文件
-* **SwiftLint**: 在编辑 `.swift` 文件后运行代码检查
-* **swift build**: 在编辑后对修改的包进行类型检查
+- **SwiftFormat**: 在编辑后自动格式化 `.swift` 文件
+- **SwiftLint**: 在编辑 `.swift` 文件后运行代码检查
+- **swift build**: 在编辑后对修改的包进行类型检查
 
 ## 警告
 

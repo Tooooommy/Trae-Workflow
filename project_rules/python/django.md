@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/settings.py"
-  - "**/models.py"
-  - "**/views.py"
+  - '**/settings.py'
+  - '**/models.py'
+  - '**/views.py'
 ---
 
 # Django 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Django 5+, Python 3.12+, PostgreSQL, Redis
-* 架构: MTV (Model-Template-View), Django REST Framework
+- 技术栈: Django 5+, Python 3.12+, PostgreSQL, Redis
+- 架构: MTV (Model-Template-View), Django REST Framework
 
 ## 关键规则
 

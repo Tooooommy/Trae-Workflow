@@ -16,13 +16,13 @@ description: Java 惯用模式、Spring Boot 最佳实践、并发安全和性�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Java | 17+ | 21+ |
-| Spring Boot | 3.2+ | 3.3+ |
-| Maven | 3.9+ | 最新 |
-| Gradle | 8.5+ | 最新 |
-| Lombok | 1.18+ | 最新 |
+| 技术        | 最低版本 | 推荐版本 |
+| ----------- | -------- | -------- |
+| Java        | 17+      | 21+      |
+| Spring Boot | 3.2+     | 3.3+     |
+| Maven       | 3.9+     | 最新     |
+| Gradle      | 8.5+     | 最新     |
+| Lombok      | 1.18+    | 最新     |
 
 ## 核心原则
 
@@ -33,12 +33,12 @@ description: Java 惯用模式、Spring Boot 最佳实践、并发安全和性�
 public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
-    
+
     public UserService(UserRepository repository, EmailService emailService) {
         this.repository = repository;
         this.emailService = emailService;
     }
-    
+
     public User createUser(CreateUserRequest request) {
         validateRequest(request);
         User user = new User(request);
@@ -57,18 +57,18 @@ public final class User {
     private final String id;
     private final String name;
     private final String email;
-    
+
     public User(String id, String name, String email) {
         this.id = Objects.requireNonNull(id);
         this.name = Objects.requireNonNull(name);
         this.email = Objects.requireNonNull(email);
     }
-    
+
     // 只有 getter，没有 setter
     public String getId() { return id; }
     public String getName() { return name; }
     public String getEmail() { return email; }
-    
+
     // 返回新实例而非修改
     public User withName(String newName) {
         return new User(this.id, newName, this.email);
@@ -109,17 +109,17 @@ String json = """
 // 基础异常
 public abstract class AppException extends RuntimeException {
     private final ErrorCode errorCode;
-    
+
     protected AppException(ErrorCode errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }
-    
+
     protected AppException(ErrorCode errorCode, String message, Throwable cause) {
         super(message, cause);
         this.errorCode = errorCode;
     }
-    
+
     public ErrorCode getErrorCode() { return errorCode; }
 }
 
@@ -132,7 +132,7 @@ public class UserNotFoundException extends AppException {
 
 public class ValidationException extends AppException {
     private final List<FieldError> errors;
-    
+
     public ValidationException(List<FieldError> errors) {
         super(ErrorCode.VALIDATION_ERROR, "Validation failed");
         this.errors = errors;
@@ -145,19 +145,19 @@ public class ValidationException extends AppException {
 ```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUserNotFound(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(new ErrorResponse(e.getErrorCode(), e.getMessage()));
     }
-    
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidation(ValidationException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(new ErrorResponse(e.getErrorCode(), e.getErrors()));
     }
-    
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception e) {
         log.error("Unexpected error", e);
@@ -178,7 +178,7 @@ public class GlobalExceptionHandler {
 public class UserService {
     private final UserRepository userRepository;
     private final EmailService emailService;
-    
+
     // 自动生成构造器
 }
 
@@ -186,7 +186,7 @@ public class UserService {
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -201,13 +201,13 @@ public class UserService {
 public class AppProperties {
     @NotBlank
     private String name;
-    
+
     @Min(1)
     @Max(65535)
     private int port = 8080;
-    
+
     private Duration timeout = Duration.ofSeconds(30);
-    
+
     // getters and setters
 }
 
@@ -229,22 +229,22 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final InventoryService inventoryService;
     private final PaymentService paymentService;
-    
+
     @Transactional
     public Order createOrder(CreateOrderRequest request) {
         // 检查库存
         inventoryService.reserveItems(request.getItems());
-        
+
         // 创建订单
         Order order = new Order(request);
         Order saved = orderRepository.save(order);
-        
+
         // 处理支付
         paymentService.processPayment(saved);
-        
+
         return saved;
     }
-    
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void logOrderEvent(OrderEvent event) {
         // 独立事务，不受外层事务影响
@@ -277,7 +277,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
     List<Future<String>> futures = urls.stream()
         .map(url -> executor.submit(() -> fetchUrl(url)))
         .toList();
-    
+
     for (Future<String> future : futures) {
         System.out.println(future.get());
     }
@@ -297,7 +297,7 @@ spring:
 ```java
 @Service
 public class NotificationService {
-    
+
     @Async
     public CompletableFuture<Void> sendNotificationAsync(User user, String message) {
         // 异步执行
@@ -310,7 +310,7 @@ public class NotificationService {
 @Configuration
 @EnableAsync
 public class AsyncConfig {
-    
+
     @Bean
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -348,18 +348,18 @@ int updateStatus(@Param("ids") List<String> ids, @Param("status") Status status)
 ```java
 @Service
 public class UserService {
-    
+
     @Cacheable(value = "users", key = "#id")
     public User findById(String id) {
         return userRepository.findById(id)
             .orElseThrow(() -> new UserNotFoundException(id));
     }
-    
+
     @CachePut(value = "users", key = "#user.id")
     public User update(User user) {
         return userRepository.save(user);
     }
-    
+
     @CacheEvict(value = "users", key = "#id")
     public void delete(String id) {
         userRepository.deleteById(id);
@@ -404,26 +404,26 @@ src/main/java/com/example/
 ```java
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-    
+
     @Mock
     private UserRepository userRepository;
-    
+
     @Mock
     private EmailService emailService;
-    
+
     @InjectMocks
     private UserService userService;
-    
+
     @Test
     void shouldCreateUser() {
         // Given
         CreateUserRequest request = new CreateUserRequest("John", "john@example.com");
         User expected = new User("1", "John", "john@example.com");
         when(userRepository.save(any())).thenReturn(expected);
-        
+
         // When
         User result = userService.createUser(request);
-        
+
         // Then
         assertThat(result).isEqualTo(expected);
         verify(emailService).sendWelcomeEmail(expected);
@@ -437,20 +437,20 @@ class UserServiceTest {
 @SpringBootTest
 @Testcontainers
 class UserControllerIntegrationTest {
-    
+
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15");
-    
+
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", postgres::getJdbcUrl);
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
     }
-    
+
     @Autowired
     private MockMvc mockMvc;
-    
+
     @Test
     void shouldCreateUser() throws Exception {
         mockMvc.perform(post("/api/users")
@@ -515,14 +515,14 @@ mvn dependency-check:check
 
 ## 快速参考
 
-| 模式 | 描述 |
-|------|------|
-| 构造器注入 | 推荐的依赖注入方式 |
-| 不可变对象 | 线程安全，易于理解 |
-| Optional | 避免 null 检查 |
-| Records | 简洁的数据载体 |
-| @Transactional | 声明式事务管理 |
-| @Async | 异步方法执行 |
-| @Cacheable | 方法结果缓存 |
+| 模式           | 描述               |
+| -------------- | ------------------ |
+| 构造器注入     | 推荐的依赖注入方式 |
+| 不可变对象     | 线程安全，易于理解 |
+| Optional       | 避免 null 检查     |
+| Records        | 简洁的数据载体     |
+| @Transactional | 声明式事务管理     |
+| @Async         | 异步方法执行       |
+| @Cacheable     | 方法结果缓存       |
 
 **记住**：Java 生态系统庞大，选择合适的工具和模式比使用所有功能更重要。保持简单，遵循约定。

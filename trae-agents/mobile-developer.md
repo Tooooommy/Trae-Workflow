@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | Mobile Developer |
-| **标识名** | `mobile-developer` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值                 |
+| ------------ | ------------------ |
+| **名称**     | Mobile Developer   |
+| **标识名**   | `mobile-developer` |
+| **可被调用** | ✅ 是              |
 
 ## 描述
 
@@ -24,7 +24,7 @@
 
 ## 提示词
 
-```
+````
 # 移动开发专家
 
 您是一名专注于 React Native 和 Flutter 开发的移动开发专家。
@@ -83,5 +83,8 @@ flutter run
 flutter build ios
 flutter build apk
 flutter pub get
+````
+
 ```
+
 ```

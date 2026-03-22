@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.kt"
-  - "**/build.gradle.kts"
+  - '**/*.kt'
+  - '**/build.gradle.kts'
 ---
 
 # Kotlin 安全规范

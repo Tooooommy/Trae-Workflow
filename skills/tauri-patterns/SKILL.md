@@ -16,13 +16,13 @@ description: Tauri 桌面应用开发、Rust 后端、前端集成和安全最�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Tauri | 2.0+ | 最新 |
-| Rust | 1.70+ | 最新 |
-| TypeScript | 5.0+ | 最新 |
-| Vite | 5.0+ | 最新 |
-| Vue/React/Svelte | 最新 | 最新 |
+| 技术             | 最低版本 | 推荐版本 |
+| ---------------- | -------- | -------- |
+| Tauri            | 2.0+     | 最新     |
+| Rust             | 1.70+    | 最新     |
+| TypeScript       | 5.0+     | 最新     |
+| Vite             | 5.0+     | 最新     |
+| Vue/React/Svelte | 最新     | 最新     |
 
 ## 核心原则
 
@@ -87,15 +87,15 @@ pub async fn create_user(
     state: tauri::State<'_, AppState>,
 ) -> Result<User, String> {
     let mut users = state.users.lock().await;
-    
+
     let user = User {
         id: uuid::Uuid::new_v4().to_string(),
         name: request.name,
         email: request.email,
     };
-    
+
     users.push(user.clone());
-    
+
     Ok(user)
 }
 
@@ -103,9 +103,9 @@ pub async fn create_user(
 pub async fn delete_user(id: String, state: tauri::State<'_, AppState>) -> Result<(), String> {
     let mut users = state.users.lock().await;
     let initial_len = users.len();
-    
+
     users.retain(|u| u.id != id);
-    
+
     if users.len() == initial_len {
         Err("User not found".to_string())
     } else {
@@ -231,7 +231,7 @@ const error = ref<string | null>(null);
 const loadUsers = async () => {
   loading.value = true;
   error.value = null;
-  
+
   try {
     users.value = await userApi.getAll();
   } catch (e) {
@@ -249,9 +249,7 @@ onMounted(loadUsers);
     <div v-if="loading">Loading...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
     <ul v-else>
-      <li v-for="user in users" :key="user.id">
-        {{ user.name }} - {{ user.email }}
-      </li>
+      <li v-for="user in users" :key="user.id">{{ user.name }} - {{ user.email }}</li>
     </ul>
   </div>
 </template>
@@ -270,7 +268,7 @@ pub async fn process_file(
     window: Window,
 ) -> Result<(), String> {
     window.emit("processing-started", &path).ok();
-    
+
     for i in 0..100 {
         tokio::time::sleep(tokio::time::Duration::from_millis(50)).await;
         window.emit("processing-progress", ProgressPayload {
@@ -278,9 +276,9 @@ pub async fn process_file(
             total: 100,
         }).ok();
     }
-    
+
     window.emit("processing-completed", &path).ok();
-    
+
     Ok(())
 }
 
@@ -345,42 +343,42 @@ impl FileManager {
     pub fn new(app_handle: &tauri::AppHandle) -> Result<Self, String> {
         let base_path = app_data_dir(&app_handle.config())
             .ok_or_else(|| "Cannot determine app data directory".to_string())?;
-        
+
         fs::create_dir_all(&base_path)
             .map_err(|e| e.to_string())?;
-        
+
         Ok(Self { base_path })
     }
 
     pub fn read_file(&self, name: &str) -> Result<Vec<u8>, String> {
         let path = self.base_path.join(name);
-        
+
         if !path.starts_with(&self.base_path) {
             return Err("Path traversal detected".to_string());
         }
-        
+
         fs::read(&path).map_err(|e| e.to_string())
     }
 
     pub fn write_file(&self, name: &str, data: &[u8]) -> Result<(), String> {
         let path = self.base_path.join(name);
-        
+
         if !path.starts_with(&self.base_path) {
             return Err("Path traversal detected".to_string());
         }
-        
+
         fs::write(&path, data).map_err(|e| e.to_string())
     }
 
     pub fn list_files(&self) -> Result<Vec<String>, String> {
         let entries = fs::read_dir(&self.base_path)
             .map_err(|e| e.to_string())?;
-        
+
         let files: Vec<String> = entries
             .filter_map(|e| e.ok())
             .filter_map(|e| e.file_name().to_str().map(|s| s.to_string()))
             .collect();
-        
+
         Ok(files)
     }
 }
@@ -397,20 +395,20 @@ pub async fn select_file() -> Result<Option<String>, String> {
         .add_filter("Text", &["txt", "md"])
         .add_filter("All", &["*"])
         .pick_file();
-    
+
     Ok(path.map(|p| p.to_string_lossy().to_string()))
 }
 
 #[command]
 pub async fn save_file(default_name: Option<String>) -> Result<Option<String>, String> {
     let mut builder = FileDialogBuilder::new();
-    
+
     if let Some(name) = default_name {
         builder = builder.set_file_name(&name);
     }
-    
+
     let path = builder.save_file();
-    
+
     Ok(path.map(|p| p.to_string_lossy().to_string()))
 }
 ```
@@ -431,14 +429,14 @@ impl Database {
     pub fn new(app_handle: &tauri::AppHandle) -> Result<Self, String> {
         let data_dir = app_data_dir(&app_handle.config())
             .ok_or_else(|| "Cannot determine app data directory".to_string())?;
-        
+
         std::fs::create_dir_all(&data_dir)
             .map_err(|e| e.to_string())?;
-        
+
         let db_path = data_dir.join("data.db");
         let conn = Connection::open(db_path)
             .map_err(|e| e.to_string())?;
-        
+
         conn.execute(
             "CREATE TABLE IF NOT EXISTS users (
                 id TEXT PRIMARY KEY,
@@ -449,7 +447,7 @@ impl Database {
             [],
         )
         .map_err(|e| e.to_string())?;
-        
+
         Ok(Self {
             conn: Mutex::new(conn),
         })
@@ -457,11 +455,11 @@ impl Database {
 
     pub fn get_users(&self) -> Result<Vec<User>, String> {
         let conn = self.conn.lock().map_err(|e| e.to_string())?;
-        
+
         let mut stmt = conn
             .prepare("SELECT id, name, email FROM users ORDER BY created_at DESC")
             .map_err(|e| e.to_string())?;
-        
+
         let users = stmt
             .query_map([], |row| {
                 Ok(User {
@@ -473,19 +471,19 @@ impl Database {
             .map_err(|e| e.to_string())?
             .collect::<Result<Vec<_>, _>>()
             .map_err(|e| e.to_string())?;
-        
+
         Ok(users)
     }
 
     pub fn insert_user(&self, user: &User) -> Result<(), String> {
         let conn = self.conn.lock().map_err(|e| e.to_string())?;
-        
+
         conn.execute(
             "INSERT INTO users (id, name, email, created_at) VALUES (?1, ?2, ?3, ?4)",
             params![user.id, user.name, user.email, chrono::Utc::now().timestamp()],
         )
         .map_err(|e| e.to_string())?;
-        
+
         Ok(())
     }
 }
@@ -503,13 +501,13 @@ fn create_system_tray() -> SystemTray {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let show = CustomMenuItem::new("show".to_string(), "Show Window");
     let hide = CustomMenuItem::new("hide".to_string(), "Hide Window");
-    
+
     let tray_menu = SystemTrayMenu::new()
         .add_item(show)
         .add_item(hide)
         .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(quit);
-    
+
     SystemTray::new().with_menu(tray_menu)
 }
 
@@ -556,7 +554,7 @@ use tauri::updater::UpdaterExt;
 #[command]
 pub async fn check_update(app: tauri::AppHandle) -> Result<UpdateInfo, String> {
     let updater = app.updater().map_err(|e| e.to_string())?;
-    
+
     match updater.check().await {
         Ok(update) => {
             if update.is_update_available() {
@@ -581,11 +579,11 @@ pub async fn check_update(app: tauri::AppHandle) -> Result<UpdateInfo, String> {
 pub async fn install_update(app: tauri::AppHandle) -> Result<(), String> {
     let updater = app.updater().map_err(|e| e.to_string())?;
     let update = updater.check().await.map_err(|e| e.to_string())?;
-    
+
     if update.is_update_available() {
         update.download_and_install().await.map_err(|e| e.to_string())?;
     }
-    
+
     Ok(())
 }
 
@@ -702,13 +700,13 @@ pub struct UpdateInfo {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| #[command] | 定义 Tauri 命令 |
-| invoke | 前端调用命令 |
-| State | 状态管理 |
-| Window.emit | 发送事件 |
-| listen | 监听事件 |
-| SystemTray | 系统托盘 |
+| 模式        | 用途            |
+| ----------- | --------------- |
+| #[command]  | 定义 Tauri 命令 |
+| invoke      | 前端调用命令    |
+| State       | 状态管理        |
+| Window.emit | 发送事件        |
+| listen      | 监听事件        |
+| SystemTray  | 系统托盘        |
 
 **记住**：Tauri 的核心优势是轻量和高安全。使用最小权限原则配置 allowlist，所有文件操作都要验证路径，充分利用 Rust 的类型系统和错误处理。

@@ -50,14 +50,14 @@ interface InvocationRecord {
 
 async function collectInvocation(record: InvocationRecord) {
   const table = record.type === 'skill' ? 'skill_invocations' : 'agent_invocations';
-  
+
   await db.insert(table, {
     [`${record.type}_name`]: record.name,
     timestamp: record.timestamp,
     success: record.outcome.success,
     duration_ms: record.outcome.duration_ms,
     ...record.context,
-    ...record.feedback
+    ...record.feedback,
   });
 }
 ```
@@ -93,7 +93,7 @@ async function performAnalysis(days: number = 30): Promise<AnalysisResult> {
     metrics: await calculateMetrics(days),
     trends: await identifyTrends(days),
     issues: await identifyIssues(days),
-    patterns: await identifyPatterns(days)
+    patterns: await identifyPatterns(days),
   };
 }
 ```
@@ -119,7 +119,7 @@ async function generateSuggestions(analysis: AnalysisResult): Promise<Improvemen
   const suggestions: ImprovementSuggestion[] = [];
 
   // 低评分技能
-  analysis.issues.lowRated.forEach(name => {
+  analysis.issues.lowRated.forEach((name) => {
     suggestions.push({
       id: generateId(),
       source: { type: 'skill', name },
@@ -127,12 +127,12 @@ async function generateSuggestions(analysis: AnalysisResult): Promise<Improvemen
       suggestion: `审查 ${name} 技能内容，收集用户反馈，优化示例代码`,
       priority: 'high',
       impact: '提升用户满意度',
-      effort: 'medium'
+      effort: 'medium',
     });
   });
 
   // 高失败率
-  analysis.issues.highFailure.forEach(name => {
+  analysis.issues.highFailure.forEach((name) => {
     suggestions.push({
       id: generateId(),
       source: { type: 'agent', name },
@@ -140,7 +140,7 @@ async function generateSuggestions(analysis: AnalysisResult): Promise<Improvemen
       suggestion: `分析 ${name} 失败原因，添加错误处理，改进诊断逻辑`,
       priority: 'critical',
       impact: '提高成功率',
-      effort: 'large'
+      effort: 'large',
     });
   });
 
@@ -157,30 +157,32 @@ async function generateSuggestions(analysis: AnalysisResult): Promise<Improvemen
 
 ## 📊 总体概况
 
-| 指标 | 本周 | 上周 | 变化 |
-|------|------|------|------|
-| SKILL 调用次数 | 156 | 142 | +9.9% |
-| Agent 调用次数 | 89 | 95 | -6.3% |
-| 平均成功率 | 94.2% | 92.1% | +2.1% |
-| 平均评分 | 4.1 | 4.0 | +2.5% |
+| 指标           | 本周  | 上周  | 变化  |
+| -------------- | ----- | ----- | ----- |
+| SKILL 调用次数 | 156   | 142   | +9.9% |
+| Agent 调用次数 | 89    | 95    | -6.3% |
+| 平均成功率     | 94.2% | 92.1% | +2.1% |
+| 平均评分       | 4.1   | 4.0   | +2.5% |
 
 ## 🔥 热门使用
 
 ### Top 5 SKILLs
+
 1. authentication-patterns (32次)
 2. api-versioning (28次)
 3. validation-patterns (24次)
 
 ### Top 5 Agents
+
 1. code-reviewer (25次)
 2. security-reviewer (18次)
 3. tdd-guide (15次)
 
 ## ⚠️ 需要关注
 
-| 类型 | 名称 | 问题 | 建议 |
-|------|------|------|------|
-| SKILL | xxx-patterns | 评分 3.2 | 优化示例代码 |
+| 类型  | 名称         | 问题       | 建议         |
+| ----- | ------------ | ---------- | ------------ |
+| SKILL | xxx-patterns | 评分 3.2   | 优化示例代码 |
 | Agent | xxx-reviewer | 成功率 78% | 改进诊断逻辑 |
 
 ## 💡 改进建议
@@ -198,13 +200,13 @@ async function generateSuggestions(analysis: AnalysisResult): Promise<Improvemen
 async function dailyTasks() {
   // 1. 收集昨天的调用数据
   await collectDailyData();
-  
+
   // 2. 检查异常
   const anomalies = await detectAnomalies();
   if (anomalies.length > 0) {
     await notifyTeam(anomalies);
   }
-  
+
   // 3. 更新统计
   await updateStatistics();
 }
@@ -216,13 +218,13 @@ async function dailyTasks() {
 async function weeklyTasks() {
   // 1. 生成周报
   const report = await generateWeeklyReport();
-  
+
   // 2. 分析趋势
   const trends = await analyzeTrends();
-  
+
   // 3. 生成改进建议
   const suggestions = await generateSuggestions(trends);
-  
+
   // 4. 发送报告
   await sendReport(report, suggestions);
 }
@@ -238,6 +240,7 @@ async function weeklyTasks() {
 ## 协作说明
 
 完成后委托给：
+
 - **技能优化** → 使用 `skill-creator` 技能
 - **Agent 改进** → 使用 `architect` 智能体
 - **文档更新** → 使用 `doc-updater` 智能体

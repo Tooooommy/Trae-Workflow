@@ -16,13 +16,13 @@ description: Redis 缓存模式、数据结构应用、分布式锁和消息队�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Redis | 7.0+ | 7.4+ |
-| Node.js ioredis | 5.0+ | 最新 |
-| Redis Stack | 7.0+ | 最新 |
-| RedisInsight | 最新 | 最新 |
-| Redis Cluster | 7.0+ | 最新 |
+| 技术            | 最低版本 | 推荐版本 |
+| --------------- | -------- | -------- |
+| Redis           | 7.0+     | 7.4+     |
+| Node.js ioredis | 5.0+     | 最新     |
+| Redis Stack     | 7.0+     | 最新     |
+| RedisInsight    | 最新     | 最新     |
+| Redis Cluster   | 7.0+     | 最新     |
 
 ## 核心数据结构
 
@@ -213,11 +213,7 @@ async function getWithProtection(key: string): Promise<any> {
 ### 缓存雪崩防护
 
 ```typescript
-async function setWithRandomExpiry(
-  key: string,
-  value: any,
-  baseExpiry: number
-): Promise<void> {
+async function setWithRandomExpiry(key: string, value: any, baseExpiry: number): Promise<void> {
   // 添加随机偏移，避免同时过期
   const randomOffset = Math.floor(Math.random() * 300); // 0-300秒
   await redis.set(key, JSON.stringify(value), 'EX', baseExpiry + randomOffset);
@@ -233,13 +229,7 @@ class RedisLock {
   private redis: RedisClient;
 
   async acquire(key: string, ttlMs: number): Promise<boolean> {
-    const result = await this.redis.set(
-      `lock:${key}`,
-      process.pid.toString(),
-      'NX',
-      'PX',
-      ttlMs
-    );
+    const result = await this.redis.set(`lock:${key}`, process.pid.toString(), 'NX', 'PX', ttlMs);
     return result === 'OK';
   }
 
@@ -252,12 +242,7 @@ class RedisLock {
       end
     `;
 
-    const result = await this.redis.eval(
-      script,
-      1,
-      `lock:${key}`,
-      process.pid.toString()
-    );
+    const result = await this.redis.eval(script, 1, `lock:${key}`, process.pid.toString());
     return result === 1;
   }
 }
@@ -269,11 +254,7 @@ class RedisLock {
 class ReentrantLock {
   private redis: RedisClient;
 
-  async acquire(
-    key: string,
-    tokenId: string,
-    ttlMs: number
-  ): Promise<boolean> {
+  async acquire(key: string, tokenId: string, ttlMs: number): Promise<boolean> {
     const script = `
       local key = KEYS[1]
       local tokenId = ARGV[1]
@@ -294,13 +275,7 @@ class ReentrantLock {
       return 0
     `;
 
-    const result = await this.redis.eval(
-      script,
-      1,
-      `lock:${key}`,
-      tokenId,
-      ttlMs.toString()
-    );
+    const result = await this.redis.eval(script, 1, `lock:${key}`, tokenId, ttlMs.toString());
     return result === 1;
   }
 
@@ -322,12 +297,7 @@ class ReentrantLock {
       end
     `;
 
-    const result = await this.redis.eval(
-      script,
-      1,
-      `lock:${key}`,
-      tokenId
-    );
+    const result = await this.redis.eval(script, 1, `lock:${key}`, tokenId);
     return result === 1;
   }
 }
@@ -364,24 +334,13 @@ class DelayedQueue {
 
   async enqueue(data: any, delayMs: number): Promise<void> {
     const executeAt = Date.now() + delayMs;
-    await this.redis.zadd(
-      'delayed:queue',
-      executeAt,
-      JSON.stringify({ data, id: generateId() })
-    );
+    await this.redis.zadd('delayed:queue', executeAt, JSON.stringify({ data, id: generateId() }));
   }
 
   async *consume(): AsyncGenerator<any> {
     while (true) {
       const now = Date.now();
-      const items = await this.redis.zrangebyscore(
-        'delayed:queue',
-        0,
-        now,
-        'LIMIT',
-        0,
-        10
-      );
+      const items = await this.redis.zrangebyscore('delayed:queue', 0, now, 'LIMIT', 0, 10);
 
       for (const item of items) {
         const removed = await this.redis.zrem('delayed:queue', item);
@@ -407,10 +366,7 @@ class PubSub {
     await this.redis.publish(channel, JSON.stringify(message));
   }
 
-  async subscribe(
-    channel: string,
-    handler: (message: any) => void
-  ): Promise<void> {
+  async subscribe(channel: string, handler: (message: any) => void): Promise<void> {
     await this.subscriber.subscribe(channel);
     this.subscriber.on('message', (ch, msg) => {
       if (ch === channel) {
@@ -552,14 +508,14 @@ async function atomicUpdate(key: string, delta: number): Promise<number> {
 
 ## 快速参考
 
-| 模式 | 用途 | 数据结构 |
-|------|------|----------|
-| 缓存 | 加速读取 | String |
-| 会话 | 用户状态 | Hash |
-| 队列 | 异步处理 | List |
-| 排行榜 | 排序数据 | Sorted Set |
+| 模式     | 用途     | 数据结构     |
+| -------- | -------- | ------------ |
+| 缓存     | 加速读取 | String       |
+| 会话     | 用户状态 | Hash         |
+| 队列     | 异步处理 | List         |
+| 排行榜   | 排序数据 | Sorted Set   |
 | 分布式锁 | 互斥访问 | String + Lua |
-| 限流 | 流量控制 | Sorted Set |
-| 发布订阅 | 消息广播 | Pub/Sub |
+| 限流     | 流量控制 | Sorted Set   |
+| 发布订阅 | 消息广播 | Pub/Sub      |
 
 **记住**：Redis 是内存数据库，注意内存使用。合理设置过期时间，避免内存溢出。使用 Pipeline 和 Lua 脚本减少网络往返。

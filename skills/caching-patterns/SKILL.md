@@ -16,13 +16,13 @@ description: 缓存策略模式、多级缓存、缓存一致性和性能优化�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Redis | 7.0+ | 7.4+ |
-| Memcached | 1.6+ | 最新 |
-| Node.js cache-manager | 5.0+ | 最新 |
-| ioredis | 5.0+ | 最新 |
-| TypeScript | 5.0+ | 最新 |
+| 技术                  | 最低版本 | 推荐版本 |
+| --------------------- | -------- | -------- |
+| Redis                 | 7.0+     | 7.4+     |
+| Memcached             | 1.6+     | 最新     |
+| Node.js cache-manager | 5.0+     | 最新     |
+| ioredis               | 5.0+     | 最新     |
+| TypeScript            | 5.0+     | 最新     |
 
 ## 核心概念
 
@@ -123,10 +123,7 @@ class WriteThroughCache {
 
   async set<T>(key: string, value: T): Promise<void> {
     // 同时写入缓存和数据库
-    await Promise.all([
-      this.cache.set(key, value),
-      this.db.update(key, value),
-    ]);
+    await Promise.all([this.cache.set(key, value), this.db.update(key, value)]);
   }
 }
 ```
@@ -207,8 +204,8 @@ class WriteAroundCache {
 
 ```typescript
 class MultiLevelCache {
-  private l1: MemoryCache;  // 本地内存缓存
-  private l2: RedisCache;   // 分布式缓存
+  private l1: MemoryCache; // 本地内存缓存
+  private l2: RedisCache; // 分布式缓存
   private db: Database;
 
   async get<T>(key: string): Promise<T | null> {
@@ -435,7 +432,8 @@ class ScheduledWarmup {
 
     for (const key of keys) {
       const ttl = await this.cache.ttl(key);
-      if (ttl < 300) { // 5分钟内过期
+      if (ttl < 300) {
+        // 5分钟内过期
         const data = await this.db.query(key);
         if (data !== null) {
           await this.cache.set(key, data);
@@ -583,7 +581,7 @@ class ConsistentHashing {
   }
 
   removeNode(node: string): void {
-    this.nodes = this.nodes.filter(n => n !== node);
+    this.nodes = this.nodes.filter((n) => n !== node);
     for (let i = 0; i < this.virtualNodes; i++) {
       const hash = this.hash(`${node}:${i}`);
       this.ring.delete(hash);
@@ -611,7 +609,7 @@ class ConsistentHashing {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       const char = key.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
+      hash = (hash << 5) - hash + char;
       hash = hash & hash;
     }
     return Math.abs(hash);
@@ -621,12 +619,12 @@ class ConsistentHashing {
 
 ## 快速参考
 
-| 策略 | 读 | 写 | 适用场景 |
-|------|-----|-----|----------|
-| Cache-Aside | 缓存→DB | DB→删缓存 | 通用 |
-| Read-Through | 缓存自动加载 | 直接写DB | 读多写少 |
-| Write-Through | 缓存自动加载 | 缓存→DB | 强一致性 |
-| Write-Behind | 缓存自动加载 | 只写缓存 | 高吞吐 |
-| Write-Around | 缓存→DB | 只写DB | 写多读少 |
+| 策略          | 读           | 写        | 适用场景 |
+| ------------- | ------------ | --------- | -------- |
+| Cache-Aside   | 缓存→DB      | DB→删缓存 | 通用     |
+| Read-Through  | 缓存自动加载 | 直接写DB  | 读多写少 |
+| Write-Through | 缓存自动加载 | 缓存→DB   | 强一致性 |
+| Write-Behind  | 缓存自动加载 | 只写缓存  | 高吞吐   |
+| Write-Around  | 缓存→DB      | 只写DB    | 写多读少 |
 
 **记住**：缓存不是银弹。选择合适的策略，处理好一致性问题，监控命中率，避免缓存穿透、雪崩和击穿。

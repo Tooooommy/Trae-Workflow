@@ -16,13 +16,13 @@ description: Android 原生开发、Jetpack Compose、MVVM 架构和 Kotlin 协�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Kotlin | 1.9+ | 2.0+ |
-| Android SDK | 34+ | 最新 |
-| Jetpack Compose | 1.6+ | 最新 |
-| Hilt | 2.50+ | 最新 |
-| Coroutines | 1.8+ | 最新 |
+| 技术            | 最低版本 | 推荐版本 |
+| --------------- | -------- | -------- |
+| Kotlin          | 1.9+     | 2.0+     |
+| Android SDK     | 34+      | 最新     |
+| Jetpack Compose | 1.6+     | 最新     |
+| Hilt            | 2.50+    | 最新     |
+| Coroutines      | 1.8+     | 最新     |
 
 ## 核心原则
 
@@ -44,7 +44,7 @@ fun UserListScreen(
     onUserClick: (User) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -163,32 +163,32 @@ data class UserUiState(
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
-    
+
     private val _uiState = MutableStateFlow(UserUiState())
     val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
-    
+
     init {
         loadUsers()
     }
-    
+
     fun loadUsers() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
-            
+
             userRepository.getUsers()
                 .onSuccess { users ->
-                    _uiState.update { 
-                        it.copy(users = users, isLoading = false) 
+                    _uiState.update {
+                        it.copy(users = users, isLoading = false)
                     }
                 }
                 .onFailure { error ->
-                    _uiState.update { 
-                        it.copy(error = error.message, isLoading = false) 
+                    _uiState.update {
+                        it.copy(error = error.message, isLoading = false)
                     }
                 }
         }
     }
-    
+
     fun refresh() {
         loadUsers()
     }
@@ -206,7 +206,7 @@ class MyApplication : Application()
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    
+
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -215,7 +215,7 @@ object NetworkModule {
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
     }
-    
+
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
@@ -225,7 +225,7 @@ object NetworkModule {
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
-    
+
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
@@ -236,7 +236,7 @@ object NetworkModule {
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-    
+
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
@@ -246,7 +246,7 @@ object DatabaseModule {
             "app_database"
         ).build()
     }
-    
+
     @Provides
     fun provideUserDao(database: AppDatabase): UserDao {
         return database.userDao()
@@ -282,7 +282,7 @@ class UserRepository @Inject constructor(
         if (cached.isNotEmpty()) {
             send(cached)
         }
-        
+
         // 从网络获取最新数据
         try {
             val remote = apiService.getUsers()
@@ -294,7 +294,7 @@ class UserRepository @Inject constructor(
             }
         }
     }
-    
+
     fun getUser(id: String): Flow<User> = flow {
         emit(apiService.getUser(id))
     }
@@ -334,7 +334,7 @@ class DashboardRepository @Inject constructor(
         val userDeferred = async { userRepository.getCurrentUser() }
         val ordersDeferred = async { orderRepository.getRecentOrders() }
         val notificationsDeferred = async { notificationRepository.getNotifications() }
-        
+
         Dashboard(
             user = userDeferred.await(),
             orders = ordersDeferred.await(),
@@ -362,19 +362,19 @@ data class UserEntity(
 interface UserDao {
     @Query("SELECT * FROM users ORDER BY createdAt DESC")
     fun getAll(): Flow<List<UserEntity>>
-    
+
     @Query("SELECT * FROM users WHERE id = :id")
     suspend fun getById(id: String): UserEntity?
-    
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<UserEntity>)
-    
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: UserEntity)
-    
+
     @Delete
     suspend fun delete(user: UserEntity)
-    
+
     @Query("DELETE FROM users")
     suspend fun deleteAll()
 }
@@ -389,7 +389,7 @@ abstract class AppDatabase : RoomDatabase() {
 class Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? = value?.let { Date(it) }
-    
+
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? = date?.time
 }
@@ -409,19 +409,19 @@ class SettingsRepository @Inject constructor(
         val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         val USER_ID = stringPreferencesKey("user_id")
     }
-    
+
     val darkMode: Flow<Boolean> = context.dataStore.data
         .map { preferences -> preferences[PreferencesKeys.DARK_MODE] ?: false }
-    
+
     val notificationsEnabled: Flow<Boolean> = context.dataStore.data
         .map { preferences -> preferences[PreferencesKeys.NOTIFICATIONS_ENABLED] ?: true }
-    
+
     suspend fun setDarkMode(enabled: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.DARK_MODE] = enabled
         }
     }
-    
+
     suspend fun setNotificationsEnabled(enabled: Boolean) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKeys.NOTIFICATIONS_ENABLED] = enabled
@@ -451,19 +451,19 @@ val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(
 interface ApiService {
     @GET("users")
     suspend fun getUsers(): List<User>
-    
+
     @GET("users/{id}")
     suspend fun getUser(@Path("id") id: String): User
-    
+
     @POST("users")
     suspend fun createUser(@Body user: CreateUserRequest): User
-    
+
     @PUT("users/{id}")
     suspend fun updateUser(@Path("id") id: String, @Body user: UpdateUserRequest): User
-    
+
     @DELETE("users/{id}")
     suspend fun deleteUser(@Path("id") id: String)
-    
+
     @GET("users")
     suspend fun searchUsers(@Query("q") query: String): List<User>
 }
@@ -510,7 +510,7 @@ object Settings
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    
+
     NavHost(
         navController = navController,
         startDestination = UserList
@@ -525,7 +525,7 @@ fun AppNavigation() {
                 }
             )
         }
-        
+
         composable<UserDetail> { backStackEntry ->
             val userDetail: UserDetail = backStackEntry.toRoute()
             UserDetailScreen(
@@ -533,7 +533,7 @@ fun AppNavigation() {
                 onBack = { navController.popBackStack() }
             )
         }
-        
+
         composable<Settings> {
             SettingsScreen(
                 onBack = { navController.popBackStack() }
@@ -582,18 +582,18 @@ class UserViewModelTest {
             usersToReturn = mockUsers
         }
         val viewModel = UserViewModel(mockRepository)
-        
+
         // When
         viewModel.loadUsers()
         advanceUntilIdle()
-        
+
         // Then
         val uiState = viewModel.uiState.value
         assertFalse(uiState.isLoading)
         assertEquals(mockUsers, uiState.users)
         assertNull(uiState.error)
     }
-    
+
     @Test
     fun `loadUsers handles error`() = runTest {
         // Given
@@ -601,11 +601,11 @@ class UserViewModelTest {
             errorToThrow = RuntimeException("Network error")
         }
         val viewModel = UserViewModel(mockRepository)
-        
+
         // When
         viewModel.loadUsers()
         advanceUntilIdle()
-        
+
         // Then
         val uiState = viewModel.uiState.value
         assertFalse(uiState.isLoading)
@@ -617,7 +617,7 @@ class UserViewModelTest {
 class MockUserRepository : UserRepository {
     var usersToReturn: List<User> = emptyList()
     var errorToThrow: Throwable? = null
-    
+
     override suspend fun getUsers(): Result<List<User>> {
         errorToThrow?.let { return Result.failure(it) }
         return Result.success(usersToReturn)
@@ -636,7 +636,7 @@ import org.junit.Test
 class UserListScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
-    
+
     @Test
     fun displaysLoadingIndicator_whenLoading() {
         composeTestRule.setContent {
@@ -646,17 +646,17 @@ class UserListScreenTest {
                 }
             )
         }
-        
+
         composeTestRule.onNodeWithText("Loading").assertIsDisplayed()
     }
-    
+
     @Test
     fun displaysUsers_whenLoaded() {
         val testUsers = listOf(
             User(id = "1", name = "Alice", email = "alice@example.com"),
             User(id = "2", name = "Bob", email = "bob@example.com")
         )
-        
+
         composeTestRule.setContent {
             UserListScreen(
                 viewModel = UserViewModel().apply {
@@ -664,24 +664,24 @@ class UserListScreenTest {
                 }
             )
         }
-        
+
         composeTestRule.onNodeWithText("Alice").assertIsDisplayed()
         composeTestRule.onNodeWithText("Bob").assertIsDisplayed()
     }
-    
+
     @Test
     fun clicksUser_navigatesToDetail() {
         var clickedUser: User? = null
-        
+
         composeTestRule.setContent {
             UserListScreen(
                 viewModel = UserViewModel(),
                 onUserClick = { clickedUser = it }
             )
         }
-        
+
         composeTestRule.onNodeWithText("Alice").performClick()
-        
+
         assertNotNull(clickedUser)
     }
 }
@@ -689,14 +689,14 @@ class UserListScreenTest {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| @Composable | 可组合函数 |
-| StateFlow | 状态流 |
-| viewModelScope | ViewModel 作用域 |
-| Hilt | 依赖注入 |
-| Room | 数据库 |
-| DataStore | 偏好设置 |
-| Navigation Compose | 类型安全导航 |
+| 模式               | 用途             |
+| ------------------ | ---------------- |
+| @Composable        | 可组合函数       |
+| StateFlow          | 状态流           |
+| viewModelScope     | ViewModel 作用域 |
+| Hilt               | 依赖注入         |
+| Room               | 数据库           |
+| DataStore          | 偏好设置         |
+| Navigation Compose | 类型安全导航     |
 
 **记住**：Jetpack Compose 和 Kotlin 协程是 Android 开发的现代方式。使用 MVVM 架构，Hilt 依赖注入，充分利用 Flow 和协程进行异步编程。

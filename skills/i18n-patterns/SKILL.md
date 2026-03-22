@@ -17,12 +17,12 @@ description: 国际化模式 - 多语言、本地化、区域设置最佳实践
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| i18next | 23.0+ | 最新 |
-| react-i18next | 14.0+ | 最新 |
-| Intl API | - | 浏览器原生 |
-| formatjs | 10.0+ | 最新 |
+| 技术          | 最低版本 | 推荐版本   |
+| ------------- | -------- | ---------- |
+| i18next       | 23.0+    | 最新       |
+| react-i18next | 14.0+    | 最新       |
+| Intl API      | -        | 浏览器原生 |
+| formatjs      | 10.0+    | 最新       |
 
 ## 核心概念
 
@@ -127,14 +127,12 @@ function Component() {
     <div>
       <h1>{t('welcome', { name: 'John' })}</h1>
       <p>{t('items', { count: 5 })}</p>
-      
+
       <Trans i18nKey="description">
         Welcome to <strong>our app</strong>!
       </Trans>
 
-      <button onClick={() => i18n.changeLanguage('zh')}>
-        切换中文
-      </button>
+      <button onClick={() => i18n.changeLanguage('zh')}>切换中文</button>
     </div>
   );
 }
@@ -244,10 +242,7 @@ function LanguageSwitcher() {
   ];
 
   return (
-    <select
-      value={i18n.language}
-      onChange={(e) => i18n.changeLanguage(e.target.value)}
-    >
+    <select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
       {languages.map((lang) => (
         <option key={lang.code} value={lang.code}>
           {lang.name}
@@ -262,19 +257,19 @@ function LanguageSwitcher() {
 
 ```typescript
 // 翻译
-t('key', { name: 'value' })
+t('key', { name: 'value' });
 
 // 复数
-t('items', { count: 5 })
+t('items', { count: 5 });
 
 // 日期
-new Intl.DateTimeFormat(locale).format(date)
+new Intl.DateTimeFormat(locale).format(date);
 
 // 货币
-new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount)
+new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
 
 // 切换语言
-i18n.changeLanguage('zh')
+i18n.changeLanguage('zh');
 ```
 
 ## 参考

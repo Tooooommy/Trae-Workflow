@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.go"
-  - "**/go.mod"
-  - "**/go.sum"
+  - '**/*.go'
+  - '**/go.mod'
+  - '**/go.sum'
 ---
 
 # Go 安全
@@ -21,7 +21,7 @@ if apiKey == "" {
 
 ## 安全扫描
 
-* 使用 **gosec** 进行静态安全分析：
+- 使用 **gosec** 进行静态安全分析：
   ```bash
   gosec ./...
   ```

@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/Package.swift"
-  - "**/Sources/**/*.swift"
+  - '**/Package.swift'
+  - '**/Sources/**/*.swift'
 ---
 
 # Vapor 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Swift 5.10+, Vapor 4, Fluent, PostgreSQL
-* 架构: MVC, 异步编程
+- 技术栈: Swift 5.10+, Vapor 4, Fluent, PostgreSQL
+- 架构: MVC, 异步编程
 
 ## 关键规则
 

@@ -16,13 +16,13 @@ description: GraphQL Schema 设计、查询优化、N+1 问题解决和 Federati
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| GraphQL | 最新 | 最新 |
-| Apollo Server | 4.0+ | 最新 |
-| GraphQL Yoga | 5.0+ | 最新 |
-| Pothos (Schema Builder) | 4.0+ | 最新 |
-| TypeScript | 5.0+ | 最新 |
+| 技术                    | 最低版本 | 推荐版本 |
+| ----------------------- | -------- | -------- |
+| GraphQL                 | 最新     | 最新     |
+| Apollo Server           | 4.0+     | 最新     |
+| GraphQL Yoga            | 5.0+     | 最新     |
+| Pothos (Schema Builder) | 4.0+     | 最新     |
+| TypeScript              | 5.0+     | 最新     |
 
 ## 核心原则
 
@@ -66,7 +66,7 @@ type Mutation {
   createUser(input: CreateUserInput!): User!
   updateUser(id: ID!, input: UpdateUserInput!): User!
   deleteUser(id: ID!): Boolean!
-  
+
   createPost(input: CreatePostInput!): Post!
   updatePost(id: ID!, input: UpdatePostInput!): Post!
   deletePost(id: ID!): Boolean!
@@ -128,13 +128,7 @@ type DeleteUserResult {
 
 ```graphql
 type Query {
-  users(
-    first: Int
-    after: String
-    last: Int
-    before: String
-    filter: UserFilter
-  ): UserConnection!
+  users(first: Int, after: String, last: Int, before: String, filter: UserFilter): UserConnection!
 }
 
 type UserConnection {
@@ -166,7 +160,7 @@ const resolvers = {
         filter,
       });
 
-      const edges = users.map(user => ({
+      const edges = users.map((user) => ({
         node: user,
         cursor: user.id,
       }));
@@ -205,8 +199,8 @@ import DataLoader from 'dataloader';
 // 批量加载用户
 const userLoader = new DataLoader(async (userIds) => {
   const users = await User.find({ _id: { $in: userIds } });
-  const userMap = new Map(users.map(u => [u.id.toString(), u]));
-  return userIds.map(id => userMap.get(id.toString()));
+  const userMap = new Map(users.map((u) => [u.id.toString(), u]));
+  return userIds.map((id) => userMap.get(id.toString()));
 });
 
 // 在 Resolver 中使用
@@ -221,8 +215,8 @@ const resolvers = {
 // 批量加载关联数据
 const postsByAuthorLoader = new DataLoader(async (authorIds) => {
   const posts = await Post.find({ authorId: { $in: authorIds } });
-  return authorIds.map(authorId => 
-    posts.filter(p => p.authorId.toString() === authorId.toString())
+  return authorIds.map((authorId) =>
+    posts.filter((p) => p.authorId.toString() === authorId.toString())
   );
 });
 ```
@@ -242,13 +236,13 @@ const context = async ({ req }) => ({
   loaders: {
     user: new DataLoader(async (ids) => {
       const users = await User.find({ _id: { $in: ids } });
-      const map = new Map(users.map(u => [u.id, u]));
-      return ids.map(id => map.get(id));
+      const map = new Map(users.map((u) => [u.id, u]));
+      return ids.map((id) => map.get(id));
     }),
     post: new DataLoader(async (ids) => {
       const posts = await Post.find({ _id: { $in: ids } });
-      const map = new Map(posts.map(p => [p.id, p]));
-      return ids.map(id => map.get(id));
+      const map = new Map(posts.map((p) => [p.id, p]));
+      return ids.map((id) => map.get(id));
     }),
   },
 });
@@ -261,11 +255,11 @@ const context = async ({ req }) => ({
 ```typescript
 const context = async ({ req }) => {
   const token = req.headers.authorization?.replace('Bearer ', '');
-  
+
   if (!token) {
     return { user: null };
   }
-  
+
   try {
     const decoded = verifyToken(token);
     const user = await User.findById(decoded.userId);
@@ -382,10 +376,10 @@ const server = new ApolloServer({
         return new ApolloError('Internal server error');
       }
     }
-    
+
     // 记录错误
     console.error(error);
-    
+
     return error;
   },
 });
@@ -502,8 +496,7 @@ const resolvers = {
       subscribe: () => pubsub.asyncIterator(['POST_CREATED']),
     },
     commentAdded: {
-      subscribe: (_, { postId }) => 
-        pubsub.asyncIterator([`COMMENT_ADDED_${postId}`]),
+      subscribe: (_, { postId }) => pubsub.asyncIterator([`COMMENT_ADDED_${postId}`]),
     },
   },
   Mutation: {
@@ -550,8 +543,7 @@ import { createComplexityLimitRule } from 'graphql-validation-complexity';
 
 const complexityLimit = createComplexityLimitRule(1000, {
   onCost: (cost) => console.log('Query cost:', cost),
-  formatErrorMessage: (cost) => 
-    `Query with cost ${cost} exceeds maximum allowed complexity`,
+  formatErrorMessage: (cost) => `Query with cost ${cost} exceeds maximum allowed complexity`,
 });
 
 const server = new ApolloServer({
@@ -581,9 +573,7 @@ import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/lan
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  plugins: [
-    ApolloServerPluginLandingPageDisabled(),
-  ],
+  plugins: [ApolloServerPluginLandingPageDisabled()],
   // 启用持久化查询
   persistedQueries: {
     cache: new Map(),
@@ -672,13 +662,13 @@ describe('GraphQL Integration', () => {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
+| 模式       | 用途          |
+| ---------- | ------------- |
 | DataLoader | 解决 N+1 问题 |
-| Relay 分页 | 标准分页方案 |
-| Federation | 微服务架构 |
-| 订阅 | 实时数据推送 |
-| 复杂度限制 | 防止过度查询 |
-| 指令 | 字段级授权 |
+| Relay 分页 | 标准分页方案  |
+| Federation | 微服务架构    |
+| 订阅       | 实时数据推送  |
+| 复杂度限制 | 防止过度查询  |
+| 指令       | 字段级授权    |
 
 **记住**：GraphQL 的灵活性是双刃剑。使用 DataLoader、复杂度限制和深度限制来保护服务器免受滥用。

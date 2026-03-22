@@ -27,12 +27,12 @@
 
 通过以下方式控制扩展思考：
 
-| 操作 | 说明 |
-|------|------|
-| 切换 | Option+T (macOS) / Alt+T (Windows/Linux) |
-| 配置 | 在 `~/.trade/settings.json` 中设置 `alwaysThinkingEnabled` |
-| 预算上限 | `export MAX_THINKING_TOKENS=10000` |
-| 详细模式 | Ctrl+O 查看思考输出 |
+| 操作     | 说明                                                       |
+| -------- | ---------------------------------------------------------- |
+| 切换     | Option+T (macOS) / Alt+T (Windows/Linux)                   |
+| 配置     | 在 `~/.trade/settings.json` 中设置 `alwaysThinkingEnabled` |
+| 预算上限 | `export MAX_THINKING_TOKENS=10000`                         |
+| 详细模式 | Ctrl+O 查看思考输出                                        |
 
 对于需要深度推理的复杂任务：
 

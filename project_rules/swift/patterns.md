@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.swift"
-  - "**/Package.swift"
+  - '**/*.swift'
+  - '**/Package.swift'
 ---
 
 # Swift 模式
@@ -23,8 +23,8 @@ protocol Repository: Sendable {
 
 ## 值类型
 
-* 使用结构体（struct）作为数据传输对象和模型
-* 使用带有关联值的枚举（enum）来建模不同的状态：
+- 使用结构体（struct）作为数据传输对象和模型
+- 使用带有关联值的枚举（enum）来建模不同的状态：
 
 ```swift
 enum LoadState<T: Sendable>: Sendable {

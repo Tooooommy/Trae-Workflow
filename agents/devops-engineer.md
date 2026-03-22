@@ -75,9 +75,9 @@ terraform state list
 
 ### 完成后委托
 
-| 场景 | 委托目标 |
-|------|---------|
-| 部署前安全审查 | `security-reviewer` |
-| 需要文档更新 | `doc-updater` |
+| 场景           | 委托目标                |
+| -------------- | ----------------------- |
+| 部署前安全审查 | `security-reviewer`     |
+| 需要文档更新   | `doc-updater`           |
 | 部署后监控配置 | `performance-optimizer` |
-| 需要架构调整 | `architect` |
+| 需要架构调整   | `architect`             |

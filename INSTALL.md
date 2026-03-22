@@ -79,12 +79,14 @@ Trae Workflow/
 ### Windows
 
 1. **找到 Trae CN 配置目录**
+
    ```powershell
    # 通常位于
    %USERPROFILE%\.trae-cn\
    ```
 
 2. **备份现有配置（如果存在）**
+
    ```powershell
    Copy-Item "$env:USERPROFILE\.trae-cn\mcp.json" "$env:USERPROFILE\.trae-cn\mcp.json.backup" -ErrorAction SilentlyContinue
    ```
@@ -97,12 +99,14 @@ Trae Workflow/
 ### macOS/Linux
 
 1. **找到 Trae CN 配置目录**
+
    ```bash
    # 通常位于
    ~/.trae-cn/
    ```
 
 2. **备份现有配置（如果存在）**
+
    ```bash
    cp ~/.trae-cn/mcp.json ~/.trae-cn/mcp.json.backup 2>/dev/null || true
    ```
@@ -179,15 +183,15 @@ cp -r user_rules/* ~/.trae-cn/user_rules/
 
 Project Rules 包含语言特定的扩展规则，支持 7 种编程语言：
 
-| 语言 | 框架/技术栈 |
-|------|-------------|
+| 语言       | 框架/技术栈                                                                   |
+| ---------- | ----------------------------------------------------------------------------- |
 | TypeScript | React, Next.js, NestJS, Taro, UniApp, 微信小程序, Expo, React Native, Shopify |
-| Python | FastAPI, Django, Flask |
-| Go | Gin, Echo, Fiber |
-| Java | Spring Boot, Quarkus |
-| Kotlin | Spring Boot, Ktor |
-| Swift | Vapor, SwiftUI |
-| Rust | Actix-web, Axum |
+| Python     | FastAPI, Django, Flask                                                        |
+| Go         | Gin, Echo, Fiber                                                              |
+| Java       | Spring Boot, Quarkus                                                          |
+| Kotlin     | Spring Boot, Ktor                                                             |
+| Swift      | Vapor, SwiftUI                                                                |
+| Rust       | Actix-web, Axum                                                               |
 
 #### 在项目中使用
 
@@ -233,14 +237,14 @@ cp -r "Trae Workflow/project_rules/python/"* ".trae/rules/"
 
 每种语言的规则目录包含以下文件：
 
-| 文件 | 说明 |
-|------|------|
-| `coding-style.md` | 语言特定的编码风格和约定 |
-| `testing.md` | 语言特定的测试框架和策略 |
-| `security.md` | 语言特定的安全最佳实践 |
-| `patterns.md` | 语言特定的设计模式 |
-| `hooks.md` | 语言特定的 Hooks 配置 |
-| `<framework>.md` | 特定框架规则（如 react.md、fastapi.md 等） |
+| 文件              | 说明                                       |
+| ----------------- | ------------------------------------------ |
+| `coding-style.md` | 语言特定的编码风格和约定                   |
+| `testing.md`      | 语言特定的测试框架和策略                   |
+| `security.md`     | 语言特定的安全最佳实践                     |
+| `patterns.md`     | 语言特定的设计模式                         |
+| `hooks.md`        | 语言特定的 Hooks 配置                      |
+| `<framework>.md`  | 特定框架规则（如 react.md、fastapi.md 等） |
 
 #### 示例：创建 TypeScript + React 项目
 
@@ -270,19 +274,19 @@ cp -r "../Trae Workflow/project_rules/typescript/"* ".trae/rules/"
 3. 点击 "环境变量"
 4. 在 "用户变量" 中添加以下变量：
 
-| 变量名 | 值 |
-|--------|-----|
-| GITHUB_PAT | your_github_personal_access_token |
-| EXA_API_KEY | your_exa_api_key |
-| SUPABASE_PROJECT_REF | your_supabase_project_ref |
-| POSTGRES_URL | your_postgres_connection_string |
-| SLACK_BOT_TOKEN | your_slack_bot_token |
-| SLACK_TEAM_ID | your_slack_team_id |
-| BRAVE_API_KEY | your_brave_api_key |
-| GOOGLE_MAPS_API_KEY | your_google_maps_api_key |
-| AWS_ACCESS_KEY_ID | your_aws_access_key_id |
-| AWS_SECRET_ACCESS_KEY | your_aws_secret_access_key |
-| AWS_REGION | your_aws_region |
+| 变量名                | 值                                |
+| --------------------- | --------------------------------- |
+| GITHUB_PAT            | your_github_personal_access_token |
+| EXA_API_KEY           | your_exa_api_key                  |
+| SUPABASE_PROJECT_REF  | your_supabase_project_ref         |
+| POSTGRES_URL          | your_postgres_connection_string   |
+| SLACK_BOT_TOKEN       | your_slack_bot_token              |
+| SLACK_TEAM_ID         | your_slack_team_id                |
+| BRAVE_API_KEY         | your_brave_api_key                |
+| GOOGLE_MAPS_API_KEY   | your_google_maps_api_key          |
+| AWS_ACCESS_KEY_ID     | your_aws_access_key_id            |
+| AWS_SECRET_ACCESS_KEY | your_aws_secret_access_key        |
+| AWS_REGION            | your_aws_region                   |
 
 #### 方法 2：PowerShell 临时设置
 

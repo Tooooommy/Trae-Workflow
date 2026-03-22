@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/app.py"
-  - "**/requirements.txt"
+  - '**/app.py'
+  - '**/requirements.txt'
 ---
 
 # Flask 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Flask 3+, Python 3.12+, SQLAlchemy, PostgreSQL
-* 架构: 应用工厂模式, 蓝图
+- 技术栈: Flask 3+, Python 3.12+, SQLAlchemy, PostgreSQL
+- 架构: 应用工厂模式, 蓝图
 
 ## 关键规则
 

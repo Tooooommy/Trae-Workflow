@@ -26,20 +26,20 @@ user_rules/
 
 ## 文件说明
 
-| 文件 | 内容 |
-|------|------|
-| [user-rules.md](user-rules.md) | 主文件：成功指标、代码审查清单 |
-| [core-principles.md](core-principles.md) | 核心原则（5条） |
-| [project-config.md](project-config.md) | 技术栈、性能目标 |
-| [coding-style.md](coding-style.md) | 代码格式、命名规范 |
-| [development-workflow.md](development-workflow.md) | 详细开发流程 |
-| [testing.md](testing.md) | TDD 流程、测试策略 |
-| [security.md](security.md) | 检查清单、处理流程 |
-| [git-workflow.md](git-workflow.md) | PR 工作流 |
-| [patterns.md](patterns.md) | 模式详细说明 |
-| [hooks.md](hooks.md) | Hooks 系统 |
-| [performance.md](performance.md) | 性能优化配置 |
-| [agent-invocation.md](agent-invocation.md) | Agent 调用规则和规范 |
+| 文件                                               | 内容                           |
+| -------------------------------------------------- | ------------------------------ |
+| [user-rules.md](user-rules.md)                     | 主文件：成功指标、代码审查清单 |
+| [core-principles.md](core-principles.md)           | 核心原则（5条）                |
+| [project-config.md](project-config.md)             | 技术栈、性能目标               |
+| [coding-style.md](coding-style.md)                 | 代码格式、命名规范             |
+| [development-workflow.md](development-workflow.md) | 详细开发流程                   |
+| [testing.md](testing.md)                           | TDD 流程、测试策略             |
+| [security.md](security.md)                         | 检查清单、处理流程             |
+| [git-workflow.md](git-workflow.md)                 | PR 工作流                      |
+| [patterns.md](patterns.md)                         | 模式详细说明                   |
+| [hooks.md](hooks.md)                               | Hooks 系统                     |
+| [performance.md](performance.md)                   | 性能优化配置                   |
+| [agent-invocation.md](agent-invocation.md)         | Agent 调用规则和规范           |
 
 ---
 

@@ -17,20 +17,20 @@ description: 限流模式 - API 保护、流量控制、防滥用最佳实践
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Redis | 6.0+ | 7.0+ |
-| express-rate-limit | 7.0+ | 最新 |
-| rate-limiter-flexible | 4.0+ | 最新 |
+| 技术                  | 最低版本 | 推荐版本 |
+| --------------------- | -------- | -------- |
+| Redis                 | 6.0+     | 7.0+     |
+| express-rate-limit    | 7.0+     | 最新     |
+| rate-limiter-flexible | 4.0+     | 最新     |
 
 ## 限流算法对比
 
-| 算法 | 特点 | 适用场景 |
-|------|------|----------|
+| 算法     | 特点         | 适用场景 |
+| -------- | ------------ | -------- |
 | 固定窗口 | 简单、内存小 | 基础限流 |
-| 滑动窗口 | 精确、平滑 | 精确控制 |
-| 令牌桶 | 允许突发 | API 限流 |
-| 漏桶 | 恒定速率 | 流量整形 |
+| 滑动窗口 | 精确、平滑   | 精确控制 |
+| 令牌桶   | 允许突发     | API 限流 |
+| 漏桶     | 恒定速率     | 流量整形 |
 
 ## 固定窗口算法
 
@@ -77,11 +77,11 @@ class SlidingWindowLimiter {
     const windowStart = now - this.windowMs;
 
     let timestamps = this.requests.get(key) || [];
-    
-    timestamps = timestamps.filter(ts => ts > windowStart);
-    
+
+    timestamps = timestamps.filter((ts) => ts > windowStart);
+
     const allowed = timestamps.length < this.maxRequests;
-    
+
     if (allowed) {
       timestamps.push(now);
       this.requests.set(key, timestamps);
@@ -153,11 +153,7 @@ const rateLimiter = new RateLimiterRedis({
   blockDuration: 60,
 });
 
-async function rateLimitMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+async function rateLimitMiddleware(req: Request, res: Response, next: NextFunction) {
   const key = req.ip || req.headers['x-forwarded-for'] || 'unknown';
 
   try {
@@ -191,7 +187,7 @@ const apiLimiter = rateLimit({
   store: new RedisStore({
     sendCommand: (...args: string[]) => redis.call(...args),
   }),
-  keyGenerator: (req) => req.ip || req.headers['x-forwarded-for'] as string,
+  keyGenerator: (req) => req.ip || (req.headers['x-forwarded-for'] as string),
   handler: (req, res) => {
     res.status(429).json({
       error: 'Too many requests',
@@ -214,11 +210,7 @@ class TieredRateLimiter {
     ['enterprise', { requests: 10000, window: 60 }],
   ]);
 
-  async checkLimit(
-    userId: string,
-    tier: string,
-    identifier: string
-  ): Promise<LimitResult> {
+  async checkLimit(userId: string, tier: string, identifier: string): Promise<LimitResult> {
     const limit = this.limits.get(tier) || this.limits.get('anonymous')!;
     const key = `${tier}:${userId}:${identifier}`;
 
@@ -270,12 +262,7 @@ class UserRateLimiter {
 ## 响应头规范
 
 ```typescript
-function setRateLimitHeaders(
-  res: Response,
-  limit: number,
-  remaining: number,
-  resetAt: Date
-) {
+function setRateLimitHeaders(res: Response, limit: number, remaining: number, resetAt: Date) {
   res.setHeader('X-RateLimit-Limit', limit);
   res.setHeader('X-RateLimit-Remaining', remaining);
   res.setHeader('X-RateLimit-Reset', Math.floor(resetAt.getTime() / 1000));
@@ -285,13 +272,13 @@ function setRateLimitHeaders(
 
 ## 限流策略
 
-| 场景 | 限制 | 窗口 |
-|------|------|------|
+| 场景     | 限制       | 窗口   |
+| -------- | ---------- | ------ |
 | 全局 API | 10000 请求 | 1 分钟 |
-| 用户 API | 100 请求 | 1 分钟 |
-| 登录尝试 | 5 次 | 5 分钟 |
-| 密码重置 | 3 次 | 1 小时 |
-| 文件上传 | 50 次 | 1 小时 |
+| 用户 API | 100 请求   | 1 分钟 |
+| 登录尝试 | 5 次       | 5 分钟 |
+| 密码重置 | 3 次       | 1 小时 |
+| 文件上传 | 50 次      | 1 小时 |
 
 ## 快速参考
 

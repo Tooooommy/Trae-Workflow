@@ -52,9 +52,9 @@ my-shopify-app/
 
 ```tsx
 // app/routes/\_index.tsx
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { authenticate } from "~/shopify.server";
+import { json, type LoaderFunctionArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { authenticate } from '~/shopify.server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   // 1. 使用模板提供的 authenticate.admin 完成会话验证和 API 客户端初始化
@@ -63,7 +63,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   // 2. 使用认证后的 admin 客户端安全调用 Shopify Admin API
   const products = await admin.rest.get({
-    path: "/products.json",
+    path: '/products.json',
     query: { limit: 10 },
   });
 
@@ -94,9 +94,9 @@ export default function AppIndex() {
 
 ```tsx
 // app/routes/\_index.create-product.tsx
-import { json, type ActionFunctionArgs } from "@remix-run/node";
-import { authenticate } from "~/shopify.server";
-import { z } from "zod";
+import { json, type ActionFunctionArgs } from '@remix-run/node';
+import { authenticate } from '~/shopify.server';
+import { z } from 'zod';
 
 const CreateProductSchema = z.object({
   title: z.string().min(1),
@@ -111,16 +111,13 @@ export async function action({ request }: ActionFunctionArgs) {
   // 1. 验证输入
   const validation = CreateProductSchema.safeParse(rawData);
   if (!validation.success) {
-    return json(
-      { errors: validation.error.flatten().fieldErrors },
-      { status: 400 },
-    );
+    return json({ errors: validation.error.flatten().fieldErrors }, { status: 400 });
   }
 
   // 2. 调用 Shopify API 创建产品
   try {
     const response = await admin.rest.post({
-      path: "/products.json",
+      path: '/products.json',
       data: {
         product: {
           title: validation.data.title,
@@ -130,8 +127,8 @@ export async function action({ request }: ActionFunctionArgs) {
     });
     return json({ product: response.data?.product });
   } catch (error) {
-    console.error("创建产品失败:", error);
-    return json({ error: "创建失败" }, { status: 500 });
+    console.error('创建产品失败:', error);
+    return json({ error: '创建失败' }, { status: 500 });
   }
 }
 ```
@@ -188,20 +185,19 @@ destination: '/app/settings',
 
 ```ts
 // app/routes/api.webhooks.ts
-import { type ActionFunctionArgs, json } from "@remix-run/node";
-import { authenticate } from "~/shopify.server";
+import { type ActionFunctionArgs, json } from '@remix-run/node';
+import { authenticate } from '~/shopify.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   // 1. 验证 Webhook 请求的 HMAC 签名
-  const { topic, shop, payload, webhookId } =
-    await authenticate.webhook(request);
+  const { topic, shop, payload, webhookId } = await authenticate.webhook(request);
 
   // 2. 根据 topic 处理不同事件
   switch (topic) {
-    case "ORDERS_CREATE":
+    case 'ORDERS_CREATE':
       await handleOrderCreated(payload, shop);
       break;
-    case "APP_UNINSTALLED":
+    case 'APP_UNINSTALLED':
       await cleanupShopData(shop); // 清理该店铺数据
       break;
   }
@@ -291,7 +287,7 @@ Shopify 嵌入式应用运行在 iframe 中，需配置 `Content-Security-Policy
 
 ```ts
 // tests/shopify-mocks.ts
-import { vi } from "vitest";
+import { vi } from 'vitest';
 
 export const mockAuthenticateAdmin = vi.fn().mockResolvedValue({
   admin: {
@@ -302,16 +298,16 @@ export const mockAuthenticateAdmin = vi.fn().mockResolvedValue({
     graphql: vi.fn().mockResolvedValue({ data: {} }),
   },
   session: {
-    shop: "test-shop.myshopify.com",
-    accessToken: "fake-token",
+    shop: 'test-shop.myshopify.com',
+    accessToken: 'fake-token',
   },
 });
 
 export const mockAuthenticateWebhook = vi.fn().mockResolvedValue({
-  topic: "ORDERS_CREATE",
-  shop: "test-shop.myshopify.com",
+  topic: 'ORDERS_CREATE',
+  shop: 'test-shop.myshopify.com',
   payload: { id: 123 },
-  webhookId: "webhook_123",
+  webhookId: 'webhook_123',
 });
 ```
 
@@ -319,55 +315,53 @@ export const mockAuthenticateWebhook = vi.fn().mockResolvedValue({
 
 ```tsx
 // tests/integration/routes/\_index.test.tsx
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { createRequest } from "@remix-run/node";
-import { loader } from "~/routes/\_index";
-import { authenticate } from "~/shopify.server";
-import { db } from "~/lib/db";
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { createRequest } from '@remix-run/node';
+import { loader } from '~/routes/\_index';
+import { authenticate } from '~/shopify.server';
+import { db } from '~/lib/db';
 
-vi.mock("~/shopify.server");
-vi.mock("~/lib/db");
+vi.mock('~/shopify.server');
+vi.mock('~/lib/db');
 
-describe("应用主页 Loader", () => {
+describe('应用主页 Loader', () => {
   beforeEach(() => {
     vi.resetAllMocks();
   });
 
-  it("成功获取商店数据和产品列表", async () => {
+  it('成功获取商店数据和产品列表', async () => {
     // 模拟认证成功
     vi.mocked(authenticate.admin).mockResolvedValue({
       admin: {
         rest: {
           get: vi.fn().mockResolvedValue({
-            data: { products: [{ id: 1, title: "测试产品" }] },
+            data: { products: [{ id: 1, title: '测试产品' }] },
           }),
         },
       },
-      session: { shop: "test-shop.myshopify.com" },
+      session: { shop: 'test-shop.myshopify.com' },
     });
     // 模拟数据库查询
     vi.mocked(db.order.findMany).mockResolvedValue([]);
 
-    const request = createRequest("http://localhost/app");
+    const request = createRequest('http://localhost/app');
     const response = await loader({ request, params: {}, context: {} });
 
     // 验证响应状态和数据
     expect(response.status).toBe(200);
     const data = await response.json();
-    expect(data.shop).toBe("test-shop.myshopify.com");
+    expect(data.shop).toBe('test-shop.myshopify.com');
     expect(data.products).toHaveLength(1);
     expect(authenticate.admin).toHaveBeenCalledWith(request);
   });
 
-  it("认证失败时抛出重定向", async () => {
+  it('认证失败时抛出重定向', async () => {
     vi.mocked(authenticate.admin).mockRejectedValue(
-      new Response(null, { status: 401, headers: { Location: "/auth" } }),
+      new Response(null, { status: 401, headers: { Location: '/auth' } })
     );
 
-    const request = createRequest("http://localhost/app");
-    await expect(
-      loader({ request, params: {}, context: {} }),
-    ).rejects.toThrow();
+    const request = createRequest('http://localhost/app');
+    await expect(loader({ request, params: {}, context: {} })).rejects.toThrow();
   });
 });
 ```
@@ -376,26 +370,26 @@ describe("应用主页 Loader", () => {
 
 ```tsx
 // tests/integration/routes/\_index.create-product.test.tsx
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { createRequest } from "@remix-run/node";
-import { action } from "~/routes/\_index.create-product";
+import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { createRequest } from '@remix-run/node';
+import { action } from '~/routes/\_index.create-product';
 
-describe("创建产品 Action", () => {
-  it("验证失败时返回 400 及错误信息", async () => {
+describe('创建产品 Action', () => {
+  it('验证失败时返回 400 及错误信息', async () => {
     const formData = new FormData();
-    formData.append("title", ""); // 无效的标题
-    formData.append("price", "-10"); // 无效的价格
+    formData.append('title', ''); // 无效的标题
+    formData.append('price', '-10'); // 无效的价格
 
-    const request = createRequest("http://localhost/app/create-product", {
-      method: "POST",
+    const request = createRequest('http://localhost/app/create-product', {
+      method: 'POST',
       body: formData,
     });
 
     const response = await action({ request, params: {}, context: {} });
     expect(response.status).toBe(400);
     const data = await response.json();
-    expect(data.errors).toHaveProperty("title");
-    expect(data.errors).toHaveProperty("price");
+    expect(data.errors).toHaveProperty('title');
+    expect(data.errors).toHaveProperty('price');
   });
 });
 ```

@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.java"
-  - "**/pom.xml"
-  - "**/build.gradle"
+  - '**/*.java'
+  - '**/pom.xml'
+  - '**/build.gradle'
 ---
 
 # Java 编码风格
@@ -12,13 +12,13 @@ globs:
 
 ## 命名约定
 
-| 类型 | 约定 | 示例 |
-|------|------|------|
-| 类/接口 | PascalCase | `UserService` |
-| 方法 | camelCase | `createUser` |
-| 变量 | camelCase | `userName` |
-| 常量 | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS` |
-| 包名 | 小写 | `com.example.service` |
+| 类型    | 约定                 | 示例                  |
+| ------- | -------------------- | --------------------- |
+| 类/接口 | PascalCase           | `UserService`         |
+| 方法    | camelCase            | `createUser`          |
+| 变量    | camelCase            | `userName`            |
+| 常量    | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS`     |
+| 包名    | 小写                 | `com.example.service` |
 
 ## 代码风格
 

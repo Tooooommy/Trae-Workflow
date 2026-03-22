@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | Architect |
-| **标识名** | `architect` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值          |
+| ------------ | ----------- |
+| **名称**     | Architect   |
+| **标识名**   | `architect` |
+| **可被调用** | ✅ 是       |
 
 ## 描述
 
@@ -171,10 +171,10 @@
 
 ### 完成后委托
 
-| 场景 | 委托目标 |
-|------|---------|
-| 架构设计完成 | `planner` 制定实施计划 |
-| 涉及数据库设计 | `database-reviewer` |
-| 涉及云服务 | `cloud-architect` |
-| 涉及安全架构 | `security-reviewer` |
-| 需要性能优化 | `performance-optimizer` |
+| 场景           | 委托目标                |
+| -------------- | ----------------------- |
+| 架构设计完成   | `planner` 制定实施计划  |
+| 涉及数据库设计 | `database-reviewer`     |
+| 涉及云服务     | `cloud-architect`       |
+| 涉及安全架构   | `security-reviewer`     |
+| 需要性能优化   | `performance-optimizer` |

@@ -374,18 +374,18 @@ export const extendedPrisma = prisma.$extends({
 
 ```typescript
 // src/routes/v1/user.routes.ts
-import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { z } from "zod";
-import { authMiddleware } from "../../middleware/auth.middleware";
-import { roleMiddleware } from "../../middleware/role.middleware";
-import { userService } from "../../services/user.service";
-import { cacheMiddleware } from "../../middleware/cache.middleware";
+import { Hono } from 'hono';
+import { zValidator } from '@hono/zod-validator';
+import { z } from 'zod';
+import { authMiddleware } from '../../middleware/auth.middleware';
+import { roleMiddleware } from '../../middleware/role.middleware';
+import { userService } from '../../services/user.service';
+import { cacheMiddleware } from '../../middleware/cache.middleware';
 
 const userRoutes = new Hono()
-  .use("*", authMiddleware)
+  .use('*', authMiddleware)
   .get(
-    "/",
+    '/',
     cacheMiddleware({ ttl: 60 }), // 缓存 60 秒
     async (c) => {
       const { page = 1, limit = 20, search } = c.req.query();
@@ -395,65 +395,65 @@ const userRoutes = new Hono()
         search,
       });
       return c.json(users);
-    },
+    }
   )
-  .get("/:id", cacheMiddleware({ ttl: 300 }), async (c) => {
-    const id = c.req.param("id");
+  .get('/:id', cacheMiddleware({ ttl: 300 }), async (c) => {
+    const id = c.req.param('id');
     const user = await userService.getUserById(id);
 
     if (!user) {
-      return c.json({ error: "User not found" }, 404);
+      return c.json({ error: 'User not found' }, 404);
     }
 
     return c.json(user);
   })
   .post(
-    "/",
+    '/',
     zValidator(
-      "json",
+      'json',
       z.object({
         email: z.string().email(),
         username: z.string().min(3).max(50),
         password: z.string().min(8),
         name: z.string().optional(),
-      }),
+      })
     ),
-    roleMiddleware(["ADMIN", "SUPER_ADMIN"]),
+    roleMiddleware(['ADMIN', 'SUPER_ADMIN']),
     async (c) => {
-      const data = c.req.valid("json");
+      const data = c.req.valid('json');
       const user = await userService.createUser(data);
       return c.json(user, 201);
-    },
+    }
   )
   .patch(
-    "/:id",
+    '/:id',
     zValidator(
-      "json",
+      'json',
       z.object({
         email: z.string().email().optional(),
         username: z.string().min(3).max(50).optional(),
         name: z.string().optional(),
         isActive: z.boolean().optional(),
-      }),
+      })
     ),
     async (c) => {
-      const id = c.req.param("id");
-      const data = c.req.valid("json");
-      const userId = c.get("userId");
+      const id = c.req.param('id');
+      const data = c.req.valid('json');
+      const userId = c.get('userId');
 
       // 检查权限：用户只能更新自己的信息，管理员可以更新任何用户
-      if (id !== userId && !c.get("userRole")?.includes("ADMIN")) {
-        return c.json({ error: "Forbidden" }, 403);
+      if (id !== userId && !c.get('userRole')?.includes('ADMIN')) {
+        return c.json({ error: 'Forbidden' }, 403);
       }
 
       const user = await userService.updateUser(id, data);
       return c.json(user);
-    },
+    }
   )
-  .delete("/:id", roleMiddleware(["ADMIN", "SUPER_ADMIN"]), async (c) => {
-    const id = c.req.param("id");
+  .delete('/:id', roleMiddleware(['ADMIN', 'SUPER_ADMIN']), async (c) => {
+    const id = c.req.param('id');
     await userService.deleteUser(id);
-    return c.json({ message: "User deleted" });
+    return c.json({ message: 'User deleted' });
   });
 
 export default userRoutes;
@@ -740,18 +740,18 @@ export async function closeBullMQ() {
 
 ```typescript
 // src/middleware/auth.middleware.ts
-import { createMiddleware } from "hono/factory";
-import { verifyToken } from "../utils/crypto";
-import { prisma } from "../core/database";
+import { createMiddleware } from 'hono/factory';
+import { verifyToken } from '../utils/crypto';
+import { prisma } from '../core/database';
 
 export const authMiddleware = createMiddleware(async (c, next) => {
-  const authHeader = c.req.header("Authorization");
+  const authHeader = c.req.header('Authorization');
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return c.json({ error: "Unauthorized" }, 401);
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return c.json({ error: 'Unauthorized' }, 401);
   }
 
-  const token = authHeader.split(" ")[1];
+  const token = authHeader.split(' ')[1];
 
   try {
     const payload = verifyToken(token);
@@ -765,17 +765,17 @@ export const authMiddleware = createMiddleware(async (c, next) => {
     });
 
     if (!session) {
-      return c.json({ error: "Session expired" }, 401);
+      return c.json({ error: 'Session expired' }, 401);
     }
 
     // 设置用户信息到上下文
-    c.set("userId", payload.userId);
-    c.set("userRole", payload.role);
-    c.set("sessionId", session.id);
+    c.set('userId', payload.userId);
+    c.set('userRole', payload.role);
+    c.set('sessionId', session.id);
 
     await next();
   } catch (error) {
-    return c.json({ error: "Invalid token" }, 401);
+    return c.json({ error: 'Invalid token' }, 401);
   }
 });
 ```
@@ -887,73 +887,60 @@ export function decrypt(encryptedText: string, key: string): string {
 
 ```typescript
 // src/schemas/user.ts
-import { z } from "zod";
+import { z } from 'zod';
 
 // XSS 清理函数
 function sanitizeInput(input: string): string {
   return input
-    .replace(/[<>]/g, "") // 移除 < 和 >
-    .replace(/javascript:/gi, "")
-    .replace(/on\w+=/gi, "")
+    .replace(/[<>]/g, '') // 移除 < 和 >
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+=/gi, '')
     .trim();
 }
 
 export const createUserSchema = z.object({
   email: z
     .string()
-    .email("Invalid email format")
+    .email('Invalid email format')
     .transform(sanitizeInput)
-    .refine((email) => email.length <= 255, "Email too long"),
+    .refine((email) => email.length <= 255, 'Email too long'),
 
   username: z
     .string()
-    .min(3, "Username must be at least 3 characters")
-    .max(50, "Username must be at most 50 characters")
-    .regex(
-      /^[a-zA-Z0-9_]+$/,
-      "Username can only contain letters, numbers and underscores",
-    )
+    .min(3, 'Username must be at least 3 characters')
+    .max(50, 'Username must be at most 50 characters')
+    .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers and underscores')
     .transform(sanitizeInput),
 
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
-    .regex(/[0-9]/, "Password must contain at least one number")
-    .regex(
-      /[^A-Za-z0-9]/,
-      "Password must contain at least one special character",
-    ),
+    .min(8, 'Password must be at least 8 characters')
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .regex(/[0-9]/, 'Password must contain at least one number')
+    .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
 
   name: z
     .string()
-    .max(100, "Name must be at most 100 characters")
+    .max(100, 'Name must be at most 100 characters')
     .transform(sanitizeInput)
     .optional(),
 });
 
 export const updateUserSchema = z.object({
-  email: z
-    .string()
-    .email("Invalid email format")
-    .transform(sanitizeInput)
-    .optional(),
+  email: z.string().email('Invalid email format').transform(sanitizeInput).optional(),
 
   username: z
     .string()
-    .min(3, "Username must be at least 3 characters")
-    .max(50, "Username must be at most 50 characters")
-    .regex(
-      /^[a-zA-Z0-9_]+$/,
-      "Username can only contain letters, numbers and underscores",
-    )
+    .min(3, 'Username must be at least 3 characters')
+    .max(50, 'Username must be at most 50 characters')
+    .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers and underscores')
     .transform(sanitizeInput)
     .optional(),
 
   name: z
     .string()
-    .max(100, "Name must be at most 100 characters")
+    .max(100, 'Name must be at most 100 characters')
     .transform(sanitizeInput)
     .optional(),
 
@@ -983,16 +970,16 @@ export const updateUserSchema = z.object({
 ```typescript
 // jest.config.js
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  roots: ["<rootDir>/src", "<rootDir>/tests"],
-  testMatch: ["/__tests__//*.ts", "/?(*.)+(spec|test).ts"],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src', '<rootDir>/tests'],
+  testMatch: ['/__tests__//*.ts', '/?(*.)+(spec|test).ts'],
   collectCoverageFrom: [
-    "src//*.ts",
-    "!src//*.d.ts",
-    "!src//index.ts",
-    "!src//*.test.ts",
-    "!src//*.spec.ts",
+    'src//*.ts',
+    '!src//*.d.ts',
+    '!src//index.ts',
+    '!src//*.test.ts',
+    '!src//*.spec.ts',
   ],
   coverageThreshold: {
     global: {
@@ -1002,26 +989,23 @@ module.exports = {
       statements: 80,
     },
   },
-  setupFilesAfterEnv: ["<rootDir>/tests/setup.ts"],
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
   moduleNameMapper: {
-    "^@/(.*)": "<rootDir>/src/1",
+    '^@/(.*)': '<rootDir>/src/1',
   },
 };
 ```
 
 ```typescript
 // tests/setup.ts
-import { redis } from "../src/core/redis";
-import { prisma } from "../src/core/database";
-import { closeBullMQ } from "../src/core/bullmq";
+import { redis } from '../src/core/redis';
+import { prisma } from '../src/core/database';
+import { closeBullMQ } from '../src/core/bullmq';
 
 // 全局测试配置
 beforeAll(async () => {
   // 清理测试数据库
-  await prisma.$transaction([
-    prisma.session.deleteMany(),
-    prisma.user.deleteMany(),
-  ]);
+  await prisma.$transaction([prisma.session.deleteMany(), prisma.user.deleteMany()]);
 
   // 清理 Redis
   await redis.flushdb();
@@ -1046,35 +1030,35 @@ afterEach(async () => {
 
 ```typescript
 // tests/unit/services/user.service.test.ts
-import { userService } from "../../../src/services/user.service";
-import { prisma } from "../../../src/core/database";
-import { redis } from "../../../src/core/redis";
-import { hashPassword } from "../../../src/utils/crypto";
+import { userService } from '../../../src/services/user.service';
+import { prisma } from '../../../src/core/database';
+import { redis } from '../../../src/core/redis';
+import { hashPassword } from '../../../src/utils/crypto';
 
-jest.mock("../../../src/core/bullmq", () => ({
+jest.mock('../../../src/core/bullmq', () => ({
   emailQueue: {
-    add: jest.fn().mockResolvedValue({ id: "job-123" }),
+    add: jest.fn().mockResolvedValue({ id: 'job-123' }),
   },
 }));
 
-describe("UserService", () => {
+describe('UserService', () => {
   beforeEach(async () => {
     await prisma.user.deleteMany();
     await redis.flushdb();
   });
 
-  describe("createUser", () => {
-    it("创建用户成功", async () => {
+  describe('createUser', () => {
+    it('创建用户成功', async () => {
       const userData = {
-        email: "test@example.com",
-        username: "testuser",
-        password: "Password123!",
-        name: "Test User",
+        email: 'test@example.com',
+        username: 'testuser',
+        password: 'Password123!',
+        name: 'Test User',
       };
 
       const user = await userService.createUser(userData);
 
-      expect(user).toHaveProperty("id");
+      expect(user).toHaveProperty('id');
       expect(user.email).toBe(userData.email);
       expect(user.username).toBe(userData.username);
       expect(user.name).toBe(userData.name);
@@ -1086,50 +1070,50 @@ describe("UserService", () => {
       expect(dbUser?.password).not.toBe(userData.password);
     });
 
-    it("邮箱已存在时抛出错误", async () => {
+    it('邮箱已存在时抛出错误', async () => {
       const existingUser = await prisma.user.create({
         data: {
-          email: "existing@example.com",
-          username: "existing",
-          password: await hashPassword("Password123!"),
+          email: 'existing@example.com',
+          username: 'existing',
+          password: await hashPassword('Password123!'),
         },
       });
 
       await expect(
         userService.createUser({
           email: existingUser.email,
-          username: "newuser",
-          password: "Password123!",
-        }),
-      ).rejects.toThrow("Email already exists");
+          username: 'newuser',
+          password: 'Password123!',
+        })
+      ).rejects.toThrow('Email already exists');
     });
 
-    it("用户名已存在时抛出错误", async () => {
+    it('用户名已存在时抛出错误', async () => {
       const existingUser = await prisma.user.create({
         data: {
-          email: "user1@example.com",
-          username: "existing",
-          password: await hashPassword("Password123!"),
+          email: 'user1@example.com',
+          username: 'existing',
+          password: await hashPassword('Password123!'),
         },
       });
 
       await expect(
         userService.createUser({
-          email: "user2@example.com",
+          email: 'user2@example.com',
           username: existingUser.username,
-          password: "Password123!",
-        }),
-      ).rejects.toThrow("Username already exists");
+          password: 'Password123!',
+        })
+      ).rejects.toThrow('Username already exists');
     });
   });
 
-  describe("getUserById", () => {
-    it("从数据库获取用户", async () => {
+  describe('getUserById', () => {
+    it('从数据库获取用户', async () => {
       const user = await prisma.user.create({
         data: {
-          email: "test@example.com",
-          username: "testuser",
-          password: await hashPassword("Password123!"),
+          email: 'test@example.com',
+          username: 'testuser',
+          password: await hashPassword('Password123!'),
         },
       });
 
@@ -1139,12 +1123,12 @@ describe("UserService", () => {
       expect(result?.email).toBe(user.email);
     });
 
-    it("从缓存获取用户", async () => {
+    it('从缓存获取用户', async () => {
       const user = await prisma.user.create({
         data: {
-          email: "test@example.com",
-          username: "testuser",
-          password: await hashPassword("Password123!"),
+          email: 'test@example.com',
+          username: 'testuser',
+          password: await hashPassword('Password123!'),
         },
       });
 
@@ -1159,15 +1143,15 @@ describe("UserService", () => {
     });
   });
 
-  describe("authenticate", () => {
-    it("使用有效凭据认证成功", async () => {
-      const password = "Password123!";
+  describe('authenticate', () => {
+    it('使用有效凭据认证成功', async () => {
+      const password = 'Password123!';
       const hashedPassword = await hashPassword(password);
 
       const user = await prisma.user.create({
         data: {
-          email: "test@example.com",
-          username: "testuser",
+          email: 'test@example.com',
+          username: 'testuser',
           password: hashedPassword,
         },
       });
@@ -1178,31 +1162,28 @@ describe("UserService", () => {
       expect(result?.email).toBe(user.email);
     });
 
-    it("使用无效密码认证失败", async () => {
+    it('使用无效密码认证失败', async () => {
       const user = await prisma.user.create({
         data: {
-          email: "test@example.com",
-          username: "testuser",
-          password: await hashPassword("Password123!"),
+          email: 'test@example.com',
+          username: 'testuser',
+          password: await hashPassword('Password123!'),
         },
       });
 
-      const result = await userService.authenticate(
-        user.email,
-        "WrongPassword!",
-      );
+      const result = await userService.authenticate(user.email, 'WrongPassword!');
 
       expect(result).toBeNull();
     });
 
-    it("非活跃用户认证失败", async () => {
-      const password = "Password123!";
+    it('非活跃用户认证失败', async () => {
+      const password = 'Password123!';
       const hashedPassword = await hashPassword(password);
 
       const user = await prisma.user.create({
         data: {
-          email: "test@example.com",
-          username: "testuser",
+          email: 'test@example.com',
+          username: 'testuser',
           password: hashedPassword,
           isActive: false,
         },
@@ -1513,6 +1494,7 @@ docker scan myapp:latest
 ```
 
 ### 阶段 6：部署前验证
+
 ```bash
 #1. 验证环境变量
 echo "检查关键环境变量:"
@@ -1534,22 +1516,22 @@ npm run test:smoke
 ### 验证报告模板
 
 ```markdown
-NODE.JS HONO 应用验证报告
-=
+# NODE.JS HONO 应用验证报告
+
 项目: [项目名称]
 环境: [development/staging/production]
 版本: [版本号]
 时间: [时间戳]
 
 [✅/❌] 代码质量检查
-    ◦ 类型检查: 通过/失败 (错误数: X)
+◦ 类型检查: 通过/失败 (错误数: X)
 
     ◦ 代码风格: 通过/失败 (警告数: Y)
 
     ◦ 格式化: 通过/失败
 
 [✅/❌] 测试套件
-    ◦ 单元测试: A/B 通过
+◦ 单元测试: A/B 通过
 
     ◦ 集成测试: C/D 通过
 
@@ -1558,19 +1540,19 @@ NODE.JS HONO 应用验证报告
     ◦ 覆盖率: 行: P%, 分支: Q%, 函数: R%
 
 [✅/❌] 安全扫描
-    ◦ 依赖漏洞: 通过/失败 (漏洞数: V)
+◦ 依赖漏洞: 通过/失败 (漏洞数: V)
 
     ◦ 代码安全: 通过/失败 (问题数: W)
 
 [✅/❌] 性能测试
-    ◦ 平均响应时间: X ms
+◦ 平均响应时间: X ms
 
     ◦ 吞吐量: Y req/s
 
     ◦ 错误率: Z%
 
 [✅/❌] 构建与部署
-    ◦ TypeScript 编译: 通过/失败
+◦ TypeScript 编译: 通过/失败
 
     ◦ 数据库迁移: 通过/失败
 
@@ -1579,6 +1561,7 @@ NODE.JS HONO 应用验证报告
     ◦ 健康检查: 通过/失败
 
 关键问题:
+
 1. [高优先级] [问题描述]
 2. [中优先级] [问题描述]
 

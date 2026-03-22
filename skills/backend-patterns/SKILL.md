@@ -19,13 +19,13 @@ description: 后端架构模式、API设计、数据库优化以及适用于Node
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Node.js | 20+ | 22+ |
-| TypeScript | 5.0+ | 最新 |
-| Express/Fastify | 4.18+/4.24+ | 最新 |
-| Prisma | 5.0+ | 最新 |
-| Redis | 7.0+ | 7.4+ |
+| 技术            | 最低版本    | 推荐版本 |
+| --------------- | ----------- | -------- |
+| Node.js         | 20+         | 22+      |
+| TypeScript      | 5.0+        | 最新     |
+| Express/Fastify | 4.18+/4.24+ | 最新     |
+| Prisma          | 5.0+        | 最新     |
+| Redis           | 7.0+        | 7.4+     |
 
 ## API 设计模式
 
@@ -58,10 +58,10 @@ interface MarketRepository {
 
 class SupabaseMarketRepository implements MarketRepository {
   async findAll(filters?: MarketFilters): Promise<Market[]> {
-    let query = supabase.from("markets").select("*");
+    let query = supabase.from('markets').select('*');
 
     if (filters?.status) {
-      query = query.eq("status", filters.status);
+      query = query.eq('status', filters.status);
     }
 
     if (filters?.limit) {
@@ -113,10 +113,10 @@ class MarketService {
 // Request/response processing pipeline
 export function withAuth(handler: NextApiHandler): NextApiHandler {
   return async (req, res) => {
-    const token = req.headers.authorization?.replace("Bearer ", "");
+    const token = req.headers.authorization?.replace('Bearer ', '');
 
     if (!token) {
-      return res.status(401).json({ error: "Unauthorized" });
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
     try {
@@ -124,7 +124,7 @@ export function withAuth(handler: NextApiHandler): NextApiHandler {
       req.user = user;
       return handler(req, res);
     } catch (error) {
-      return res.status(401).json({ error: "Invalid token" });
+      return res.status(401).json({ error: 'Invalid token' });
     }
   };
 }
@@ -142,14 +142,14 @@ export default withAuth(async (req, res) => {
 ```typescript
 // ✅ GOOD: Select only needed columns
 const { data } = await supabase
-  .from("markets")
-  .select("id, name, status, volume")
-  .eq("status", "active")
-  .order("volume", { ascending: false })
+  .from('markets')
+  .select('id, name, status, volume')
+  .eq('status', 'active')
+  .order('volume', { ascending: false })
   .limit(10);
 
 // ❌ BAD: Select everything
-const { data } = await supabase.from("markets").select("*");
+const { data } = await supabase.from('markets').select('*');
 ```
 
 ### N+1 查询预防
@@ -218,7 +218,7 @@ $;
 class CachedMarketRepository implements MarketRepository {
   constructor(
     private baseRepo: MarketRepository,
-    private redis: RedisClient,
+    private redis: RedisClient
   ) {}
 
   async findById(id: string): Promise<Market | null> {
@@ -259,7 +259,7 @@ async function getMarketWithCache(id: string): Promise<Market> {
   // Cache miss - fetch from DB
   const market = await db.markets.findUnique({ where: { id } });
 
-  if (!market) throw new Error("Market not found");
+  if (!market) throw new Error('Market not found');
 
   // Update cache
   await redis.setex(cacheKey, 300, JSON.stringify(market));
@@ -277,7 +277,7 @@ class ApiError extends Error {
   constructor(
     public statusCode: number,
     public message: string,
-    public isOperational = true,
+    public isOperational = true
   ) {
     super(message);
     Object.setPrototypeOf(this, ApiError.prototype);
@@ -291,7 +291,7 @@ export function errorHandler(error: unknown, req: Request): Response {
         success: false,
         error: error.message,
       },
-      { status: error.statusCode },
+      { status: error.statusCode }
     );
   }
 
@@ -299,22 +299,22 @@ export function errorHandler(error: unknown, req: Request): Response {
     return NextResponse.json(
       {
         success: false,
-        error: "Validation failed",
+        error: 'Validation failed',
         details: error.errors,
       },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   // Log unexpected errors
-  console.error("Unexpected error:", error);
+  console.error('Unexpected error:', error);
 
   return NextResponse.json(
     {
       success: false,
-      error: "Internal server error",
+      error: 'Internal server error',
     },
-    { status: 500 },
+    { status: 500 }
   );
 }
 
@@ -332,10 +332,7 @@ export async function GET(request: Request) {
 ### 指数退避重试
 
 ```typescript
-async function fetchWithRetry<T>(
-  fn: () => Promise<T>,
-  maxRetries = 3,
-): Promise<T> {
+async function fetchWithRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
   let lastError: Error;
 
   for (let i = 0; i < maxRetries; i++) {
@@ -364,12 +361,12 @@ const data = await fetchWithRetry(() => fetchFromAPI());
 ### JWT 令牌验证
 
 ```typescript
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 interface JWTPayload {
   userId: string;
   email: string;
-  role: "admin" | "user";
+  role: 'admin' | 'user';
 }
 
 export function verifyToken(token: string): JWTPayload {
@@ -377,15 +374,15 @@ export function verifyToken(token: string): JWTPayload {
     const payload = jwt.verify(token, process.env.JWT_SECRET!) as JWTPayload;
     return payload;
   } catch (error) {
-    throw new ApiError(401, "Invalid token");
+    throw new ApiError(401, 'Invalid token');
   }
 }
 
 export async function requireAuth(request: Request) {
-  const token = request.headers.get("authorization")?.replace("Bearer ", "");
+  const token = request.headers.get('authorization')?.replace('Bearer ', '');
 
   if (!token) {
-    throw new ApiError(401, "Missing authorization token");
+    throw new ApiError(401, 'Missing authorization token');
   }
 
   return verifyToken(token);
@@ -404,17 +401,17 @@ export async function GET(request: Request) {
 ### 基于角色的访问控制
 
 ```typescript
-type Permission = "read" | "write" | "delete" | "admin";
+type Permission = 'read' | 'write' | 'delete' | 'admin';
 
 interface User {
   id: string;
-  role: "admin" | "moderator" | "user";
+  role: 'admin' | 'moderator' | 'user';
 }
 
-const rolePermissions: Record<User["role"], Permission[]> = {
-  admin: ["read", "write", "delete", "admin"],
-  moderator: ["read", "write", "delete"],
-  user: ["read", "write"],
+const rolePermissions: Record<User['role'], Permission[]> = {
+  admin: ['read', 'write', 'delete', 'admin'],
+  moderator: ['read', 'write', 'delete'],
+  user: ['read', 'write'],
 };
 
 export function hasPermission(user: User, permission: Permission): boolean {
@@ -427,7 +424,7 @@ export function requirePermission(permission: Permission) {
       const user = await requireAuth(request);
 
       if (!hasPermission(user, permission)) {
-        throw new ApiError(403, "Insufficient permissions");
+        throw new ApiError(403, 'Insufficient permissions');
       }
 
       return handler(request, user);
@@ -436,12 +433,9 @@ export function requirePermission(permission: Permission) {
 }
 
 // Usage - HOF wraps the handler
-export const DELETE = requirePermission("delete")(async (
-  request: Request,
-  user: User,
-) => {
+export const DELETE = requirePermission('delete')(async (request: Request, user: User) => {
   // Handler receives authenticated user with verified permission
-  return new Response("Deleted", { status: 200 });
+  return new Response('Deleted', { status: 200 });
 });
 ```
 
@@ -453,11 +447,7 @@ export const DELETE = requirePermission("delete")(async (
 class RateLimiter {
   private requests = new Map<string, number[]>();
 
-  async checkLimit(
-    identifier: string,
-    maxRequests: number,
-    windowMs: number,
-  ): Promise<boolean> {
+  async checkLimit(identifier: string, maxRequests: number, windowMs: number): Promise<boolean> {
     const now = Date.now();
     const requests = this.requests.get(identifier) || [];
 
@@ -479,16 +469,16 @@ class RateLimiter {
 const limiter = new RateLimiter();
 
 export async function GET(request: Request) {
-  const ip = request.headers.get("x-forwarded-for") || "unknown";
+  const ip = request.headers.get('x-forwarded-for') || 'unknown';
 
   const allowed = await limiter.checkLimit(ip, 100, 60000); // 100 req/min
 
   if (!allowed) {
     return NextResponse.json(
       {
-        error: "Rate limit exceeded",
+        error: 'Rate limit exceeded',
       },
-      { status: 429 },
+      { status: 429 }
     );
   }
 
@@ -522,7 +512,7 @@ class JobQueue<T> {
       try {
         await this.execute(job);
       } catch (error) {
-        console.error("Job failed:", error);
+        console.error('Job failed:', error);
       }
     }
 
@@ -547,7 +537,7 @@ export async function POST(request: Request) {
   // Add to queue instead of blocking
   await indexQueue.add({ marketId });
 
-  return NextResponse.json({ success: true, message: "Job queued" });
+  return NextResponse.json({ success: true, message: 'Job queued' });
 }
 ```
 
@@ -565,7 +555,7 @@ interface LogContext {
 }
 
 class Logger {
-  log(level: "info" | "warn" | "error", message: string, context?: LogContext) {
+  log(level: 'info' | 'warn' | 'error', message: string, context?: LogContext) {
     const entry = {
       timestamp: new Date().toISOString(),
       level,
@@ -577,15 +567,15 @@ class Logger {
   }
 
   info(message: string, context?: LogContext) {
-    this.log("info", message, context);
+    this.log('info', message, context);
   }
 
   warn(message: string, context?: LogContext) {
-    this.log("warn", message, context);
+    this.log('warn', message, context);
   }
 
   error(message: string, error: Error, context?: LogContext) {
-    this.log("error", message, {
+    this.log('error', message, {
       ...context,
       error: error.message,
       stack: error.stack,
@@ -599,18 +589,18 @@ const logger = new Logger();
 export async function GET(request: Request) {
   const requestId = crypto.randomUUID();
 
-  logger.info("Fetching markets", {
+  logger.info('Fetching markets', {
     requestId,
-    method: "GET",
-    path: "/api/markets",
+    method: 'GET',
+    path: '/api/markets',
   });
 
   try {
     const markets = await fetchMarkets();
     return NextResponse.json({ success: true, data: markets });
   } catch (error) {
-    logger.error("Failed to fetch markets", error as Error, { requestId });
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    logger.error('Failed to fetch markets', error as Error, { requestId });
+    return NextResponse.json({ error: 'Internal error' }, { status: 500 });
   }
 }
 ```

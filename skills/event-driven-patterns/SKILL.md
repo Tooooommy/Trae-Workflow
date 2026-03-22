@@ -16,13 +16,13 @@ description: 事件驱动架构模式、消息队列、事件溯源和 CQRS 最�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Kafka | 3.5+ | 3.8+ |
-| RabbitMQ | 3.12+ | 最新 |
-| Redis Streams | 7.0+ | 7.4+ |
-| TypeScript | 5.0+ | 最新 |
-| kafkajs | 2.2+ | 最新 |
+| 技术          | 最低版本 | 推荐版本 |
+| ------------- | -------- | -------- |
+| Kafka         | 3.5+     | 3.8+     |
+| RabbitMQ      | 3.12+    | 最新     |
+| Redis Streams | 7.0+     | 7.4+     |
+| TypeScript    | 5.0+     | 最新     |
+| kafkajs       | 2.2+     | 最新     |
 
 ## 核心概念
 
@@ -128,7 +128,7 @@ class MessageQueuePublisher implements EventPublisher {
   }
 
   async publishAll(events: DomainEvent[]): Promise<void> {
-    await Promise.all(events.map(e => this.publish(e)));
+    await Promise.all(events.map((e) => this.publish(e)));
   }
 }
 ```
@@ -175,7 +175,7 @@ class EventHandlerRegistry {
 
   async dispatch(event: DomainEvent): Promise<void> {
     const handlers = this.handlers.get(event.type) || [];
-    await Promise.all(handlers.map(h => h.handle(event as any)));
+    await Promise.all(handlers.map((h) => h.handle(event as any)));
   }
 }
 ```
@@ -273,11 +273,7 @@ class KafkaConsumer {
 class DeadLetterQueue {
   constructor(private producer: KafkaProducer) {}
 
-  async sendFailed(
-    originalEvent: DomainEvent,
-    error: Error,
-    retries: number
-  ): Promise<void> {
+  async sendFailed(originalEvent: DomainEvent, error: Error, retries: number): Promise<void> {
     await this.producer.publish('dlq-events', {
       ...originalEvent,
       metadata: {
@@ -313,7 +309,7 @@ class RetryConsumer {
   }
 
   private delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
 ```
@@ -332,11 +328,7 @@ interface EventStore {
 class PostgresEventStore implements EventStore {
   constructor(private db: Pool) {}
 
-  async append(
-    aggregateId: string,
-    events: DomainEvent[],
-    expectedVersion: number
-  ): Promise<void> {
+  async append(aggregateId: string, events: DomainEvent[], expectedVersion: number): Promise<void> {
     const client = await this.db.connect();
 
     try {
@@ -517,12 +509,8 @@ class CreateOrderHandler implements CommandHandler<CreateOrderCommand> {
 
   async handle(command: CreateOrderCommand): Promise<void> {
     const order = Order.create(command.orderId, command.items);
-    
-    await this.eventStore.append(
-      command.orderId,
-      order.getUncommittedChanges(),
-      0
-    );
+
+    await this.eventStore.append(command.orderId, order.getUncommittedChanges(), 0);
 
     await this.publisher.publishAll(order.getUncommittedChanges());
     order.markChangesAsCommitted();
@@ -561,10 +549,9 @@ class OrderQueryHandler {
   constructor(private db: Pool) {}
 
   async getOrder(query: GetOrderQuery): Promise<OrderReadModel | null> {
-    const { rows } = await this.db.query(
-      'SELECT * FROM order_read_model WHERE id = $1',
-      [query.orderId]
-    );
+    const { rows } = await this.db.query('SELECT * FROM order_read_model WHERE id = $1', [
+      query.orderId,
+    ]);
     return rows[0] || null;
   }
 
@@ -653,10 +640,9 @@ class IdempotentConsumer {
       await client.query('BEGIN');
 
       // 检查是否已处理
-      const { rows } = await client.query(
-        'SELECT 1 FROM processed_events WHERE id = $1',
-        [event.id]
-      );
+      const { rows } = await client.query('SELECT 1 FROM processed_events WHERE id = $1', [
+        event.id,
+      ]);
 
       if (rows.length > 0) {
         await client.query('COMMIT');
@@ -667,10 +653,10 @@ class IdempotentConsumer {
       await this.handlers.dispatch(event);
 
       // 标记为已处理
-      await client.query(
-        'INSERT INTO processed_events (id, processed_at) VALUES ($1, $2)',
-        [event.id, new Date()]
-      );
+      await client.query('INSERT INTO processed_events (id, processed_at) VALUES ($1, $2)', [
+        event.id,
+        new Date(),
+      ]);
 
       await client.query('COMMIT');
     } catch (error) {
@@ -685,13 +671,13 @@ class IdempotentConsumer {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| 事件 | 已发生事实的记录 |
-| 命令 | 执行动作的意图 |
-| 事件溯源 | 状态由事件重建 |
-| CQRS | 读写分离 |
-| 投影器 | 更新读模型 |
-| 幂等性 | 安全重试 |
+| 模式     | 用途             |
+| -------- | ---------------- |
+| 事件     | 已发生事实的记录 |
+| 命令     | 执行动作的意图   |
+| 事件溯源 | 状态由事件重建   |
+| CQRS     | 读写分离         |
+| 投影器   | 更新读模型       |
+| 幂等性   | 安全重试         |
 
 **记住**：事件驱动架构增加了复杂性但提供了解耦和可扩展性。确保事件是不可变的，处理器是幂等的。

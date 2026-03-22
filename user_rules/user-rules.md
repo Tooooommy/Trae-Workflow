@@ -6,19 +6,19 @@
 
 ## 目录索引
 
-| 文件 | 说明 |
-|------|------|
-| [core-principles.md](core-principles.md) | 核心原则（5条） |
-| [project-config.md](project-config.md) | 项目配置（技术栈、性能目标） |
-| [agents.md](agents.md) | 智能体系统 |
-| [development-workflow.md](development-workflow.md) | 开发工作流 |
-| [coding-style.md](coding-style.md) | 代码规范 |
-| [testing.md](testing.md) | 测试规范 |
-| [security.md](security.md) | 安全规范 |
-| [git-workflow.md](git-workflow.md) | Git 规范 |
-| [patterns.md](patterns.md) | 架构模式 |
-| [hooks.md](hooks.md) | Hooks 系统 |
-| [performance.md](performance.md) | 性能优化 |
+| 文件                                               | 说明                         |
+| -------------------------------------------------- | ---------------------------- |
+| [core-principles.md](core-principles.md)           | 核心原则（5条）              |
+| [project-config.md](project-config.md)             | 项目配置（技术栈、性能目标） |
+| [agents.md](agents.md)                             | 智能体系统                   |
+| [development-workflow.md](development-workflow.md) | 开发工作流                   |
+| [coding-style.md](coding-style.md)                 | 代码规范                     |
+| [testing.md](testing.md)                           | 测试规范                     |
+| [security.md](security.md)                         | 安全规范                     |
+| [git-workflow.md](git-workflow.md)                 | Git 规范                     |
+| [patterns.md](patterns.md)                         | 架构模式                     |
+| [hooks.md](hooks.md)                               | Hooks 系统                   |
+| [performance.md](performance.md)                   | 性能优化                     |
 
 ---
 

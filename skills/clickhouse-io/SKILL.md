@@ -161,7 +161,7 @@ ORDER BY market_id, date;
 ### 批量插入 (推荐)
 
 ```typescript
-import { ClickHouse } from "clickhouse";
+import { ClickHouse } from 'clickhouse';
 
 const clickhouse = new ClickHouse({
   url: process.env.CLICKHOUSE_URL,
@@ -182,16 +182,16 @@ async function bulkInsertTrades(trades: Trade[]) {
     '${trade.user_id}',
     ${trade.amount},
     '${trade.timestamp.toISOString()}'
-  )`,
+  )`
     )
-    .join(",");
+    .join(',');
 
   await clickhouse
     .query(
       `
     INSERT INTO trades (id, market_id, user_id, amount, timestamp)
     VALUES ${values}
-  `,
+  `
     )
     .toPromise();
 }
@@ -203,7 +203,7 @@ async function insertTrade(trade: Trade) {
     .query(
       `
     INSERT INTO trades VALUES ('${trade.id}', ...)
-  `,
+  `
     )
     .toPromise();
 }
@@ -213,11 +213,11 @@ async function insertTrade(trade: Trade) {
 
 ```typescript
 // For continuous data ingestion
-import { createWriteStream } from "fs";
-import { pipeline } from "stream/promises";
+import { createWriteStream } from 'fs';
+import { pipeline } from 'stream/promises';
 
 async function streamInserts() {
-  const stream = clickhouse.insert("trades").stream();
+  const stream = clickhouse.insert('trades').stream();
 
   for await (const batch of dataSource) {
     stream.write(batch);
@@ -381,7 +381,7 @@ async function etlPipeline() {
 
   // 2. Transform
   const transformed = rawData.map((row) => ({
-    date: new Date(row.created_at).toISOString().split("T")[0],
+    date: new Date(row.created_at).toISOString().split('T')[0],
     market_id: row.market_slug,
     volume: parseFloat(row.total_volume),
     trades: parseInt(row.trade_count),
@@ -399,16 +399,16 @@ setInterval(etlPipeline, 60 * 60 * 1000); // Every hour
 
 ```typescript
 // Listen to PostgreSQL changes and sync to ClickHouse
-import { Client } from "pg";
+import { Client } from 'pg';
 
 const pgClient = new Client({ connectionString: process.env.DATABASE_URL });
 
-pgClient.query("LISTEN market_updates");
+pgClient.query('LISTEN market_updates');
 
-pgClient.on("notification", async (msg) => {
+pgClient.on('notification', async (msg) => {
   const update = JSON.parse(msg.payload);
 
-  await clickhouse.insert("market_updates", [
+  await clickhouse.insert('market_updates', [
     {
       market_id: update.id,
       event_type: update.operation, // INSERT, UPDATE, DELETE

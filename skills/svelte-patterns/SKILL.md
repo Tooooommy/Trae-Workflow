@@ -16,13 +16,13 @@ description: Svelte 响应式模式、Store 状态管理、组件设计和性能
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Svelte | 4.0+ | 5.0+ |
-| SvelteKit | 2.0+ | 最新 |
-| TypeScript | 5.0+ | 最新 |
-| Vite | 5.0+ | 最新 |
-| Svelte Store | 内置 | 内置 |
+| 技术         | 最低版本 | 推荐版本 |
+| ------------ | -------- | -------- |
+| Svelte       | 4.0+     | 5.0+     |
+| SvelteKit    | 2.0+     | 最新     |
+| TypeScript   | 5.0+     | 最新     |
+| Vite         | 5.0+     | 最新     |
+| Svelte Store | 内置     | 内置     |
 
 ## 核心原则
 
@@ -116,21 +116,22 @@ import { writable } from 'svelte/store';
 export const todos = writable([]);
 
 export function addTodo(text) {
-  todos.update(items => [...items, {
-    id: Date.now(),
-    text,
-    completed: false,
-  }]);
+  todos.update((items) => [
+    ...items,
+    {
+      id: Date.now(),
+      text,
+      completed: false,
+    },
+  ]);
 }
 
 export function removeTodo(id) {
-  todos.update(items => items.filter(t => t.id !== id));
+  todos.update((items) => items.filter((t) => t.id !== id));
 }
 
 export function toggleTodo(id) {
-  todos.update(items =>
-    items.map(t => t.id === id ? { ...t, completed: !t.completed } : t)
-  );
+  todos.update((items) => items.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)));
 }
 ```
 
@@ -156,24 +157,15 @@ export const time = readable(new Date(), function start(set) {
 import { derived } from 'svelte/store';
 import { todos } from './todos';
 
-export const completedTodos = derived(
-  todos,
-  $todos => $todos.filter(t => t.completed)
-);
+export const completedTodos = derived(todos, ($todos) => $todos.filter((t) => t.completed));
 
-export const pendingTodos = derived(
-  todos,
-  $todos => $todos.filter(t => !t.completed)
-);
+export const pendingTodos = derived(todos, ($todos) => $todos.filter((t) => !t.completed));
 
-export const todoStats = derived(
-  [completedTodos, pendingTodos],
-  ([$completed, $pending]) => ({
-    completed: $completed.length,
-    pending: $pending.length,
-    total: $completed.length + $pending.length,
-  })
-);
+export const todoStats = derived([completedTodos, pendingTodos], ([$completed, $pending]) => ({
+  completed: $completed.length,
+  pending: $pending.length,
+  total: $completed.length + $pending.length,
+}));
 ```
 
 ### Custom Store
@@ -186,8 +178,8 @@ function createCounter() {
 
   return {
     subscribe,
-    increment: () => update(n => n + 1),
-    decrement: () => update(n => n - 1),
+    increment: () => update((n) => n + 1),
+    decrement: () => update((n) => n - 1),
     reset: () => set(0),
   };
 }
@@ -207,11 +199,11 @@ export const counter = createCounter();
       <h2>Default Title</h2>
     </slot>
   </header>
-  
+
   <main class="card-body">
     <slot>No content</slot>
   </main>
-  
+
   <footer class="card-footer">
     <slot name="footer"></slot>
   </footer>
@@ -258,7 +250,7 @@ export const counter = createCounter();
 
 <div class="node" style="padding-left: {depth * 20}px">
   <span>{node.label}</span>
-  
+
   {#if node.children}
     {#each node.children as child (child.id)}
       <svelte:self node={child} depth={depth + 1} />
@@ -319,7 +311,7 @@ export function clickOutside(node, callback) {
 // 使用
 <script>
   import { clickOutside } from './actions';
-  
+
   let show = false;
 </script>
 
@@ -405,19 +397,19 @@ const theme = getContext('theme');
 
 <form on:submit|preventDefault={handleSubmit}>
   <input type="text" bind:value={form.name} placeholder="Name" />
-  
+
   <input type="email" bind:value={form.email} placeholder="Email" />
-  
+
   <select bind:value={form.role}>
     <option value="user">User</option>
     <option value="admin">Admin</option>
   </select>
-  
+
   <label>
     <input type="checkbox" bind:checked={form.notifications} />
     Enable notifications
   </label>
-  
+
   <button type="submit">Submit</button>
 </form>
 ```
@@ -441,7 +433,7 @@ const theme = getContext('theme');
               $form.password.length < 8 ? 'Password too short' : null,
   }));
 
-  const isValid = derived(errors, $errors => 
+  const isValid = derived(errors, $errors =>
     Object.values($errors).every(e => e === null)
   );
 
@@ -457,12 +449,12 @@ const theme = getContext('theme');
   {#if $errors.email}
     <span class="error">{$errors.email}</span>
   {/if}
-  
+
   <input type="password" bind:value={$form.password} />
   {#if $errors.password}
     <span class="error">{$errors.password}</span>
   {/if}
-  
+
   <button type="submit" disabled={!$isValid}>Submit</button>
 </form>
 ```
@@ -559,13 +551,13 @@ const theme = getContext('theme');
 <script context="module">
   export async function load({ fetch, params }) {
     const res = await fetch(`/api/users/${params.id}`);
-    
+
     if (res.ok) {
       return {
         props: { user: await res.json() },
       };
     }
-    
+
     return {
       status: res.status,
       error: new Error('User not found'),
@@ -588,7 +580,7 @@ const theme = getContext('theme');
     async default({ request, cookies }) {
       const data = await request.formData();
       const email = data.get('email');
-      
+
       // 处理表单提交
       return { success: true };
     }
@@ -619,9 +611,9 @@ describe('Counter', () => {
   it('increments on click', async () => {
     const { getByText, component } = render(Counter);
     const button = getByText('Increment');
-    
+
     await fireEvent.click(button);
-    
+
     expect(getByText('1')).toBeTruthy();
   });
 });
@@ -637,31 +629,27 @@ import { todos, addTodo, removeTodo } from './todos';
 describe('Todos Store', () => {
   it('adds a todo', () => {
     addTodo('Buy milk');
-    expect(get(todos)).toContainEqual(
-      expect.objectContaining({ text: 'Buy milk' })
-    );
+    expect(get(todos)).toContainEqual(expect.objectContaining({ text: 'Buy milk' }));
   });
 
   it('removes a todo', () => {
     addTodo('Test');
     const id = get(todos)[0].id;
     removeTodo(id);
-    expect(get(todos)).not.toContainEqual(
-      expect.objectContaining({ id })
-    );
+    expect(get(todos)).not.toContainEqual(expect.objectContaining({ id }));
   });
 });
 ```
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
+| 模式      | 用途         |
+| --------- | ------------ |
 | $: 响应式 | 自动追踪依赖 |
-| Store | 跨组件状态 |
-| bind: | 双向绑定 |
-| slot | 内容分发 |
-| action | DOM 增强 |
-| context | 依赖注入 |
+| Store     | 跨组件状态   |
+| bind:     | 双向绑定     |
+| slot      | 内容分发     |
+| action    | DOM 增强     |
+| context   | 依赖注入     |
 
 **记住**：Svelte 的编译时优化让运行时更轻量。充分利用响应式声明和 Store 来管理状态，避免手动订阅和取消订阅。

@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.rs"
-  - "**/Cargo.toml"
+  - '**/*.rs'
+  - '**/Cargo.toml'
 ---
 
 # Rust Hooks 配置

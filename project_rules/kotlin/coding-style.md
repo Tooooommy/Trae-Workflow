@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.kt"
-  - "**/build.gradle.kts"
+  - '**/*.kt'
+  - '**/build.gradle.kts'
 ---
 
 # Kotlin 编码风格
@@ -11,12 +11,12 @@ globs:
 
 ## 命名约定
 
-| 类型 | 约定 | 示例 |
-|------|------|------|
-| 类/接口 | PascalCase | `UserService` |
-| 函数 | camelCase | `createUser` |
-| 变量 | camelCase | `userName` |
-| 常量 | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS` |
+| 类型    | 约定                 | 示例              |
+| ------- | -------------------- | ----------------- |
+| 类/接口 | PascalCase           | `UserService`     |
+| 函数    | camelCase            | `createUser`      |
+| 变量    | camelCase            | `userName`        |
+| 常量    | SCREAMING_SNAKE_CASE | `MAX_CONNECTIONS` |
 
 ## 代码风格
 

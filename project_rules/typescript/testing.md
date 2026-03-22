@@ -1,10 +1,10 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.ts"
-  - "**/*.tsx"
-  - "**/*.js"
-  - "**/*.jsx"
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.js'
+  - '**/*.jsx'
 ---
 
 # TypeScript/JavaScript 测试
@@ -17,4 +17,4 @@ globs:
 
 ## 智能体支持
 
-* **e2e-runner** - Playwright E2E 测试专家
+- **e2e-runner** - Playwright E2E 测试专家

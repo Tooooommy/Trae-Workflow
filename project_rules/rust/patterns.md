@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.rs"
-  - "**/Cargo.toml"
+  - '**/*.rs'
+  - '**/Cargo.toml'
 ---
 
 # Rust 设计模式

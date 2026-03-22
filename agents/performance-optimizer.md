@@ -71,10 +71,10 @@ EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@example.com';
 
 ### 完成后委托
 
-| 问题类型 | 委托目标 |
-|---------|---------|
-| 代码性能问题 | 对应语言 `*-reviewer` |
-| 数据库性能问题 | `database-reviewer` |
-| 架构性能问题 | `architect` |
-| 前端性能问题 | `code-reviewer` |
-| 无问题 | 返回调用方继续流程 |
+| 问题类型       | 委托目标              |
+| -------------- | --------------------- |
+| 代码性能问题   | 对应语言 `*-reviewer` |
+| 数据库性能问题 | `database-reviewer`   |
+| 架构性能问题   | `architect`           |
+| 前端性能问题   | `code-reviewer`       |
+| 无问题         | 返回调用方继续流程    |

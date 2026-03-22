@@ -1,10 +1,10 @@
 ---
 alwaysApply: false
 globs:
-  - "**/nest-cli.json"
-  - "**/*.controller.ts"
-  - "**/*.service.ts"
-  - "**/*.module.ts"
+  - '**/nest-cli.json'
+  - '**/*.controller.ts'
+  - '**/*.service.ts'
+  - '**/*.module.ts'
 ---
 
 # NestJS 项目规范与指南
@@ -13,8 +13,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: NestJS 10+, TypeScript, TypeORM/Prisma, PostgreSQL
-* 架构: 模块化、依赖注入、装饰器模式
+- 技术栈: NestJS 10+, TypeScript, TypeORM/Prisma, PostgreSQL
+- 架构: 模块化、依赖注入、装饰器模式
 
 ## 关键规则
 
@@ -57,12 +57,12 @@ export class UsersController {
   @Post()
   @UseGuards(JwtAuthGuard)
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto)
+    return this.usersService.create(createUserDto);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id)
+    return this.usersService.findOne(+id);
   }
 }
 ```
@@ -74,20 +74,20 @@ export class UsersController {
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private usersRepository: Repository<User>
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.usersRepository.create(createUserDto)
-    return this.usersRepository.save(user)
+    const user = this.usersRepository.create(createUserDto);
+    return this.usersRepository.save(user);
   }
 
   async findOne(id: number): Promise<User> {
-    const user = await this.usersRepository.findOne({ where: { id } })
+    const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`)
+      throw new NotFoundException(`User #${id} not found`);
     }
-    return user
+    return user;
   }
 }
 ```
@@ -95,19 +95,19 @@ export class UsersService {
 ### DTO 验证
 
 ```typescript
-import { IsEmail, IsString, MinLength } from 'class-validator'
+import { IsEmail, IsString, MinLength } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
   @MinLength(2)
-  name: string
+  name: string;
 
   @IsEmail()
-  email: string
+  email: string;
 
   @IsString()
   @MinLength(8)
-  password: string
+  password: string;
 }
 ```
 

@@ -17,20 +17,20 @@ description: API 版本控制模式 - URL/Header/Query 版本管理最佳实践
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Express | 4.18+ | 最新 |
-| Fastify | 4.0+ | 最新 |
-| NestJS | 10.0+ | 最新 |
+| 技术    | 最低版本 | 推荐版本 |
+| ------- | -------- | -------- |
+| Express | 4.18+    | 最新     |
+| Fastify | 4.0+     | 最新     |
+| NestJS  | 10.0+    | 最新     |
 
 ## 版本控制策略对比
 
-| 策略 | 格式 | 优点 | 缺点 |
-|------|------|------|------|
-| URL 路径 | `/v1/users` | 直观、易缓存 | URL 变化 |
-| Header | `Accept-Version: v1` | URL 稳定 | 不易调试 |
-| Query | `/users?version=1` | 灵活 | 参数污染 |
-| Content-Type | `application/vnd.api.v1+json` | RESTful | 复杂 |
+| 策略         | 格式                          | 优点         | 缺点     |
+| ------------ | ----------------------------- | ------------ | -------- |
+| URL 路径     | `/v1/users`                   | 直观、易缓存 | URL 变化 |
+| Header       | `Accept-Version: v1`          | URL 稳定     | 不易调试 |
+| Query        | `/users?version=1`            | 灵活         | 参数污染 |
+| Content-Type | `application/vnd.api.v1+json` | RESTful      | 复杂     |
 
 ## URL 路径版本控制
 
@@ -123,11 +123,11 @@ class VersionRouter {
     return (req: Request, res: Response, next: NextFunction) => {
       const version = this.extractVersion(req);
       const router = this.versions.get(version);
-      
+
       if (router) {
         return router(req, res, next);
       }
-      
+
       const latestVersion = this.getLatestVersion();
       return this.versions.get(latestVersion)!(req, res, next);
     };
@@ -136,8 +136,8 @@ class VersionRouter {
   private extractVersion(req: Request): string {
     const match = req.path.match(/^\/v(\d+)/);
     if (match) return `v${match[1]}`;
-    
-    return req.headers['x-api-version'] as string || 'v1';
+
+    return (req.headers['x-api-version'] as string) || 'v1';
   }
 
   private getLatestVersion(): string {
@@ -162,16 +162,16 @@ const deprecations: Map<string, DeprecatedEndpoint> = new Map([
 
 function deprecationMiddleware(req: Request, res: Response, next: NextFunction) {
   const deprecation = deprecations.get(req.path);
-  
+
   if (deprecation) {
     res.setHeader('Deprecation', 'true');
     res.setHeader('Sunset', deprecation.sunset.toUTCString());
-    
+
     if (deprecation.link) {
       res.setHeader('Link', `<${deprecation.link}>; rel="successor-version"`);
     }
   }
-  
+
   next();
 }
 ```
@@ -188,14 +188,14 @@ function addVersionHeaders(req: Request, res: Response, next: NextFunction) {
 
 ## 变更类型
 
-| 变更类型 | 是否需要新版本 | 示例 |
-|----------|---------------|------|
-| 新增字段 | 否 | 添加可选属性 |
-| 新增端点 | 否 | 新增 API 路径 |
-| 删除字段 | 是 | 移除属性 |
-| 修改字段类型 | 是 | string → number |
-| 修改行为 | 是 | 排序逻辑变更 |
-| 删除端点 | 是 | 移除 API 路径 |
+| 变更类型     | 是否需要新版本 | 示例            |
+| ------------ | -------------- | --------------- |
+| 新增字段     | 否             | 添加可选属性    |
+| 新增端点     | 否             | 新增 API 路径   |
+| 删除字段     | 是             | 移除属性        |
+| 修改字段类型 | 是             | string → number |
+| 修改行为     | 是             | 排序逻辑变更    |
+| 删除端点     | 是             | 移除 API 路径   |
 
 ## 迁移指南
 
@@ -233,13 +233,13 @@ const migrationGuides: MigrationGuide[] = [
 
 app.get('/migrations/:from/:to', (req, res) => {
   const guide = migrationGuides.find(
-    g => g.fromVersion === req.params.from && g.toVersion === req.params.to
+    (g) => g.fromVersion === req.params.from && g.toVersion === req.params.to
   );
-  
+
   if (!guide) {
     return res.status(404).json({ error: 'Migration guide not found' });
   }
-  
+
   res.json(guide);
 });
 ```

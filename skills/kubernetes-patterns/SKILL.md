@@ -16,13 +16,13 @@ description: Kubernetes 部署模式、资源管理、服务发现和可观测�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Kubernetes | 1.28+ | 1.31+ |
-| kubectl | 1.28+ | 最新 |
-| Helm | 3.12+ | 最新 |
-| kustomize | 5.0+ | 最新 |
-| cert-manager | 1.13+ | 最新 |
+| 技术         | 最低版本 | 推荐版本 |
+| ------------ | -------- | -------- |
+| Kubernetes   | 1.28+    | 1.31+    |
+| kubectl      | 1.28+    | 最新     |
+| Helm         | 3.12+    | 最新     |
+| kustomize    | 5.0+     | 最新     |
+| cert-manager | 1.13+    | 最新     |
 
 ## 核心概念
 
@@ -70,37 +70,37 @@ spec:
         app: myapp
     spec:
       containers:
-      - name: myapp
-        image: myapp:v1.0.0
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        env:
-        - name: LOG_LEVEL
-          value: "info"
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: password
+        - name: myapp
+          image: myapp:v1.0.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          env:
+            - name: LOG_LEVEL
+              value: 'info'
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
 ```
 
 ### StatefulSet (有状态应用)
@@ -122,22 +122,22 @@ spec:
         app: postgres
     spec:
       containers:
-      - name: postgres
-        image: postgres:15
-        ports:
-        - containerPort: 5432
-        volumeMounts:
-        - name: data
-          mountPath: /var/lib/postgresql/data
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
-      resources:
-        requests:
-          storage: 10Gi
+    - metadata:
+        name: data
+      spec:
+        accessModes: ['ReadWriteOnce']
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 10Gi
 ```
 
 ### HorizontalPodAutoscaler
@@ -155,18 +155,18 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
 ```
 
 ## 服务与网络
@@ -183,8 +183,8 @@ spec:
   selector:
     app: myapp
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -192,11 +192,11 @@ metadata:
   name: myapp-headless
 spec:
   type: ClusterIP
-  clusterIP: None  # Headless service
+  clusterIP: None # Headless service
   selector:
     app: myapp
   ports:
-  - port: 8080
+    - port: 8080
 ```
 
 ### Ingress 配置
@@ -207,25 +207,25 @@ kind: Ingress
 metadata:
   name: myapp-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - api.example.com
-    secretName: api-tls
+    - hosts:
+        - api.example.com
+      secretName: api-tls
   rules:
-  - host: api.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: myapp
-            port:
-              number: 80
+    - host: api.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp
+                port:
+                  number: 80
 ```
 
 ### NetworkPolicy
@@ -240,24 +240,24 @@ spec:
     matchLabels:
       app: myapp
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: frontend
-    ports:
-    - protocol: TCP
-      port: 8080
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
   egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          app: postgres
-    ports:
-    - protocol: TCP
-      port: 5432
+    - to:
+        - podSelector:
+            matchLabels:
+              app: postgres
+      ports:
+        - protocol: TCP
+          port: 5432
 ```
 
 ## 配置管理
@@ -282,14 +282,14 @@ data:
 # 在 Pod 中使用
 spec:
   containers:
-  - name: myapp
-    volumeMounts:
-    - name: config
-      mountPath: /config
+    - name: myapp
+      volumeMounts:
+        - name: config
+          mountPath: /config
   volumes:
-  - name: config
-    configMap:
-      name: myapp-config
+    - name: config
+      configMap:
+        name: myapp-config
 ```
 
 ### Secret
@@ -306,16 +306,16 @@ stringData:
 ---
 # 使用
 env:
-- name: DB_USERNAME
-  valueFrom:
-    secretKeyRef:
-      name: db-secret
-      key: username
-- name: DB_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: db-secret
-      key: password
+  - name: DB_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: db-secret
+        key: username
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: db-secret
+        key: password
 ```
 
 ## 可观测性
@@ -324,18 +324,18 @@ env:
 
 ```yaml
 resources:
-  requests:        # 调度依据
-    cpu: 100m      # 0.1 核
+  requests: # 调度依据
+    cpu: 100m # 0.1 核
     memory: 128Mi
-  limits:          # 最大限制
-    cpu: 500m      # 0.5 核
+  limits: # 最大限制
+    cpu: 500m # 0.5 核
     memory: 512Mi
 ```
 
 ### 健康检查
 
 ```yaml
-livenessProbe:     # 存活检查 - 失败则重启
+livenessProbe: # 存活检查 - 失败则重启
   httpGet:
     path: /health
     port: 8080
@@ -343,7 +343,7 @@ livenessProbe:     # 存活检查 - 失败则重启
   periodSeconds: 10
   failureThreshold: 3
 
-readinessProbe:    # 就绪检查 - 失败则从服务移除
+readinessProbe: # 就绪检查 - 失败则从服务移除
   httpGet:
     path: /ready
     port: 8080
@@ -351,13 +351,13 @@ readinessProbe:    # 就绪检查 - 失败则从服务移除
   periodSeconds: 5
   failureThreshold: 3
 
-startupProbe:      # 启动检查 - 慢启动应用
+startupProbe: # 启动检查 - 慢启动应用
   httpGet:
     path: /health
     port: 8080
   initialDelaySeconds: 0
   periodSeconds: 10
-  failureThreshold: 30  # 最多等待 300s
+  failureThreshold: 30 # 最多等待 300s
 ```
 
 ### 日志收集
@@ -367,12 +367,12 @@ startupProbe:      # 启动检查 - 慢启动应用
 # 结构化日志格式
 spec:
   containers:
-  - name: myapp
-    env:
-    - name: LOG_FORMAT
-      value: json
-    - name: LOG_OUTPUT
-      value: stdout
+    - name: myapp
+      env:
+        - name: LOG_FORMAT
+          value: json
+        - name: LOG_OUTPUT
+          value: stdout
 ```
 
 ## 安全最佳实践
@@ -390,13 +390,13 @@ spec:
     runAsUser: 1000
     fsGroup: 1000
   containers:
-  - name: myapp
-    securityContext:
-      allowPrivilegeEscalation: false
-      readOnlyRootFilesystem: true
-      capabilities:
-        drop:
-        - ALL
+    - name: myapp
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
 ```
 
 ### RBAC
@@ -412,17 +412,17 @@ kind: Role
 metadata:
   name: myapp-role
 rules:
-- apiGroups: [""]
-  resources: ["configmaps", "secrets"]
-  verbs: ["get", "list"]
+  - apiGroups: ['']
+    resources: ['configmaps', 'secrets']
+    verbs: ['get', 'list']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: myapp-rolebinding
 subjects:
-- kind: ServiceAccount
-  name: myapp-sa
+  - kind: ServiceAccount
+    name: myapp-sa
 roleRef:
   kind: Role
   name: myapp-role
@@ -459,17 +459,17 @@ kubectl describe resourcequotas
 
 ## 快速参考
 
-| 资源 | 用途 |
-|------|------|
-| Deployment | 无状态应用 |
+| 资源        | 用途       |
+| ----------- | ---------- |
+| Deployment  | 无状态应用 |
 | StatefulSet | 有状态应用 |
-| DaemonSet | 每节点一个 |
-| Job | 一次性任务 |
-| CronJob | 定时任务 |
-| Service | 服务发现 |
-| Ingress | HTTP 路由 |
-| ConfigMap | 配置数据 |
-| Secret | 敏感数据 |
-| HPA | 自动扩缩容 |
+| DaemonSet   | 每节点一个 |
+| Job         | 一次性任务 |
+| CronJob     | 定时任务   |
+| Service     | 服务发现   |
+| Ingress     | HTTP 路由  |
+| ConfigMap   | 配置数据   |
+| Secret      | 敏感数据   |
+| HPA         | 自动扩缩容 |
 
 **记住**：Kubernetes 配置应该版本控制，使用 Kustomize 或 Helm 管理多环境配置。

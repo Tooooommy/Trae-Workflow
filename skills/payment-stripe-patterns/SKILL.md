@@ -17,10 +17,10 @@ description: Stripe 支付集成模式 - 订阅、支付、Webhook 最佳实践
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Stripe SDK | 14.0+ | 最新 |
-| Node.js | 18.0+ | 20.0+ |
+| 技术       | 最低版本 | 推荐版本 |
+| ---------- | -------- | -------- |
+| Stripe SDK | 14.0+    | 最新     |
+| Node.js    | 18.0+    | 20.0+    |
 
 ## 核心概念
 
@@ -81,11 +81,7 @@ async function updateCustomer(customerId: string, data: Partial<Stripe.CustomerU
 ## 支付意图
 
 ```typescript
-async function createPaymentIntent(
-  amount: number,
-  currency: string,
-  customerId: string
-) {
+async function createPaymentIntent(amount: number, currency: string, customerId: string) {
   return stripe.paymentIntents.create({
     amount,
     currency,
@@ -107,11 +103,7 @@ async function confirmPaymentIntent(paymentIntentId: string) {
 ## 订阅管理
 
 ```typescript
-async function createSubscription(
-  customerId: string,
-  priceId: string,
-  paymentMethodId: string
-) {
+async function createSubscription(customerId: string, priceId: string, paymentMethodId: string) {
   await stripe.paymentMethods.attach(paymentMethodId, {
     customer: customerId,
   });
@@ -133,17 +125,16 @@ async function cancelSubscription(subscriptionId: string) {
   return stripe.subscriptions.cancel(subscriptionId);
 }
 
-async function updateSubscription(
-  subscriptionId: string,
-  newPriceId: string
-) {
+async function updateSubscription(subscriptionId: string, newPriceId: string) {
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-  
+
   return stripe.subscriptions.update(subscriptionId, {
-    items: [{
-      id: subscription.items.data[0].id,
-      price: newPriceId,
-    }],
+    items: [
+      {
+        id: subscription.items.data[0].id,
+        price: newPriceId,
+      },
+    ],
     proration_behavior: 'create_prorations',
   });
 }
@@ -156,36 +147,40 @@ import express, { Request, Response } from 'express';
 
 const app = express();
 
-app.post('/webhook/stripe', express.raw({ type: 'application/json' }), async (req: Request, res: Response) => {
-  const sig = req.headers['stripe-signature'] as string;
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+app.post(
+  '/webhook/stripe',
+  express.raw({ type: 'application/json' }),
+  async (req: Request, res: Response) => {
+    const sig = req.headers['stripe-signature'] as string;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-  let event: Stripe.Event;
+    let event: Stripe.Event;
 
-  try {
-    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
-  } catch (err) {
-    console.error('Webhook signature verification failed:', err);
-    return res.status(400).send('Webhook Error');
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
+      return res.status(400).send('Webhook Error');
+    }
+
+    switch (event.type) {
+      case 'payment_intent.succeeded':
+        await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
+        break;
+      case 'invoice.paid':
+        await handleInvoicePaid(event.data.object as Stripe.Invoice);
+        break;
+      case 'customer.subscription.deleted':
+        await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
+        break;
+      case 'customer.subscription.updated':
+        await handleSubscriptionUpdated(event.data.object as Stripe.Subscription);
+        break;
+    }
+
+    res.json({ received: true });
   }
-
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
-      break;
-    case 'invoice.paid':
-      await handleInvoicePaid(event.data.object as Stripe.Invoice);
-      break;
-    case 'customer.subscription.deleted':
-      await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
-      break;
-    case 'customer.subscription.updated':
-      await handleSubscriptionUpdated(event.data.object as Stripe.Subscription);
-      break;
-  }
-
-  res.json({ received: true });
-});
+);
 
 async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {
   const orderId = paymentIntent.metadata.orderId;

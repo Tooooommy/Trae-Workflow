@@ -266,24 +266,24 @@ Merged to main:
 
 ```typescript
 // Simple health check
-app.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
 
 // Detailed health check (for internal monitoring)
-app.get("/health/detailed", async (req, res) => {
+app.get('/health/detailed', async (req, res) => {
   const checks = {
     database: await checkDatabase(),
     redis: await checkRedis(),
     externalApi: await checkExternalApi(),
   };
 
-  const allHealthy = Object.values(checks).every((c) => c.status === "ok");
+  const allHealthy = Object.values(checks).every((c) => c.status === 'ok');
 
   res.status(allHealthy ? 200 : 503).json({
-    status: allHealthy ? "ok" : "degraded",
+    status: allHealthy ? 'ok' : 'degraded',
     timestamp: new Date().toISOString(),
-    version: process.env.APP_VERSION || "unknown",
+    version: process.env.APP_VERSION || 'unknown',
     uptime: process.uptime(),
     checks,
   });
@@ -291,10 +291,10 @@ app.get("/health/detailed", async (req, res) => {
 
 async function checkDatabase(): Promise<HealthCheck> {
   try {
-    await db.query("SELECT 1");
-    return { status: "ok", latency_ms: 2 };
+    await db.query('SELECT 1');
+    return { status: 'ok', latency_ms: 2 };
   } catch (err) {
-    return { status: "error", message: "Database unreachable" };
+    return { status: 'error', message: 'Database unreachable' };
   }
 }
 ```
@@ -347,15 +347,15 @@ APP_ENV=production           # explicit app environment
 ### 配置验证
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "staging", "production"]),
+  NODE_ENV: z.enum(['development', 'staging', 'production']),
   PORT: z.coerce.number().default(3000),
   DATABASE_URL: z.string().url(),
   REDIS_URL: z.string().url(),
   JWT_SECRET: z.string().min(32),
-  LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
+  LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
 });
 
 // Validate at startup — fail fast if config is wrong

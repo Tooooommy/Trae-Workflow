@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.xcodeproj"
-  - "**/ContentView.swift"
+  - '**/*.xcodeproj'
+  - '**/ContentView.swift'
 ---
 
 # SwiftUI 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Swift 5.10+, SwiftUI, Combine, iOS 17+
-* 架构: MVVM, 声明式 UI
+- 技术栈: Swift 5.10+, SwiftUI, Combine, iOS 17+
+- 架构: MVVM, 声明式 UI
 
 ## 关键规则
 

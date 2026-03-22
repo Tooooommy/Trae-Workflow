@@ -16,13 +16,13 @@ description: React Native 跨平台开发、状态管理、原生模块集成和
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| React Native | 0.73+ | 0.75+ |
-| React | 18.2+ | 18.3+ |
-| TypeScript | 5.0+ | 最新 |
-| React Navigation | 6.0+ | 最新 |
-| Hermes | 内置 | 启用 |
+| 技术             | 最低版本 | 推荐版本 |
+| ---------------- | -------- | -------- |
+| React Native     | 0.73+    | 0.75+    |
+| React            | 18.2+    | 18.3+    |
+| TypeScript       | 5.0+     | 最新     |
+| React Navigation | 6.0+     | 最新     |
+| Hermes           | 内置     | 启用     |
 
 ## 核心原则
 
@@ -354,7 +354,7 @@ export const useUserStore = create<UserStore>()(
 // 使用
 function ProfileScreen() {
   const { profile, logout } = useUserStore();
-  
+
   return (
     <View>
       <Text>{profile?.name}</Text>
@@ -592,10 +592,11 @@ async function initDatabase() {
 }
 
 async function saveUser(user: User) {
-  await db.executeSql(
-    'INSERT OR REPLACE INTO users (id, name, email) VALUES (?, ?, ?)',
-    [user.id, user.name, user.email]
-  );
+  await db.executeSql('INSERT OR REPLACE INTO users (id, name, email) VALUES (?, ?, ?)', [
+    user.id,
+    user.name,
+    user.email,
+  ]);
 }
 
 async function getUsers(): Promise<User[]> {
@@ -644,14 +645,14 @@ describe('Button', () => {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| StyleSheet | 样式定义 |
-| Platform | 平台适配 |
-| FlatList | 长列表 |
-| React Navigation | 导航 |
-| Zustand | 轻量状态管理 |
-| Native Modules | 原生功能 |
-| FastImage | 图片优化 |
+| 模式             | 用途         |
+| ---------------- | ------------ |
+| StyleSheet       | 样式定义     |
+| Platform         | 平台适配     |
+| FlatList         | 长列表       |
+| React Navigation | 导航         |
+| Zustand          | 轻量状态管理 |
+| Native Modules   | 原生功能     |
+| FastImage        | 图片优化     |
 
 **记住**：React Native 的关键是平衡跨平台代码和平台特定优化。使用 FlatList 的优化属性，合理使用原生模块，注意内存管理。

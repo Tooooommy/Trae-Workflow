@@ -16,13 +16,13 @@ description: Electron 桌面应用开发、进程通信、原生集成和性能�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Electron | 28+ | 32+ |
-| Node.js | 18+ | 22+ |
-| TypeScript | 5.0+ | 最新 |
-| electron-builder | 24+ | 最新 |
-| electron-updater | 6.0+ | 最新 |
+| 技术             | 最低版本 | 推荐版本 |
+| ---------------- | -------- | -------- |
+| Electron         | 28+      | 32+      |
+| Node.js          | 18+      | 22+      |
+| TypeScript       | 5.0+     | 最新     |
+| electron-builder | 24+      | 最新     |
+| electron-updater | 6.0+     | 最新     |
 
 ## 核心原则
 
@@ -82,12 +82,7 @@ app.on('activate', () => {
 ```typescript
 import { contextBridge, ipcRenderer } from 'electron';
 
-const validChannels = [
-  'get-user-data',
-  'save-user-data',
-  'select-file',
-  'show-notification',
-];
+const validChannels = ['get-user-data', 'save-user-data', 'select-file', 'show-notification'];
 
 contextBridge.exposeInMainWorld('electronAPI', {
   invoke: (channel: string, ...args: unknown[]) => {
@@ -99,7 +94,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   on: (channel: string, callback: (...args: unknown[]) => void) => {
     if (validChannels.includes(channel)) {
-      const subscription = (_event: Electron.IpcRendererEvent, ...args: unknown[]) => 
+      const subscription = (_event: Electron.IpcRendererEvent, ...args: unknown[]) =>
         callback(...args);
       ipcRenderer.on(channel, subscription);
       return () => ipcRenderer.removeListener(channel, subscription);
@@ -142,7 +137,7 @@ class IpcHandlers {
     ipcMain.handle('get-user-data', async () => {
       const userDataPath = app.getPath('userData');
       const configPath = path.join(userDataPath, 'config.json');
-      
+
       try {
         const data = await fs.readFile(configPath, 'utf-8');
         return JSON.parse(data);
@@ -154,7 +149,7 @@ class IpcHandlers {
     ipcMain.handle('save-user-data', async (_, data: unknown) => {
       const userDataPath = app.getPath('userData');
       const configPath = path.join(userDataPath, 'config.json');
-      
+
       await fs.writeFile(configPath, JSON.stringify(data, null, 2));
       return true;
     });
@@ -163,14 +158,14 @@ class IpcHandlers {
   private registerFileHandlers() {
     ipcMain.handle('select-file', async (_, options: Electron.OpenDialogOptions) => {
       const result = await dialog.showOpenDialog(mainWindow!, options);
-      
+
       if (result.canceled || result.filePaths.length === 0) {
         return null;
       }
 
       const filePath = result.filePaths[0];
       const content = await fs.readFile(filePath, 'utf-8');
-      
+
       return {
         path: filePath,
         content,
@@ -223,7 +218,7 @@ class WindowManager {
     });
 
     this.windows.set('main', win);
-    
+
     win.on('closed', () => {
       this.windows.delete('main');
     });
@@ -249,7 +244,7 @@ class WindowManager {
     });
 
     this.windows.set('settings', win);
-    
+
     win.on('closed', () => {
       this.windows.delete('settings');
     });
@@ -406,12 +401,7 @@ function createAppMenu(): Menu {
     },
     {
       label: 'Window',
-      submenu: [
-        { role: 'minimize' },
-        { role: 'zoom' },
-        { type: 'separator' },
-        { role: 'front' },
-      ],
+      submenu: [{ role: 'minimize' }, { role: 'zoom' }, { type: 'separator' }, { role: 'front' }],
     },
     {
       role: 'help',
@@ -438,7 +428,7 @@ Menu.setApplicationMenu(createAppMenu());
 import { Menu, MenuItem } from 'electron';
 
 ipcMain.on('show-context-menu', (event, menuItems: MenuItemOptions[]) => {
-  const template: Electron.MenuItemConstructorOptions[] = menuItems.map(item => ({
+  const template: Electron.MenuItemConstructorOptions[] = menuItems.map((item) => ({
     label: item.label,
     click: () => event.sender.send('context-menu-command', item.id),
   }));
@@ -467,9 +457,9 @@ class TrayManager {
       __dirname,
       process.platform === 'darwin' ? 'iconTemplate.png' : 'icon.png'
     );
-    
+
     const icon = nativeImage.createFromPath(iconPath);
-    
+
     if (process.platform === 'darwin') {
       icon.setTemplateImage(true);
     }
@@ -532,18 +522,20 @@ class AutoUpdateManager {
 
     autoUpdater.on('update-available', (info) => {
       mainWindow?.webContents.send('update-status', 'available', info);
-      
-      dialog.showMessageBox(mainWindow!, {
-        type: 'info',
-        title: 'Update Available',
-        message: `Version ${info.version} is available. Download now?`,
-        buttons: ['Download', 'Later'],
-        defaultId: 0,
-      }).then((result) => {
-        if (result.response === 0) {
-          autoUpdater.downloadUpdate();
-        }
-      });
+
+      dialog
+        .showMessageBox(mainWindow!, {
+          type: 'info',
+          title: 'Update Available',
+          message: `Version ${info.version} is available. Download now?`,
+          buttons: ['Download', 'Later'],
+          defaultId: 0,
+        })
+        .then((result) => {
+          if (result.response === 0) {
+            autoUpdater.downloadUpdate();
+          }
+        });
     });
 
     autoUpdater.on('update-not-available', () => {
@@ -560,18 +552,20 @@ class AutoUpdateManager {
 
     autoUpdater.on('update-downloaded', () => {
       mainWindow?.webContents.send('update-status', 'downloaded');
-      
-      dialog.showMessageBox(mainWindow!, {
-        type: 'info',
-        title: 'Update Ready',
-        message: 'Update downloaded. Restart to install?',
-        buttons: ['Restart', 'Later'],
-        defaultId: 0,
-      }).then((result) => {
-        if (result.response === 0) {
-          autoUpdater.quitAndInstall();
-        }
-      });
+
+      dialog
+        .showMessageBox(mainWindow!, {
+          type: 'info',
+          title: 'Update Ready',
+          message: 'Update downloaded. Restart to install?',
+          buttons: ['Restart', 'Later'],
+          defaultId: 0,
+        })
+        .then((result) => {
+          if (result.response === 0) {
+            autoUpdater.quitAndInstall();
+          }
+        });
     });
 
     autoUpdater.on('error', (error) => {
@@ -598,7 +592,7 @@ if (process.platform === 'darwin') {
 
 app.whenReady().then(() => {
   createWindow();
-  
+
   if (process.platform === 'darwin') {
     app.dock.show();
   }
@@ -617,12 +611,9 @@ import { BrowserWindow, session } from 'electron';
 app.whenReady().then(() => {
   const ses = session.defaultSession;
 
-  ses.webRequest.onBeforeRequest(
-    { urls: ['*://*.doubleclick.net/*'] },
-    (details, callback) => {
-      callback({ cancel: true });
-    }
-  );
+  ses.webRequest.onBeforeRequest({ urls: ['*://*.doubleclick.net/*'] }, (details, callback) => {
+    callback({ cancel: true });
+  });
 
   ses.webRequest.onHeadersReceived((details, callback) => {
     callback({
@@ -638,7 +629,7 @@ app.whenReady().then(() => {
 
 setInterval(() => {
   const windows = BrowserWindow.getAllWindows();
-  windows.forEach(win => {
+  windows.forEach((win) => {
     if (!win.isVisible()) {
       win.webContents.setBackgroundThrottling(true);
     }
@@ -659,11 +650,7 @@ setInterval(() => {
       "output": "dist",
       "buildResources": "build"
     },
-    "files": [
-      "dist/**/*",
-      "node_modules/**/*",
-      "package.json"
-    ],
+    "files": ["dist/**/*", "node_modules/**/*", "package.json"],
     "mac": {
       "category": "public.app-category.productivity",
       "hardenedRuntime": true,
@@ -705,13 +692,13 @@ setInterval(() => {
 
 ## 快速参考
 
-| 模式 | 用途 |
-|------|------|
-| contextBridge | 安全暴露 API |
-| ipcMain.handle | 主进程处理请求 |
-| ipcRenderer.invoke | 渲染进程调用 |
-| BrowserWindow | 窗口管理 |
-| Tray | 系统托盘 |
-| autoUpdater | 自动更新 |
+| 模式               | 用途           |
+| ------------------ | -------------- |
+| contextBridge      | 安全暴露 API   |
+| ipcMain.handle     | 主进程处理请求 |
+| ipcRenderer.invoke | 渲染进程调用   |
+| BrowserWindow      | 窗口管理       |
+| Tray               | 系统托盘       |
+| autoUpdater        | 自动更新       |
 
 **记住**：Electron 的安全性至关重要。始终使用 contextIsolation 和 preload 脚本，验证 IPC 通道，避免 nodeIntegration。合理管理窗口生命周期，优化内存使用。

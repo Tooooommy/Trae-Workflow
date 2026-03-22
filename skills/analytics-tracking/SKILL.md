@@ -16,11 +16,11 @@ description: 分析跟踪技能 - 记录 SKILL/Agent 调用、分析使用模式
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Node.js | 18.0+ | 20.0+ |
-| SQLite | 3.0+ | 最新 |
-| Chart.js | 4.0+ | 最新 |
+| 技术     | 最低版本 | 推荐版本 |
+| -------- | -------- | -------- |
+| Node.js  | 18.0+    | 20.0+    |
+| SQLite   | 3.0+     | 最新     |
+| Chart.js | 4.0+     | 最新     |
 
 ## 架构概览
 
@@ -141,7 +141,9 @@ import Database from 'better-sqlite3';
 const db = new Database('analytics.db');
 
 function analyzeSkillUsage(days: number = 30) {
-  const skills = db.prepare(`
+  const skills = db
+    .prepare(
+      `
     SELECT 
       skill_name,
       COUNT(*) as total_calls,
@@ -152,13 +154,17 @@ function analyzeSkillUsage(days: number = 30) {
     WHERE timestamp > datetime('now', '-${days} days')
     GROUP BY skill_name
     ORDER BY total_calls DESC
-  `).all();
+  `
+    )
+    .all();
 
   return skills;
 }
 
 function analyzeAgentPerformance(days: number = 30) {
-  const agents = db.prepare(`
+  const agents = db
+    .prepare(
+      `
     SELECT 
       agent_name,
       COUNT(*) as total_calls,
@@ -171,7 +177,9 @@ function analyzeAgentPerformance(days: number = 30) {
     WHERE timestamp > datetime('now', '-${days} days')
     GROUP BY agent_name
     ORDER BY total_calls DESC
-  `).all();
+  `
+    )
+    .all();
 
   return agents;
 }
@@ -179,36 +187,44 @@ function analyzeAgentPerformance(days: number = 30) {
 function generateImprovementSuggestions() {
   const suggestions = [];
 
-  const lowRatedSkills = db.prepare(`
+  const lowRatedSkills = db
+    .prepare(
+      `
     SELECT skill_name, AVG(rating) as avg_rating
     FROM skill_invocations
     GROUP BY skill_name
     HAVING avg_rating < 3.5
-  `).all();
+  `
+    )
+    .all();
 
-  lowRatedSkills.forEach(skill => {
+  lowRatedSkills.forEach((skill) => {
     suggestions.push({
       source_type: 'skill',
       source_name: skill.skill_name,
       suggestion: `考虑优化 ${skill.skill_name} 技能，当前评分 ${skill.avg_rating.toFixed(1)}`,
-      priority: 'high'
+      priority: 'high',
     });
   });
 
-  const lowAcceptanceAgents = db.prepare(`
+  const lowAcceptanceAgents = db
+    .prepare(
+      `
     SELECT agent_name, 
            AVG(accepted) * 100.0 / NULLIF(AVG(recommendations), 0) as acceptance_rate
     FROM agent_invocations
     GROUP BY agent_name
     HAVING acceptance_rate < 50
-  `).all();
+  `
+    )
+    .all();
 
-  lowAcceptanceAgents.forEach(agent => {
+  lowAcceptanceAgents.forEach((agent) => {
     suggestions.push({
       source_type: 'agent',
       source_name: agent.agent_name,
       suggestion: `${agent.agent_name} 建议接受率低，检查建议质量`,
-      priority: 'medium'
+      priority: 'medium',
     });
   });
 
@@ -240,17 +256,17 @@ function generateReport(days: number = 30): AnalyticsReport {
   return {
     period: {
       start: new Date(Date.now() - days * 24 * 60 * 60 * 1000),
-      end: new Date()
+      end: new Date(),
     },
     summary: {
       totalSkillCalls: getTotalCalls('skill', days),
       totalAgentCalls: getTotalCalls('agent', days),
       avgSuccessRate: getAvgSuccessRate(days),
-      avgRating: getAvgRating(days)
+      avgRating: getAvgRating(days),
     },
     topSkills: getTopItems('skill', 5, days),
     topAgents: getTopItems('agent', 5, days),
-    improvements: generateImprovementSuggestions()
+    improvements: generateImprovementSuggestions(),
   };
 }
 ```
@@ -261,7 +277,9 @@ function generateReport(days: number = 30): AnalyticsReport {
 
 ```typescript
 function identifyPatterns() {
-  const patterns = db.prepare(`
+  const patterns = db
+    .prepare(
+      `
     SELECT 
       s.skill_name,
       a.agent_name,
@@ -272,12 +290,14 @@ function identifyPatterns() {
     GROUP BY s.skill_name, a.agent_name
     HAVING co_occurrence > 3
     ORDER BY co_occurrence DESC
-  `).all();
+  `
+    )
+    .all();
 
-  return patterns.map(p => ({
+  return patterns.map((p) => ({
     pattern: `${p.skill_name} + ${p.agent_name}`,
     frequency: p.co_occurrence,
-    recommendation: `考虑创建组合工作流：${p.skill_name} → ${p.agent_name}`
+    recommendation: `考虑创建组合工作流：${p.skill_name} → ${p.agent_name}`,
   }));
 }
 ```
@@ -286,18 +306,22 @@ function identifyPatterns() {
 
 ```typescript
 function identifyMissingSkills() {
-  const taskKeywords = db.prepare(`
+  const taskKeywords = db
+    .prepare(
+      `
     SELECT task_description
     FROM skill_invocations
     WHERE rating < 3 OR comments LIKE '%缺少%'
-  `).all();
+  `
+    )
+    .all();
 
   const keywordAnalysis = analyzeKeywords(taskKeywords);
-  
-  return keywordAnalysis.map(k => ({
+
+  return keywordAnalysis.map((k) => ({
     keyword: k.word,
     frequency: k.count,
-    suggestion: `考虑创建针对 "${k.word}" 的技能`
+    suggestion: `考虑创建针对 "${k.word}" 的技能`,
   }));
 }
 ```

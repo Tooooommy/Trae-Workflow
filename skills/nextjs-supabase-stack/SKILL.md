@@ -52,7 +52,7 @@ my-app/
 
 ```tsx
 // src/app/(dashboard)/page.tsx
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from '@/lib/supabase/server';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -62,10 +62,10 @@ export default async function DashboardPage() {
 
   // 服务器端获取数据
   const { data: products } = await supabase
-    .from("products")
-    .select("\*")
-    .eq("user_id", user?.id)
-    .order("created_at", { ascending: false });
+    .from('products')
+    .select('\*')
+    .eq('user_id', user?.id)
+    .order('created_at', { ascending: false });
 
   return <ProductList initialProducts={products} />;
 }
@@ -75,14 +75,14 @@ export default async function DashboardPage() {
 
 ```ts
 // src/app/actions/product.ts
-"use server";
-import { createClient } from "@/lib/supabase/server";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
+'use server';
+import { createClient } from '@/lib/supabase/server';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 const CreateProductSchema = z.object({
-  name: z.string().min(1, "名称不能为空"),
-  price: z.number().positive("价格必须为正数"),
+  name: z.string().min(1, '名称不能为空'),
+  price: z.number().positive('价格必须为正数'),
 });
 
 export async function createProduct(formData: FormData) {
@@ -92,12 +92,12 @@ export async function createProduct(formData: FormData) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return { success: false, message: "未授权" };
+    return { success: false, message: '未授权' };
   }
 
   const validation = CreateProductSchema.safeParse({
-    name: formData.get("name"),
-    price: parseFloat(formData.get("price") as string),
+    name: formData.get('name'),
+    price: parseFloat(formData.get('price') as string),
   });
 
   if (!validation.success) {
@@ -107,12 +107,12 @@ export async function createProduct(formData: FormData) {
     };
   }
 
-  await supabase.from("products").insert({
+  await supabase.from('products').insert({
     ...validation.data,
     user_id: user.id,
   });
 
-  revalidatePath("/dashboard");
+  revalidatePath('/dashboard');
   return { success: true };
 }
 ```
@@ -121,9 +121,9 @@ export async function createProduct(formData: FormData) {
 
 ```tsx
 // src/components/realtime/products-list.tsx
-"use client";
-import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+'use client';
+import { useEffect, useState } from 'react';
+import { createClient } from '@/lib/supabase/client';
 
 export function RealtimeProductsList() {
   const [products, setProducts] = useState([]);
@@ -131,10 +131,10 @@ export function RealtimeProductsList() {
 
   useEffect(() => {
     const channel = supabase
-      .channel("realtime:products")
-      .on("postgres_changes", { event: "\*", schema: "public", table: "products" }, (payload) => {
+      .channel('realtime:products')
+      .on('postgres_changes', { event: '\*', schema: 'public', table: 'products' }, (payload) => {
         // 实时更新状态
-        if (payload.eventType === "INSERT") {
+        if (payload.eventType === 'INSERT') {
           setProducts((current) => [payload.new, ...current]);
         }
       })
@@ -157,8 +157,8 @@ export function RealtimeProductsList() {
 
 ```ts
 // src/lib/supabase/server.ts
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -174,7 +174,7 @@ export async function createClient() {
           cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
         },
       },
-    },
+    }
   );
 }
 ```
@@ -183,8 +183,8 @@ export async function createClient() {
 
 ```ts
 // src/middleware.ts
-import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   const supabase = createServerClient(
@@ -199,22 +199,22 @@ export async function middleware(request: NextRequest) {
           / ... /;
         },
       },
-    },
+    }
   );
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const isProtectedRoute = request.nextUrl.pathname.startsWith("/dashboard");
-  const isAuthRoute = ["/login", "/register"].includes(request.nextUrl.pathname);
+  const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard');
+  const isAuthRoute = ['/login', '/register'].includes(request.nextUrl.pathname);
 
   // 重定向逻辑
   if (isProtectedRoute && !user) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   return NextResponse.next();
@@ -257,23 +257,23 @@ USING (is_published = true OR auth.uid() = user_id);
 
 ```ts
 // tests/unit/services/product-service.test.ts
-import { describe, expect, it, vi } from "vitest";
-import { createProduct, getProductsByUser } from "@/app/actions/product";
-import { createClient } from "@/lib/supabase/server";
+import { describe, expect, it, vi } from 'vitest';
+import { createProduct, getProductsByUser } from '@/app/actions/product';
+import { createClient } from '@/lib/supabase/server';
 
 // 模拟 Supabase 客户端
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock('@/lib/supabase/server', () => ({
   createClient: vi.fn(() => ({
     auth: {
       getUser: vi.fn().mockResolvedValue({
-        data: { user: { id: "user-123" } },
+        data: { user: { id: 'user-123' } },
       }),
     },
     from: vi.fn(() => ({
       insert: vi.fn().mockResolvedValue({ error: null }),
       select: vi.fn(() => ({
         eq: vi.fn().mockResolvedValue({
-          data: [{ id: 1, name: "Test Product" }],
+          data: [{ id: 1, name: 'Test Product' }],
           error: null,
         }),
       })),
@@ -281,24 +281,24 @@ vi.mock("@/lib/supabase/server", () => ({
   })),
 }));
 
-describe("Product Service", () => {
-  describe("createProduct", () => {
-    it("验证输入失败时返回错误", async () => {
+describe('Product Service', () => {
+  describe('createProduct', () => {
+    it('验证输入失败时返回错误', async () => {
       const formData = new FormData();
-      formData.append("name", ""); // 空名称
-      formData.append("price", "-10"); // 负价格
+      formData.append('name', ''); // 空名称
+      formData.append('price', '-10'); // 负价格
 
       const result = await createProduct(formData);
 
       expect(result.success).toBe(false);
-      expect(result.errors).toHaveProperty("name");
-      expect(result.errors).toHaveProperty("price");
+      expect(result.errors).toHaveProperty('name');
+      expect(result.errors).toHaveProperty('price');
     });
 
-    it("验证输入成功时创建产品", async () => {
+    it('验证输入成功时创建产品', async () => {
       const formData = new FormData();
-      formData.append("name", "Test Product");
-      formData.append("price", "29.99");
+      formData.append('name', 'Test Product');
+      formData.append('price', '29.99');
 
       const result = await createProduct(formData);
 
@@ -323,11 +323,11 @@ export async function createProduct(formData: FormData) {
 
 ```tsx
 // 重构：提取验证逻辑
-import { z } from "zod";
+import { z } from 'zod';
 
 const CreateProductSchema = z.object({
-  name: z.string().min(1, "名称不能为空"),
-  price: z.coerce.number().positive("价格必须为正数"),
+  name: z.string().min(1, '名称不能为空'),
+  price: z.coerce.number().positive('价格必须为正数'),
 });
 
 function validateProductInput(formData: FormData) {
@@ -342,31 +342,31 @@ function validateProductInput(formData: FormData) {
 
 ```tsx
 // tests/unit/components/ui/button.test.tsx
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Button } from "@/components/ui/button";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from '@/components/ui/button';
+import { describe, expect, it, vi } from 'vitest';
 
-describe("Button", () => {
-  it("渲染子内容", () => {
+describe('Button', () => {
+  it('渲染子内容', () => {
     render(<Button>点击我</Button>);
-    expect(screen.getByText("点击我")).toBeInTheDocument();
+    expect(screen.getByText('点击我')).toBeInTheDocument();
   });
 
-  it("点击时调用回调", () => {
+  it('点击时调用回调', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>点击</Button>);
-    fireEvent.click(screen.getByText("点击"));
+    fireEvent.click(screen.getByText('点击'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it("禁用时不响应点击", () => {
+  it('禁用时不响应点击', () => {
     const handleClick = vi.fn();
     render(
       <Button onClick={handleClick} disabled>
         禁用按钮
-      </Button>,
+      </Button>
     );
-    fireEvent.click(screen.getByText("禁用按钮"));
+    fireEvent.click(screen.getByText('禁用按钮'));
     expect(handleClick).not.toHaveBeenCalled();
   });
 });
@@ -376,15 +376,15 @@ describe("Button", () => {
 
 ```tsx
 // tests/integration/dashboard.test.tsx
-import { render, screen, waitFor } from "@testing-library/react";
-import DashboardPage from "@/app/(dashboard)/page";
-import { createClient } from "@/lib/supabase/server";
+import { render, screen, waitFor } from '@testing-library/react';
+import DashboardPage from '@/app/(dashboard)/page';
+import { createClient } from '@/lib/supabase/server';
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock('@/lib/supabase/server', () => ({
   createClient: vi.fn(() => ({
     auth: {
       getUser: vi.fn().mockResolvedValue({
-        data: { user: { id: "user-123", email: "test@example.com" } },
+        data: { user: { id: 'user-123', email: 'test@example.com' } },
       }),
     },
     from: vi.fn(() => ({
@@ -393,8 +393,8 @@ vi.mock("@/lib/supabase/server", () => ({
           order: vi.fn(() => ({
             limit: vi.fn().mockResolvedValue({
               data: [
-                { id: 1, name: "产品1", price: 100 },
-                { id: 2, name: "产品2", price: 200 },
+                { id: 1, name: '产品1', price: 100 },
+                { id: 2, name: '产品2', price: 200 },
               ],
               error: null,
             }),
@@ -405,13 +405,13 @@ vi.mock("@/lib/supabase/server", () => ({
   })),
 }));
 
-describe("Dashboard Page", () => {
-  it("显示用户的产品列表", async () => {
+describe('Dashboard Page', () => {
+  it('显示用户的产品列表', async () => {
     render(await DashboardPage());
 
     await waitFor(() => {
-      expect(screen.getByText("产品1")).toBeInTheDocument();
-      expect(screen.getByText("$100")).toBeInTheDocument();
+      expect(screen.getByText('产品1')).toBeInTheDocument();
+      expect(screen.getByText('$100')).toBeInTheDocument();
     });
   });
 });
@@ -421,29 +421,29 @@ describe("Dashboard Page", () => {
 
 ```ts
 // tests/e2e/dashboard.spec.ts
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-test("用户登录并查看仪表板", async ({ page }) => {
+test('用户登录并查看仪表板', async ({ page }) => {
   // 1. 导航到登录页
-  await page.goto("/login");
+  await page.goto('/login');
 
   // 2. 填写登录表单
-  await page.fill('input[name="email"]', "user@example.com");
-  await page.fill('input[name="password"]', "password123");
+  await page.fill('input[name="email"]', 'user@example.com');
+  await page.fill('input[name="password"]', 'password123');
   await page.click('button[type="submit"]');
 
   // 3. 验证重定向到仪表板
-  await expect(page).toHaveURL("/dashboard");
-  await expect(page.getByRole("heading", { name: "仪表板" })).toBeVisible();
+  await expect(page).toHaveURL('/dashboard');
+  await expect(page.getByRole('heading', { name: '仪表板' })).toBeVisible();
 
   // 4. 创建新产品
-  await page.click("text=新建产品");
-  await page.fill('input[name="name"]', "Playwright测试产品");
-  await page.fill('input[name="price"]', "99.99");
+  await page.click('text=新建产品');
+  await page.fill('input[name="name"]', 'Playwright测试产品');
+  await page.fill('input[name="price"]', '99.99');
   await page.click('button[type="submit"]');
 
   // 5. 验证产品创建成功
-  await expect(page.getByText("Playwright测试产品")).toBeVisible();
+  await expect(page.getByText('Playwright测试产品')).toBeVisible();
 });
 ```
 
@@ -451,7 +451,7 @@ test("用户登录并查看仪表板", async ({ page }) => {
 
 ```ts
 // tests/factories/product-factory.ts
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 export interface ProductData {
   id?: number;
@@ -468,7 +468,7 @@ export function createProductData(overrides: Partial<ProductData> = {}): Product
     description: faker.commerce.productDescription(),
     price: parseFloat(faker.commerce.price({ min: 10, max: 1000 })),
     is_published: true,
-    user_id: "user-123",
+    user_id: 'user-123',
     ...overrides,
   };
 }

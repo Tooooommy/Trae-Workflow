@@ -60,6 +60,7 @@ npx stylelint "**/*.css"
 ## 协作说明
 
 完成后委托给：
+
 - **前端实现** → 使用 `code-reviewer` 智能体
 - **可访问性** → 使用 `a11y-patterns` 技能
 - **测试验证** → 使用 `qa-engineer` 智能体

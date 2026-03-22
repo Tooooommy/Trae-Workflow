@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/*.py"
-  - "**/*.pyi"
+  - '**/*.py'
+  - '**/*.pyi'
 ---
 
 # Python 安全
@@ -22,7 +22,7 @@ api_key = os.environ["OPENAI_API_KEY"]  # Raises KeyError if missing
 
 ## 安全扫描
 
-* 使用 **bandit** 进行静态安全分析：
+- 使用 **bandit** 进行静态安全分析：
   ```bash
   bandit -r src/
   ```

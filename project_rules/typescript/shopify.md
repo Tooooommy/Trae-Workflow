@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/shopify.app.toml"
-  - "**/*.server.ts"
-  - "**/*.server.tsx"
+  - '**/shopify.app.toml'
+  - '**/*.server.ts'
+  - '**/*.server.tsx'
 ---
 
 # Shopify App 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Shopify CLI, React Router 7, Remix, TypeScript, Prisma
-* 架构: Server-Side Rendering, OAuth 认证, Shopify Admin API
+- 技术栈: Shopify CLI, React Router 7, Remix, TypeScript, Prisma
+- 架构: Server-Side Rendering, OAuth 认证, Shopify Admin API
 
 ## 关键规则
 
@@ -69,12 +69,12 @@ subpath = "my-proxy"
 
 ```tsx
 // app/routes/app._index.tsx
-import { json, type LoaderFunctionArgs } from "@shopify/remix-oxygen"
-import { useLoaderData } from "@remix-run/react"
-import { authenticate } from "../shopify.server"
+import { json, type LoaderFunctionArgs } from '@shopify/remix-oxygen';
+import { useLoaderData } from '@remix-run/react';
+import { authenticate } from '../shopify.server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const { session, admin } = await authenticate.admin(request)
+  const { session, admin } = await authenticate.admin(request);
 
   const response = await admin.graphql(
     `#graphql
@@ -89,22 +89,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
         }
       }
     }`
-  )
+  );
 
-  const { data } = await response.json()
-  return json({ products: data.products.edges, shop: session.shop })
+  const { data } = await response.json();
+  return json({ products: data.products.edges, shop: session.shop });
 }
 
 export default function AppIndex() {
-  const { products, shop } = useLoaderData<typeof loader>()
+  const { products, shop } = useLoaderData<typeof loader>();
 
   return (
     <ui-title-bar title={`Welcome to ${shop}`}>
-      <button variant="primary" onClick={() => console.log("Action")}>
+      <button variant="primary" onClick={() => console.log('Action')}>
         Add Product
       </button>
     </ui-title-bar>
-  )
+  );
 }
 ```
 
@@ -112,23 +112,21 @@ export default function AppIndex() {
 
 ```tsx
 // app/components/AppProvider.tsx
-import { PolarismdProvider } from "@shopify/polaris"
-import { AppProvider as ShopifyAppProvider } from "@shopify/shopify-app-remix/react"
-import enTranslations from "@shopify/polaris/locales/en.json"
+import { PolarismdProvider } from '@shopify/polaris';
+import { AppProvider as ShopifyAppProvider } from '@shopify/shopify-app-remix/react';
+import enTranslations from '@shopify/polaris/locales/en.json';
 
 interface AppProviderProps {
-  children: React.ReactNode
-  apiKey: string
+  children: React.ReactNode;
+  apiKey: string;
 }
 
 export function AppProvider({ children, apiKey }: AppProviderProps) {
   return (
     <ShopifyAppProvider isEmbeddedApp apiKey={apiKey}>
-      <PolarismdProvider i18n={enTranslations}>
-        {children}
-      </PolarismdProvider>
+      <PolarismdProvider i18n={enTranslations}>{children}</PolarismdProvider>
     </ShopifyAppProvider>
-  )
+  );
 }
 ```
 
@@ -136,7 +134,7 @@ export function AppProvider({ children, apiKey }: AppProviderProps) {
 
 ```tsx
 // app/services/products.server.ts
-import { type AdminApiContext } from "@shopify/shopify-app-remix/server"
+import { type AdminApiContext } from '@shopify/shopify-app-remix/server';
 
 export async function getProducts(admin: AdminApiContext) {
   const response = await admin.graphql(
@@ -161,10 +159,10 @@ export async function getProducts(admin: AdminApiContext) {
       }
     }`,
     { variables: { first: 50 } }
-  )
+  );
 
-  const { data } = await response.json()
-  return data.products.edges.map((edge: any) => edge.node)
+  const { data } = await response.json();
+  return data.products.edges.map((edge: any) => edge.node);
 }
 
 export async function createProduct(admin: AdminApiContext, product: any) {
@@ -183,9 +181,9 @@ export async function createProduct(admin: AdminApiContext, product: any) {
       }
     }`,
     { variables: { input: product } }
-  )
+  );
 
-  return response.json()
+  return response.json();
 }
 ```
 
@@ -193,18 +191,18 @@ export async function createProduct(admin: AdminApiContext, product: any) {
 
 ```tsx
 // app/routes/webhooks.products.create.tsx
-import { json, type ActionFunctionArgs } from "@shopify/remix-oxygen"
-import { authenticate } from "../shopify.server"
+import { json, type ActionFunctionArgs } from '@shopify/remix-oxygen';
+import { authenticate } from '../shopify.server';
 
 export async function action({ request }: ActionFunctionArgs) {
-  const { payload, session, topic, shop } = await authenticate.webhook(request)
+  const { payload, session, topic, shop } = await authenticate.webhook(request);
 
-  console.log(`Received ${topic} webhook for ${shop}`)
+  console.log(`Received ${topic} webhook for ${shop}`);
 
   // 处理产品创建事件
-  const productId = payload.id
+  const productId = payload.id;
 
-  return json({ success: true })
+  return json({ success: true });
 }
 ```
 

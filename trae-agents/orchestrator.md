@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | Orchestrator |
-| **标识名** | `orchestrator` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值             |
+| ------------ | -------------- |
+| **名称**     | Orchestrator   |
+| **标识名**   | `orchestrator` |
+| **可被调用** | ✅ 是          |
 
 ## 描述
 
@@ -128,10 +128,12 @@
 ### 第三步：协作模式
 
 ```
+
 链式协作：planner → architect → tdd-guide → code-reviewer
 并行协作：code-reviewer + security-reviewer + database-reviewer
 条件协作：根据语言选择 reviewer
 迭代协作：code-reviewer → 修复 → code-reviewer → ...
+
 ```
 
 ## 标准工作流程
@@ -139,25 +141,33 @@
 ### 功能开发
 
 ```
+
 planner → architect → tdd-guide → 实现代码 → code-reviewer → security-reviewer → e2e-runner
+
 ```
 
 ### Bug修复
 
 ```
+
 分析问题 → tdd-guide → 修复代码 → code-reviewer → 验证修复
+
 ```
 
 ### 构建失败
 
 ```
+
 构建失败 → build-error-resolver / go-build-resolver → 验证构建
+
 ```
 
 ### 代码审查
 
 ```
+
 代码变更 → 根据语言选择 reviewer → security-reviewer（如涉及安全）
+
 ```
 
 ## 触发规则
@@ -185,6 +195,7 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 ## 决策树
 
 ```
+
 问题：我需要做什么？
 │
 ├─ 新功能 → planner → architect → tdd-guide
@@ -193,7 +204,8 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 ├─ 重构 → refactor-cleaner → code-reviewer
 ├─ 测试 → tdd-guide / e2e-runner
 └─ 文档 → doc-updater
-```
+
+````
 
 **紧急程度处理**：
 - **紧急**：直接调用最相关智能体，跳过规划
@@ -220,7 +232,7 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 4. [实现代码]
 5. `code-reviewer` — 代码质量审查
 6. `security-reviewer` — 安全审查（如涉及敏感数据）
-```
+````
 
 ## 最佳实践
 
@@ -236,44 +248,45 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 
 ### 代码审查完成后
 
-| 发现问题类型 | 委托目标 |
-|-------------|---------|
-| 安全问题 | `security-reviewer` |
-| 数据库问题 | `database-reviewer` |
-| 构建错误 | `build-error-resolver` / `go-build-resolver` |
-| 需要重构 | `refactor-cleaner` |
-| 性能问题 | `performance-optimizer` |
+| 发现问题类型 | 委托目标                                     |
+| ------------ | -------------------------------------------- |
+| 安全问题     | `security-reviewer`                          |
+| 数据库问题   | `database-reviewer`                          |
+| 构建错误     | `build-error-resolver` / `go-build-resolver` |
+| 需要重构     | `refactor-cleaner`                           |
+| 性能问题     | `performance-optimizer`                      |
 
 ### 开发完成后
 
-| 场景 | 委托目标 |
-|------|---------|
+| 场景         | 委托目标                |
+| ------------ | ----------------------- |
 | 架构设计完成 | `planner` → `tdd-guide` |
-| 计划制定完成 | `tdd-guide` |
-| 代码实现完成 | 对应语言 `reviewer` |
-| 测试失败 | `tdd-guide` 修复 |
+| 计划制定完成 | `tdd-guide`             |
+| 代码实现完成 | 对应语言 `reviewer`     |
+| 测试失败     | `tdd-guide` 修复        |
 
 ### 测试完成后
 
-| 场景 | 委托目标 |
-|------|---------|
-| 测试通过 | `doc-updater` |
+| 场景     | 委托目标            |
+| -------- | ------------------- |
+| 测试通过 | `doc-updater`       |
 | 测试失败 | 对应语言 `reviewer` |
-| E2E 失败 | `tdd-guide` 修复 |
+| E2E 失败 | `tdd-guide` 修复    |
 
 ### 部署完成后
 
-| 场景 | 委托目标 |
-|------|---------|
-| 部署成功 | `doc-updater` |
+| 场景         | 委托目标            |
+| ------------ | ------------------- |
+| 部署成功     | `doc-updater`       |
 | 需要安全审查 | `security-reviewer` |
-| 需要监控配置 | `devops-engineer` |
+| 需要监控配置 | `devops-engineer`   |
 
 ## 优先级规则
 
 **安全 > 功能 > 性能 > 样式**
 
 当多个智能体提供冲突建议时：
+
 1. **安全相关** — 最高优先级，必须解决
 2. **功能相关** — 次高优先级，影响用户
 3. **性能相关** — 中等优先级，可后续优化
@@ -281,22 +294,23 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 
 ## 条件调用规则
 
-| 条件 | 必须调用 |
-|------|---------|
-| 涉及用户输入 | `security-reviewer` |
-| 涉及认证/授权 | `security-reviewer` |
-| 涉及敏感数据 | `security-reviewer` |
-| 涉及 SQL/数据库 | `database-reviewer` |
-| 涉及 API 端点 | `security-reviewer` |
-| 涉及文件上传 | `security-reviewer` |
-| 涉及支付功能 | `security-reviewer` |
-| 涉及关键用户流程 | `e2e-runner` |
-| 涉及性能问题 | `performance-optimizer` |
-| 涉及 CI/CD | `devops-engineer` |
-| 涉及云服务 | `cloud-architect` |
-| 涉及分支管理 | `git-workflow` |
-| 涉及合并冲突 | `git-workflow` |
-| 涉及版本发布 | `git-workflow` |
+| 条件             | 必须调用                |
+| ---------------- | ----------------------- |
+| 涉及用户输入     | `security-reviewer`     |
+| 涉及认证/授权    | `security-reviewer`     |
+| 涉及敏感数据     | `security-reviewer`     |
+| 涉及 SQL/数据库  | `database-reviewer`     |
+| 涉及 API 端点    | `security-reviewer`     |
+| 涉及文件上传     | `security-reviewer`     |
+| 涉及支付功能     | `security-reviewer`     |
+| 涉及关键用户流程 | `e2e-runner`            |
+| 涉及性能问题     | `performance-optimizer` |
+| 涉及 CI/CD       | `devops-engineer`       |
+| 涉及云服务       | `cloud-architect`       |
+| 涉及分支管理     | `git-workflow`          |
+| 涉及合并冲突     | `git-workflow`          |
+| 涉及版本发布     | `git-workflow`          |
+
 ```
 
 ## 协作说明
@@ -319,3 +333,4 @@ planner → architect → tdd-guide → 实现代码 → code-reviewer → secur
 | 构建修复 | 根据语言选择 `*-resolver` |
 | 安全审查 | `security-reviewer` |
 | 数据库操作 | `database-reviewer` |
+```

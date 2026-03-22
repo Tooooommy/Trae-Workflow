@@ -2,11 +2,11 @@
 
 ## 基本信息
 
-| 字段 | 值 |
-|------|-----|
-| **名称** | TDD Guide |
-| **标识名** | `tdd-guide` |
-| **可被调用** | ✅ 是 |
+| 字段         | 值          |
+| ------------ | ----------- |
+| **名称**     | TDD Guide   |
+| **标识名**   | `tdd-guide` |
+| **可被调用** | ✅ 是       |
 
 ## 描述
 
@@ -48,6 +48,7 @@
 
 ### AAA 模式
 ```
+
 // Arrange - 准备
 const input = 'test';
 const expected = 'TEST';
@@ -57,16 +58,19 @@ const result = transform(input);
 
 // Assert - 断言
 expect(result).toBe(expected);
+
 ```
 
 ### 测试命名
 ```
-should_[expectedBehavior]_when_[condition]
+
+should*[expectedBehavior]\_when*[condition]
 
 示例：
 should_returnUpperCase_when_inputIsValid
 should_throwError_when_inputIsNull
-```
+
+````
 
 ### 测试覆盖
 * 正常路径
@@ -81,9 +85,10 @@ should_throwError_when_inputIsNull
 npm test                    # 运行测试
 npm test -- --coverage      # 覆盖率报告
 npm test -- --watch         # 监视模式
-```
+````
 
 ### Python
+
 ```bash
 pytest                      # 运行测试
 pytest --cov                # 覆盖率
@@ -91,6 +96,7 @@ pytest -x                   # 首次失败停止
 ```
 
 ### Go
+
 ```bash
 go test ./...               # 运行所有测试
 go test -cover ./...        # 覆盖率
@@ -99,10 +105,11 @@ go test -v ./...            # 详细输出
 
 ## 成功标准
 
-* 所有测试通过
-* 覆盖率 > 80%
-* 边界条件已覆盖
-* 错误处理已测试
+- 所有测试通过
+- 覆盖率 > 80%
+- 边界条件已覆盖
+- 错误处理已测试
+
 ```
 
 ## 协作说明
@@ -124,3 +131,4 @@ go test -v ./...            # 详细输出
 | 涉及数据库操作 | `database-reviewer` |
 | 关键用户流程 | `e2e-runner` |
 | 构建失败 | `build-error-resolver` / `go-build-resolver` |
+```

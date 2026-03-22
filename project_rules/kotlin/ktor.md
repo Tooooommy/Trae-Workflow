@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/build.gradle.kts"
-  - "**/Application.kt"
+  - '**/build.gradle.kts'
+  - '**/Application.kt'
 ---
 
 # Ktor 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Kotlin 1.9+, Ktor 3, Exposed, PostgreSQL
-* 架构: 协程优先, 函数式路由
+- 技术栈: Kotlin 1.9+, Ktor 3, Exposed, PostgreSQL
+- 架构: 协程优先, 函数式路由
 
 ## 关键规则
 

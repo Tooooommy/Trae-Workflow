@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/pom.xml"
-  - "**/build.gradle"
-  - "**/application.yml"
+  - '**/pom.xml'
+  - '**/build.gradle'
+  - '**/application.yml'
 ---
 
 # Spring Boot 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Java 21+, Spring Boot 3, Spring Data JPA, PostgreSQL
-* 架构: 分层架构, 依赖注入
+- 技术栈: Java 21+, Spring Boot 3, Spring Data JPA, PostgreSQL
+- 架构: 分层架构, 依赖注入
 
 ## 关键规则
 

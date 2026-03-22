@@ -17,13 +17,13 @@ PostgreSQL 最佳实践快速参考。如需详细指导，请使用 `database-r
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| PostgreSQL | 15+ | 17+ |
-| pg_stat_statements | 内置 | 启用 |
-| Supabase | 最新 | 最新 |
-| pgvector | 0.5+ | 最新 |
-| pgpool-II | 4.5+ | 最新 |
+| 技术               | 最低版本 | 推荐版本 |
+| ------------------ | -------- | -------- |
+| PostgreSQL         | 15+      | 17+      |
+| pg_stat_statements | 内置     | 启用     |
+| Supabase           | 最新     | 最新     |
+| pgvector           | 0.5+     | 最新     |
+| pgpool-II          | 4.5+     | 最新     |
 
 ## 快速参考
 

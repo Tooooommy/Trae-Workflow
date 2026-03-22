@@ -17,12 +17,12 @@ description: 无服务器模式 - Lambda/Functions、事件驱动、冷启动优
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| AWS Lambda | Node.js 18 | Node.js 20 |
-| AWS CDK | 2.0+ | 最新 |
-| Serverless Framework | 3.0+ | 最新 |
-| SST | 2.0+ | 最新 |
+| 技术                 | 最低版本   | 推荐版本   |
+| -------------------- | ---------- | ---------- |
+| AWS Lambda           | Node.js 18 | Node.js 20 |
+| AWS CDK              | 2.0+       | 最新       |
+| Serverless Framework | 3.0+       | 最新       |
+| SST                  | 2.0+       | 最新       |
 
 ## 无服务器架构
 
@@ -61,9 +61,9 @@ export const handler = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const body = JSON.parse(event.body || '{}');
-    
+
     const result = await processRequest(body);
-    
+
     return {
       statusCode: 200,
       body: JSON.stringify(result),
@@ -111,10 +111,10 @@ const metrics = new Metrics();
 
 export const handler = async (event: any) => {
   logger.info('Processing event', { event });
-  
+
   const segment = tracer.getSegment();
   const subsegment = segment.addNewSubsegment('processEvent');
-  
+
   try {
     const result = await processEvent(event);
     metrics.addMetric('ProcessedEvents', MetricUnit.Count, 1);
@@ -139,9 +139,9 @@ const RequestSchema = z.object({
 
 export const handler = async (event: APIGatewayProxyEvent) => {
   const body = JSON.parse(event.body || '{}');
-  
+
   const result = RequestSchema.safeParse(body);
-  
+
   if (!result.success) {
     return {
       statusCode: 400,
@@ -151,9 +151,9 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       }),
     };
   }
-  
+
   const user = await createUser(result.data);
-  
+
   return {
     statusCode: 201,
     body: JSON.stringify(user),
@@ -200,7 +200,7 @@ export const handler = async (event: S3Event) => {
   for (const record of event.Records) {
     const bucket = record.s3.bucket.name;
     const key = decodeURIComponent(record.s3.object.key.replace(/\+/g, ' '));
-    
+
     await processFile(bucket, key);
   }
 };
@@ -235,7 +235,7 @@ import { SQSEvent } from 'aws-lambda';
 
 export const handler = async (event: SQSEvent) => {
   const batchItemFailures: { itemIdentifier: string }[] = [];
-  
+
   for (const record of event.Records) {
     try {
       const message = JSON.parse(record.body);
@@ -244,7 +244,7 @@ export const handler = async (event: SQSEvent) => {
       batchItemFailures.push({ itemIdentifier: record.messageId });
     }
   }
-  
+
   return { batchItemFailures };
 };
 ```
@@ -261,7 +261,7 @@ export const startWorkflow = async (input: object) => {
     stateMachineArn: process.env.STATE_MACHINE_ARN,
     input: JSON.stringify(input),
   });
-  
+
   return result.executionArn;
 };
 ```
@@ -322,13 +322,13 @@ resources:
 
 ## 性能优化
 
-| 优化项 | 方法 |
-|--------|------|
-| 冷启动 | 初始化外部依赖在 handler 外 |
-| 内存 | 根据执行时间调整内存 |
-| 包大小 | 使用 Lambda Layers、Tree-shaking |
-| 并发 | 预置并发、预留并发 |
-| 连接复用 | Keep-alive 连接池 |
+| 优化项   | 方法                             |
+| -------- | -------------------------------- |
+| 冷启动   | 初始化外部依赖在 handler 外      |
+| 内存     | 根据执行时间调整内存             |
+| 包大小   | 使用 Lambda Layers、Tree-shaking |
+| 并发     | 预置并发、预留并发               |
+| 连接复用 | Keep-alive 连接池                |
 
 ## 成本优化
 
@@ -337,11 +337,9 @@ const MAX_ITEMS = 100;
 
 export const handler = async (event: any) => {
   const items = event.items.slice(0, MAX_ITEMS);
-  
-  const results = await Promise.all(
-    items.map(item => processItem(item))
-  );
-  
+
+  const results = await Promise.all(items.map((item) => processItem(item)));
+
   return results;
 };
 ```

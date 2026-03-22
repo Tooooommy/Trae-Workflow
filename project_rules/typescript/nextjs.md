@@ -1,9 +1,9 @@
 ---
 alwaysApply: false
 globs:
-  - "**/next.config.*"
-  - "**/app/**"
-  - "**/pages/**"
+  - '**/next.config.*'
+  - '**/app/**'
+  - '**/pages/**'
 ---
 
 # Next.js 项目规范与指南
@@ -12,8 +12,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Next.js 14+, React 18+, TypeScript, Tailwind CSS
-* 架构: App Router, Server Components, Server Actions
+- 技术栈: Next.js 14+, React 18+, TypeScript, Tailwind CSS
+- 架构: App Router, Server Components, Server Actions
 
 ## 关键规则
 
@@ -57,11 +57,11 @@ function Counter() {
 
 ```typescript
 // actions/user.ts
-'use server'
+'use server';
 export async function createUser(formData: FormData) {
-  const name = formData.get('name')
-  await db.user.create({ data: { name } })
-  revalidatePath('/users')
+  const name = formData.get('name');
+  await db.user.create({ data: { name } });
+  revalidatePath('/users');
 }
 ```
 

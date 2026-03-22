@@ -19,13 +19,13 @@ description: 在添加身份验证、处理用户输入、处理机密信息、�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| OWASP Top 10 | 2021 | 最新 |
-| Zod | 3.22+ | 最新 |
-| helmet (Node.js) | 7.0+ | 最新 |
-| bcrypt/argon2 | 最新 | 最新 |
-| JWT | 9.0+ | 最新 |
+| 技术             | 最低版本 | 推荐版本 |
+| ---------------- | -------- | -------- |
+| OWASP Top 10     | 2021     | 最新     |
+| Zod              | 3.22+    | 最新     |
+| helmet (Node.js) | 7.0+     | 最新     |
+| bcrypt/argon2    | 最新     | 最新     |
+| JWT              | 9.0+     | 最新     |
 
 ## 安全检查清单
 
@@ -34,8 +34,8 @@ description: 在添加身份验证、处理用户输入、处理机密信息、�
 #### ❌ 绝对不要这样做
 
 ```typescript
-const apiKey = "sk-proj-xxxxx"; // Hardcoded secret
-const dbPassword = "password123"; // In source code
+const apiKey = 'sk-proj-xxxxx'; // Hardcoded secret
+const dbPassword = 'password123'; // In source code
 ```
 
 #### ✅ 始终这样做
@@ -46,7 +46,7 @@ const dbUrl = process.env.DATABASE_URL;
 
 // Verify secrets exist
 if (!apiKey) {
-  throw new Error("OPENAI_API_KEY not configured");
+  throw new Error('OPENAI_API_KEY not configured');
 }
 ```
 
@@ -63,7 +63,7 @@ if (!apiKey) {
 #### 始终验证用户输入
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 // Define validation schema
 const CreateUserSchema = z.object({
@@ -93,20 +93,20 @@ function validateFileUpload(file: File) {
   // Size check (5MB max)
   const maxSize = 5 * 1024 * 1024;
   if (file.size > maxSize) {
-    throw new Error("File too large (max 5MB)");
+    throw new Error('File too large (max 5MB)');
   }
 
   // Type check
-  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
   if (!allowedTypes.includes(file.type)) {
-    throw new Error("Invalid file type");
+    throw new Error('Invalid file type');
   }
 
   // Extension check
-  const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+  const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
   const extension = file.name.toLowerCase().match(/\.[^.]+$/)?.[0];
   if (!extension || !allowedExtensions.includes(extension)) {
-    throw new Error("Invalid file extension");
+    throw new Error('Invalid file extension');
   }
 
   return true;
@@ -135,13 +135,10 @@ await db.query(query);
 
 ```typescript
 // Safe - parameterized query
-const { data } = await supabase
-  .from("users")
-  .select("*")
-  .eq("email", userEmail);
+const { data } = await supabase.from('users').select('*').eq('email', userEmail);
 
 // Or with raw SQL
-await db.query("SELECT * FROM users WHERE email = $1", [userEmail]);
+await db.query('SELECT * FROM users WHERE email = $1', [userEmail]);
 ```
 
 #### 验证步骤
@@ -157,13 +154,10 @@ await db.query("SELECT * FROM users WHERE email = $1", [userEmail]);
 
 ```typescript
 // ❌ WRONG: localStorage (vulnerable to XSS)
-localStorage.setItem("token", token);
+localStorage.setItem('token', token);
 
 // ✅ CORRECT: httpOnly cookies
-res.setHeader(
-  "Set-Cookie",
-  `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`,
-);
+res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
 ```
 
 #### 授权检查
@@ -175,8 +169,8 @@ export async function deleteUser(userId: string, requesterId: string) {
     where: { id: requesterId },
   });
 
-  if (requester.role !== "admin") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+  if (requester.role !== 'admin') {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 
   // Proceed with deletion
@@ -232,7 +226,7 @@ function renderUserContent(html: string) {
 // next.config.js
 const securityHeaders = [
   {
-    key: "Content-Security-Policy",
+    key: 'Content-Security-Policy',
     value: `
       default-src 'self';
       script-src 'self' 'unsafe-eval' 'unsafe-inline';
@@ -241,7 +235,7 @@ const securityHeaders = [
       font-src 'self';
       connect-src 'self' https://api.example.com;
     `
-      .replace(/\s{2,}/g, " ")
+      .replace(/\s{2,}/g, ' ')
       .trim(),
   },
 ];
@@ -259,13 +253,13 @@ const securityHeaders = [
 #### CSRF 令牌
 
 ```typescript
-import { csrf } from "@/lib/csrf";
+import { csrf } from '@/lib/csrf';
 
 export async function POST(request: Request) {
-  const token = request.headers.get("X-CSRF-Token");
+  const token = request.headers.get('X-CSRF-Token');
 
   if (!csrf.verify(token)) {
-    return NextResponse.json({ error: "Invalid CSRF token" }, { status: 403 });
+    return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
   }
 
   // Process request
@@ -275,10 +269,7 @@ export async function POST(request: Request) {
 #### SameSite Cookie
 
 ```typescript
-res.setHeader(
-  "Set-Cookie",
-  `session=${sessionId}; HttpOnly; Secure; SameSite=Strict`,
-);
+res.setHeader('Set-Cookie', `session=${sessionId}; HttpOnly; Secure; SameSite=Strict`);
 ```
 
 #### 验证步骤
@@ -292,16 +283,16 @@ res.setHeader(
 #### API 速率限制
 
 ```typescript
-import rateLimit from "express-rate-limit";
+import rateLimit from 'express-rate-limit';
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // 100 requests per window
-  message: "Too many requests",
+  message: 'Too many requests',
 });
 
 // Apply to routes
-app.use("/api/", limiter);
+app.use('/api/', limiter);
 ```
 
 #### 昂贵操作
@@ -311,10 +302,10 @@ app.use("/api/", limiter);
 const searchLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 10, // 10 requests per minute
-  message: "Too many search requests",
+  message: 'Too many search requests',
 });
 
-app.use("/api/search", searchLimiter);
+app.use('/api/search', searchLimiter);
 ```
 
 #### 验证步骤
@@ -330,12 +321,12 @@ app.use("/api/search", searchLimiter);
 
 ```typescript
 // ❌ WRONG: Logging sensitive data
-console.log("User login:", { email, password });
-console.log("Payment:", { cardNumber, cvv });
+console.log('User login:', { email, password });
+console.log('Payment:', { cardNumber, cvv });
 
 // ✅ CORRECT: Redact sensitive data
-console.log("User login:", { email, userId });
-console.log("Payment:", { last4: card.last4, userId });
+console.log('User login:', { email, userId });
+console.log('Payment:', { last4: card.last4, userId });
 ```
 
 #### 错误消息
@@ -371,18 +362,14 @@ catch (error) {
 #### 钱包验证
 
 ```typescript
-import { verify } from "@solana/web3.js";
+import { verify } from '@solana/web3.js';
 
-async function verifyWalletOwnership(
-  publicKey: string,
-  signature: string,
-  message: string,
-) {
+async function verifyWalletOwnership(publicKey: string, signature: string, message: string) {
   try {
     const isValid = verify(
       Buffer.from(message),
-      Buffer.from(signature, "base64"),
-      Buffer.from(publicKey, "base64"),
+      Buffer.from(signature, 'base64'),
+      Buffer.from(publicKey, 'base64')
     );
     return isValid;
   } catch (error) {
@@ -397,18 +384,18 @@ async function verifyWalletOwnership(
 async function verifyTransaction(transaction: Transaction) {
   // Verify recipient
   if (transaction.to !== expectedRecipient) {
-    throw new Error("Invalid recipient");
+    throw new Error('Invalid recipient');
   }
 
   // Verify amount
   if (transaction.amount > maxAmount) {
-    throw new Error("Amount exceeds limit");
+    throw new Error('Amount exceeds limit');
   }
 
   // Verify user has sufficient balance
   const balance = await getBalance(transaction.from);
   if (balance < transaction.amount) {
-    throw new Error("Insufficient balance");
+    throw new Error('Insufficient balance');
   }
 
   return true;
@@ -464,33 +451,33 @@ npm ci  # Instead of npm install
 
 ```typescript
 // Test authentication
-test("requires authentication", async () => {
-  const response = await fetch("/api/protected");
+test('requires authentication', async () => {
+  const response = await fetch('/api/protected');
   expect(response.status).toBe(401);
 });
 
 // Test authorization
-test("requires admin role", async () => {
-  const response = await fetch("/api/admin", {
+test('requires admin role', async () => {
+  const response = await fetch('/api/admin', {
     headers: { Authorization: `Bearer ${userToken}` },
   });
   expect(response.status).toBe(403);
 });
 
 // Test input validation
-test("rejects invalid input", async () => {
-  const response = await fetch("/api/users", {
-    method: "POST",
-    body: JSON.stringify({ email: "not-an-email" }),
+test('rejects invalid input', async () => {
+  const response = await fetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify({ email: 'not-an-email' }),
   });
   expect(response.status).toBe(400);
 });
 
 // Test rate limiting
-test("enforces rate limits", async () => {
+test('enforces rate limits', async () => {
   const requests = Array(101)
     .fill(null)
-    .map(() => fetch("/api/endpoint"));
+    .map(() => fetch('/api/endpoint'));
 
   const responses = await Promise.all(requests);
   const tooManyRequests = responses.filter((r) => r.status === 429);

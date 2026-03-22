@@ -17,21 +17,21 @@ description: 数据验证模式 - 输入验证、类型安全、错误处理最�
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Zod | 3.0+ | 最新 |
-| Joi | 17.0+ | 最新 |
-| Yup | 1.0+ | 最新 |
-| class-validator | 0.14+ | 最新 |
+| 技术            | 最低版本 | 推荐版本 |
+| --------------- | -------- | -------- |
+| Zod             | 3.0+     | 最新     |
+| Joi             | 17.0+    | 最新     |
+| Yup             | 1.0+     | 最新     |
+| class-validator | 0.14+    | 最新     |
 
 ## 验证库对比
 
-| 库 | 特点 | 适用场景 |
-|------|------|----------|
-| Zod | TypeScript 优先、类型推断 | 现代 TS 项目 |
-| Joi | 功能丰富、生态成熟 | Node.js 项目 |
-| Yup | 前端友好、异步验证 | React 表单 |
-| class-validator | 装饰器风格 | NestJS/TypeORM |
+| 库              | 特点                      | 适用场景       |
+| --------------- | ------------------------- | -------------- |
+| Zod             | TypeScript 优先、类型推断 | 现代 TS 项目   |
+| Joi             | 功能丰富、生态成熟        | Node.js 项目   |
+| Yup             | 前端友好、异步验证        | React 表单     |
+| class-validator | 装饰器风格                | NestJS/TypeORM |
 
 ## Zod 验证
 
@@ -42,7 +42,8 @@ import { z } from 'zod';
 
 const UserSchema = z.object({
   email: z.string().email('Invalid email format'),
-  password: z.string()
+  password: z
+    .string()
     .min(8, 'Password must be at least 8 characters')
     .regex(/[A-Z]/, 'Must contain uppercase letter')
     .regex(/[0-9]/, 'Must contain number'),
@@ -58,41 +59,33 @@ type User = z.infer<typeof UserSchema>;
 ### 自定义验证
 
 ```typescript
-const PasswordSchema = z.string()
+const PasswordSchema = z
+  .string()
   .min(8)
-  .refine(
-    (val) => /[A-Z]/.test(val),
-    { message: 'Must contain uppercase letter' }
-  )
-  .refine(
-    (val) => /[a-z]/.test(val),
-    { message: 'Must contain lowercase letter' }
-  )
-  .refine(
-    (val) => /[0-9]/.test(val),
-    { message: 'Must contain number' }
-  )
-  .refine(
-    (val) => /[!@#$%^&*]/.test(val),
-    { message: 'Must contain special character' }
-  );
+  .refine((val) => /[A-Z]/.test(val), { message: 'Must contain uppercase letter' })
+  .refine((val) => /[a-z]/.test(val), { message: 'Must contain lowercase letter' })
+  .refine((val) => /[0-9]/.test(val), { message: 'Must contain number' })
+  .refine((val) => /[!@#$%^&*]/.test(val), { message: 'Must contain special character' });
 
-const DateSchema = z.string().refine(
-  (val) => !isNaN(Date.parse(val)),
-  { message: 'Invalid date format' }
-).transform((val) => new Date(val));
+const DateSchema = z
+  .string()
+  .refine((val) => !isNaN(Date.parse(val)), { message: 'Invalid date format' })
+  .transform((val) => new Date(val));
 ```
 
 ### 异步验证
 
 ```typescript
-const EmailSchema = z.string().email().refine(
-  async (email) => {
-    const exists = await checkEmailExists(email);
-    return !exists;
-  },
-  { message: 'Email already registered' }
-);
+const EmailSchema = z
+  .string()
+  .email()
+  .refine(
+    async (email) => {
+      const exists = await checkEmailExists(email);
+      return !exists;
+    },
+    { message: 'Email already registered' }
+  );
 
 async function validateAsync<T>(schema: z.ZodSchema<T>, data: unknown): Promise<T> {
   return schema.parseAsync(data);
@@ -119,9 +112,11 @@ const EmployeeSchema = PersonSchema.extend({
   department: z.string(),
 });
 
-const MergeSchema = z.object({
-  id: z.string(),
-}).merge(UserSchema);
+const MergeSchema = z
+  .object({
+    id: z.string(),
+  })
+  .merge(UserSchema);
 ```
 
 ## Express 中间件
@@ -132,19 +127,19 @@ import { Request, Response, NextFunction } from 'express';
 function validateBody<T>(schema: z.ZodSchema<T>) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
-    
+
     if (!result.success) {
       const errors = result.error.issues.map((issue) => ({
         path: issue.path.join('.'),
         message: issue.message,
       }));
-      
+
       return res.status(400).json({
         error: 'Validation failed',
         details: errors,
       });
     }
-    
+
     req.body = result.data;
     next();
   };
@@ -153,26 +148,23 @@ function validateBody<T>(schema: z.ZodSchema<T>) {
 function validateQuery<T>(schema: z.ZodSchema<T>) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.query);
-    
+
     if (!result.success) {
       return res.status(400).json({
         error: 'Invalid query parameters',
         details: result.error.issues,
       });
     }
-    
+
     req.query = result.data as any;
     next();
   };
 }
 
-app.post('/users', 
-  validateBody(UserSchema),
-  async (req: Request, res: Response) => {
-    const user = await createUser(req.body);
-    res.json(user);
-  }
-);
+app.post('/users', validateBody(UserSchema), async (req: Request, res: Response) => {
+  const user = await createUser(req.body);
+  res.json(user);
+});
 ```
 
 ## NestJS 验证
@@ -204,14 +196,14 @@ async create(@Body() createUserDto: CreateUserDto) {
 
 ## 验证规则分类
 
-| 类别 | 验证项 | 示例 |
-|------|--------|------|
-| 格式 | Email, URL, UUID | `z.string().email()` |
-| 长度 | Min, Max | `z.string().min(2).max(100)` |
+| 类别 | 验证项               | 示例                          |
+| ---- | -------------------- | ----------------------------- |
+| 格式 | Email, URL, UUID     | `z.string().email()`          |
+| 长度 | Min, Max             | `z.string().min(2).max(100)`  |
 | 数值 | Int, Positive, Range | `z.number().int().positive()` |
-| 枚举 | Enum | `z.enum(['a', 'b'])` |
-| 日期 | Date, DateTime | `z.date()` |
-| 嵌套 | Object, Array | `z.object({}).array()` |
+| 枚举 | Enum                 | `z.enum(['a', 'b'])`          |
+| 日期 | Date, DateTime       | `z.date()`                    |
+| 嵌套 | Object, Array        | `z.object({}).array()`        |
 
 ## 错误消息定制
 
@@ -222,11 +214,11 @@ const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
       return { message: 'Expected string, received ' + issue.received };
     }
   }
-  
+
   if (issue.code === z.ZodIssueCode.too_small) {
     return { message: `Minimum length is ${issue.minimum}` };
   }
-  
+
   return { message: ctx.defaultError };
 };
 
@@ -238,7 +230,10 @@ z.setErrorMap(customErrorMap);
 ```typescript
 const schema = z.object({
   id: z.string().transform((val) => parseInt(val, 10)),
-  email: z.string().email().transform((val) => val.toLowerCase()),
+  email: z
+    .string()
+    .email()
+    .transform((val) => val.toLowerCase()),
   tags: z.string().transform((val) => val.split(',').map((s) => s.trim())),
   createdAt: z.string().transform((val) => new Date(val)),
 });
@@ -255,28 +250,28 @@ const result = schema.parse({
 
 ```typescript
 // 基础类型
-z.string().min(1).max(100)
-z.number().int().positive()
-z.boolean()
-z.date()
-z.null()
-z.undefined()
-z.nullable(z.string())
-z.optional(z.string())
+z.string().min(1).max(100);
+z.number().int().positive();
+z.boolean();
+z.date();
+z.null();
+z.undefined();
+z.nullable(z.string());
+z.optional(z.string());
 
 // 复杂类型
-z.object({ name: z.string() })
-z.array(z.string()).min(1).max(10)
-z.record(z.string(), z.number())
-z.tuple([z.string(), z.number()])
+z.object({ name: z.string() });
+z.array(z.string()).min(1).max(10);
+z.record(z.string(), z.number());
+z.tuple([z.string(), z.number()]);
 
 // 验证
-schema.parse(data)           // 抛出错误
-schema.safeParse(data)       // 返回结果
-schema.parseAsync(data)      // 异步验证
+schema.parse(data); // 抛出错误
+schema.safeParse(data); // 返回结果
+schema.parseAsync(data); // 异步验证
 
 // 类型推断
-type User = z.infer<typeof UserSchema>
+type User = z.infer<typeof UserSchema>;
 ```
 
 ## 参考

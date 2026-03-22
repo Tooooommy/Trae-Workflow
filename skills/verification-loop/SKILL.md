@@ -1,6 +1,6 @@
 ---
 name: verification-loop
-description: "Trade 会话的全面验证系统。"
+description: 'Trade 会话的全面验证系统。'
 ---
 
 # 验证循环技能

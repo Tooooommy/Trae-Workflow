@@ -16,13 +16,13 @@ description: Kotlin 惯用模式、协程安全、空安全和性能优化。适
 
 ## 技术栈版本
 
-| 技术 | 最低版本 | 推荐版本 |
-|------|---------|---------|
-| Kotlin | 1.9+ | 2.0+ |
-| Coroutines | 1.7+ | 最新 |
-| Spring Boot | 3.2+ | 3.3+ |
-| Gradle | 8.5+ | 最新 |
-| ktlint | 1.0+ | 最新 |
+| 技术        | 最低版本 | 推荐版本 |
+| ----------- | -------- | -------- |
+| Kotlin      | 1.9+     | 2.0+     |
+| Coroutines  | 1.7+     | 最新     |
+| Spring Boot | 3.2+     | 3.3+     |
+| Gradle      | 8.5+     | 最新     |
+| ktlint      | 1.0+     | 最新     |
 
 ## 核心原则
 
@@ -175,7 +175,7 @@ user.also { logCreation(it) }
 suspend fun fetchAllData(): List<Data> = coroutineScope {
     val deferred1 = async { fetchFromSource1() }
     val deferred2 = async { fetchFromSource2() }
-    
+
     listOf(
         deferred1.await(),
         deferred2.await()
@@ -186,7 +186,7 @@ suspend fun fetchAllData(): List<Data> = coroutineScope {
 class MyService : CoroutineScope {
     private val job = SupervisorJob()
     override val coroutineContext = Dispatchers.Default + job
-    
+
     fun cleanup() {
         job.cancel()
     }
@@ -237,7 +237,7 @@ users
 class ViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(UiState.Loading)
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
-    
+
     fun loadData() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
@@ -285,7 +285,7 @@ import arrow.core.Either
 import arrow.core.left
 import arrow.core.right
 
-suspend fun fetchUser(id: String): Either<ApiError, User> = 
+suspend fun fetchUser(id: String): Either<ApiError, User> =
     try {
         api.getUser(id).right()
     } catch (e: NotFoundException) {
@@ -319,7 +319,7 @@ class UserController(
             ?: return ResponseEntity.notFound().build()
         return ResponseEntity.ok(user.toResponse())
     }
-    
+
     @PostMapping
     suspend fun createUser(
         @Valid @RequestBody request: CreateUserRequest
@@ -351,7 +351,7 @@ class UserService(
         emailService.sendWelcomeEmail(saved)
         return saved
     }
-    
+
     private fun validateRequest(request: CreateUserRequest) {
         require(request.name.isNotBlank()) { "Name cannot be blank" }
         require(request.email.contains("@")) { "Invalid email format" }
@@ -364,12 +364,12 @@ class UserService(
 ```kotlin
 @Configuration
 class AppConfig {
-    
+
     @Bean
     fun objectMapper(): ObjectMapper = ObjectMapper()
         .registerModule(JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-    
+
     @Bean
     fun webClient(builder: WebClient.Builder): WebClient =
         builder
@@ -387,17 +387,17 @@ class UserServiceTest {
     private val userRepository = mockk<UserRepository>()
     private val emailService = mockk<EmailService>(relaxed = true)
     private val service = UserService(userRepository, emailService)
-    
+
     @Test
     fun `should create user`() = runTest {
         // Given
         val request = CreateUserRequest("Alice", "alice@example.com")
         val expected = User("1", "Alice", "alice@example.com")
         coEvery { userRepository.save(any()) } returns expected
-        
+
         // When
         val result = service.create(request)
-        
+
         // Then
         assertEquals(expected, result)
         coVerify { emailService.sendWelcomeEmail(expected) }
@@ -410,13 +410,13 @@ class UserServiceTest {
 ```kotlin
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserControllerIntegrationTest {
-    
+
     @Autowired
     private lateinit var webTestClient: WebTestClient
-    
+
     @MockBean
     private lateinit var emailService: EmailService
-    
+
     @Test
     fun `should create user`() {
         webTestClient.post()
@@ -495,14 +495,14 @@ tasks.withType<Test> {
 
 ## 快速参考
 
-| 惯用法 | 描述 |
-|--------|------|
+| 惯用法   | 描述               |
+| -------- | ------------------ |
 | val 优先 | 优先使用不可变变量 |
-| 数据类 | 简洁的数据载体 |
-| 密封类 | 有限状态集 |
-| 扩展函数 | 为类型添加功能 |
-| 协程 | 异步编程 |
-| Flow | 响应式流 |
-| when | 强大的模式匹配 |
+| 数据类   | 简洁的数据载体     |
+| 密封类   | 有限状态集         |
+| 扩展函数 | 为类型添加功能     |
+| 协程     | 异步编程           |
+| Flow     | 响应式流           |
+| when     | 强大的模式匹配     |
 
 **记住**：Kotlin 的目标是让代码更简洁、更安全。利用语言特性减少样板代码，但不要过度使用技巧性语法。

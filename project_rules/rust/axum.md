@@ -1,8 +1,8 @@
 ---
 alwaysApply: false
 globs:
-  - "**/Cargo.toml"
-  - "**/main.rs"
+  - '**/Cargo.toml'
+  - '**/main.rs'
 ---
 
 # Axum 项目规范与指南
@@ -11,8 +11,8 @@ globs:
 
 ## 项目总览
 
-* 技术栈: Rust 1.75+, Axum 0.7, Tower, SQLx, PostgreSQL
-* 架构: Handler-Service-Repository 三层架构
+- 技术栈: Rust 1.75+, Axum 0.7, Tower, SQLx, PostgreSQL
+- 架构: Handler-Service-Repository 三层架构
 
 ## 关键规则
 
