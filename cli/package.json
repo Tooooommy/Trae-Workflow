@@ -18,12 +18,9 @@
   "author": "Trae Workflow",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.0",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
-    "ora": "^5.4.1",
     "fs-extra": "^11.2.0",
-    "tar": "^6.2.0",
     "adm-zip": "^0.5.10"
   },
   "engines": {

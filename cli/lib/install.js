@@ -1,14 +1,9 @@
-const axios = require('axios');
 const fs = require('fs-extra');
 const path = require('path');
-const tar = require('tar');
-const https = require('https');
 const { execSync, spawnSync } = require('child_process');
 const chalk = require('chalk');
-const ora = require('ora');
 const os = require('os');
 
-const GITHUB_API_BASE = 'https://api.github.com';
 const DEFAULT_REPO = 'Tooooommy/Trae-Workflow';
 const TRAECONFIG_DIR = path.join(os.homedir(), '.trae-cn');
 
@@ -25,10 +20,6 @@ function log(message, level = 'info') {
   console.log(COLORS[level](message));
 }
 
-function getSpinner(text) {
-  return ora({ text, color: 'cyan' });
-}
-
 function getPlatform() {
   const platform = os.platform();
   if (platform === 'win32') return 'windows';
@@ -39,118 +30,6 @@ function getPlatform() {
 
 function isWindows() {
   return os.platform() === 'win32';
-}
-
-async function downloadFile(url, dest) {
-  const destDir = path.dirname(dest);
-  await fs.ensureDir(destDir);
-
-  return new Promise((resolve, reject) => {
-    const request = https.get(url, (response) => {
-      if (response.statusCode === 302 || response.statusCode === 301) {
-        const redirectUrl = response.headers.location;
-        if (redirectUrl) {
-          https.get(redirectUrl, (res) => {
-            if (res.statusCode !== 200) {
-              reject(new Error(`Redirect failed: HTTP ${res.statusCode}`));
-              return;
-            }
-            const file = fs.createWriteStream(dest);
-            res.pipe(file);
-            file.on('finish', () => {
-              file.close();
-              resolve();
-            });
-            file.on('error', reject);
-          }).on('error', reject);
-          return;
-        }
-      }
-
-      if (response.statusCode !== 200) {
-        reject(new Error(`HTTP ${response.statusCode}`));
-        return;
-      }
-
-      const file = fs.createWriteStream(dest);
-      response.pipe(file);
-      file.on('finish', () => {
-        file.close();
-        resolve();
-      });
-      file.on('error', reject);
-    });
-    request.on('error', reject);
-  });
-}
-
-async function getLatestRelease(repo) {
-  const spinner = getSpinner('Fetching latest release...');
-  spinner.start();
-
-  try {
-    const response = await axios.get(`${GITHUB_API_BASE}/repos/${repo}/releases/latest`);
-    spinner.stop();
-    return response.data;
-  } catch (error) {
-    spinner.stop();
-
-    if (error.response && error.response.status === 403) {
-      const token = process.env.GITHUB_TOKEN || process.env.GITHUB_PAT;
-      if (token) {
-        const responseWithAuth = await axios.get(`${GITHUB_API_BASE}/repos/${repo}/releases/latest`, {
-          headers: { Authorization: `token ${token}` }
-        });
-        return responseWithAuth.data;
-      }
-      throw new Error('GitHub API rate limit exceeded. Please set GITHUB_TOKEN or GITHUB_PAT environment variable, or try again later.');
-    }
-
-    throw new Error(`Failed to fetch release: ${error.message}`);
-  }
-}
-
-async function downloadRelease(repo, version, dest) {
-  const spinner = getSpinner(`Downloading ${repo} ${version}...`);
-  spinner.start();
-
-  try {
-    const release = await getLatestRelease(repo);
-    const tarballUrl = release.tarball_url;
-    const tarballPath = path.join(dest, `${repo.replace('/', '-')}-${version}.tar.gz`);
-
-    await downloadFile(tarballUrl, tarballPath);
-
-    spinner.stop();
-    log(`Downloaded ${repo} ${version}`, 'success');
-
-    return tarballPath;
-  } catch (error) {
-    spinner.stop();
-    throw error;
-  }
-}
-
-async function extractTarball(tarballPath, dest) {
-  const spinner = getSpinner('Extracting files...');
-  spinner.start();
-
-  try {
-    await fs.ensureDir(dest);
-    await tar.x({
-      file: tarballPath,
-      cwd: dest,
-      strip: 1,
-    });
-
-    await fs.remove(tarballPath);
-
-    spinner.stop();
-    log('Extracted successfully', 'success');
-  } catch (error) {
-    spinner.stop();
-    throw new Error(`Failed to extract: ${error.message}`);
-  }
 }
 
 function buildSetupArgs(options) {
@@ -309,6 +188,7 @@ async function install(repo, options) {
 
   const targetRepo = repo || DEFAULT_REPO;
   const tempDir = path.join(__dirname, '..', '.temp');
+  const repoSourceDir = path.join(TRAECONFIG_DIR, '.repo');
 
   try {
     log(`Installing Trae Workflow from ${targetRepo}`, 'info');
@@ -331,12 +211,18 @@ async function install(repo, options) {
 
     log('Repository cloned successfully', 'success');
 
-    await runSetupScript(clonePath, options);
+    if (fs.existsSync(repoSourceDir)) {
+      await fs.remove(repoSourceDir);
+    }
+    await fs.move(clonePath, repoSourceDir);
+
+    await runSetupScript(repoSourceDir, options);
 
     await fs.remove(tempDir);
 
     log('Installation completed!', 'success');
     log(`Config location: ${TRAECONFIG_DIR}`, 'gray');
+    log(`Source repository: ${repoSourceDir}`, 'gray');
   } catch (error) {
     log(`Installation failed: ${error.message}`, 'error');
     process.exit(1);
