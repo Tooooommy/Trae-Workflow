@@ -425,3 +425,14 @@ journalctl -u app -f
 | 功能规划 | `planner`           |
 | 代码审查 | `reviewer`          |
 | 安全审查 | `security-reviewer` |
+
+## 相关技能
+
+| 技能                  | 用途                   |
+| --------------------- | ---------------------- |
+| ci-cd-patterns        | CI/CD 流水线模式       |
+| docker-patterns        | Docker 容器化、多服务编排 |
+| git-workflow           | Git 分支策略、提交规范   |
+| deployment-patterns    | 部署工作流、健康检查     |
+| kubernetes-patterns    | Kubernetes 部署模式       |
+| logging-observability | 日志、指标、追踪         |

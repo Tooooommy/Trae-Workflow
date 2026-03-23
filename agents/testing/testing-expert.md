@@ -26,15 +26,15 @@ builtin_tools:
 
 ## 支持的测试框架
 
-| 语言       | 单元测试            | E2E 测试          | 断言库            |
-| ---------- | ------------------- | ----------------- | ----------------- |
-| TypeScript | Jest, Vitest        | Playwright, Cypress | Jest, Chai      |
-| Python     | pytest, unittest    | Playwright, Selenium | pytest, assert  |
-| Go         | testing, testify    | Playwright-go     | testify           |
-| Rust       | #[test], cargo test |                   | assert!           |
-| Swift      | XCTest              | XCUITest          | XCTest            |
+| 语言       | 单元测试            | E2E 测试             | 断言库         |
+| ---------- | ------------------- | -------------------- | -------------- |
+| TypeScript | Jest, Vitest        | Playwright, Cypress  | Jest, Chai     |
+| Python     | pytest, unittest    | Playwright, Selenium | pytest, assert |
+| Go         | testing, testify    | Playwright-go        | testify        |
+| Rust       | #[test], cargo test |                      | assert!        |
+| Swift      | XCTest              | XCUITest             | XCTest         |
 | Java       | JUnit, TestNG       | Selenium, Playwright | AssertJ        |
-| Kotlin     | JUnit, Kotest       |                   | Kotest            |
+| Kotlin     | JUnit, Kotest       |                      | Kotest         |
 
 ## TDD 工作流
 
@@ -117,9 +117,9 @@ describe('UserService', () => {
     });
 
     it('should throw error for invalid email', async () => {
-      await expect(
-        userService.createUser({ name: 'John', email: 'invalid' })
-      ).rejects.toThrow('Invalid email');
+      await expect(userService.createUser({ name: 'John', email: 'invalid' })).rejects.toThrow(
+        'Invalid email'
+      );
     });
   });
 });
@@ -333,23 +333,27 @@ jobs:
 ## Test & Quality Report
 
 ### Unit Tests
+
 - Total: 42
 - Passed: 40
 - Failed: 2
 - Coverage: 85%
 
 ### E2E Tests
+
 - Total: 10
 - Passed: 10
 - Failed: 0
 
 ### Code Quality
-| File | Issue | Severity |
-| ---- | ----- | -------- |
-| utils.ts | unused export | Low |
-| api.ts | high complexity | Medium |
+
+| File     | Issue           | Severity |
+| -------- | --------------- | -------- |
+| utils.ts | unused export   | Low      |
+| api.ts   | high complexity | Medium   |
 
 ### Recommendations
+
 1. Add test for edge case X
 2. Extract `processOrder` into smaller functions
 3. Remove unused exports from utils.ts
@@ -357,8 +361,17 @@ jobs:
 
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| 代码实现       | 语言特定开发智能体 |
-| 安全审查       | `security-reviewer` |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 代码实现 | 语言特定开发智能体  |
+| 安全审查 | `security-reviewer` |
+
+## 相关技能
+
+| 技能           | 用途                |
+| -------------- | ------------------- |
+| tdd-workflow   | 测试驱动开发工作流  |
+| e2e-testing    | Playwright E2E 测试 |
+| python-testing | Python pytest 测试  |
+| golang-testing | Go 表格驱动测试     |

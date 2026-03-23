@@ -406,3 +406,11 @@ GET /api/v1/users
 | 功能规划       | `planner`         |
 | API 设计       | `backend-expert`  |
 | 代码实现       | 语言特定开发智能体 |
+
+## 相关技能
+
+| 技能              | 用途                   |
+| ----------------- | ---------------------- |
+| api-design        | REST API 设计模式       |
+| backend-patterns  | 后端架构模式、API 设计  |
+| frontend-patterns | 前端开发模式           |
