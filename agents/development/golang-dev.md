@@ -1,5 +1,5 @@
 ---
-name: go-dev
+name: golang-dev
 description: Go 开发专家。负责代码审查、构建修复、并发安全、最佳实践。在 Go 项目中使用。
 mcp_servers:
   - memory
@@ -81,13 +81,13 @@ func fetchUser(ctx context.Context, id string) (*User, error) {
 
 ## 协作说明
 
-| 任务     | 委托目标            |
-| -------- | ------------------- |
-| 功能规划 | `planner`           |
-| 架构设计 | `architect`         |
-| 测试策略 | `testing-expert`    |
-| 安全审查 | `security-reviewer` |
-| DevOps   | `devops-expert`     |
+| 任务       | 委托目标            |
+| ---------- | ------------------- |
+| 功能规划   | `planner`           |
+| 架构设计   | `architect`         |
+| 测试策略   | `testing-expert`    |
+| 安全审查   | `security-reviewer` |
+| DevOps     | `devops-expert`     |
 
 ## 相关技能
 
@@ -95,4 +95,8 @@ func fetchUser(ctx context.Context, id string) (*User, error) {
 | --------------- | ---------- |
 | golang-patterns | Go 模式    |
 | golang-testing  | Go 测试    |
-| tdd-workflow    | TDD 工作流 |
+| tdd-workflow   | TDD 工作流 |
+
+## 相关规则目录
+
+- `project_rules/golang/` - Go 特定规则

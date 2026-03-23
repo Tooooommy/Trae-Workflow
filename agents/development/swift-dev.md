@@ -94,3 +94,7 @@ func fetchUser(id: String) async throws -> User {
 | swiftui-patterns| SwiftUI 模式 |
 | ios-native-patterns| iOS 原生模式 |
 | tdd-workflow    | TDD 工作流   |
+
+## 相关规则目录
+
+- `project_rules/swift/` - Swift/iOS 特定规则

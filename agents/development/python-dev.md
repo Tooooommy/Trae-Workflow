@@ -97,4 +97,8 @@ class User:
 | --------------- | ------------ |
 | python-patterns | Python 模式  |
 | python-testing  | Python 测试  |
-| tdd-workflow    | TDD 工作流   |
+| tdd-workflow   | TDD 工作流   |
+
+## 相关规则目录
+
+- `project_rules/python/` - Python 特定规则

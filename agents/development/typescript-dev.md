@@ -111,3 +111,7 @@ async function fetchUser(id: string): Promise<User> {
 | react-modern-stack    | React 现代栈   |
 | frontend-patterns     | 前端模式       |
 | tdd-workflow          | TDD 工作流     |
+
+## 相关规则目录
+
+- `project_rules/typescript/` - TypeScript/JavaScript 特定规则

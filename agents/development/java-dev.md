@@ -88,3 +88,8 @@ suspend fun fetchUser(id: String): User {
 | java-patterns | Java 模式    |
 | kotlin-patterns| Kotlin 模式 |
 | tdd-workflow  | TDD 工作流   |
+
+## 相关规则目录
+
+- `project_rules/java/` - Java 特定规则
+- `project_rules/kotlin/` - Kotlin 特定规则

@@ -94,3 +94,7 @@ fn sum_even(numbers: &[i32]) -> i32 {
 | ------------ | ---------- |
 | rust-patterns| Rust 模式  |
 | tdd-workflow | TDD 工作流 |
+
+## 相关规则目录
+
+- `project_rules/rust/` - Rust 特定规则
