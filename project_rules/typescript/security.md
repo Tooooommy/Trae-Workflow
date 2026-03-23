@@ -9,7 +9,7 @@ globs:
 
 # TypeScript/JavaScript 安全
 
-> 本文档扩展了 [common/security.md](../common/security.md)，包含了 TypeScript/JavaScript 特定的内容。
+> TypeScript/JavaScript 语言特定的安全最佳实践。
 
 ## 密钥管理
 
@@ -25,6 +25,26 @@ if (!apiKey) {
 }
 ```
 
-## 代理支持
+## 输入验证
 
-- 使用 **security-reviewer** 技能进行全面的安全审计
+使用 Zod 进行输入验证：
+
+```typescript
+import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+const validated = schema.parse(input);
+```
+
+## 相关智能体
+
+- `security-reviewer` - 安全漏洞检测
+
+## 相关技能
+
+- `security-review` - 安全检查清单
+- `validation-patterns` - 数据验证模式

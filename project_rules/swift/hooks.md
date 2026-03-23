@@ -7,7 +7,7 @@ globs:
 
 # Swift 钩子
 
-> 此文件扩展了 [common/hooks.md](../common/hooks.md) 的内容，添加了 Swift 特定内容。
+> Swift 特定的钩子配置。
 
 ## PostToolUse 钩子
 
@@ -18,3 +18,11 @@ globs:
 ## 警告
 
 标记 `print()` 语句 — 在生产代码中请改用 `os.Logger` 或结构化日志记录。
+
+## 相关智能体
+
+- `devops-expert` - CI/CD 和工具配置
+
+## 相关技能
+
+- `ci-cd-patterns` - CI/CD 流水线模式

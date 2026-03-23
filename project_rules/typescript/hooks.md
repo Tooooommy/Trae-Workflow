@@ -9,7 +9,7 @@ globs:
 
 # TypeScript/JavaScript 钩子
 
-> 此文件扩展了 [common/hooks.md](../common/hooks.md)，并添加了 TypeScript/JavaScript 特有的内容。
+> TypeScript/JavaScript 特定的钩子配置。
 
 ## PostToolUse 钩子
 
@@ -20,3 +20,11 @@ globs:
 ## Stop 钩子
 
 - **console.log 审计**：在会话结束前，检查所有修改过的文件中是否存在 `console.log`
+
+## 相关智能体
+
+- `devops-expert` - CI/CD 和工具配置
+
+## 相关技能
+
+- `ci-cd-patterns` - CI/CD 流水线模式

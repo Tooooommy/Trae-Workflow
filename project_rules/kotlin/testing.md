@@ -28,12 +28,6 @@ class UserServiceTest : DescribeSpec({
                 user.id shouldNotBe null
                 user.email shouldBe "test@example.com"
             }
-
-            it("should throw exception for duplicate email") {
-                shouldThrow<DuplicateEmailException> {
-                    service.create(existingEmailRequest)
-                }
-            }
         }
     }
 })
@@ -50,16 +44,7 @@ class UserRepositoryTest {
     @Test
     fun `should find user by email`() {
         val user = userRepository.findByEmail("test@example.com")
-
         assertTrue(user.isPresent)
-        assertEquals("test@example.com", user.get().email)
-    }
-
-    @Test
-    fun `should return empty for non-existent email`() {
-        val user = userRepository.findByEmail("nonexistent@example.com")
-
-        assertTrue(user.isEmpty)
     }
 }
 ```
@@ -70,3 +55,12 @@ class UserRepositoryTest {
 ./gradlew test                    # 运行测试
 ./gradlew jacocoTestReport        # 生成覆盖率报告
 ```
+
+## 相关智能体
+
+- `testing-expert` - TDD 工作流和测试策略
+
+## 相关技能
+
+- `kotlin-patterns` - Kotlin 模式（包含测试模式）
+- `tdd-workflow` - 测试驱动开发

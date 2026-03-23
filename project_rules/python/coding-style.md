@@ -7,7 +7,7 @@ globs:
 
 # Python 编码风格
 
-> 本文件在 [common/coding-style.md](../common/coding-style.md) 的基础上扩展了 Python 特定的内容。
+> Python 语言特定的编码规范。
 
 ## 标准
 
@@ -25,20 +25,12 @@ from dataclasses import dataclass
 class User:
     name: str
     email: str
-
-from typing import NamedTuple
-
-class Point(NamedTuple):
-    x: float
-    y: float
 ```
 
-## 格式化
+## 相关智能体
 
-- 使用 **black** 进行代码格式化
-- 使用 **isort** 进行导入排序
-- 使用 **ruff** 进行代码检查
+- `code-reviewer` - 代码质量和规范检查
 
-## 参考
+## 相关技能
 
-查看技能：`python-patterns` 以获取全面的 Python 惯用法和模式。
+- `coding-standards` - 通用编码标准

@@ -9,12 +9,39 @@ globs:
 
 # TypeScript/JavaScript 测试
 
-> 本文档基于 [common/testing.md](../common/testing.md) 扩展，补充了 TypeScript/JavaScript 特定的内容。
+> TypeScript/JavaScript 语言特定的测试框架和策略。
 
-## E2E 测试
+## 测试框架
 
-使用 **Playwright** 作为关键用户流程的 E2E 测试框架。
+| 类型     | 推荐框架        |
+| -------- | --------------- |
+| 单元测试 | Vitest          |
+| E2E 测试 | Playwright      |
+| 组件测试 | Testing Library |
 
-## 智能体支持
+## 覆盖率
 
-- **e2e-runner** - Playwright E2E 测试专家
+```bash
+vitest run --coverage
+```
+
+## 测试组织
+
+```typescript
+// __tests__/user.test.ts
+describe('User', () => {
+  it('should create user', () => {
+    const user = createUser({ name: 'Test' });
+    expect(user.name).toBe('Test');
+  });
+});
+```
+
+## 相关智能体
+
+- `testing-expert` - TDD 工作流和测试策略
+
+## 相关技能
+
+- `tdd-workflow` - 测试驱动开发
+- `e2e-testing` - Playwright E2E 测试

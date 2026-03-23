@@ -33,16 +33,13 @@ fn hash_password(password: &str) -> Result<String> {
     let config = Config::default();
     argon2::hash_encoded(password.as_bytes(), &salt, &config)
 }
-
-fn verify_password(hash: &str, password: &str) -> Result<bool> {
-    argon2::verify_encoded(hash, password.as_bytes())
-}
 ```
 
 ## SQL 注入防护
 
+使用参数化查询：
+
 ```rust
-// 使用参数化查询
 sqlx::query_as!(
     User,
     "SELECT * FROM users WHERE email = $1",
@@ -57,3 +54,12 @@ sqlx::query_as!(
 - 使用 `zeroize` 清理敏感数据
 - 使用 `secrecy` 包装敏感类型
 - 避免在日志中输出敏感信息
+
+## 相关智能体
+
+- `security-reviewer` - 安全漏洞检测
+
+## 相关技能
+
+- `security-review` - 安全检查清单
+- `rust-patterns` - Rust 模式（包含安全模式）

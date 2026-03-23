@@ -28,11 +28,9 @@ builtin_tools:
 ```bash
 # 类型检查
 npx tsc --noEmit --pretty
-npx tsc --noEmit --pretty --incremental false
 
 # 代码检查
 npm run lint 2>/dev/null || npx eslint . --ext .ts,.tsx,.js,.jsx
-npx prettier --check .
 
 # 构建测试
 npm run build 2>&1 | head -50
@@ -41,40 +39,6 @@ npm run build 2>&1 | head -50
 npm outdated
 npm audit --audit-level=high
 ```
-
-## 审查清单
-
-### 类型安全 (CRITICAL)
-
-- [ ] 无 `any` 类型（除非明确需要）
-- [ ] 正确的类型注解
-- [ ] 泛型使用得当
-- [ ] 接口 vs 类型选择合理
-
-### 代码质量 (HIGH)
-
-- [ ] 函数 < 50 行
-- [ ] 文件 < 800 行
-- [ ] 嵌套 < 4 层
-- [ ] 使用 const/let，避免 var
-- [ ] 箭头函数使用合理
-- [ ] 解构赋值使用得当
-
-### React 特定 (HIGH)
-
-- [ ] 组件使用 TypeScript
-- [ ] Props 有明确类型
-- [ ] 使用函数组件 + Hooks
-- [ ] useEffect 依赖数组正确
-- [ ] key prop 正确使用
-- [ ] 避免不必要的重渲染
-
-### Node.js 特定 (HIGH)
-
-- [ ] 异步错误处理
-- [ ] 使用 async/await
-- [ ] 错误传递正确
-- [ ] 流处理正确
 
 ## 最佳实践
 
@@ -95,11 +59,6 @@ const user: any = {};
 function identity<T>(arg: T): T {
   return arg;
 }
-
-// ✅ 正确：使用类型守卫
-function isString(value: unknown): value is string {
-  return typeof value === 'string';
-}
 ```
 
 ### React
@@ -114,13 +73,6 @@ interface Props {
 export const Button: React.FC<Props> = ({ title, onClick }) => {
   return <button onClick={onClick}>{title}</button>;
 };
-
-// ✅ 正确：自定义 Hook
-function useCounter(initial: number = 0) {
-  const [count, setCount] = useState(initial);
-  const increment = () => setCount(c => c + 1);
-  return { count, increment };
-}
 ```
 
 ### Node.js
@@ -141,38 +93,21 @@ async function fetchUser(id: string): Promise<User> {
 }
 ```
 
-## 常见问题修复
-
-### 类型错误
-
-```typescript
-// 问题：隐式 any
-function add(a, b) {
-  return a + b;
-}
-
-// 修复：显式类型
-function add(a: number, b: number): number {
-  return a + b;
-}
-```
-
-### Promise 处理
-
-```typescript
-// 问题：未处理 Promise
-fetch('/api/data');
-
-// 修复：await 或 .then()
-await fetch('/api/data');
-```
-
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| 架构设计       | `architect`       |
-| 测试策略       | `tdd-guide`       |
-| 安全审查       | `security-reviewer` |
-| 性能优化       | `performance`      |
+| 任务       | 委托目标            |
+| ---------- | ------------------- |
+| 功能规划   | `planner`           |
+| 架构设计   | `architect`         |
+| 测试策略   | `testing-expert`    |
+| 安全审查   | `security-reviewer` |
+| DevOps     | `devops-expert`     |
+
+## 相关技能
+
+| 技能                  | 用途           |
+| --------------------- | -------------- |
+| coding-standards      | 编码标准       |
+| react-modern-stack    | React 现代栈   |
+| frontend-patterns     | 前端模式       |
+| tdd-workflow          | TDD 工作流     |

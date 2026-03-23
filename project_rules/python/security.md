@@ -7,7 +7,7 @@ globs:
 
 # Python 安全
 
-> 本文档基于 [通用安全指南](../common/security.md) 扩展，补充了 Python 相关的内容。
+> Python 语言特定的安全最佳实践。
 
 ## 密钥管理
 
@@ -22,11 +22,35 @@ api_key = os.environ["OPENAI_API_KEY"]  # Raises KeyError if missing
 
 ## 安全扫描
 
-- 使用 **bandit** 进行静态安全分析：
-  ```bash
-  bandit -r src/
-  ```
+使用 **bandit** 进行静态安全分析：
 
-## 参考
+```bash
+bandit -r src/
+```
 
-查看技能：`django-security` 以获取 Django 特定的安全指南（如适用）。
+## 输入验证
+
+使用 Pydantic 进行输入验证：
+
+```python
+from pydantic import BaseModel, EmailStr, validator
+
+class UserInput(BaseModel):
+    email: EmailStr
+    age: int
+
+    @validator('age')
+    def validate_age(cls, v):
+        if v < 0 or v > 150:
+            raise ValueError('Invalid age')
+        return v
+```
+
+## 相关智能体
+
+- `security-reviewer` - 安全漏洞检测
+
+## 相关技能
+
+- `security-review` - 安全检查清单
+- `validation-patterns` - 数据验证模式

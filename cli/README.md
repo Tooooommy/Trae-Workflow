@@ -1,176 +1,111 @@
 # Trae Workflow CLI
 
-Command-line interface for installing and managing Trae Workflow.
+> 命令行工具，用于安装和管理 Trae Workflow
 
-## Installation
+---
 
-### Option 1: Global Install (Recommended)
+## 安装
+
+### 方式一：全局安装（推荐）
 
 ```bash
 npm install -g trae-workflow-cli
 ```
 
-### Option 2: Local Install
-
-For development or testing, install locally:
+### 方式二：本地安装
 
 ```bash
-# 1. Navigate to CLI directory
 cd cli
-
-# 2. Install dependencies
 npm install
-
-# 3. Link globally (recommended)
 npm link
-
-# 4. Verify installation
 traew version
 ```
 
-For detailed local installation guide, see [LOCAL_INSTALL.md](LOCAL_INSTALL.md)
+---
 
-## Usage
+## 命令
 
-### Install Trae Workflow
+### 安装
 
 ```bash
-# Install from default repository
+# 从默认仓库安装
 traew install
 
-# Install from specific repository
+# 从指定仓库安装
 traew install username/repo
 
-# Install from local directory
+# 从本地目录安装
 traew install --local ./Trae-Workflow
 
-# Install with options
-traew install --backup --skip-mcp --quiet
-
-# Install with project rules
+# 安装并初始化项目规则
 traew install --path ~/myproject --type typescript
 ```
 
-### Install Options
-
-| Option                 | Description                    |
-| ---------------------- | ------------------------------ |
-| `-b, --backup`         | Backup existing config         |
-| `--skip-mcp`           | Skip MCP config                |
-| `--skip-skills`        | Skip Skills config             |
-| `--skip-agents`        | Skip Agents config             |
-| `--skip-rules`         | Skip Rules config              |
-| `--skip-tracking`      | Skip Tracking config           |
-| `--skip-project-rules` | Skip Project Rules config      |
-| `-q, --quiet`          | Quiet mode                     |
-| `-f, --force`          | Force execution                |
-| `-p, --path <path>`    | Project path for Project Rules |
-| `-t, --type <type>`    | Project type                   |
-| `-l, --local <dir>`    | Install from local directory   |
-
-### Update Trae Workflow
+### 更新
 
 ```bash
-# Check and update to latest version
 traew update
-
-# Force update without confirmation
-traew update --force
-
-# Backup before update
-traew update --backup
 ```
 
-### Check Status
+### 状态
 
 ```bash
-# Show installation status and config info
 traew status
 ```
 
-### Manage Configuration
+### 初始化项目规则
 
 ```bash
-# List all config files
-traew config --list
-
-# Show config directory path
-traew config --path
-
-# Open config directory in file manager
-traew config --edit
-
-# Show specific config value
-traew config --show mcp
-traew config --show tracking
-```
-
-### Initialize Project Rules
-
-```bash
-# Initialize in current directory
+# 在当前目录初始化
 traew init
 
-# Initialize in specific project
-traew init ~/myproject
-
-# Initialize with specific type
-traew init --type typescript
-
-# Force overwrite existing rules
-traew init --force
+# 在指定项目初始化
+traew init ~/myproject --type typescript
 ```
 
-### Uninstall
+### 卸载
 
 ```bash
-# Uninstall with confirmation
 traew uninstall
-
-# Force uninstall without confirmation
-traew uninstall --force
-
-# Create backup before uninstall
-traew uninstall --backup
 ```
 
-### Check Version
+### 版本
 
 ```bash
 traew version
 ```
 
-## Supported Project Types
+---
 
-- typescript
-- python
-- java
-- golang
-- rust
-- kotlin
-- swift
+## 支持的项目类型
 
-## Platform Support
+| 类型       | 说明              |
+| ---------- | ----------------- |
+| typescript | TypeScript/JavaScript |
+| python     | Python            |
+| golang     | Go                |
+| rust       | Rust              |
+| java       | Java              |
+| kotlin     | Kotlin            |
+| swift      | Swift             |
 
-| Platform | Setup Script |
-| -------- | ------------ |
-| Windows  | setup.ps1    |
-| macOS    | setup.sh     |
-| Linux    | setup.sh     |
+---
 
-## Development
+## 安装选项
 
-```bash
-# Install dependencies
-npm install
+| 选项                   | 说明               |
+| ---------------------- | ------------------ |
+| `-b, --backup`         | 备份现有配置       |
+| `--skip-mcp`           | 跳过 MCP 配置      |
+| `--skip-skills`        | 跳过 Skills 配置   |
+| `--skip-agents`        | 跳过 Agents 配置   |
+| `--skip-rules`         | 跳过 Rules 配置    |
+| `-q, --quiet`          | 静默模式           |
+| `-f, --force`          | 强制执行           |
+| `-p, --path <path>`    | 项目路径           |
+| `-t, --type <type>`    | 项目类型           |
+| `-l, --local <dir>`    | 从本地目录安装     |
 
-# Run in development mode
-node bin/trae.js install
+---
 
-# Link for testing
-npm link
-```
-
-## License
-
-MIT
+**设计理念**：简洁、易用、功能完整。

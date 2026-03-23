@@ -7,7 +7,7 @@ globs:
 
 # Swift 编码风格
 
-> 本文件在 [common/coding-style.md](../common/coding-style.md) 的基础上扩展了 Swift 相关的内容。
+> Swift 语言特定的编码规范。
 
 ## 格式化
 
@@ -27,23 +27,10 @@ globs:
 - 根据方法和属性的作用而非类型来命名
 - 对于常量，使用 `static let` 而非全局常量
 
-## 错误处理
+## 相关智能体
 
-使用类型化 throws (Swift 6+) 和模式匹配：
+- `code-reviewer` - 代码质量和规范检查
 
-```swift
-func load(id: String) throws(LoadError) -> Item {
-    guard let data = try? read(from: path) else {
-        throw .fileNotFound(id)
-    }
-    return try decode(data)
-}
-```
+## 相关技能
 
-## 并发
-
-启用 Swift 6 严格并发检查。优先使用：
-
-- `Sendable` 值类型用于跨越隔离边界的数据
-- Actors 用于共享可变状态
-- 结构化并发 (`async let`, `TaskGroup`) 而非非结构化的 `Task {}`
+- `coding-standards` - 通用编码标准

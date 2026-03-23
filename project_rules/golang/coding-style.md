@@ -8,7 +8,7 @@ globs:
 
 # Go 编码风格
 
-> 本文件在 [common/coding-style.md](../common/coding-style.md) 的基础上，扩展了 Go 语言的特定内容。
+> Go 语言特定的编码规范。
 
 ## 格式化
 
@@ -29,6 +29,10 @@ if err != nil {
 }
 ```
 
-## 参考
+## 相关智能体
 
-查看技能：`golang-patterns` 以获取全面的 Go 语言惯用法和模式。
+- `code-reviewer` - 代码质量和规范检查
+
+## 相关技能
+
+- `coding-standards` - 通用编码标准

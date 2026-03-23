@@ -66,3 +66,12 @@ fun findByEmail(@Param("email") email: String): User?
 - 使用 `@JsonIgnore` 排除敏感字段
 - 使用环境变量存储配置
 - 使用 Kotlin 的 `internal` 可见性限制访问
+
+## 相关智能体
+
+- `security-reviewer` - 安全漏洞检测
+
+## 相关技能
+
+- `security-review` - 安全检查清单
+- `kotlin-patterns` - Kotlin 模式（包含安全模式）

@@ -27,47 +27,14 @@ builtin_tools:
 
 ```bash
 # Java
-mvn compile 2>/dev/null || gradle build 2>/dev/null
-mvn test 2>/dev/null || gradle test 2>/dev/null
-checkstyle 2>/dev/null || spotbugs 2>/dev/null
+mvn compile || gradle build
+mvn test || gradle test
 
 # Kotlin
 ./gradlew build
 ./gradlew test
-ktlint 2>/dev/null || detekt 2>/dev/null
+ktlint || detekt
 ```
-
-## 审查清单
-
-### 代码质量 (CRITICAL)
-
-- [ ] 遵循代码规范
-- [ ] 无硬编码密钥
-- [ ] 异常处理完善
-- [ ] 资源正确关闭
-
-### Java 特定 (HIGH)
-
-- [ ] 使用 try-with-resources
-- [ ] 避免空指针
-- [ ] 使用 Optional
-- [ ] 使用 Stream API
-- [ ] 日期时间使用 java.time
-
-### Kotlin 特定 (HIGH)
-
-- [ ] 使用 val 而非 var
-- [ ] 使用 data class
-- [ ] 使用空安全特性
-- [ ] 使用协程正确
-- [ ] 避免可空类型
-
-### Spring Boot 特定 (HIGH)
-
-- [ ] 使用 @Service/@Repository
-- [ ] 事务注解正确
-- [ ] 使用 DTO
-- [ ] 验证注解使用
 
 ## 最佳实践
 
@@ -84,12 +51,6 @@ try (Connection conn = dataSource.getConnection();
 public Optional<User> findUser(String id) {
     return Optional.ofNullable(users.get(id));
 }
-
-// ✅ 正确：使用 Stream API
-List<String> names = users.stream()
-    .filter(u -> u.isActive())
-    .map(User::getName)
-    .collect(Collectors.toList());
 ```
 
 ### Kotlin
@@ -102,95 +63,28 @@ data class User(
     val email: String
 )
 
-// ✅ 正确：使用空安全
-val name = user?.name ?: "Unknown"
-
 // ✅ 正确：使用协程
 suspend fun fetchUser(id: String): User {
     return withContext(Dispatchers.IO) {
         apiService.getUser(id)
     }
 }
-
-// ✅ 正确：使用扩展函数
-fun String.isEmail(): Boolean {
-    return this.contains("@")
-}
-```
-
-### Spring Boot
-
-```java
-// ✅ 正确：使用依赖注入
-@Service
-public class UserService {
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-}
-
-// ✅ 正确：使用 DTO
-public class UserDTO {
-    private String id;
-    private String name;
-    // getters and setters
-}
-
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable String id) {
-        User user = userService.findById(id);
-        UserDTO dto = convertToDTO(user);
-        return ResponseEntity.ok(dto);
-    }
-}
-```
-
-## 常见问题修复
-
-### 资源泄漏
-
-```java
-// 问题：资源未关闭
-Connection conn = dataSource.getConnection();
-PreparedStatement stmt = conn.prepareStatement(sql);
-// 使用 stmt...
-conn.close();  // 可能不执行
-
-// 修复：使用 try-with-resources
-try (Connection conn = dataSource.getConnection();
-     PreparedStatement stmt = conn.prepareStatement(sql)) {
-    // 使用 stmt...
-}  // 自动关闭
-```
-
-### 空指针
-
-```java
-// 问题：可能为 null
-String name = user.getName();
-if (name.length() > 0) {  // 可能 NPE
-    ...
-}
-
-// 修复：使用 Optional
-Optional.ofNullable(user.getName())
-    .filter(name -> name.length() > 0)
-    .ifPresent(name -> {
-        ...
-    });
 ```
 
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| 架构设计       | `architect`       |
-| 测试策略       | `tdd-guide`       |
-| 安全审查       | `security-reviewer` |
-| 数据库优化     | `database-expert`  |
+| 任务       | 委托目标            |
+| ---------- | ------------------- |
+| 功能规划   | `planner`           |
+| 架构设计   | `architect`         |
+| 测试策略   | `testing-expert`    |
+| 安全审查   | `security-reviewer` |
+| DevOps     | `devops-expert`     |
+
+## 相关技能
+
+| 技能          | 用途         |
+| ------------- | ------------ |
+| java-patterns | Java 模式    |
+| kotlin-patterns| Kotlin 模式 |
+| tdd-workflow  | TDD 工作流   |

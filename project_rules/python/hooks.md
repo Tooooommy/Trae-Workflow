@@ -7,7 +7,7 @@ globs:
 
 # Python 钩子
 
-> 本文档扩展了 [common/hooks.md](../common/hooks.md) 中关于 Python 的特定内容。
+> Python 特定的钩子配置。
 
 ## PostToolUse 钩子
 
@@ -17,3 +17,11 @@ globs:
 ## 警告
 
 - 对编辑文件中的 `print()` 语句发出警告（应使用 `logging` 模块替代）
+
+## 相关智能体
+
+- `devops-expert` - CI/CD 和工具配置
+
+## 相关技能
+
+- `ci-cd-patterns` - CI/CD 流水线模式

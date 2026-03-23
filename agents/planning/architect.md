@@ -55,29 +55,6 @@ builtin_tools:
 - 推荐最佳方案
 - 制定迁移策略
 
-## 协作说明
-
-| 任务     | 委托目标            |
-| -------- | ------------------- |
-| 功能规划 | `planner`           |
-| 技术调研 | `researcher`        |
-| API 设计 | `api-designer`      |
-| 安全审查 | `security-reviewer` |
-
-## 相关技能
-
-- **clean-architecture** - 整洁架构模式
-- **microservices-patterns** - 微服务架构模式
-- **ddd-patterns** - 领域驱动设计模式
-- **api-design** - API 设计模式
-- **database-migrations** - 数据库迁移模式
-
-### 4. 权衡分析
-
-| 决策 | 优点 | 缺点 | 替代方案 | 最终选择 |
-| ---- | ---- | ---- | -------- | -------- |
-| ...  | ...  | ...  | ...      | ...      |
-
 ## 架构原则
 
 ### 1. 模块化与关注点分离
@@ -182,7 +159,17 @@ builtin_tools:
 | 任务       | 委托目标            |
 | ---------- | ------------------- |
 | 功能规划   | `planner`           |
-| 技术调研   | `researcher`        |
-| API 设计   | `api-designer`      |
-| 数据库设计 | `database-expert`   |
+| API 设计   | `backend-expert`    |
+| 数据库设计 | `backend-expert`    |
 | 安全审查   | `security-reviewer` |
+| DevOps     | `devops-expert`     |
+
+## 相关技能
+
+| 技能                  | 用途             |
+| --------------------- | ---------------- |
+| clean-architecture    | 整洁架构模式     |
+| microservices-patterns| 微服务架构模式   |
+| ddd-patterns          | 领域驱动设计模式 |
+| api-design            | API 设计模式     |
+| database-migrations   | 数据库迁移模式   |

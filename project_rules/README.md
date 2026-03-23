@@ -1,10 +1,22 @@
-# 规则
+# 项目规则
 
-> 此目录包含语言特定扩展规则。项目配置请参考 `user_rules/`。
+语言特定的项目规则扩展。
 
----
+## 📁 目录结构
 
-## 规则层级
+```
+project_rules/
+├── README.md           # 本文件
+├── typescript/         # TypeScript/JavaScript 规则
+├── python/             # Python 规则
+├── golang/             # Go 规则
+├── rust/               # Rust 规则
+├── swift/              # Swift/iOS 规则
+├── java/               # Java 规则
+└── kotlin/             # Kotlin 规则
+```
+
+## 🔄 规则层级
 
 ```
 user_rules/           ← 最高优先级（项目配置）
@@ -12,108 +24,102 @@ user_rules/           ← 最高优先级（项目配置）
 project_rules/<lang>/ ← 语言特定扩展
 ```
 
----
+当规则冲突时，`user_rules/` 中的规则优先级更高。
 
-## 目录结构
+## 📋 语言规则
 
-```
-project_rules/
-├── typescript/          # TypeScript/JavaScript 扩展
-│   ├── coding-style.md  # 编码风格
-│   ├── testing.md       # 测试规范
-│   ├── security.md      # 安全规范
-│   ├── patterns.md      # 设计模式
-│   ├── hooks.md         # Hooks 配置
-│   ├── nextjs.md        # Next.js 技术栈
-│   ├── react.md         # React 技术栈
-│   ├── nestjs.md        # NestJS 技术栈
-│   ├── shopify.md       # Shopify 技术栈
-│   ├── expo.md          # Expo 技术栈
-│   ├── react-native.md  # React Native CLI 技术栈
-│   ├── weixin.md        # 微信小程序
-│   ├── taro.md          # Taro 跨平台
-│   └── uniapp.md        # uni-app 跨平台
-├── python/              # Python 扩展
-│   ├── coding-style.md
-│   ├── testing.md
-│   ├── security.md
-│   ├── patterns.md
-│   ├── hooks.md
-│   ├── fastapi.md       # FastAPI 技术栈
-│   ├── django.md        # Django 技术栈
-│   └── flask.md         # Flask 技术栈
-├── golang/              # Go 扩展
-│   ├── coding-style.md
-│   ├── testing.md
-│   ├── security.md
-│   ├── patterns.md
-│   ├── hooks.md
-│   ├── gin.md           # Gin 技术栈
-│   ├── echo.md          # Echo 技术栈
-│   └── fiber.md         # Fiber 技术栈
-├── swift/               # Swift 扩展
-│   ├── coding-style.md
-│   ├── testing.md
-│   ├── security.md
-│   ├── patterns.md
-│   ├── hooks.md
-│   ├── vapor.md         # Vapor 技术栈
-│   └── swiftui.md       # SwiftUI 技术栈
-├── rust/                # Rust 扩展
-│   ├── coding-style.md
-│   ├── testing.md
-│   ├── security.md
-│   ├── patterns.md
-│   ├── hooks.md
-│   ├── actix.md         # Actix-web 技术栈
-│   └── axum.md          # Axum 技术栈
-├── java/                # Java 扩展
-│   ├── coding-style.md
-│   ├── testing.md
-│   ├── security.md
-│   ├── patterns.md
-│   ├── hooks.md
-│   ├── spring.md        # Spring Boot 技术栈
-│   └── quarkus.md       # Quarkus 技术栈
-└── kotlin/              # Kotlin 扩展
-    ├── coding-style.md
-    ├── testing.md
-    ├── security.md
-    ├── patterns.md
-    ├── hooks.md
-    ├── ktor.md          # Ktor 技术栈
-    └── spring.md        # Spring Boot 技术栈
+### 核心语言
+
+| 目录       | 描述                       | 对应智能体     | 框架规则                 |
+| ---------- | -------------------------- | -------------- | ------------------------ |
+| typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
+| python     | Python 规则                | python-dev     | django, fastapi, flask   |
+| golang     | Go 规则                    | go-dev         | gin, fiber               |
+| rust       | Rust 规则                  | rust-dev       | actix, axum              |
+| swift      | Swift/iOS 规则             | swift-dev      | swiftui, vapor           |
+| java       | Java 规则                  | java-dev       | spring, quarkus          |
+| kotlin     | Kotlin 规则                | java-dev       | ktor, spring             |
+
+### 框架规则
+
+每个语言目录下包含特定框架的规则：
+
+| 语言       | 框架规则                                     |
+| ---------- | -------------------------------------------- |
+| typescript | react, nextjs, nestjs, react-native, expo 等 |
+| python     | django, fastapi, flask                       |
+| golang     | gin, fiber                                   |
+| rust       | actix, axum                                  |
+| swift      | swiftui, vapor                               |
+| java       | spring, quarkus                              |
+| kotlin     | ktor, spring                                 |
+
+## 📝 规则文件格式
+
+每个语言目录包含以下文件：
+
+| 文件            | 描述         |
+| --------------- | ------------ |
+| coding-style.md | 代码风格规范 |
+| patterns.md     | 设计模式     |
+| testing.md      | 测试规范     |
+| security.md     | 安全规范     |
+| hooks.md        | 钩子配置     |
+
+框架特定规则文件（如 `react.md`、`django.md`）包含框架特定的最佳实践。
+
+## 🛠️ 使用方法
+
+### 1. 自动初始化
+
+```bash
+# 使用 CLI 初始化项目规则
+traew init ./my-project
 ```
 
+### 2. 手动选择
+
+根据项目技术栈，复制相应的规则目录到项目：
+
+```bash
+# 例如：Next.js 项目
+cp -r project_rules/typescript .trae/rules/
+```
+
+### 3. 规则组合
+
+一个项目可以组合多个规则：
+
+```
+my-project/
+├── .trae/
+│   └── rules/
+│       └── typescript/    # 语言规则（包含框架规则）
+```
+
+## � 与智能体对应
+
+| 智能体         | 推荐规则目录   |
+| -------------- | -------------- |
+| typescript-dev | typescript/    |
+| python-dev     | python/        |
+| go-dev         | golang/        |
+| rust-dev       | rust/          |
+| swift-dev      | swift/         |
+| java-dev       | java/, kotlin/ |
+
+## 🔗 与技能对应
+
+| 规则目录   | 相关技能                              |
+| ---------- | ------------------------------------- |
+| typescript | react-modern-stack, frontend-patterns |
+| python     | python-patterns, python-testing       |
+| golang     | golang-patterns, golang-testing       |
+| rust       | rust-patterns                         |
+| swift      | swiftui-patterns, ios-native-patterns |
+| java       | java-patterns                         |
+| kotlin     | kotlin-patterns                       |
+
 ---
 
-## 文件说明
-
-### 通用文件（每个语言目录）
-
-| 文件            | 说明                     |
-| --------------- | ------------------------ |
-| coding-style.md | 语言特定的编码风格和约定 |
-| testing.md      | 语言特定的测试框架和策略 |
-| security.md     | 语言特定的安全最佳实践   |
-| patterns.md     | 语言特定的设计模式       |
-| hooks.md        | 语言特定的 Hooks 配置    |
-
-### 技术栈文件
-
-每个语言目录下的技术栈文件包含：
-
-- 技术栈概述
-- 项目结构
-- 关键规则
-- 代码示例
-- 环境配置
-
----
-
-## 规则优先级
-
-当规则冲突时：
-
-1. **user_rules/** - 项目配置（最高优先级）
-2. **project_rules/<lang>/** - 语言特定扩展
+**设计理念**：语言特定规则作为通用规则的扩展，提供更精确的指导。

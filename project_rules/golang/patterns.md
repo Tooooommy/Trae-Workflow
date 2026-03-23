@@ -8,7 +8,7 @@ globs:
 
 # Go 模式
 
-> 本文档在 [common/patterns.md](../common/patterns.md) 的基础上扩展了 Go 语言特定的内容。
+> Go 语言特定的架构模式。
 
 ## 函数式选项
 
@@ -28,20 +28,11 @@ func NewServer(opts ...Option) *Server {
 }
 ```
 
-## 小接口
+## 相关智能体
 
-在接口被使用的地方定义它们，而不是在它们被实现的地方。
+- `architect` - 架构设计和模式选择
 
-## 依赖注入
+## 相关技能
 
-使用构造函数来注入依赖：
-
-```go
-func NewUserService(repo UserRepository, logger Logger) *UserService {
-    return &UserService{repo: repo, logger: logger}
-}
-```
-
-## 参考
-
-有关全面的 Go 模式（包括并发、错误处理和包组织），请参阅技能：`golang-patterns`。
+- `golang-patterns` - Go 惯用模式
+- `clean-architecture` - 整洁架构

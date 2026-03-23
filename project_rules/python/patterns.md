@@ -7,7 +7,7 @@ globs:
 
 # Python 模式
 
-> 本文档扩展了 [common/patterns.md](../common/patterns.md)，补充了 Python 特定的内容。
+> Python 语言特定的架构模式。
 
 ## 协议（鸭子类型）
 
@@ -28,14 +28,13 @@ from dataclasses import dataclass
 class CreateUserRequest:
     name: str
     email: str
-    age: int | None = None
 ```
 
-## 上下文管理器与生成器
+## 相关智能体
 
-- 使用上下文管理器（`with` 语句）进行资源管理
-- 使用生成器进行惰性求值和内存高效迭代
+- `architect` - 架构设计和模式选择
 
-## 参考
+## 相关技能
 
-查看技能：`python-patterns`，了解包括装饰器、并发和包组织在内的综合模式。
+- `python-patterns` - Python 惯用模式
+- `clean-architecture` - 整洁架构

@@ -9,7 +9,7 @@ globs:
 
 # TypeScript/JavaScript 模式
 
-> 此文件在 [common/patterns.md](../common/patterns.md) 的基础上扩展了 TypeScript/JavaScript 特定的内容。
+> TypeScript/JavaScript 语言特定的架构模式。
 
 ## API 响应格式
 
@@ -29,26 +29,28 @@ interface ApiResponse<T> {
 ## 自定义 Hooks 模式
 
 ```typescript
-export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+function useData<T>(url: string) {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const handler = setTimeout(() => setDebouncedValue(value), delay);
-    return () => clearTimeout(handler);
-  }, [value, delay]);
+    fetch(url)
+      .then(res => res.json())
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
+  }, [url]);
 
-  return debouncedValue;
+  return { data, loading, error };
 }
 ```
 
-## 仓库模式
+## 相关智能体
 
-```typescript
-interface Repository<T> {
-  findAll(filters?: Filters): Promise<T[]>;
-  findById(id: string): Promise<T | null>;
-  create(data: CreateDto): Promise<T>;
-  update(id: string, data: UpdateDto): Promise<T>;
-  delete(id: string): Promise<void>;
-}
-```
+- `architect` - 架构设计和模式选择
+
+## 相关技能
+
+- `frontend-patterns` - 前端开发模式
+- `clean-architecture` - 整洁架构

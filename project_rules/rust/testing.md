@@ -39,21 +39,18 @@ tests/
 └── api_test.rs       # 集成测试
 ```
 
-```rust
-// tests/api_test.rs
-use crate::common::setup;
-
-#[tokio::test]
-async fn test_api_endpoint() {
-    let app = setup().await;
-    let response = app.get("/users").await;
-    assert_eq!(response.status(), 200);
-}
-```
-
 ## 测试覆盖率
 
 ```bash
 cargo tarpaulin --out Html    # 生成覆盖率报告
 cargo test --all-features     # 运行所有测试
 ```
+
+## 相关智能体
+
+- `testing-expert` - TDD 工作流和测试策略
+
+## 相关技能
+
+- `rust-patterns` - Rust 模式（包含测试模式）
+- `tdd-workflow` - 测试驱动开发

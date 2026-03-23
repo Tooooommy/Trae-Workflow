@@ -42,10 +42,6 @@ public class AuthService {
         String hashedPassword = passwordEncoder.encode(request.getPassword());
         // ...
     }
-
-    public boolean verifyPassword(String rawPassword, String hashedPassword) {
-        return passwordEncoder.matches(rawPassword, hashedPassword);
-    }
 }
 ```
 
@@ -69,3 +65,12 @@ jdbcTemplate.queryForObject(
 - 使用 `@JsonIgnore` 排除敏感字段
 - 使用环境变量存储配置
 - 使用 Spring Cloud Config 管理配置
+
+## 相关智能体
+
+- `security-reviewer` - 安全漏洞检测
+
+## 相关技能
+
+- `security-review` - 安全检查清单
+- `java-patterns` - Java 模式（包含安全模式）

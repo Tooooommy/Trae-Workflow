@@ -7,9 +7,9 @@ globs:
 
 # Python 测试
 
-> 本文件在 [通用/测试.md](../common/testing.md) 的基础上扩展了 Python 特定的内容。
+> Python 语言特定的测试框架和策略。
 
-## 框架
+## 测试框架
 
 使用 **pytest** 作为测试框架。
 
@@ -35,6 +35,20 @@ def test_database_connection():
     ...
 ```
 
-## 参考
+## Fixtures
 
-查看技能：`python-testing` 以获取详细的 pytest 模式和夹具信息。
+```python
+@pytest.fixture
+def client():
+    app = create_app()
+    return TestClient(app)
+```
+
+## 相关智能体
+
+- `testing-expert` - TDD 工作流和测试策略
+
+## 相关技能
+
+- `python-testing` - pytest 测试策略
+- `tdd-workflow` - 测试驱动开发

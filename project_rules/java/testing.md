@@ -35,14 +35,6 @@ class UserServiceTest {
         assertNotNull(user.getId());
         assertEquals("test@example.com", user.getEmail());
     }
-
-    @Test
-    @DisplayName("Should throw exception when user not found")
-    void shouldThrowExceptionWhenUserNotFound() {
-        assertThrows(UserNotFoundException.class, () -> {
-            userService.findById(999L);
-        });
-    }
 }
 ```
 
@@ -58,21 +50,21 @@ class UserRepositoryIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Test
-    void shouldSaveAndFindUser() {
-        var user = new User("test@example.com", "Test User");
-        var saved = userRepository.save(user);
-
-        var found = userRepository.findById(saved.getId());
-        assertTrue(found.isPresent());
-    }
 }
 ```
 
-## 测试覆盖率
+## 覆盖率
 
 ```bash
 mvn jacoco:report    # Maven
 gradle jacocoTestReport  # Gradle
 ```
+
+## 相关智能体
+
+- `testing-expert` - TDD 工作流和测试策略
+
+## 相关技能
+
+- `java-patterns` - Java 模式（包含测试模式）
+- `tdd-workflow` - 测试驱动开发

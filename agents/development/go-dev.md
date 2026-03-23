@@ -32,7 +32,7 @@ go test ./...
 
 # 代码检查
 go vet ./...
-staticcheck ./... 2>/dev/null || golangci-lint run 2>/dev/null
+golangci-lint run
 
 # 格式化
 gofmt -s -w .
@@ -43,45 +43,12 @@ go mod tidy
 go mod verify
 ```
 
-## 审查清单
-
-### 代码质量 (CRITICAL)
-
-- [ ] 遵循 Go 惯用法
-- [ ] 错误处理完善
-- [ ] 无硬编码密钥
-- [ ] 资源正确关闭（defer）
-
-### 并发安全 (CRITICAL)
-
-- [ ] 共享数据有保护
-- [ ] 正确使用 channel
-- [ ] 避免 data race
-- [ ] context 使用正确
-
-### 代码风格 (HIGH)
-
-- [ ] 函数 < 50 行
-- [ ] 文件 < 800 行
-- [ ] 接口定义清晰
-- [ ] 错误包装正确
-- [ ] 命名符合规范
-
-### 性能 (HIGH)
-
-- [ ] 避免不必要的分配
-- [ ] 使用 strings.Builder
-- [ ] 预分配切片
-- [ ] 使用 sync.Pool
-
 ## 最佳实践
 
 ### 错误处理
 
 ```go
 // ✅ 正确：包装错误
-import "errors"
-
 func readFile(path string) ([]byte, error) {
     data, err := os.ReadFile(path)
     if err != nil {
@@ -89,9 +56,6 @@ func readFile(path string) ([]byte, error) {
     }
     return data, nil
 }
-
-// ❌ 错误：忽略错误
-data, _ := os.ReadFile(path)
 ```
 
 ### 并发
@@ -103,24 +67,6 @@ func worker(id int, jobs <-chan int, results chan<- int) {
         results <- j * 2
     }
 }
-
-func main() {
-    jobs := make(chan int, 100)
-    results := make(chan int, 100)
-
-    for w := 1; w <= 3; w++ {
-        go worker(w, jobs, results)
-    }
-
-    for j := 1; j <= 5; j++ {
-        jobs <- j
-    }
-    close(jobs)
-
-    for a := 1; a <= 5; a++ {
-        <-results
-    }
-}
 ```
 
 ### Context 使用
@@ -129,83 +75,7 @@ func main() {
 // ✅ 正确：传递 context
 func fetchUser(ctx context.Context, id string) (*User, error) {
     req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-    if err != nil {
-        return nil, err
-    }
-
-    resp, err := http.DefaultClient.Do(req)
-    if err != nil {
-        return nil, err
-    }
-    defer resp.Body.Close()
-
     // ...
-}
-```
-
-### 接口设计
-
-```go
-// ✅ 正确：小接口
-type Reader interface {
-    Read(p []byte) (n int, err error)
-}
-
-// ❌ 错误：大接口
-type Database interface {
-    Query(sql string, args ...interface{}) (*sql.Rows, error)
-    Exec(sql string, args ...interface{}) (sql.Result, error)
-    Begin() (*sql.Tx, error)
-    Close() error
-    // ... 更多方法
-}
-```
-
-## 常见问题修复
-
-### 资源泄漏
-
-```go
-// 问题：资源未关闭
-func processFile(path string) error {
-    f, _ := os.Open(path)
-    // 使用 f...
-    return nil
-}
-
-// 修复：使用 defer
-func processFile(path string) error {
-    f, err := os.Open(path)
-    if err != nil {
-        return err
-    }
-    defer f.Close()
-
-    // 使用 f...
-    return nil
-}
-```
-
-### Data Race
-
-```go
-// 问题：未保护的共享数据
-var counter int
-
-func increment() {
-    counter++
-}
-
-// 修复：使用互斥锁
-var (
-    counter int
-    mu      sync.Mutex
-)
-
-func increment() {
-    mu.Lock()
-    defer mu.Unlock()
-    counter++
 }
 ```
 
@@ -215,6 +85,14 @@ func increment() {
 | -------- | ------------------- |
 | 功能规划 | `planner`           |
 | 架构设计 | `architect`         |
-| 测试策略 | `tdd-guide`         |
+| 测试策略 | `testing-expert`    |
 | 安全审查 | `security-reviewer` |
-| 性能优化 | `performance`       |
+| DevOps   | `devops-expert`     |
+
+## 相关技能
+
+| 技能            | 用途       |
+| --------------- | ---------- |
+| golang-patterns | Go 模式    |
+| golang-testing  | Go 测试    |
+| tdd-workflow    | TDD 工作流 |

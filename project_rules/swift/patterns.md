@@ -7,7 +7,7 @@ globs:
 
 # Swift 模式
 
-> 此文件使用 Swift 特定内容扩展了 [common/patterns.md](../common/patterns.md)。
+> Swift 语言特定的架构模式。
 
 ## 面向协议的设计
 
@@ -35,34 +35,12 @@ enum LoadState<T: Sendable>: Sendable {
 }
 ```
 
-## Actor 模式
+## 相关智能体
 
-使用 actor 来处理共享可变状态，而不是锁或调度队列：
+- `architect` - 架构设计和模式选择
 
-```swift
-actor Cache<Key: Hashable & Sendable, Value: Sendable> {
-    private var storage: [Key: Value] = [:]
+## 相关技能
 
-    func get(_ key: Key) -> Value? { storage[key] }
-    func set(_ key: Key, value: Value) { storage[key] = value }
-}
-```
-
-## 依赖注入
-
-使用默认参数注入协议 —— 生产环境使用默认值，测试时注入模拟对象：
-
-```swift
-struct UserService {
-    private let repository: any UserRepository
-
-    init(repository: any UserRepository = DefaultUserRepository()) {
-        self.repository = repository
-    }
-}
-```
-
-## 参考
-
-查看技能：`swift-actor-persistence` 以了解基于 actor 的持久化模式。
-查看技能：`swift-protocol-di-testing` 以了解基于协议的依赖注入和测试。
+- `swiftui-patterns` - SwiftUI 架构模式
+- `ios-native-patterns` - iOS 原生模式
+- `clean-architecture` - 整洁架构
