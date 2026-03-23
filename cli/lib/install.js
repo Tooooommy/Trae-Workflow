@@ -42,6 +42,9 @@ function isWindows() {
 }
 
 async function downloadFile(url, dest) {
+  const destDir = path.dirname(dest);
+  await fs.ensureDir(destDir);
+
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(dest);
     https
@@ -290,6 +293,8 @@ async function install(repo, options) {
     const version = release.tag_name;
 
     log(`Latest version: ${version}`, 'info');
+
+    await fs.ensureDir(tempDir);
 
     const tarballPath = await downloadRelease(targetRepo, version, tempDir);
     await extractTarball(tarballPath, tempDir);
