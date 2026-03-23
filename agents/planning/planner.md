@@ -59,19 +59,6 @@ builtin_tools:
 
 ## 计划格式
 
-````markdown
-# 实施方案：[功能名称]
-
-## 概述
-
-[2-3句的总结]
-
-## 需求
-
-- [ ] 支持增量测试
-
-## 计划格式
-
 ```markdown
 # 实施方案：[功能名称]
 
@@ -122,7 +109,6 @@ builtin_tools:
 - [ ] 文档已更新
 - [ ] 功能验收通过
 ```
-````
 
 ## 协作说明
 
@@ -133,3 +119,10 @@ builtin_tools:
 | 代码实现 | 语言特定开发智能体  |
 | 测试策略 | `tdd-guide`         |
 | 安全审查 | `security-reviewer` |
+
+## 相关技能
+
+- **clean-architecture** - 整洁架构模式
+- **ddd-patterns** - 领域驱动设计
+- **microservices-patterns** - 微服务架构
+- **tech-stack-selector** - 技术栈选择器

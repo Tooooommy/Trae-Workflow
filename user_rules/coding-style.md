@@ -44,3 +44,23 @@
 - [ ] 没有深层嵌套（>4 层）
 - [ ] 适当的错误处理，没有硬编码的值
 - [ ] 可读性强、命名良好的标识符
+
+---
+
+## 相关技能
+
+- **coding-standards** - 通用编码标准和最佳实践
+- **python-patterns** - Python 特定编码模式
+- **golang-patterns** - Go 特定编码模式
+- **rust-patterns** - Rust 特定编码模式
+- **java-patterns** - Java 特定编码模式
+- **kotlin-patterns** - Kotlin 特定编码模式
+- **swiftui-patterns** - Swift 特定编码模式
+
+---
+
+## 相关智能体
+
+- **code-quality** - 代码质量专家
+- **reviewer** - 代码审查专家
+- **language-specific-dev** - 语言特定开发智能体

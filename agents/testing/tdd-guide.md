@@ -98,92 +98,6 @@ go test -cover ./...
  /--------------\
 ```
 
-## 测试模式
-
-### 单元测试
-
-```typescript
-// TypeScript
-describe('UserService', () => {
-  describe('createUser', () => {
-    it('should create a user with valid data', async () => {
-      const user = await userService.createUser({
-        name: 'John',
-        email: 'john@example.com',
-      });
-
-      expect(user.id).toBeDefined();
-      expect(user.name).toBe('John');
-    });
-
-    it('should throw error for invalid email', async () => {
-      await expect(userService.createUser({ name: 'John', email: 'invalid' })).rejects.toThrow(
-        'Invalid email'
-      );
-    });
-  });
-});
-```
-
-```python
-# Python
-class TestUserService:
-    def test_create_user_with_valid_data(self):
-        user = UserService().create_user(
-            name='John',
-            email='john@example.com'
-        )
-
-        assert user.id is not None
-        assert user.name == 'John'
-
-    def test_create_user_with_invalid_email(self):
-        with pytest.raises(ValueError):
-            UserService().create_user(
-                name='John',
-                email='invalid'
-            )
-```
-
-### Mock 使用
-
-```typescript
-// TypeScript
-jest.mock('../repositories/UserRepository');
-
-describe('UserService', () => {
-  it('should call repository with correct params', async () => {
-    const mockRepo = {
-      save: jest.fn().mockResolvedValue({ id: '1' }),
-    };
-
-    const service = new UserService(mockRepo);
-    await service.createUser({ name: 'John' });
-
-    expect(mockRepo.save).toHaveBeenCalledWith({
-      name: 'John',
-    });
-  });
-});
-```
-
-```python
-# Python
-from unittest.mock import Mock, patch
-
-class TestUserService:
-    @patch('services.user.UserRepository')
-    def test_create_user_calls_repository(self, mock_repo_class):
-        mock_repo = Mock()
-        mock_repo.save.return_value = User(id='1', name='John')
-        mock_repo_class.return_value = mock_repo
-
-        service = UserService()
-        service.create_user(name='John')
-
-        mock_repo.save.assert_called_once_with(name='John')
-```
-
 ## 覆盖率要求
 
 | 类型     | 最低要求 | 推荐目标 |
@@ -229,3 +143,11 @@ class TestUserService:
 | 代码实现 | 语言特定开发智能体 |
 | E2E 测试 | `e2e-tester`       |
 | 代码质量 | `code-quality`     |
+
+## 相关技能
+
+- **tdd-workflow** - 详细的 TDD 工作流和代码示例
+- **python-testing** - Python 特定测试模式
+- **golang-testing** - Go 特定测试模式
+- **e2e-testing** - 端到端测试模式
+- **verification-loop** - 验证循环模式

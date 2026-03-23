@@ -52,3 +52,19 @@
 3. 起草全面的 PR 摘要
 4. 包含测试计划
 5. 如果是新分支，使用 `-u` 标志推送
+
+---
+
+## 相关技能
+
+- **git-workflow** - Git 分支策略、提交规范、版本发布
+- **ci-cd-patterns** - CI/CD 流水线模式
+- **verification-loop** - 验证循环模式
+
+---
+
+## 相关智能体
+
+- **git-expert** - Git 专家
+- **reviewer** - 代码审查专家
+- **devops** - DevOps 专家

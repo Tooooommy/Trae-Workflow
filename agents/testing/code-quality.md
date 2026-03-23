@@ -224,3 +224,9 @@ function getStatus(user: User): string {
 | 功能规划       | `planner`         |
 | 单元测试       | `tdd-guide`       |
 | 安全审查       | `security-reviewer` |
+
+## 相关技能
+
+- **coding-standards** - 通用编码标准和最佳实践
+- **clean-architecture** - 整洁架构模式
+- **error-handling-patterns** - 统一错误处理模式

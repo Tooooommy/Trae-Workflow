@@ -161,3 +161,13 @@ builtin_tools:
 | API 设计       | `api-designer`    |
 | 数据库设计     | `database-expert` |
 | 安全审查       | `security-reviewer` |
+
+## 相关技能
+
+- **clean-architecture** - 整洁架构模式
+- **ddd-patterns** - 领域驱动设计
+- **microservices-patterns** - 微服务架构
+- **cqrs-patterns** - CQRS 命令查询职责分离
+- **event-driven-patterns** - 事件驱动架构
+- **caching-patterns** - 缓存策略模式
+- **tech-stack-selector** - 技术栈选择器
