@@ -47,13 +47,12 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🧪 测试
 
-| 技能           | 描述                           |
-| -------------- | ------------------------------ |
-| tdd-workflow   | 测试驱动开发工作流             |
-| e2e-testing    | Playwright E2E 测试模式        |
-| python-testing | Python pytest 测试策略         |
-| golang-testing | Go 表格驱动测试、基准测试      |
-| django-tdd     | Django 测试策略、pytest-django |
+| 技能           | 描述                      |
+| -------------- | ------------------------- |
+| tdd-workflow   | 测试驱动开发工作流        |
+| e2e-testing    | Playwright E2E 测试模式   |
+| python-testing | Python pytest 测试策略    |
+| golang-testing | Go 表格驱动测试、基准测试 |
 
 ### 🚀 DevOps
 
@@ -99,6 +98,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | java-patterns    | Java 惯用模式、Spring Boot      |
 | kotlin-patterns  | Kotlin 协程、空安全             |
 | swift-patterns   | Swift/SwiftUI/iOS 开发模式      |
+| django-patterns  | Django 架构模式、安全、测试     |
 | coding-standards | 通用编码标准、最佳实践          |
 
 ### 🏗️ 架构模式
@@ -143,68 +143,58 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | background-jobs         | 后台任务、异步处理 |
 | circuit-breaker         | 熔断器、服务弹性   |
 
-### 🍎 苹果平台
-
-| 技能                        | 描述                   |
-| --------------------------- | ---------------------- |
-| swift-concurrency-6-2       | Swift 6.2 并发性       |
-| swift-actor-persistence     | Swift Actor 持久化     |
-| swift-protocol-di-testing   | Swift 协议依赖注入测试 |
-| liquid-glass-design         | iOS 26 液态玻璃设计   |
-| foundation-models-on-device | 设备上 LLM 框架        |
-
 ### 🤖 AI 与智能体
 
-| 技能                    | 描述                   |
-| ----------------------- | ---------------------- |
-| ai-first-engineering    | AI 优先工程运营模型    |
-| agentic-engineering     | 代理工程模式           |
+| 技能                       | 描述                  |
+| -------------------------- | --------------------- |
+| ai-first-engineering       | AI 优先工程运营模型   |
+| agentic-engineering        | 代理工程模式          |
 | agent-harness-construction | AI 代理动作空间设计   |
-| llm-integration-patterns | LLM 集成、Prompt 工程 |
-| rag-patterns             | RAG 检索增强生成      |
+| llm-integration-patterns   | LLM 集成、Prompt 工程 |
+| rag-patterns               | RAG 检索增强生成      |
 
 ### 📊 全栈框架
 
-| 技能                    | 描述                   |
-| ----------------------- | ---------------------- |
-| node-hono-stack         | Node.js + Hono 全栈    |
-| nextjs-supabase-stack   | Next.js + Supabase 全栈|
-| remixjs-fullstack-stack | Remix 全栈应用开发     |
-| fastapi-async-stack     | FastAPI 异步全栈       |
-| react-native-ignite-stack| React Native + Ignite |
-| shopify-app-stack       | Shopify 应用开发       |
-| django-patterns         | Django 架构模式        |
+| 技能                      | 描述                    |
+| ------------------------- | ----------------------- |
+| node-hono-stack           | Node.js + Hono 全栈     |
+| nextjs-supabase-stack     | Next.js + Supabase 全栈 |
+| remixjs-fullstack-stack   | Remix 全栈应用开发      |
+| fastapi-async-stack       | FastAPI 异步全栈        |
+| react-native-ignite-stack | React Native + Ignite   |
+| shopify-app-stack         | Shopify 应用开发        |
+| django-patterns           | Django 架构模式         |
 
 ### 🔍 验证与追踪
 
-| 技能                    | 描述                   |
-| ----------------------- | ---------------------- |
-| verification-loop       | Trade 会话验证系统     |
-| analytics-tracking      | SKILL/Agent 调用追踪  |
+| 技能               | 描述                 |
+| ------------------ | -------------------- |
+| verification-loop  | Trade 会话验证系统   |
+| analytics-tracking | SKILL/Agent 调用追踪 |
 
 ## 🔗 与智能体对应
 
-| 智能体         | 推荐技能                           |
-| -------------- | ---------------------------------- |
+| 智能体         | 推荐技能                                                |
+| -------------- | ------------------------------------------------------- |
 | typescript-dev | coding-standards, react-modern-stack, frontend-patterns |
-| python-dev     | python-patterns, python-testing, django-patterns |
-| golang-dev     | golang-patterns, golang-testing |
-| rust-dev       | rust-patterns |
-| swift-dev      | swift-patterns, ios-native-patterns |
-| java-dev       | java-patterns, kotlin-patterns |
-| kotlin-dev     | kotlin-patterns |
+| python-dev     | python-patterns, python-testing, django-patterns        |
+| golang-dev     | golang-patterns, golang-testing                         |
+| rust-dev       | rust-patterns                                           |
+| swift-dev      | swift-patterns, ios-native-patterns                     |
+| java-dev       | java-patterns, kotlin-patterns                          |
+| kotlin-dev     | kotlin-patterns                                         |
 
 ## 🔗 与规则对应
 
-| 技能             | 规则目录                     |
-| ---------------- | ---------------------------- |
-| python-patterns  | project_rules/python/        |
-| golang-patterns  | project_rules/golang/        |
-| rust-patterns    | project_rules/rust/          |
-| swift-patterns   | project_rules/swift/         |
-| java-patterns    | project_rules/java/          |
-| kotlin-patterns  | project_rules/kotlin/        |
-| coding-standards | project_rules/typescript/   |
+| 技能             | 规则目录                  |
+| ---------------- | ------------------------- |
+| python-patterns  | project_rules/python/     |
+| golang-patterns  | project_rules/golang/     |
+| rust-patterns    | project_rules/rust/       |
+| swift-patterns   | project_rules/swift/      |
+| java-patterns    | project_rules/java/       |
+| kotlin-patterns  | project_rules/kotlin/     |
+| coding-standards | project_rules/typescript/ |
 
 ## 📝 技能结构
 
@@ -219,25 +209,33 @@ description: 技能描述
 # 技能标题
 
 ## 何时激活
+
 - 触发条件 1
 - 触发条件 2
 
 ## 技术栈版本
+
 | 技术 | 最低版本 | 推荐版本 |
 
 ## 核心原则
+
 ### 原则 1
+
 ### 原则 2
 
 ## 最佳实践
+
 ### 实践 1
+
 ### 实践 2
 
 ## 相关智能体
+
 - agent-1
 - agent-2
 
 ## 相关规则
+
 - rule-1
 - rule-2
 ```
@@ -289,27 +287,30 @@ python-dev (Agent)
 - **前端**: 7 个技能
 - **后端**: 5 个技能
 - **数据库**: 6 个技能
-- **测试**: 5 个技能
+- **测试**: 4 个技能
 - **DevOps**: 5 个技能
 - **安全**: 3 个技能
 - **移动**: 4 个技能
 - **桌面**: 2 个技能
-- **语言特定**: 7 个技能
+- **语言特定**: 8 个技能
 - **架构**: 5 个技能
 - **通信**: 5 个技能
 - **工具**: 6 个技能
 - **性能**: 6 个技能
-- **苹果平台**: 5 个技能
 - **AI 与智能体**: 5 个技能
 - **全栈框架**: 7 个技能
 - **验证与追踪**: 2 个技能
 
-**总计**: 85+ 个技能
+**总计**: 80+ 个技能
 
 ## 🔄 更新日志
 
 ### 2026-03-24
-- 重命名 `swiftui-patterns` 为 `swift-patterns` 以保持一致性
+
+- 合并 3 个 Django 技能（django-security、django-tdd、django-verification）到 django-patterns
+- 合并 5 个 Swift 技能（swift-concurrency-6-2、swift-actor-persistence、swift-protocol-di-testing、liquid-glass-design、foundation-models-on-device）到 swift-patterns
+- 删除已合并的技能目录
 - 更新技能分类和组织结构
 - 添加与 Agents 和 Project Rules 的对应关系
 - 完善技能索引和使用指南
+- 重命名 `swiftui-patterns` 为 `swift-patterns` 以保持一致性
