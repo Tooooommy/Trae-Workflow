@@ -47,12 +47,16 @@
 | `e2e-testing`       | E2E 测试模式       | 所有项目    |
 | `verification-loop` | 验证循环模式       | 代码验证    |
 
+> 💡 **层级说明**：`tdd-workflow` 是通用测试规范，语言特定测试（如 `python-testing`）继承并扩展此规范。
+
 #### 🔒 安全相关
 
 | 技能              | 描述             | 适用场景    |
 | ----------------- | ---------------- | ----------- |
 | `security-review` | 安全审查检查清单 | 所有项目    |
 | `django-security` | Django 安全模式  | Django 项目 |
+
+> 💡 **层级说明**：`security-review` 是通用安全规范，框架特定安全（如 `django-security`）继承并扩展此规范。
 
 #### 🗄️ 数据库相关
 
@@ -72,6 +76,8 @@
 | `docker-patterns`     | Docker 容器模式     | 容器化项目 |
 | `kubernetes-patterns` | Kubernetes 部署模式 | K8s 部署   |
 | `ci-cd-patterns`      | CI/CD 流水线模式    | 自动化部署 |
+
+> 💡 **层级说明**：`deployment-patterns` 是通用部署规范，`docker-patterns` 和 `kubernetes-patterns` 是具体的容器化方案，`ci-cd-patterns` 是自动化流程。
 
 #### 🔄 版本控制
 
