@@ -46,28 +46,41 @@ async function downloadFile(url, dest) {
   await fs.ensureDir(destDir);
 
   return new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(dest);
-    https
-      .get(url, (response) => {
-        if (response.statusCode === 302 || response.statusCode === 301) {
-          https
-            .get(response.headers.location, (res) => {
-              res.pipe(file);
-              file.on('finish', () => {
-                file.close();
-                resolve();
-              });
-            })
-            .on('error', reject);
-        } else {
-          response.pipe(file);
-          file.on('finish', () => {
-            file.close();
-            resolve();
-          });
+    const request = https.get(url, (response) => {
+      if (response.statusCode === 302 || response.statusCode === 301) {
+        const redirectUrl = response.headers.location;
+        if (redirectUrl) {
+          https.get(redirectUrl, (res) => {
+            if (res.statusCode !== 200) {
+              reject(new Error(`Redirect failed: HTTP ${res.statusCode}`));
+              return;
+            }
+            const file = fs.createWriteStream(dest);
+            res.pipe(file);
+            file.on('finish', () => {
+              file.close();
+              resolve();
+            });
+            file.on('error', reject);
+          }).on('error', reject);
+          return;
         }
-      })
-      .on('error', reject);
+      }
+
+      if (response.statusCode !== 200) {
+        reject(new Error(`HTTP ${response.statusCode}`));
+        return;
+      }
+
+      const file = fs.createWriteStream(dest);
+      response.pipe(file);
+      file.on('finish', () => {
+        file.close();
+        resolve();
+      });
+      file.on('error', reject);
+    });
+    request.on('error', reject);
   });
 }
 
