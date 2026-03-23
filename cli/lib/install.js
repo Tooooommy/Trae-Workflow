@@ -9,7 +9,7 @@ const ora = require('ora');
 const os = require('os');
 
 const GITHUB_API_BASE = 'https://api.github.com';
-const DEFAULT_REPO = 'trae-cn/Trae-Workflow';
+const DEFAULT_REPO = 'Tooooommy/Trae-Workflow';
 const TRAECONFIG_DIR = path.join(os.homedir(), '.trae-cn');
 
 const COLORS = {
