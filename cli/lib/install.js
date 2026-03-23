@@ -94,6 +94,18 @@ async function getLatestRelease(repo) {
     return response.data;
   } catch (error) {
     spinner.stop();
+
+    if (error.response && error.response.status === 403) {
+      const token = process.env.GITHUB_TOKEN || process.env.GITHUB_PAT;
+      if (token) {
+        const responseWithAuth = await axios.get(`${GITHUB_API_BASE}/repos/${repo}/releases/latest`, {
+          headers: { Authorization: `token ${token}` }
+        });
+        return responseWithAuth.data;
+      }
+      throw new Error('GitHub API rate limit exceeded. Please set GITHUB_TOKEN or GITHUB_PAT environment variable, or try again later.');
+    }
+
     throw new Error(`Failed to fetch release: ${error.message}`);
   }
 }
@@ -302,17 +314,24 @@ async function install(repo, options) {
     log(`Installing Trae Workflow from ${targetRepo}`, 'info');
     log(`Platform: ${getPlatform()}`, 'gray');
 
-    const release = await getLatestRelease(targetRepo);
-    const version = release.tag_name;
-
-    log(`Latest version: ${version}`, 'info');
-
     await fs.ensureDir(tempDir);
 
-    const tarballPath = await downloadRelease(targetRepo, version, tempDir);
-    await extractTarball(tarballPath, tempDir);
+    const clonePath = path.join(tempDir, 'repo');
+    const repoUrl = `https://github.com/${targetRepo}.git`;
 
-    await runSetupScript(tempDir, options);
+    log('Cloning repository...', 'info');
+
+    try {
+      execSync(`git clone --depth=1 "${repoUrl}" "${clonePath}"`, {
+        stdio: 'inherit',
+      });
+    } catch (cloneError) {
+      throw new Error(`Failed to clone repository: ${cloneError.message}`);
+    }
+
+    log('Repository cloned successfully', 'success');
+
+    await runSetupScript(clonePath, options);
 
     await fs.remove(tempDir);
 
