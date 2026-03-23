@@ -10,10 +10,7 @@ project_rules/
 ├── typescript/         # TypeScript/JavaScript 规则
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
-├── rust/               # Rust 规则
-├── swift/              # Swift/iOS 规则
-├── java/               # Java 规则
-└── kotlin/             # Kotlin 规则
+└── swift/              # Swift/iOS 规则
 ```
 
 ## 🔄 规则层级
@@ -35,10 +32,7 @@ project_rules/<lang>/ ← 语言特定扩展
 | typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
 | python     | Python 规则                | python-dev     | django, fastapi, flask   |
 | golang     | Go 规则                    | go-dev         | gin, fiber               |
-| rust       | Rust 规则                  | rust-dev       | actix, axum              |
 | swift      | Swift/iOS 规则             | swift-dev      | swiftui, vapor           |
-| java       | Java 规则                  | java-dev       | spring, quarkus          |
-| kotlin     | Kotlin 规则                | java-dev       | ktor, spring             |
 
 ### 框架规则
 
@@ -49,10 +43,7 @@ project_rules/<lang>/ ← 语言特定扩展
 | typescript | react, nextjs, nestjs, react-native, expo 等 |
 | python     | django, fastapi, flask                       |
 | golang     | gin, fiber                                   |
-| rust       | actix, axum                                  |
 | swift      | swiftui, vapor                               |
-| java       | spring, quarkus                              |
-| kotlin     | ktor, spring                                 |
 
 ## 📝 规则文件格式
 
@@ -99,14 +90,14 @@ my-project/
 
 ## � 与智能体对应
 
-| 智能体         | 推荐规则目录   |
+| 智能体           | 推荐规则目录   |
 | -------------- | -------------- |
-| typescript-dev | typescript/    |
-| python-dev     | python/        |
-| go-dev         | golang/        |
-| rust-dev       | rust/          |
-| swift-dev      | swift/         |
-| java-dev       | java/, kotlin/ |
+| typescript-dev  | typescript/    |
+| python-dev      | python/        |
+| go-dev          | golang/        |
+| swift-dev       | swift/         |
+| react-native-dev | typescript/    |
+| kotlin-dev      | swift/         |
 
 ## 🔗 与技能对应
 
@@ -115,10 +106,7 @@ my-project/
 | typescript | react-modern-stack, frontend-patterns |
 | python     | python-patterns, python-testing       |
 | golang     | golang-patterns, golang-testing       |
-| rust       | rust-patterns                         |
 | swift      | swiftui-patterns, ios-native-patterns |
-| java       | java-patterns                         |
-| kotlin     | kotlin-patterns                       |
 
 ---
 

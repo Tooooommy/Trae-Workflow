@@ -10,7 +10,7 @@ Trae Workflow 提供了一套完整的 AI 编码助手配置，基于 **MCP-Rule
 
 ### 核心特性
 
-- **18 个精简智能体** - 覆盖规划、开发、测试、安全、DevOps 等领域
+- **16 个精简智能体** - 覆盖规划、开发、测试、安全、DevOps 等领域
 - **90+ 专业技能** - 保留所有主流语言的开发技能
 - **完整的规则体系** - 通用规则 + 语言特定规则
 - **一键安装** - CLI 工具快速安装和配置
@@ -117,14 +117,14 @@ Trae Workflow/
 
 ### 开发与编码
 
-| 智能体         | 角色             | 触发场景                   |
-| -------------- | ---------------- | -------------------------- |
-| typescript-dev | TypeScript 专家  | TS/JS/React/Node.js 开发   |
-| python-dev     | Python 专家      | Python/FastAPI/Django 开发 |
-| go-dev         | Go 专家          | Go 语言开发                |
-| rust-dev       | Rust 专家        | Rust 语言开发              |
-| swift-dev      | Swift 专家       | Swift/iOS/macOS 开发       |
-| java-dev       | Java/Kotlin 专家 | Java/Kotlin/Spring 开发    |
+| 智能体           | 角色              | 触发场景                    |
+| ---------------- | ----------------- | --------------------------- |
+| typescript-dev   | TypeScript 专家   | TS/JS/React/Node.js 开发    |
+| python-dev       | Python 专家       | Python/FastAPI/Django 开发  |
+| go-dev           | Go 专家           | Go 语言开发                 |
+| swift-dev        | Swift 专家        | Swift/iOS/macOS 开发        |
+| react-native-dev | React Native 专家 | React Native 跨平台开发     |
+| kotlin-dev       | Kotlin 专家       | Kotlin/Android/Compose 开发 |
 
 ### 测试与质量
 
@@ -198,24 +198,24 @@ Trae Workflow/
 
 ### 智能体与技能对应
 
-| 智能体            | 核心技能                                 |
-| ----------------- | ---------------------------------------- |
-| planner           | clean-architecture, tdd-workflow         |
-| architect         | microservices-patterns, api-design       |
-| typescript-dev    | react-modern-stack, frontend-patterns    |
-| python-dev        | python-patterns, python-testing          |
-| go-dev            | golang-patterns, golang-testing          |
-| rust-dev          | rust-patterns                            |
-| swift-dev         | swiftui-patterns, ios-native-patterns    |
-| java-dev          | java-patterns, kotlin-patterns           |
-| testing-expert    | tdd-workflow, e2e-testing                |
-| reviewer          | coding-standards, clean-architecture     |
-| security-reviewer | security-review                          |
-| devops-expert     | ci-cd-patterns, docker-patterns          |
-| backend-expert    | api-design, postgres-patterns            |
-| frontend-expert   | frontend-patterns, vue-patterns          |
-| react-native-dev  | react-native-patterns, frontend-patterns |
-| ml-engineer       | llm-integration-patterns, rag-patterns   |
+| 智能体            | 核心技能                                   |
+| ----------------- | ------------------------------------------ |
+| planner           | clean-architecture, tdd-workflow           |
+| architect         | microservices-patterns, api-design         |
+| typescript-dev    | react-modern-stack, frontend-patterns      |
+| python-dev        | python-patterns, python-testing            |
+| go-dev            | golang-patterns, golang-testing            |
+| swift-dev         | swiftui-patterns, ios-native-patterns      |
+| react-native-dev  | react-native-patterns, frontend-patterns   |
+| kotlin-dev        | android-native-patterns, frontend-patterns |
+| testing-expert    | tdd-workflow, e2e-testing                  |
+| reviewer          | coding-standards, clean-architecture       |
+| security-reviewer | security-review                            |
+| devops-expert     | ci-cd-patterns, docker-patterns            |
+| backend-expert    | api-design, postgres-patterns              |
+| frontend-expert   | frontend-patterns, vue-patterns            |
+| react-native-dev  | react-native-patterns, frontend-patterns   |
+| ml-engineer       | llm-integration-patterns, rag-patterns     |
 
 ---
 

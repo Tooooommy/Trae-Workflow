@@ -90,16 +90,13 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🦀 语言特定
 
-| 技能             | 描述                            |
-| ---------------- | ------------------------------- |
-| python-patterns  | Pythonic 惯用法、PEP 8 标准     |
-| golang-patterns  | Go 惯用模式、并发安全           |
-| rust-patterns    | Rust 所有权、生命周期、并发安全 |
-| java-patterns    | Java 惯用模式、Spring Boot      |
-| kotlin-patterns  | Kotlin 协程、空安全             |
-| swift-patterns   | Swift/SwiftUI/iOS 开发模式      |
-| django-patterns  | Django 架构模式、安全、测试     |
-| coding-standards | 通用编码标准、最佳实践          |
+| 技能             | 描述                        |
+| ---------------- | --------------------------- |
+| python-patterns  | Pythonic 惯用法、PEP 8 标准 |
+| golang-patterns  | Go 惯用模式、并发安全       |
+| swift-patterns   | Swift/SwiftUI/iOS 开发模式  |
+| django-patterns  | Django 架构模式、安全、测试 |
+| coding-standards | 通用编码标准、最佳实践      |
 
 ### 🏗️ 架构模式
 
@@ -174,15 +171,14 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ## 🔗 与智能体对应
 
-| 智能体         | 推荐技能                                                |
-| -------------- | ------------------------------------------------------- |
-| typescript-dev | coding-standards, react-modern-stack, frontend-patterns |
-| python-dev     | python-patterns, python-testing, django-patterns        |
-| golang-dev     | golang-patterns, golang-testing                         |
-| rust-dev       | rust-patterns                                           |
-| swift-dev      | swift-patterns, ios-native-patterns                     |
-| java-dev       | java-patterns, kotlin-patterns                          |
-| kotlin-dev     | kotlin-patterns                                         |
+| 智能体           | 推荐技能                                                |
+| ---------------- | ------------------------------------------------------- |
+| typescript-dev   | coding-standards, react-modern-stack, frontend-patterns |
+| python-dev       | python-patterns, python-testing, django-patterns        |
+| golang-dev       | golang-patterns, golang-testing                         |
+| swift-dev        | swift-patterns, ios-native-patterns                     |
+| react-native-dev | react-native-patterns, frontend-patterns                |
+| kotlin-dev       | android-native-patterns, frontend-patterns              |
 
 ## 🔗 与规则对应
 
@@ -190,10 +186,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | ---------------- | ------------------------- |
 | python-patterns  | project_rules/python/     |
 | golang-patterns  | project_rules/golang/     |
-| rust-patterns    | project_rules/rust/       |
 | swift-patterns   | project_rules/swift/      |
-| java-patterns    | project_rules/java/       |
-| kotlin-patterns  | project_rules/kotlin/     |
 | coding-standards | project_rules/typescript/ |
 
 ## 📝 技能结构
