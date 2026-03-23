@@ -1,12 +1,12 @@
 # Trae Workflow - Trae 配置项目
 
-Trae Workflow — 智能体指令配置项目，提供生产就绪的 AI 编码插件，包含 14 个专业智能体、89 项技能以及用于软件开发的自动化工作流。
+Trae Workflow — 智能体指令配置项目，提供生产就绪的 AI 编码插件，包含 **26 个专业智能体**、**89 项技能**以及用于软件开发的自动化工作流。
 
 ## 📋 项目概述
 
 本项目为 Trae IDE 提供了一套完整的配置，包括：
 
-- **14 个专业智能体**：覆盖规划、架构、测试、审查、安全、DevOps、全栈开发等各个方面（已优化整合）
+- **26 个专业智能体**：覆盖规划、架构、测试、审查、安全、DevOps、全栈开发等各个方面（已优化整合）
 - **89 项技能**：涵盖测试驱动开发、代码审查、部署模式、认证、实时通信等
 - **完整的规则体系**：通用规则 + 语言特定规则
 - **16+ MCP 服务器配置**：优化的 MCP 服务器配置
@@ -178,24 +178,41 @@ Trae Workflow/                    # 本仓库
 ├── setup.sh                      # Linux/macOS 配置脚本
 ├── mcp.json                      # MCP 服务器配置
 ├── tracking.json                 # 跟踪分析配置
-├── agents/                       # 智能体配置（14 个）
-│   ├── orchestrator.md           # 智能体协调器（总览）
-│   ├── planner.md                # 规划师
-│   ├── architect.md              # 架构师（含云架构）
-│   ├── code-reviewer.md          # 代码审查（多语言）
-│   ├── build-resolver.md         # 构建修复（多语言）
-│   ├── qa.md                     # QA工程师（TDD+E2E）
-│   ├── devops.md                 # DevOps（含Git）
-│   ├── fullstack.md              # 全栈专家（ML/移动/数据/UX）
-│   ├── security-reviewer.md      # 安全审查
-│   ├── database-reviewer.md      # 数据库审查
-│   ├── performance-optimizer.md  # 性能优化
-│   ├── refactor-cleaner.md       # 重构清理
-│   ├── doc-updater.md            # 文档更新
-│   └── README.md                 # 智能体说明
-├── trae-agents/                  # Trae IDE 智能体模板（可直接导入）
-│   ├── README.md                 # 使用说明
-│   └── ...                       # 与 agents 同步
+├── agents/                       # 智能体配置（26 个）
+│   ├── planning/                 # 规划与设计
+│   │   ├── planner.md
+│   │   ├── architect.md
+│   │   └── researcher.md
+│   ├── development/              # 开发与编码
+│   │   ├── typescript-dev.md
+│   │   ├── python-dev.md
+│   │   ├── go-dev.md
+│   │   ├── rust-dev.md
+│   │   ├── swift-dev.md
+│   │   └── java-dev.md
+│   ├── testing/                  # 测试与质量
+│   │   ├── tdd-guide.md
+│   │   ├── e2e-tester.md
+│   │   └── code-quality.md
+│   ├── security/                 # 安全与数据
+│   │   ├── security-reviewer.md
+│   │   ├── database-expert.md
+│   │   └── api-designer.md
+│   ├── devops/                   # 运维与部署
+│   │   ├── devops.md
+│   │   ├── git-expert.md
+│   │   └── monitor.md
+│   ├── specialist/               # 专业领域
+│   │   ├── ml-engineer.md
+│   │   ├── mobile-dev.md
+│   │   ├── frontend-expert.md
+│   │   ├── backend-expert.md
+│   │   ├── performance.md
+│   │   └── project-monitor.md
+│   ├── docs/                     # 文档与协作
+│   │   ├── doc-writer.md
+│   │   └── reviewer.md
+│   └── README.md
 ├── skills/                       # 技能配置（89 个）
 │   ├── tdd-workflow/
 │   ├── verification-loop/
@@ -236,43 +253,7 @@ my-project/                       # 你的项目（手动复制）
 
 ## 🤖 可用智能体
 
-### 核心智能体（8个）
-
-| 智能体         | 目的             | 何时使用               |
-| -------------- | ---------------- | ---------------------- |
-| orchestrator   | 智能体协调器     | 复杂任务、多智能体协作 |
-| planner        | 实施规划         | 复杂功能、重构         |
-| architect      | 系统架构+云架构  | 架构决策、云服务选型   |
-| code-reviewer  | 多语言代码审查   | 所有代码变更           |
-| build-resolver | 多语言构建修复   | 构建失败、类型错误     |
-| qa             | 测试策略+TDD+E2E | 新功能、错误修复       |
-| devops         | CI/CD+Git工作流  | 部署、分支管理         |
-| fullstack      | 全栈开发专家     | ML、移动、数据、UX     |
-
-### 专用智能体（5个）
-
-| 智能体                | 目的         | 何时使用           |
-| --------------------- | ------------ | ------------------ |
-| security-reviewer     | 安全漏洞检测 | 提交前、敏感代码   |
-| database-reviewer     | 数据库专家   | 模式设计、查询优化 |
-| performance-optimizer | 性能优化专家 | 性能瓶颈分析       |
-| refactor-cleaner      | 清理无用代码 | 代码维护           |
-| doc-updater           | 文档更新     | 更新文档           |
-
-### 合并说明
-
-为减少重复、提高可维护性，原 28 个智能体已合并为 14 个：
-
-| 合并前                         | 合并后         | 说明           |
-| ------------------------------ | -------------- | -------------- |
-| 6个语言审查器                  | code-reviewer  | 多语言整合     |
-| 2个构建修复器                  | build-resolver | 多语言整合     |
-| tdd-guide + e2e-runner         | qa             | 测试能力整合   |
-| devops-engineer + git-workflow | devops         | DevOps+Git整合 |
-| 架构 + 云架构                  | architect      | 架构能力整合   |
-| ML/移动/数据/UX/反馈           | fullstack      | 全栈能力整合   |
-
-> 💡 **提示**：查看 [agents/README.md](agents/README.md) 了解完整的智能体说明。
+本项目包含 **7 大类 26 个专业智能体**，详细说明请查看 [agents/README.md](agents/README.md)。
 
 ## 🛠️ MCP 服务器
 
@@ -420,10 +401,8 @@ cp -r "../Trae Workflow/project_rules/typescript/"* ".trae/rules/"
 ## 📖 详细文档
 
 - [安装指南](INSTALL.md) - 详细的安装和配置步骤
-- [故障排除](TROUBLESHOOTING.md) - 常见问题和解决方案
-- [智能体协调器](agents/orchestrator.md) - 智能体协调指南
-- [智能体文档](agents/) - 各智能体的详细说明
-- [技能文档](skills/) - 各技能的详细说明
+- [智能体文档](agents/) - 各智能体的详细说明（26 个专业智能体）
+- [技能文档](skills/) - 各技能的详细说明（89 项技能）
 
 ## 🎯 使用示例
 
@@ -466,9 +445,8 @@ cp -r "../Trae Workflow/project_rules/typescript/"* ".trae/rules/"
 
 如遇问题，请：
 
-1. 查看 [故障排除文档](TROUBLESHOOTING.md)
-2. 搜索现有 Issues
-3. 创建新的 Issue 并提供详细信息
+1. 搜索现有 Issues
+2. 创建新的 Issue 并提供详细信息
 
 ## 📞 联系方式
 
