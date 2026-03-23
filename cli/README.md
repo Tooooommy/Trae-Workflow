@@ -41,11 +41,17 @@ traew install
 # Install from specific repository
 traew install username/repo
 
+# Install from local directory
+traew install --local ./Trae-Workflow
+
 # Install with options
 traew install --backup --skip-mcp --quiet
+
+# Install with project rules
+traew install --path ~/myproject --type typescript
 ```
 
-### Options
+### Install Options
 
 | Option                 | Description                    |
 | ---------------------- | ------------------------------ |
@@ -60,11 +66,72 @@ traew install --backup --skip-mcp --quiet
 | `-f, --force`          | Force execution                |
 | `-p, --path <path>`    | Project path for Project Rules |
 | `-t, --type <type>`    | Project type                   |
+| `-l, --local <dir>`    | Install from local directory   |
 
-### Update CLI
+### Update Trae Workflow
 
 ```bash
+# Check and update to latest version
 traew update
+
+# Force update without confirmation
+traew update --force
+
+# Backup before update
+traew update --backup
+```
+
+### Check Status
+
+```bash
+# Show installation status and config info
+traew status
+```
+
+### Manage Configuration
+
+```bash
+# List all config files
+traew config --list
+
+# Show config directory path
+traew config --path
+
+# Open config directory in file manager
+traew config --edit
+
+# Show specific config value
+traew config --show mcp
+traew config --show tracking
+```
+
+### Initialize Project Rules
+
+```bash
+# Initialize in current directory
+traew init
+
+# Initialize in specific project
+traew init ~/myproject
+
+# Initialize with specific type
+traew init --type typescript
+
+# Force overwrite existing rules
+traew init --force
+```
+
+### Uninstall
+
+```bash
+# Uninstall with confirmation
+traew uninstall
+
+# Force uninstall without confirmation
+traew uninstall --force
+
+# Create backup before uninstall
+traew uninstall --backup
 ```
 
 ### Check Version
@@ -72,6 +139,24 @@ traew update
 ```bash
 traew version
 ```
+
+## Supported Project Types
+
+- typescript
+- python
+- java
+- golang
+- rust
+- kotlin
+- swift
+
+## Platform Support
+
+| Platform | Setup Script |
+| -------- | ------------ |
+| Windows  | setup.ps1    |
+| macOS    | setup.sh     |
+| Linux    | setup.sh     |
 
 ## Development
 

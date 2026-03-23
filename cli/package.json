@@ -1,6 +1,6 @@
 {
   "name": "trae-workflow-cli",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Trae Workflow CLI - Install and manage Trae Workflow from GitHub",
   "main": "index.js",
   "bin": {

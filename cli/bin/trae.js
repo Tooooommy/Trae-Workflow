@@ -5,11 +5,15 @@ const { program } = require('commander');
 const { install } = require('../lib/install');
 const { update } = require('../lib/update');
 const { version } = require('../lib/version');
+const { status } = require('../lib/status');
+const { config } = require('../lib/config');
+const { uninstall } = require('../lib/uninstall');
+const pkg = require('../package.json');
 
 program
   .name('traew')
   .description('Trae Workflow CLI - Install and manage Trae Workflow')
-  .version(require('../package.json').version);
+  .version(pkg.version);
 
 program
   .command('install [repo]')
@@ -25,6 +29,7 @@ program
   .option('-f, --force', 'Force execution')
   .option('-p, --path <path>', 'Project path for Project Rules')
   .option('-t, --type <type>', 'Project type')
+  .option('-l, --local <dir>', 'Install from local directory')
   .action((repo, options) => {
     install(repo, options);
   });
@@ -32,8 +37,10 @@ program
 program
   .command('update')
   .description('Update Trae Workflow to latest version')
-  .action(() => {
-    update();
+  .option('-f, --force', 'Force update without confirmation')
+  .option('-b, --backup', 'Backup existing config before update')
+  .action((options) => {
+    update(options);
   });
 
 program
@@ -41,6 +48,43 @@ program
   .description('Show current version')
   .action(() => {
     version();
+  });
+
+program
+  .command('status')
+  .description('Show installation status and config info')
+  .action(() => {
+    status();
+  });
+
+program
+  .command('config')
+  .description('Manage configuration')
+  .option('-l, --list', 'List all config files')
+  .option('-s, --show <key>', 'Show specific config value')
+  .option('-e, --edit', 'Open config directory in file manager')
+  .option('--path', 'Show config directory path')
+  .action((options) => {
+    config(options);
+  });
+
+program
+  .command('uninstall')
+  .description('Uninstall Trae Workflow')
+  .option('-b, --backup', 'Create backup before uninstall')
+  .option('-f, --force', 'Force uninstall without confirmation')
+  .action((options) => {
+    uninstall(options);
+  });
+
+program
+  .command('init [project-path]')
+  .description('Initialize Project Rules in a project directory')
+  .option('-t, --type <type>', 'Project type')
+  .option('-f, --force', 'Force overwrite existing rules')
+  .action((projectPath, options) => {
+    const { initProject } = require('../lib/init');
+    initProject(projectPath, options);
   });
 
 program.parse(process.argv);
