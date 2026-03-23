@@ -1,6 +1,6 @@
 # 测试规范
 
-> 定义测试要求和约束。
+> 定义测试要求。
 
 ---
 
@@ -48,21 +48,3 @@
 2. 检查测试隔离性
 3. 验证模拟是否正确
 4. 修复实现，而不是测试（除非测试有误）
-
----
-
-## 相关技能
-
-- **tdd-workflow** - 详细的 TDD 工作流和代码示例
-- **python-testing** - Python 特定测试模式
-- **golang-testing** - Go 特定测试模式
-- **e2e-testing** - 端到端测试模式
-- **verification-loop** - 验证循环模式
-
----
-
-## 相关智能体
-
-- **tdd-guide** - TDD 实践专家
-- **e2e-tester** - E2E 测试专家
-- **code-quality** - 代码质量专家

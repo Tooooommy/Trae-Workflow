@@ -48,6 +48,30 @@ builtin_tools:
 - API 契约
 - 集成模式
 
+### 4. 技术选型
+
+- 评估技术选项
+- 考虑性能、安全性、可维护性
+- 推荐最佳方案
+- 制定迁移策略
+
+## 协作说明
+
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 技术调研 | `researcher`        |
+| API 设计 | `api-designer`      |
+| 安全审查 | `security-reviewer` |
+
+## 相关技能
+
+- **clean-architecture** - 整洁架构模式
+- **microservices-patterns** - 微服务架构模式
+- **ddd-patterns** - 领域驱动设计模式
+- **api-design** - API 设计模式
+- **database-migrations** - 数据库迁移模式
+
 ### 4. 权衡分析
 
 | 决策 | 优点 | 缺点 | 替代方案 | 最终选择 |
@@ -127,6 +151,7 @@ builtin_tools:
 ## 组件设计
 
 ### [组件名称]
+
 - 职责：
 - 接口：
 - 依赖：
@@ -154,20 +179,10 @@ builtin_tools:
 
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| 技术调研       | `researcher`      |
-| API 设计       | `api-designer`    |
-| 数据库设计     | `database-expert` |
-| 安全审查       | `security-reviewer` |
-
-## 相关技能
-
-- **clean-architecture** - 整洁架构模式
-- **ddd-patterns** - 领域驱动设计
-- **microservices-patterns** - 微服务架构
-- **cqrs-patterns** - CQRS 命令查询职责分离
-- **event-driven-patterns** - 事件驱动架构
-- **caching-patterns** - 缓存策略模式
-- **tech-stack-selector** - 技术栈选择器
+| 任务       | 委托目标            |
+| ---------- | ------------------- |
+| 功能规划   | `planner`           |
+| 技术调研   | `researcher`        |
+| API 设计   | `api-designer`      |
+| 数据库设计 | `database-expert`   |
+| 安全审查   | `security-reviewer` |

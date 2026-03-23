@@ -1,12 +1,26 @@
-# Agents 智能体系统
+# 智能体系统
 
-> 基于角色分工的 AI 智能体协作系统，用于软件开发全生命周期管理。
+Trae Workflow 提供了一套完整的智能体系统，基于 **MCP-Rules-Skills-Agents** 四层架构，涵盖软件开发的各个方面。
 
-## 智能体概览
+## 🎯 架构分层
 
-本项目包含 **7 大类 26 个专业智能体**，覆盖软件开发的各个方面。
+```
+┌─────────────────────────────────────────────────────────┐
+│                      Agents 层                         │
+│ （智能体：决策与执行）                                 │
+├─────────────────────────────────────────────────────────┤
+│                      Skills 层                         │
+│ （技能：具体可执行的能力）                             │
+├─────────────────────────────────────────────────────────┤
+│                      Rules 层                          │
+│ （规则：行为规范与约束）                               │
+├─────────────────────────────────────────────────────────┤
+│                      MCP 层                           │
+│ （通信协议：底层连接与数据交换）                       │
+└─────────────────────────────────────────────────────────┘
+```
 
-## 智能体分类
+## 📊 智能体分类
 
 ### 📋 规划与设计 (Planning)
 
@@ -29,193 +43,80 @@
 
 ### 🧪 测试与质量 (Testing)
 
-| 智能体                                  | 角色         | 触发场景                   |
-| --------------------------------------- | ------------ | -------------------------- |
-| [tdd-guide](testing/tdd-guide.md)       | TDD 专家     | 测试驱动开发、单元测试     |
-| [e2e-tester](testing/e2e-tester.md)     | E2E 专家     | 端到端测试、Playwright     |
-| [code-quality](testing/code-quality.md) | 代码质量专家 | 代码审查、重构、死代码检测 |
+| 智能体                                  | 角色         | 触发场景                 |
+| --------------------------------------- | ------------ | ------------------------ |
+| [tdd-guide](testing/tdd-guide.md)       | TDD 专家     | 测试驱动开发、单元测试   |
+| [e2e-tester](testing/e2e-tester.md)     | E2E 测试专家 | 端到端测试、用户流程测试 |
+| [code-quality](testing/code-quality.md) | 代码质量专家 | 代码审查、重构清理       |
 
-### 🔒 安全与数据 (Security)
+### 🔒 安全与审查 (Security)
 
-| 智能体                                             | 角色         | 触发场景                        |
-| -------------------------------------------------- | ------------ | ------------------------------- |
-| [security-reviewer](security/security-reviewer.md) | 安全专家     | 漏洞检测、密钥检测、安全审查    |
-| [database-expert](security/database-expert.md)     | 数据库专家   | 查询优化、模式设计、RLS         |
-| [api-designer](security/api-designer.md)           | API 设计专家 | REST/GraphQL API 设计、版本控制 |
+| 智能体                                             | 角色         | 触发场景                     |
+| -------------------------------------------------- | ------------ | ---------------------------- |
+| [security-reviewer](security/security-reviewer.md) | 安全专家     | 漏洞检测、密钥检测、安全审查 |
+| [api-designer](security/api-designer.md)           | API 设计专家 | API 设计、安全考虑           |
+| [database-expert](security/database-expert.md)     | 数据库专家   | 数据库安全、性能优化         |
 
-### 🚀 运维与部署 (DevOps)
+### 🚀 DevOps 与部署 (DevOps)
 
-| 智能体                             | 角色        | 触发场景                     |
-| ---------------------------------- | ----------- | ---------------------------- |
-| [devops](devops/devops.md)         | DevOps 专家 | CI/CD、Docker、部署自动化    |
-| [git-expert](devops/git-expert.md) | Git 专家    | 分支策略、提交规范、冲突解决 |
-| [monitor](devops/monitor.md)       | 监控专家    | 性能监控、日志分析、告警配置 |
+| 智能体                               | 角色        | 触发场景           |
+| ------------------------------------ | ----------- | ------------------ |
+| [devops](devops/devops.md)           | DevOps 专家 | CI/CD、部署、监控  |
+| [git-expert](devops/git-expert.md)   | Git 专家    | 版本控制、分支策略 |
+| [performance](devops/performance.md) | 性能专家    | 性能优化、瓶颈分析 |
 
-### 🎯 专业领域 (Specialist)
+### 📊 代码质量 (Quality)
 
-| 智能体                                           | 角色         | 触发场景                           |
-| ------------------------------------------------ | ------------ | ---------------------------------- |
-| [ml-engineer](specialist/ml-engineer.md)         | ML 专家      | 机器学习、MLOps                    |
-| [mobile-dev](specialist/mobile-dev.md)           | 移动开发专家 | React Native、Flutter、原生开发    |
-| [frontend-expert](specialist/frontend-expert.md) | 前端专家     | React/Vue、状态管理、组件设计      |
-| [backend-expert](specialist/backend-expert.md)   | 后端专家     | API 开发、微服务、消息队列         |
-| [performance](specialist/performance.md)         | 性能专家     | 性能分析、优化建议、基准测试       |
-| [project-monitor](specialist/project-monitor.md) | 项目监控专家 | MCP/Agents/Skills/Rules 监控与优化 |
+| 智能体                                | 角色     | 触发场景           |
+| ------------------------------------- | -------- | ------------------ |
+| [reviewer](quality/reviewer.md)       | 审查专家 | 代码审查、最佳实践 |
+| [doc-updater](quality/doc-updater.md) | 文档专家 | 文档更新、API 文档 |
 
-### 📝 文档与协作 (Docs)
+### � 工具与实用程序 (Utilities)
 
-| 智能体                           | 角色         | 触发场景                    |
-| -------------------------------- | ------------ | --------------------------- |
-| [doc-writer](docs/doc-writer.md) | 文档专家     | README、API 文档、用户指南  |
-| [reviewer](docs/reviewer.md)     | 代码审查专家 | PR 审查、代码质量、最佳实践 |
+| 智能体                                                    | 角色             | 触发场景           |
+| --------------------------------------------------------- | ---------------- | ------------------ |
+| [build-error-resolver](utilities/build-error-resolver.md) | 构建错误解决专家 | 构建失败、依赖问题 |
+| [systematic-debugging](utilities/systematic-debugging.md) | 系统调试专家     | 复杂问题调试       |
+| [brainstorming](utilities/brainstorming.md)               | 头脑风暴专家     | 创意生成、方案探索 |
 
-## ⚠️ 相似智能体区分
+## 🔄 协同工作流程
 
-本项目存在功能相似的智能体，以下是它们的明确区分：
+### 开发新功能
 
-| 智能体组     | 智能体            | 核心职责                     | 使用场景             |
-| ------------ | ----------------- | ---------------------------- | -------------------- |
-| **代码审查** | `reviewer`        | PR 审查、最佳实践推广        | 代码提交后的全面审查 |
-|              | `code-quality`    | 死代码检测、重构、代码清理   | 代码质量深度检查     |
-| **性能**     | `performance`     | 性能分析、基准测试、优化方案 | 应用性能问题         |
-|              | `monitor`         | 监控配置、日志分析、告警     | 运行时监控设置       |
-|              | `project-monitor` | MCP/Agents/Skills/Rules 监控 | 项目整体健康         |
-| **后端**     | `backend-expert`  | API、微服务、消息队列        | 后端架构与开发       |
-|              | `database-expert` | 查询优化、模式设计、RLS      | 数据库专门问题       |
-| **前端**     | `frontend-expert` | React/Vue、组件设计          | 前端架构与开发       |
-|              | `typescript-dev`  | TS/JS 开发、类型安全         | 具体语言开发         |
+1. **规划阶段**：使用 `planner` 进行功能规划
+2. **架构设计**：使用 `architect` 进行架构设计
+3. **开发实现**：使用语言特定智能体（如 `typescript-dev`）
+4. **测试驱动**：使用 `tdd-guide` 遵循 TDD 工作流
+5. **代码审查**：使用 `reviewer` 进行代码审查
+6. **安全审查**：使用 `security-reviewer` 进行安全审查
+7. **文档更新**：使用 `doc-updater` 更新文档
 
-> 💡 **提示**：功能有重叠时，`reviewer` 可处理大多数场景，专项问题再调用对应专家。
+### 架构决策
 
-## 快速开始
+1. **技术调研**：使用 `researcher` 进行技术调研
+2. **架构设计**：使用 `architect` 进行架构设计
+3. **风险评估**：使用 `planner` 进行风险评估
+4. **实施规划**：制定详细的实施计划
 
-### 常用工作流
+## 🛠️ 技能引用
 
-```
-功能开发：planner → architect → 语言特定开发智能体 → tdd-guide → reviewer
-Bug修复：tdd-guide → 语言特定开发智能体 → reviewer
-代码审查：reviewer
-安全审查：security-reviewer
-性能优化：performance
-数据库优化：database-expert
-CI/CD配置：devops
-版本控制：git-expert
-```
+每个智能体都引用相关的技能，确保：
 
-### 智能体选择指南
+- **Rules 层**：定义要求和约束
+- **Skills 层**：提供详细的实现模式
+- **Agents 层**：定义专家角色和工作流
 
-| 任务类型         | 推荐智能体        |
-| ---------------- | ----------------- |
-| 新功能规划       | planner           |
-| 架构设计         | architect         |
-| TypeScript 开发  | typescript-dev    |
-| Python 开发      | python-dev        |
-| Go 开发          | go-dev            |
-| Rust 开发        | rust-dev          |
-| Swift/iOS 开发   | swift-dev         |
-| Java/Kotlin 开发 | java-dev          |
-| 单元测试         | tdd-guide         |
-| E2E 测试         | e2e-tester        |
-| 代码质量         | code-quality      |
-| 安全审查         | security-reviewer |
-| 数据库问题       | database-expert   |
-| API 设计         | api-designer      |
-| CI/CD            | devops            |
-| Git 操作         | git-expert        |
-| 监控告警         | monitor           |
-| 机器学习         | ml-engineer       |
-| 移动开发         | mobile-dev        |
-| 前端开发         | frontend-expert   |
-| 后端开发         | backend-expert    |
-| 性能优化         | `performance`     |
-| 项目监控         | `project-monitor` |
-| 文档撰写         | `doc-writer`      |
-| 代码审查         | `reviewer`        |
+## 📖 详细文档
 
-## 目录结构
+- [规划与设计智能体](planning/) - 规划、架构、调研专家
+- [开发与编码智能体](development/) - 语言特定开发专家
+- [测试与质量智能体](testing/) - 测试和质量保证专家
+- [安全与审查智能体](security/) - 安全和审查专家
+- [DevOps 与部署智能体](devops/) - DevOps 和部署专家
+- [代码质量智能体](quality/) - 代码质量和文档专家
+- [工具与实用程序智能体](utilities/) - 工具和实用程序专家
 
-```
-agents/
-├── planning/           # 规划与设计
-│   ├── planner.md
-│   ├── architect.md
-│   └── researcher.md
-├── development/        # 开发与编码
-│   ├── typescript-dev.md
-│   ├── python-dev.md
-│   ├── go-dev.md
-│   ├── rust-dev.md
-│   ├── swift-dev.md
-│   └── java-dev.md
-├── testing/            # 测试与质量
-│   ├── tdd-guide.md
-│   ├── e2e-tester.md
-│   └── code-quality.md
-├── security/           # 安全与数据
-│   ├── security-reviewer.md
-│   ├── database-expert.md
-│   └── api-designer.md
-├── devops/             # 运维与部署
-│   ├── devops.md
-│   ├── git-expert.md
-│   └── monitor.md
-├── specialist/         # 专业领域
-│   ├── ml-engineer.md
-│   ├── mobile-dev.md
-│   ├── frontend-expert.md
-│   ├── backend-expert.md
-│   ├── performance.md
-│   └── project-monitor.md
-├── docs/               # 文档与协作
-│   ├── doc-writer.md
-│   └── reviewer.md
-└── README.md           # 本文件
-```
-
-## 智能体模板
-
-```markdown
----
-name: <name>
-description: <简短描述，说明何时使用>
-mcp_servers:
-  - memory
-  - sequential-thinking
-  - context7
-builtin_tools:
-  - read
-  - filesystem
-  - terminal
-  - web-search
 ---
 
-# <智能体名称>
-
-你是一位专注于<领域>的专家。
-
-## 核心职责
-
-1. **职责1** — 描述
-2. **职责2** — 描述
-
-## 工作流程
-
-### 1. 步骤1
-
-...
-```
-
-## 扩展指南
-
-### 添加新智能体
-
-1. 在对应分类目录下创建 `<name>.md` 文件
-2. 包含 frontmatter：`name`, `description`, `mcp_servers`, `builtin_tools`
-3. 定义核心职责、工作流程、最佳实践
-4. 更新本 README
-
-### 添加新分类
-
-1. 创建新的分类目录
-2. 添加智能体文件
-3. 更新本 README 的分类表格
+**架构理念**：MCP 管"连接"，Rules 管"边界"，Skills 管"动作"，Agent 管"决策与执行"。它们从底层到高层，共同构成了一个完整的智能系统。

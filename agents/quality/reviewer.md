@@ -93,16 +93,16 @@ builtin_tools:
 
 ### 问题级别
 
-| 级别      | 说明               | 示例                           |
-| --------- | ------------------ | ------------------------------ |
-| BLOCKER   | 必须修复           | 安全漏洞、严重 Bug             |
-| CRITICAL  | 强烈建议修复       | 性能问题、潜在 Bug             |
-| MAJOR     | 应该修复           | 代码风格、最佳实践             |
-| MINOR     | 可选修复           | 小改进、建议                   |
+| 级别     | 说明         | 示例               |
+| -------- | ------------ | ------------------ |
+| BLOCKER  | 必须修复     | 安全漏洞、严重 Bug |
+| CRITICAL | 强烈建议修复 | 性能问题、潜在 Bug |
+| MAJOR    | 应该修复     | 代码风格、最佳实践 |
+| MINOR    | 可选修复     | 小改进、建议       |
 
 ### 反馈模板
 
-```markdown
+````markdown
 ## 审查摘要
 
 总体评价：[需要修改 / 可以合并]
@@ -133,7 +133,7 @@ builtin_tools:
 
 - 代码结构清晰
 - 测试覆盖充分
-```
+````
 
 ## 常见问题模式
 
@@ -156,7 +156,7 @@ for (const user of users) {
 }
 
 // ✅ 建议：批量查询
-const posts = await getPostsByUserIds(users.map(u => u.id));
+const posts = await getPostsByUserIds(users.map((u) => u.id));
 ```
 
 ### 代码质量问题
@@ -172,9 +172,16 @@ if (status === STATUS.ACTIVE) { ... }
 
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| 安全审查       | `security-reviewer` |
-| 性能审查       | `performance`     |
-| 测试审查       | `tdd-guide`       |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 安全审查 | `security-reviewer` |
+| 性能审查 | `performance`       |
+| 测试审查 | `tdd-guide`         |
+
+## 相关技能
+
+- **coding-standards** - 通用编码标准和最佳实践
+- **clean-architecture** - 整洁架构模式
+- **error-handling-patterns** - 统一错误处理模式
+- **git-workflow** - Git 工作流模式
