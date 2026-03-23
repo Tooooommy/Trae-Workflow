@@ -65,6 +65,10 @@ traew install --path "C:\myproject" --type typescript
 | ---------------------- | ---------------------------- |
 | `traew install [repo]` | 从 GitHub 安装 Trae Workflow |
 | `traew update`         | 更新到最新版本               |
+| `traew status`         | 显示安装状态和配置信息       |
+| `traew config`         | 管理配置文件                 |
+| `traew init [path]`    | 初始化项目规则               |
+| `traew uninstall`      | 卸载 Trae Workflow           |
 | `traew version`        | 显示当前版本                 |
 
 #### CLI 选项
@@ -82,6 +86,7 @@ traew install --path "C:\myproject" --type typescript
 | `-f, --force`          | 强制执行                 |
 | `-p, --path <path>`    | Project Rules 的项目路径 |
 | `-t, --type <type>`    | 项目类型                 |
+| `-l, --local <dir>`    | 从本地目录安装           |
 
 ### 前置要求
 

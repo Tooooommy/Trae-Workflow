@@ -59,6 +59,12 @@ function Write-Gray {
     Write-Log -Message $Message -Level "INFO"
 }
 
+function Write-White {
+    param([string]$Message)
+    Write-Host $Message -ForegroundColor White
+    Write-Log -Message $Message -Level "INFO"
+}
+
 function Show-Help {
     Write-Host ""
     Write-Host "========================================" -ForegroundColor Cyan
