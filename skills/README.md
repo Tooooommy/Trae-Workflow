@@ -8,6 +8,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 - **最佳实践**：包含经过验证的最佳实践和模式
 - **即插即用**：按需加载，不影响项目结构
 - **持续更新**：随技术发展持续更新
+- **三层对应**：与 Agents 和 Project Rules 保持一致
 
 ## 📊 技能分类
 
@@ -97,7 +98,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | rust-patterns    | Rust 所有权、生命周期、并发安全 |
 | java-patterns    | Java 惯用模式、Spring Boot      |
 | kotlin-patterns  | Kotlin 协程、空安全             |
-| swiftui-patterns | SwiftUI 架构、状态管理          |
+| swift-patterns   | Swift/SwiftUI/iOS 开发模式      |
 | coding-standards | 通用编码标准、最佳实践          |
 
 ### 🏗️ 架构模式
@@ -149,40 +150,166 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | swift-concurrency-6-2       | Swift 6.2 并发性       |
 | swift-actor-persistence     | Swift Actor 持久化     |
 | swift-protocol-di-testing   | Swift 协议依赖注入测试 |
-| foundation-models-on-device | 设备端 LLM             |
-| liquid-glass-design         | iOS 26 液态玻璃设计    |
+| liquid-glass-design         | iOS 26 液态玻璃设计   |
+| foundation-models-on-device | 设备上 LLM 框架        |
 
-### 📦 全栈模板
+### 🤖 AI 与智能体
 
-| 技能                      | 描述                         |
-| ------------------------- | ---------------------------- |
-| nextjs-supabase-stack     | Next.js + Supabase 全栈      |
-| fastapi-async-stack       | FastAPI 异步全栈             |
-| node-hono-stack           | Node.js + Hono 现代全栈      |
-| remixjs-fullstack-stack   | Remix 全栈应用               |
-| react-native-ignite-stack | React Native Ignite 移动应用 |
-| shopify-app-stack         | Shopify 应用开发             |
+| 技能                    | 描述                   |
+| ----------------------- | ---------------------- |
+| ai-first-engineering    | AI 优先工程运营模型    |
+| agentic-engineering     | 代理工程模式           |
+| agent-harness-construction | AI 代理动作空间设计   |
+| llm-integration-patterns | LLM 集成、Prompt 工程 |
+| rag-patterns             | RAG 检索增强生成      |
 
-### 🤖 AI 与工程
+### 📊 全栈框架
 
-| 技能                       | 描述                |
-| -------------------------- | ------------------- |
-| agentic-engineering        | 代理工程模式        |
-| agent-harness-construction | AI 代理动作空间设计 |
-| ai-first-engineering       | AI 优先工程         |
-| webassembly-patterns       | WebAssembly 模式    |
+| 技能                    | 描述                   |
+| ----------------------- | ---------------------- |
+| node-hono-stack         | Node.js + Hono 全栈    |
+| nextjs-supabase-stack   | Next.js + Supabase 全栈|
+| remixjs-fullstack-stack | Remix 全栈应用开发     |
+| fastapi-async-stack     | FastAPI 异步全栈       |
+| react-native-ignite-stack| React Native + Ignite |
+| shopify-app-stack       | Shopify 应用开发       |
+| django-patterns         | Django 架构模式        |
 
-### 🎯 其他
+### 🔍 验证与追踪
 
-| 技能                       | 描述           |
-| -------------------------- | -------------- |
-| tech-stack-selector        | 技术栈选型专家 |
-| monorepo-patterns          | Monorepo 管理  |
-| content-hash-cache-pattern | 内容哈希缓存   |
-| verification-loop          | 验证循环系统   |
-| skill-creator              | 技能创建工具   |
-| analytics-tracking         | 分析跟踪       |
+| 技能                    | 描述                   |
+| ----------------------- | ---------------------- |
+| verification-loop       | Trade 会话验证系统     |
+| analytics-tracking      | SKILL/Agent 调用追踪  |
 
+## 🔗 与智能体对应
+
+| 智能体         | 推荐技能                           |
+| -------------- | ---------------------------------- |
+| typescript-dev | coding-standards, react-modern-stack, frontend-patterns |
+| python-dev     | python-patterns, python-testing, django-patterns |
+| golang-dev     | golang-patterns, golang-testing |
+| rust-dev       | rust-patterns |
+| swift-dev      | swift-patterns, ios-native-patterns |
+| java-dev       | java-patterns, kotlin-patterns |
+| kotlin-dev     | kotlin-patterns |
+
+## 🔗 与规则对应
+
+| 技能             | 规则目录                     |
+| ---------------- | ---------------------------- |
+| python-patterns  | project_rules/python/        |
+| golang-patterns  | project_rules/golang/        |
+| rust-patterns    | project_rules/rust/          |
+| swift-patterns   | project_rules/swift/         |
+| java-patterns    | project_rules/java/          |
+| kotlin-patterns  | project_rules/kotlin/        |
+| coding-standards | project_rules/typescript/   |
+
+## 📝 技能结构
+
+每个技能包含以下部分：
+
+```markdown
+---
+name: skill-name
+description: 技能描述
 ---
 
-**总计**：90+ 技能，覆盖软件开发的各个方面。
+# 技能标题
+
+## 何时激活
+- 触发条件 1
+- 触发条件 2
+
+## 技术栈版本
+| 技术 | 最低版本 | 推荐版本 |
+
+## 核心原则
+### 原则 1
+### 原则 2
+
+## 最佳实践
+### 实践 1
+### 实践 2
+
+## 相关智能体
+- agent-1
+- agent-2
+
+## 相关规则
+- rule-1
+- rule-2
+```
+
+## 🚀 使用指南
+
+### 1. 技能调用
+
+智能体根据任务类型自动调用相关技能：
+
+```
+用户请求: "优化 React 组件性能"
+    ↓
+typescript-dev (Agent)
+    ↓ 分析任务
+    ↓ 调用技能
+    ├── react-modern-stack (React 模式)
+    ├── frontend-patterns (前端优化)
+    └── coding-standards (编码标准)
+    ↓ 综合建议
+```
+
+### 2. 技能发现
+
+基于任务上下文动态发现相关技能：
+
+1. 分析任务关键词
+2. 匹配 skills/ 目录中的技能
+3. 按相关性排序
+4. 调用最相关的技能
+
+### 3. 技能组合
+
+多个技能可以组合使用：
+
+```
+任务: "创建 FastAPI 端点"
+    ↓
+python-dev (Agent)
+    ↓ 调用技能
+    ├── fastapi-async-stack (FastAPI 模式)
+    ├── api-design (API 设计)
+    ├── python-patterns (Python 模式)
+    └── tdd-workflow (TDD 工作流)
+```
+
+## 📚 技能索引
+
+- **前端**: 7 个技能
+- **后端**: 5 个技能
+- **数据库**: 6 个技能
+- **测试**: 5 个技能
+- **DevOps**: 5 个技能
+- **安全**: 3 个技能
+- **移动**: 4 个技能
+- **桌面**: 2 个技能
+- **语言特定**: 7 个技能
+- **架构**: 5 个技能
+- **通信**: 5 个技能
+- **工具**: 6 个技能
+- **性能**: 6 个技能
+- **苹果平台**: 5 个技能
+- **AI 与智能体**: 5 个技能
+- **全栈框架**: 7 个技能
+- **验证与追踪**: 2 个技能
+
+**总计**: 85+ 个技能
+
+## 🔄 更新日志
+
+### 2026-03-24
+- 重命名 `swiftui-patterns` 为 `swift-patterns` 以保持一致性
+- 更新技能分类和组织结构
+- 添加与 Agents 和 Project Rules 的对应关系
+- 完善技能索引和使用指南

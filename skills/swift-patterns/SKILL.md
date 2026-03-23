@@ -1,11 +1,11 @@
 ---
-name: swiftui-patterns
-description: SwiftUI 架构模式，使用 @Observable 进行状态管理，视图组合，导航，性能优化，以及现代 iOS/macOS UI 最佳实践。
+name: swift-patterns
+description: Swift 开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式以及现代 iOS/macOS 开发最佳实践。
 ---
 
-# SwiftUI 模式
+# Swift 开发模式
 
-适用于 Apple 平台的现代 SwiftUI 模式，用于构建声明式、高性能的用户界面。涵盖 Observation 框架、视图组合、类型安全导航和性能优化。
+适用于 Apple 平台的现代 Swift 模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式等。用于构建声明式、高性能的用户界面和后端逻辑。
 
 ## 何时激活
 
