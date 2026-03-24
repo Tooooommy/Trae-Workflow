@@ -52,6 +52,7 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 | backend-expert  | 后端专家，整合 API 设计、数据库优化 | API 设计、数据库    |
 | frontend-expert | 前端专家                            | React/Vue、状态管理 |
 | doc-expert      | 文档专家                            | 文档编写、API 文档  |
+| analytics-agent | 数据分析专家，追踪使用数据生成报告  | 数据分析、使用追踪  |
 
 ## 🔄 标准工作流
 
@@ -117,6 +118,7 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 | backend-expert       | rest-patterns, postgres-patterns           | 后端开发时     |
 | frontend-expert      | frontend-patterns, vue-patterns            | 前端开发时     |
 | doc-expert           | -                                          | 文档编写时     |
+| analytics-agent      | analytics-tracking, logging-observability  | 数据分析时     |
 
 ---
 
