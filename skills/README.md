@@ -54,7 +54,6 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | ------------------- | ---------------------------------- |
 | deployment-patterns | CI/CD 流水线、部署工作流、健康检查 |
 | docker-patterns     | Docker 容器化、多服务编排          |
-| kubernetes-patterns | Kubernetes 部署模式、资源管理      |
 | serverless-patterns | 无服务器模式、Lambda/Functions     |
 
 ### 🔒 安全
@@ -94,7 +93,6 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | 技能                   | 描述                     |
 | ---------------------- | ------------------------ |
 | clean-architecture     | 整洁架构、分层设计       |
-| microservices-patterns | 微服务架构、服务发现     |
 | ddd-patterns           | 领域驱动设计、限界上下文 |
 | cqrs-patterns          | CQRS 命令查询职责分离    |
 | message-queue-patterns | 消息队列、事件驱动架构   |

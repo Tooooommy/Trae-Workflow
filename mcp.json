@@ -105,11 +105,6 @@
       "command": "docker",
       "args": ["run", "-i", "--rm", "mcp/docker"],
       "description": "Docker 操作 - 管理容器和镜像"
-    },
-    "kubernetes": {
-      "command": "npx",
-      "args": ["-y", "@kubernetes/mcp-server-kubernetes"],
-      "description": "Kubernetes - 集群管理和部署"
     }
   },
   "disabledMcpServers": [
@@ -132,7 +127,7 @@
       "development": ["filesystem", "github"],
       "research": ["exa-web-search", "brave-search"],
       "database": ["supabase", "postgres"],
-      "deployment": ["vercel", "docker", "kubernetes"],
+      "deployment": ["vercel", "docker"],
       "communication": ["slack"],
       "automation": ["puppeteer"],
       "cloud": ["aws-kb-retrieval"],

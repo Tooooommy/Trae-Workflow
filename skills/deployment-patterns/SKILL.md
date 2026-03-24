@@ -174,7 +174,7 @@ CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers
 - Copy dependency files first (layer caching)
 - Use .dockerignore to exclude node_modules, .git, tests
 - Add HEALTHCHECK instruction
-- Set resource limits in docker-compose or k8s
+- Set resource limits in docker-compose
 
 # BAD practices
 - Running as root

@@ -193,14 +193,14 @@ Trae Workflow/
 | 安全     | security-review, authentication-patterns         |
 | 移动开发 | react-native-patterns, android-native-patterns   |
 | 语言特定 | python-patterns, golang-patterns, swift-patterns |
-| 架构模式 | clean-architecture, microservices-patterns       |
+| 架构模式 | clean-architecture, ddd-patterns                 |
 
 ### 智能体与技能对应
 
 | 智能体            | 核心技能                                   |
 | ----------------- | ------------------------------------------ |
 | planner           | clean-architecture, tdd-workflow           |
-| architect         | microservices-patterns, rest-patterns         |
+| architect         | clean-architecture, ddd-patterns           |
 | typescript-dev    | frontend-patterns, coding-standards        |
 | python-dev        | python-patterns, django-patterns           |
 | golang-dev        | golang-patterns                            |

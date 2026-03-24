@@ -434,5 +434,4 @@ journalctl -u app -f
 | docker-patterns        | Docker 容器化、多服务编排 |
 | git-workflow           | Git 分支策略、提交规范   |
 | deployment-patterns    | 部署工作流、健康检查     |
-| kubernetes-patterns    | Kubernetes 部署模式       |
 | logging-observability | 日志、指标、追踪         |
