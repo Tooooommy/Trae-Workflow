@@ -298,11 +298,10 @@ fun FilteredList(items: List<Item>, filter: String) {
 
 ## 相关技能
 
-| 技能                    | 用途                |
-| ----------------------- | ------------------- |
-| kotlin-patterns         | Kotlin/Android 模式 |
-| android-native-patterns | Android 原生模式    |
-| tdd-workflow            | TDD 工作流          |
+| 技能 | 用途 |
+|------|------|
+| android-native-patterns | Android 原生模式 |
+| tdd-workflow | TDD 工作流 |
 
 ## 相关规则目录
 

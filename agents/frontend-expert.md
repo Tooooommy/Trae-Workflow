@@ -107,3 +107,8 @@ const displayName = computed(() => user.value?.name ?? 'Unknown');
 | frontend-patterns | 前端模式、React/Vue 开发 | 前端开发时       |
 | vue-patterns      | Vue 模式                 | Vue 项目时       |
 | tailwind-patterns | Tailwind CSS             | 使用 Tailwind 时 |
+
+## 相关规则目录
+
+- `user_rules/coding-style.md` - 代码规范
+- `user_rules/patterns.md` - 架构模式
