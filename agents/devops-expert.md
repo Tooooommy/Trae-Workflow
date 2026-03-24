@@ -37,13 +37,12 @@ builtin_tools:
 
 ## 相关技能
 
-| 技能                  | 用途             | 调用时机   |
-| --------------------- | ---------------- | ---------- |
-| ci-cd-patterns        | CI/CD 流水线模式 | 始终调用   |
-| docker-patterns       | Docker 容器化    | 容器化时   |
-| git-workflow          | Git 分支策略     | 版本控制时 |
-| deployment-patterns   | 部署工作流       | 部署时     |
-| logging-observability | 日志、监控       | 监控配置时 |
+| 技能                  | 用途                     | 调用时机   |
+| --------------------- | ------------------------ | ---------- |
+| docker-patterns       | Docker 容器化            | 容器化时   |
+| git-workflow          | Git 分支策略、CI/CD 配置 | 版本控制时 |
+| deployment-patterns   | 部署工作流               | 部署时     |
+| logging-observability | 日志、监控               | 监控配置时 |
 
 ## 相关规则目录
 

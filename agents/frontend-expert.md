@@ -26,11 +26,11 @@ builtin_tools:
 
 ## 框架选择
 
-| 框架       | 适用场景               |
-| ---------- | ---------------------- |
-| React      | 大型应用、生态丰富     |
-| Vue 3      | 快速开发、易上手       |
-| Next.js    | SSR/SSG、全栈应用      |
+| 框架    | 适用场景           |
+| ------- | ------------------ |
+| React   | 大型应用、生态丰富 |
+| Vue 3   | 快速开发、易上手   |
+| Next.js | SSR/SSG、全栈应用  |
 
 ## React 最佳实践
 
@@ -92,19 +92,18 @@ const displayName = computed(() => user.value?.name ?? 'Unknown');
 
 ## 协作说明
 
-| 任务       | 委托目标            |
-| ---------- | ------------------- |
-| 功能规划   | `planner`           |
-| 架构设计   | `architect`         |
-| 测试策略   | `testing-expert`    |
-| 安全审查   | `security-reviewer` |
-| DevOps     | `devops-expert`     |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 架构设计 | `architect`         |
+| 测试策略 | `testing-expert`    |
+| 安全审查 | `security-reviewer` |
+| DevOps   | `devops-expert`     |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| frontend-patterns | 前端模式 | 前端开发时 |
-| react-modern-stack | React 现代栈 | React 项目时 |
-| vue-patterns | Vue 模式 | Vue 项目时 |
-| tailwind-patterns | Tailwind CSS | 使用 Tailwind 时 |
+| 技能              | 用途                     | 调用时机         |
+| ----------------- | ------------------------ | ---------------- |
+| frontend-patterns | 前端模式、React/Vue 开发 | 前端开发时       |
+| vue-patterns      | Vue 模式                 | Vue 项目时       |
+| tailwind-patterns | Tailwind CSS             | 使用 Tailwind 时 |

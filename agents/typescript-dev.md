@@ -95,22 +95,21 @@ async function fetchUser(id: string): Promise<User> {
 
 ## 协作说明
 
-| 任务       | 委托目标            |
-| ---------- | ------------------- |
-| 功能规划   | `planner`           |
-| 架构设计   | `architect`         |
-| 测试策略   | `testing-expert`    |
-| 安全审查   | `security-reviewer` |
-| DevOps     | `devops-expert`     |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 架构设计 | `architect`         |
+| 测试策略 | `testing-expert`    |
+| 安全审查 | `security-reviewer` |
+| DevOps   | `devops-expert`     |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| coding-standards | 编码标准 | 始终调用 |
-| react-modern-stack | React 现代栈 | React 开发时 |
-| frontend-patterns | 前端模式 | 前端开发时 |
-| tdd-workflow | TDD 工作流 | TDD 开发时 |
+| 技能              | 用途                     | 调用时机   |
+| ----------------- | ------------------------ | ---------- |
+| coding-standards  | 编码标准                 | 始终调用   |
+| frontend-patterns | 前端模式、React/Vue 开发 | 前端开发时 |
+| tdd-workflow      | TDD 工作流               | TDD 开发时 |
 
 ## 相关规则目录
 

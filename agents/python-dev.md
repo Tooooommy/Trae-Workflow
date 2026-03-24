@@ -83,21 +83,20 @@ class User:
 
 ## 协作说明
 
-| 任务       | 委托目标            |
-| ---------- | ------------------- |
-| 功能规划   | `planner`           |
-| 架构设计   | `architect`         |
-| 测试策略   | `testing-expert`    |
-| 安全审查   | `security-reviewer` |
-| DevOps     | `devops-expert`     |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 架构设计 | `architect`         |
+| 测试策略 | `testing-expert`    |
+| 安全审查 | `security-reviewer` |
+| DevOps   | `devops-expert`     |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| python-patterns | Python 模式 | Python 开发时 |
-| python-testing | Python 测试 | 测试时 |
-| tdd-workflow | TDD 工作流 | TDD 开发时 |
+| 技能            | 用途              | 调用时机      |
+| --------------- | ----------------- | ------------- |
+| python-patterns | Python 模式、测试 | Python 开发时 |
+| tdd-workflow    | TDD 工作流        | TDD 开发时    |
 
 ## 相关规则目录
 
