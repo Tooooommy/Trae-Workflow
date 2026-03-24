@@ -102,9 +102,9 @@ const displayName = computed(() => user.value?.name ?? 'Unknown');
 
 ## 相关技能
 
-| 技能                | 用途         |
-| ------------------- | ------------ |
-| frontend-patterns   | 前端模式     |
-| react-modern-stack  | React 现代栈 |
-| vue-patterns        | Vue 模式     |
-| tailwind-patterns   | Tailwind CSS |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| frontend-patterns | 前端模式 | 前端开发时 |
+| react-modern-stack | React 现代栈 | React 项目时 |
+| vue-patterns | Vue 模式 | Vue 项目时 |
+| tailwind-patterns | Tailwind CSS | 使用 Tailwind 时 |

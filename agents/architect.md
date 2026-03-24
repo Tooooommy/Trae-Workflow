@@ -166,9 +166,9 @@ builtin_tools:
 
 ## 相关技能
 
-| 技能                  | 用途             |
-| --------------------- | ---------------- |
-| clean-architecture    | 整洁架构模式     |
-| ddd-patterns          | 领域驱动设计模式 |
-| rest-patterns         | REST API 设计模式     |
-| database-migrations   | 数据库迁移模式   |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| clean-architecture | 整洁架构模式 | 始终调用 |
+| ddd-patterns | 领域驱动设计模式 | 领域建模时 |
+| rest-patterns | REST API 设计模式 | API 设计时 |
+| database-migrations | 数据库迁移模式 | 数据库变更时 |

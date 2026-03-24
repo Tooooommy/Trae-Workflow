@@ -91,11 +91,11 @@ func fetchUser(ctx context.Context, id string) (*User, error) {
 
 ## 相关技能
 
-| 技能            | 用途       |
-| --------------- | ---------- |
-| golang-patterns | Go 模式    |
-| golang-testing  | Go 测试    |
-| tdd-workflow   | TDD 工作流 |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| golang-patterns | Go 模式 | Go 开发时 |
+| golang-testing | Go 测试 | 测试时 |
+| tdd-workflow | TDD 工作流 | TDD 开发时 |
 
 ## 相关规则目录
 

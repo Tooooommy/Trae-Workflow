@@ -93,11 +93,11 @@ class User:
 
 ## 相关技能
 
-| 技能            | 用途         |
-| --------------- | ------------ |
-| python-patterns | Python 模式  |
-| python-testing  | Python 测试  |
-| tdd-workflow   | TDD 工作流   |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| python-patterns | Python 模式 | Python 开发时 |
+| python-testing | Python 测试 | 测试时 |
+| tdd-workflow | TDD 工作流 | TDD 开发时 |
 
 ## 相关规则目录
 

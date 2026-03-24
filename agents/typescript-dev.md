@@ -105,12 +105,12 @@ async function fetchUser(id: string): Promise<User> {
 
 ## 相关技能
 
-| 技能                  | 用途           |
-| --------------------- | -------------- |
-| coding-standards      | 编码标准       |
-| react-modern-stack    | React 现代栈   |
-| frontend-patterns     | 前端模式       |
-| tdd-workflow          | TDD 工作流     |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| coding-standards | 编码标准 | 始终调用 |
+| react-modern-stack | React 现代栈 | React 开发时 |
+| frontend-patterns | 前端模式 | 前端开发时 |
+| tdd-workflow | TDD 工作流 | TDD 开发时 |
 
 ## 相关规则目录
 
