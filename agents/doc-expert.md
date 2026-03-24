@@ -409,8 +409,12 @@ GET /api/v1/users
 
 ## 相关技能
 
-| 技能              | 用途                   |
-| ----------------- | ---------------------- |
-| rest-patterns      | REST API 设计模式       |
-| backend-patterns  | 后端架构模式、API 设计  |
-| frontend-patterns | 前端开发模式           |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| rest-patterns | REST API 设计模式 | API 文档时 |
+| backend-patterns | 后端架构模式 | 后端文档时 |
+| frontend-patterns | 前端开发模式 | 前端文档时 |
+
+## 相关规则目录
+
+- `user_rules/README.md` - 项目 README 规范

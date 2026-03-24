@@ -423,15 +423,20 @@ journalctl -u app -f
 | 任务     | 委托目标            |
 | -------- | ------------------- |
 | 功能规划 | `planner`           |
-| 代码审查 | `code-reviewer`      |
+| 代码审查 | `code-reviewer`     |
 | 安全审查 | `security-reviewer` |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| ci-cd-patterns | CI/CD 流水线模式 | 始终调用 |
-| docker-patterns | Docker 容器化 | 容器化时 |
-| git-workflow | Git 分支策略 | 版本控制时 |
-| deployment-patterns | 部署工作流 | 部署时 |
-| logging-observability | 日志、监控 | 监控配置时 |
+| 技能                  | 用途             | 调用时机   |
+| --------------------- | ---------------- | ---------- |
+| ci-cd-patterns        | CI/CD 流水线模式 | 始终调用   |
+| docker-patterns       | Docker 容器化    | 容器化时   |
+| git-workflow          | Git 分支策略     | 版本控制时 |
+| deployment-patterns   | 部署工作流       | 部署时     |
+| logging-observability | 日志、监控       | 监控配置时 |
+
+## 相关规则目录
+
+- `user_rules/git-workflow.md` - Git 规范
+- `user_rules/deployment-patterns.md` - 部署模式

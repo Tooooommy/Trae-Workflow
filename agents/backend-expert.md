@@ -85,9 +85,16 @@ SELECT id, name, email FROM users WHERE active = true;
 
 ## 相关技能
 
-| 技能                | 用途              |
-| ------------------- | ----------------- |
-| rest-patterns       | REST API 设计模式 |
-| postgres-patterns   | PostgreSQL        |
-| mongodb-patterns    | MongoDB           |
-| database-migrations | 数据库迁移        |
+| 技能                | 用途                 | 调用时机      |
+| ------------------- | -------------------- | ------------- |
+| backend-patterns    | 后端设计模式         | 始终调用      |
+| rest-patterns       | REST API 设计模式    | API 开发时    |
+| graphql-patterns    | GraphQL API 设计模式 | GraphQL 时    |
+| postgres-patterns   | PostgreSQL           | PostgreSQL 时 |
+| mongodb-patterns    | MongoDB              | MongoDB 时    |
+| database-migrations | 数据库迁移           | 迁移时        |
+
+## 相关规则目录
+
+- `user_rules/project-config.md` - 项目配置
+- `user_rules/patterns.md` - 架构模式

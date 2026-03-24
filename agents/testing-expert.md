@@ -369,9 +369,14 @@ jobs:
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| tdd-workflow | 测试驱动开发工作流 | 始终调用 |
-| e2e-testing | Playwright E2E 测试 | E2E 测试时 |
-| python-testing | Python pytest 测试 | Python 项目时 |
-| golang-testing | Go 表格驱动测试 | Go 项目时 |
+| 技能           | 用途                | 调用时机      |
+| -------------- | ------------------- | ------------- |
+| tdd-workflow   | 测试驱动开发工作流  | 始终调用      |
+| e2e-testing    | Playwright E2E 测试 | E2E 测试时    |
+| python-testing | Python pytest 测试  | Python 项目时 |
+| golang-testing | Go 表格驱动测试     | Go 项目时     |
+
+## 相关规则目录
+
+- `user_rules/testing.md` - 测试规范
+- `user_rules/core-principles.md` - 核心原则
