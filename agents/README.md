@@ -20,14 +20,14 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 
 ### 💻 开发与编码
 
-| 智能体           | 描述                           | 触发场景               |
-| ---------------- | ------------------------------ | ---------------------- |
-| typescript-dev   | TypeScript/JavaScript 开发专家 | TS/JS/React/Node.js    |
-| python-dev       | Python 开发专家                | Python/FastAPI/Django  |
-| golang-dev       | Go 开发专家                    | Go 语言开发            |
-| swift-dev        | Swift/iOS 开发专家             | Swift/iOS/macOS        |
-| react-native-dev | React Native 开发专家          | React Native 跨平台    |
-| kotlin-dev       | Kotlin/Android 开发专家        | Kotlin/Android/Compose |
+| 智能体           | 描述                           | 触发场景              |
+| ---------------- | ------------------------------ | --------------------- |
+| typescript-dev   | TypeScript/JavaScript 开发专家 | TS/JS/React/Node.js   |
+| python-dev       | Python 开发专家                | Python/FastAPI/Django |
+| golang-dev       | Go 开发专家                    | Go 语言开发           |
+| ios-native       | iOS 开发专家                   | iOS/macOS             |
+| react-native-dev | React Native 开发专家          | React Native 跨平台   |
+| android-native   | Android 开发专家               | Android/Compose       |
 
 ### 🧪 测试与质量
 
@@ -92,9 +92,9 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 | typescript-dev    | frontend-patterns, coding-standards        |
 | python-dev        | python-patterns, django-patterns           |
 | golang-dev        | golang-patterns                            |
-| swift-dev         | swift-patterns                             |
+| ios-native        | ios-native-patterns                        |
 | react-native-dev  | react-native-patterns, frontend-patterns   |
-| kotlin-dev        | android-native-patterns, frontend-patterns |
+| android-native    | android-native-patterns, frontend-patterns |
 | testing-expert    | tdd-workflow, e2e-testing                  |
 | reviewer          | coding-standards, clean-architecture       |
 | security-reviewer | security-review                            |

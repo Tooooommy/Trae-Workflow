@@ -28,7 +28,6 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | backend-patterns | 后端架构模式、API 设计            |
 | rest-patterns    | REST API 设计、版本控制、错误处理 |
 | graphql-patterns | GraphQL Schema 设计、N+1 问题解决 |
-| grpc-patterns    | gRPC 通信模式、Protocol Buffers   |
 
 ### 💾 数据库
 
@@ -37,7 +36,6 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | postgres-patterns   | PostgreSQL 查询优化、索引策略  |
 | mongodb-patterns    | MongoDB 文档设计、聚合管道     |
 | database-migrations | 数据库迁移最佳实践、零停机部署 |
-| prisma-patterns     | Prisma ORM 类型安全查询        |
 | redis-patterns      | Redis 缓存模式、分布式锁       |
 | clickhouse-io       | ClickHouse 高性能分析          |
 
@@ -54,15 +52,13 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | ------------------- | ---------------------------------- |
 | deployment-patterns | CI/CD 流水线、部署工作流、健康检查 |
 | docker-patterns     | Docker 容器化、多服务编排          |
-| serverless-patterns | 无服务器模式、Lambda/Functions     |
 
 ### 🔒 安全
 
-| 技能                    | 描述                         |
-| ----------------------- | ---------------------------- |
-| security-review         | 安全检查清单、漏洞检测       |
-| authentication-patterns | OAuth2/JWT/OIDC 认证授权模式 |
-| rate-limiting           | API 限流、防滥用             |
+| 技能            | 描述                   |
+| --------------- | ---------------------- |
+| security-review | 安全检查清单、漏洞检测 |
+| rate-limiting   | API 限流、防滥用       |
 
 ### 📱 移动开发
 
@@ -80,13 +76,13 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🦀 语言特定
 
-| 技能             | 描述                                     |
-| ---------------- | ---------------------------------------- |
-| python-patterns  | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
-| golang-patterns  | Go 惯用模式、并发安全、表格驱动测试      |
-| swift-patterns   | Swift/SwiftUI/iOS 开发模式               |
-| django-patterns  | Django 架构模式、安全、测试              |
-| coding-standards | 通用编码标准、最佳实践                   |
+| 技能                | 描述                                     |
+| ------------------- | ---------------------------------------- |
+| python-patterns     | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
+| golang-patterns     | Go 惯用模式、并发安全、表格驱动测试      |
+| ios-native-patterns | iOS/SwiftUI 原生开发模式                 |
+| django-patterns     | Django 架构模式、安全、测试              |
+| coding-standards    | 通用编码标准、最佳实践                   |
 
 ### 🏗️ 架构模式
 
@@ -107,14 +103,17 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🛠️ 工具与流程
 
-| 技能                    | 描述                   |
-| ----------------------- | ---------------------- |
-| git-workflow            | Git 分支策略、提交规范 |
-| feature-flags           | 功能开关、A/B 测试     |
-| i18n-patterns           | 国际化、多语言支持     |
-| email-patterns          | 邮件服务、模板最佳实践 |
-| file-storage-patterns   | 文件上传、对象存储     |
-| payment-stripe-patterns | Stripe 支付集成        |
+| 技能                  | 描述                   |
+| --------------------- | ---------------------- |
+| git-workflow          | Git 分支策略、提交规范 |
+| feature-flags         | 功能开关、A/B 测试     |
+| i18n-patterns         | 国际化、多语言支持     |
+| email-patterns        | 邮件服务、模板最佳实践 |
+| file-storage-patterns | 文件上传、对象存储     |
+| stripe-patterns       | Stripe 支付集成        |
+| paypal-patterns       | PayPal 支付集成        |
+| wechatpay-patterns    | 微信支付集成           |
+| alipay-patterns       | 支付宝支付集成         |
 
 ### ⚡ 性能与优化
 
@@ -136,11 +135,11 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 | 技能                    | 描述                    |
 | ----------------------- | ----------------------- |
-| honojs-patterns         | Node.js + Hono 全栈     |
+| express-patterns        | Node.js + Express 全栈  |
 | nextjs-patterns         | Next.js + Supabase 全栈 |
-| remixjs-fullstack-stack | Remix 全栈应用开发      |
+| remixjs-patterns | Remix 全栈应用开发      |
 | fastapi-patterns        | FastAPI 异步全栈        |
-| shopify-app-stack       | Shopify 应用开发        |
+| shopify-app-patterns | Shopify 应用开发        |
 | django-patterns         | Django 架构模式         |
 
 ### 🔍 验证与追踪
@@ -157,18 +156,19 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | typescript-dev   | coding-standards, frontend-patterns        |
 | python-dev       | python-patterns, django-patterns           |
 | golang-dev       | golang-patterns                            |
-| swift-dev        | swift-patterns                             |
+| ios-native       | ios-native-patterns                        |
 | react-native-dev | react-native-patterns, frontend-patterns   |
-| kotlin-dev       | android-native-patterns, frontend-patterns |
+| android-native   | android-native-patterns, frontend-patterns |
 
 ## 🔗 与规则对应
 
-| 技能             | 规则目录                  |
-| ---------------- | ------------------------- |
-| python-patterns  | project_rules/python/     |
-| golang-patterns  | project_rules/golang/     |
-| swift-patterns   | project_rules/swift/      |
-| coding-standards | project_rules/typescript/ |
+| 技能                    | 规则目录                      |
+| ----------------------- | ----------------------------- |
+| python-patterns         | project_rules/python/         |
+| golang-patterns         | project_rules/golang/         |
+| ios-native-patterns     | project_rules/ios-native/     |
+| android-native-patterns | project_rules/android-native/ |
+| coding-standards        | project_rules/typescript/     |
 
 ## 📝 技能结构
 
@@ -283,7 +283,7 @@ python-dev (Agent)
   - ai-first-engineering + agent-harness-construction → agentic-engineering
   - python-testing → python-patterns
   - golang-testing → golang-patterns
-  - ios-native-patterns → swift-patterns
+  - ios-native-patterns → ios-native-patterns
   - react-modern-stack → frontend-patterns
   - react-native-ignite-stack → react-native-patterns
   - validation-patterns → error-handling-patterns
@@ -291,4 +291,4 @@ python-dev (Agent)
 - 删除 flutter-patterns 技能
 - 删除 ml-engineer 智能体及相关技能（llm-integration-patterns、rag-patterns）
 - 合并 3 个 Django 技能到 django-patterns
-- 合并 5 个 Swift 技能到 swift-patterns
+- 合并 5 个 Swift 技能到 ios-native-patterns

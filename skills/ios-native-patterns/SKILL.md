@@ -1,11 +1,11 @@
 ---
-name: swift-patterns
-description: Swift 开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 特性以及现代 iOS/macOS 开发最佳实践。
+name: ios-native-patterns
+description: iOS 原生开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 液态玻璃设计以及现代 iOS/macOS 开发最佳实践。
 ---
 
-# Swift 开发模式
+# iOS 原生开发模式
 
-适用于 Apple 平台的现代 Swift 模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 特性等。用于构建声明式、高性能的用户界面和后端逻辑。
+适用于 Apple 平台的现代 iOS 开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 特性等。用于构建声明式、高性能的用户界面和后端逻辑。
 
 ## 何时激活
 

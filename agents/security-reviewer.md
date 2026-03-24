@@ -243,9 +243,9 @@ mongodb(\+srv)?://[^:]+:[^@]+@[^/]+
 
 ## 相关技能
 
-| 技能                    | 用途                     |
-| ----------------------- | ------------------------ |
-| security-review         | 安全检查清单、漏洞检测   |
-| authentication-patterns | OAuth2/JWT/OIDC 认证授权 |
-| rate-limiting           | API 限流、防滥用         |
-| validation-patterns     | 数据验证、类型安全       |
+| 技能                | 用途                   |
+| ------------------- | ---------------------- |
+| security-review     | 安全检查清单、漏洞检测 |
+| backend-patterns    | 后端模式、认证授权     |
+| rate-limiting       | API 限流、防滥用       |
+| validation-patterns | 数据验证、类型安全     |

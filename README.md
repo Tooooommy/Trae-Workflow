@@ -117,14 +117,14 @@ Trae Workflow/
 
 ### 开发与编码
 
-| 智能体           | 角色              | 触发场景                    |
-| ---------------- | ----------------- | --------------------------- |
-| typescript-dev   | TypeScript 专家   | TS/JS/React/Node.js 开发    |
-| python-dev       | Python 专家       | Python/FastAPI/Django 开发  |
-| go-dev           | Go 专家           | Go 语言开发                 |
-| swift-dev        | Swift 专家        | Swift/iOS/macOS 开发        |
-| react-native-dev | React Native 专家 | React Native 跨平台开发     |
-| kotlin-dev       | Kotlin 专家       | Kotlin/Android/Compose 开发 |
+| 智能体           | 角色              | 触发场景                   |
+| ---------------- | ----------------- | -------------------------- |
+| typescript-dev   | TypeScript 专家   | TS/JS/React/Node.js 开发   |
+| python-dev       | Python 专家       | Python/FastAPI/Django 开发 |
+| go-dev           | Go 专家           | Go 语言开发                |
+| ios-native       | iOS 专家          | iOS/macOS 开发             |
+| react-native-dev | React Native 专家 | React Native 跨平台开发    |
+| android-native   | Android 专家      | Android/Compose 开发       |
 
 ### 测试与质量
 
@@ -183,17 +183,17 @@ Trae Workflow/
 
 ### 技能分类
 
-| 类别     | 示例技能                                         |
-| -------- | ------------------------------------------------ |
-| 前端开发 | frontend-patterns, vue-patterns                  |
-| 后端开发 | backend-patterns, rest-patterns                  |
-| 数据库   | postgres-patterns, mongodb-patterns              |
-| 测试     | tdd-workflow, e2e-testing                        |
-| DevOps   | deployment-patterns, docker-patterns             |
-| 安全     | security-review, authentication-patterns         |
-| 移动开发 | react-native-patterns, android-native-patterns   |
-| 语言特定 | python-patterns, golang-patterns, swift-patterns |
-| 架构模式 | clean-architecture, ddd-patterns                 |
+| 类别     | 示例技能                                              |
+| -------- | ----------------------------------------------------- |
+| 前端开发 | frontend-patterns, vue-patterns                       |
+| 后端开发 | backend-patterns, rest-patterns                       |
+| 数据库   | postgres-patterns, mongodb-patterns                   |
+| 测试     | tdd-workflow, e2e-testing                             |
+| DevOps   | deployment-patterns, docker-patterns                  |
+| 安全     | security-review, backend-patterns                     |
+| 移动开发 | react-native-patterns, android-native-patterns        |
+| 语言特定 | python-patterns, golang-patterns, ios-native-patterns |
+| 架构模式 | clean-architecture, ddd-patterns                      |
 
 ### 智能体与技能对应
 
@@ -204,9 +204,9 @@ Trae Workflow/
 | typescript-dev    | frontend-patterns, coding-standards        |
 | python-dev        | python-patterns, django-patterns           |
 | golang-dev        | golang-patterns                            |
-| swift-dev         | swift-patterns                             |
+| ios-native        | ios-native-patterns                        |
 | react-native-dev  | react-native-patterns, frontend-patterns   |
-| kotlin-dev        | android-native-patterns, frontend-patterns |
+| android-native    | android-native-patterns, frontend-patterns |
 | testing-expert    | tdd-workflow, e2e-testing                  |
 | reviewer          | coding-standards, clean-architecture       |
 | security-reviewer | security-review                            |

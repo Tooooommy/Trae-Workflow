@@ -1,5 +1,5 @@
 ---
-name: payment-stripe-patterns
+name: stripe-patterns
 description: Stripe 支付集成模式 - 订阅、支付、Webhook 最佳实践
 ---
 

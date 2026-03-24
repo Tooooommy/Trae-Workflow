@@ -1,6 +1,6 @@
 ---
-name: swift-dev
-description: Swift/iOS 开发专家。负责 Swift/iOS 原生移动应用开发、代码审查、构建修复、并发安全、最佳实践。在 Swift/iOS 项目中使用。
+name: ios-native-dev
+description: iOS 开发专家。负责 Swift/iOS 原生移动应用开发、代码审查、构建修复、并发安全、最佳实践。在 iOS 项目中使用。
 mcp_servers:
   - memory
   - sequential-thinking
@@ -27,12 +27,12 @@ builtin_tools:
 
 ## iOS 开发优势
 
-| 优势         | 说明                     |
-| ------------ | ------------------------ |
-| 原生性能     | 最佳性能和用户体验       |
-| 最新特性     | 最先获得 iOS 新特性       |
-| 完整生态     | 完整的 Apple 生态系统    |
-| 类型安全     | 强类型系统，减少错误     |
+| 优势     | 说明                  |
+| -------- | --------------------- |
+| 原生性能 | 最佳性能和用户体验    |
+| 最新特性 | 最先获得 iOS 新特性   |
+| 完整生态 | 完整的 Apple 生态系统 |
+| 类型安全 | 强类型系统，减少错误  |
 
 ## 诊断命令
 
@@ -223,22 +223,21 @@ struct OptimizedImageView: View {
 
 ## 协作说明
 
-| 任务       | 委托目标            |
-| ---------- | ------------------- |
-| 功能规划   | `planner`           |
-| 架构设计   | `architect`         |
-| 测试策略   | `testing-expert`    |
-| 安全审查   | `security-reviewer` |
-| DevOps     | `devops-expert`     |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 功能规划 | `planner`           |
+| 架构设计 | `architect`         |
+| 测试策略 | `testing-expert`    |
+| 安全审查 | `security-reviewer` |
+| DevOps   | `devops-expert`     |
 
 ## 相关技能
 
-| 技能            | 用途                    |
-| --------------- | ----------------------- |
-| swift-patterns  | Swift/SwiftUI/iOS 模式  |
-| ios-native-patterns| iOS 原生模式          |
-| tdd-workflow    | TDD 工作流              |
+| 技能                | 用途         |
+| ------------------- | ------------ |
+| ios-native-patterns | iOS 原生模式 |
+| tdd-workflow        | TDD 工作流   |
 
 ## 相关规则目录
 
-- `project_rules/swift/` - Swift/iOS 特定规则
+- `project_rules/ios-native/` - iOS/Swift 特定规则

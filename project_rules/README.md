@@ -10,7 +10,8 @@ project_rules/
 ├── typescript/         # TypeScript/JavaScript 规则
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
-└── swift/              # Swift/iOS 规则
+├── ios-native/         # iOS/Swift 规则
+└── android-native/     # Android/Kotlin 规则
 ```
 
 ## 🔄 规则层级
@@ -27,23 +28,25 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ### 核心语言
 
-| 目录       | 描述                       | 对应智能体     | 框架规则                 |
-| ---------- | -------------------------- | -------------- | ------------------------ |
-| typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
-| python     | Python 规则                | python-dev     | django, fastapi, flask   |
-| golang     | Go 规则                    | go-dev         | gin, fiber               |
-| swift      | Swift/iOS 规则             | swift-dev      | swiftui, vapor           |
+| 目录           | 描述                       | 对应智能体     | 框架规则                 |
+| -------------- | -------------------------- | -------------- | ------------------------ |
+| typescript     | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
+| python         | Python 规则                | python-dev     | django, fastapi, flask   |
+| golang         | Go 规则                    | go-dev         | gin, fiber               |
+| ios-native     | iOS/Swift 规则             | ios-native     | swiftui                  |
+| android-native | Android/Kotlin 规则        | android-native | android                  |
 
 ### 框架规则
 
 每个语言目录下包含特定框架的规则：
 
-| 语言       | 框架规则                                     |
-| ---------- | -------------------------------------------- |
-| typescript | react, nextjs, nestjs, react-native, expo 等 |
-| python     | django, fastapi, flask                       |
-| golang     | gin, fiber                                   |
-| swift      | swiftui, vapor                               |
+| 语言           | 框架规则                                     |
+| -------------- | -------------------------------------------- |
+| typescript     | react, nextjs, nestjs, react-native, expo 等 |
+| python         | django, fastapi, flask                       |
+| golang         | gin, fiber                                   |
+| ios-native     | swiftui                                      |
+| android-native | android                                      |
 
 ## 📝 规则文件格式
 
@@ -90,23 +93,24 @@ my-project/
 
 ## � 与智能体对应
 
-| 智能体           | 推荐规则目录   |
-| -------------- | -------------- |
-| typescript-dev  | typescript/    |
-| python-dev      | python/        |
-| go-dev          | golang/        |
-| swift-dev       | swift/         |
-| react-native-dev | typescript/    |
-| kotlin-dev      | swift/         |
+| 智能体           | 推荐规则目录    |
+| ---------------- | --------------- |
+| typescript-dev   | typescript/     |
+| python-dev       | python/         |
+| go-dev           | golang/         |
+| ios-native       | ios-native/     |
+| react-native-dev | typescript/     |
+| android-native   | android-native/ |
 
 ## 🔗 与技能对应
 
-| 规则目录   | 相关技能                              |
-| ---------- | ------------------------------------- |
-| typescript | react-modern-stack, frontend-patterns |
-| python     | python-patterns, python-testing       |
-| golang     | golang-patterns, golang-testing       |
-| swift      | swiftui-patterns, ios-native-patterns |
+| 规则目录       | 相关技能                              |
+| -------------- | ------------------------------------- |
+| typescript     | react-modern-stack, frontend-patterns |
+| python         | python-patterns, python-testing       |
+| golang         | golang-patterns, golang-testing       |
+| ios-native     | ios-native-patterns                   |
+| android-native | android-native-patterns               |
 
 ---
 

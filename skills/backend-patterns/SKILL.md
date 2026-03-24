@@ -210,6 +210,106 @@ END;
 $;
 ```
 
+## Prisma ORM 模式
+
+### Schema 定义
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  posts     Post[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+}
+```
+
+### CRUD 操作
+
+```typescript
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
+// 创建
+const user = await prisma.user.create({
+  data: { email: 'user@example.com', name: 'John' },
+});
+
+// 查询
+const user = await prisma.user.findUnique({
+  where: { id: 'user-id' },
+  include: { posts: true },
+});
+
+// 更新
+await prisma.user.update({
+  where: { id: 'user-id' },
+  data: { name: 'Jane' },
+});
+
+// 删除
+await prisma.user.delete({ where: { id: 'user-id' } });
+```
+
+### 关系查询
+
+```typescript
+const postsWithAuthor = await prisma.post.findMany({
+  include: {
+    author: { select: { id: true, name: true } },
+  },
+});
+
+const userWithCount = await prisma.user.findMany({
+  select: {
+    id: true,
+    name: true,
+    _count: { select: { posts: true } },
+  },
+});
+```
+
+### 事务
+
+```typescript
+await prisma.$transaction(async (tx) => {
+  const user = await tx.user.create({ data: { email, name } });
+  await tx.post.create({ data: { title, authorId: user.id } });
+});
+```
+
+### 快速参考
+
+```bash
+# 生成客户端
+npx prisma generate
+
+# 创建迁移
+npx prisma migrate dev --name init
+
+# 打开 Studio
+npx prisma studio
+```
+
 ## 缓存策略
 
 ### Redis 缓存层
@@ -357,6 +457,138 @@ const data = await fetchWithRetry(() => fetchFromAPI());
 ```
 
 ## 认证与授权
+
+### 认证方案对比
+
+| 方案    | 适用场景   | 优点           | 缺点       |
+| ------- | ---------- | -------------- | ---------- |
+| JWT     | 无状态 API | 可扩展、自包含 | 无法撤销   |
+| Session | 传统 Web   | 可控、安全     | 需要存储   |
+| OAuth   | 社交登录   | 用户体验好     | 依赖第三方 |
+| API Key | 服务间调用 | 简单直接       | 权限粒度粗 |
+
+### 安全密码存储
+
+```typescript
+import { hash, compare } from 'bcrypt';
+
+const SALT_ROUNDS = 12;
+
+async function hashPassword(password: string): Promise<string> {
+  return hash(password, SALT_ROUNDS);
+}
+
+async function verifyPassword(password: string, hashed: string): Promise<boolean> {
+  return compare(password, hashed);
+}
+```
+
+### JWT 安全配置
+
+```typescript
+import { SignJWT, jwtVerify } from 'jose';
+
+const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
+
+async function createToken(payload: object) {
+  return new SignJWT(payload)
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('2h')
+    .sign(secret);
+}
+
+async function verifyToken(token: string) {
+  const { payload } = await jwtVerify(token, secret);
+  return payload;
+}
+```
+
+### 刷新令牌模式
+
+```typescript
+interface TokenResponse {
+  access_token: string;
+  refresh_token: string;
+  expires_in: number;
+  token_type: 'Bearer';
+}
+
+async function refreshAccessToken(refreshToken: string): Promise<TokenResponse> {
+  const response = await fetch('/oauth/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+    }),
+  });
+  return response.json();
+}
+```
+
+### OAuth 2.0 授权码流程
+
+```
+User -> Client -> Auth Server -> User Login/Consent
+                                        │
+User <- Client <- Auth Server (Code) <-┘
+                    │
+Client -> Auth Server (Code + Secret)
+                    │
+Client <- Auth Server (Access Token)
+```
+
+### 常见安全漏洞防护
+
+| 漏洞     | 防护措施                    |
+| -------- | --------------------------- |
+| 暴力破解 | 速率限制、账户锁定          |
+| 会话劫持 | HTTPS、HttpOnly Cookie      |
+| CSRF     | CSRF Token、SameSite Cookie |
+| XSS      | 输入验证、输出编码          |
+| SQL 注入 | 参数化查询                  |
+
+### RBAC 权限模型
+
+```typescript
+interface Permission {
+  resource: string;
+  action: 'create' | 'read' | 'update' | 'delete';
+}
+
+interface Role {
+  name: string;
+  permissions: Permission[];
+}
+
+const roles: Record<string, Role> = {
+  admin: {
+    name: 'admin',
+    permissions: [
+      { resource: '*', action: 'create' },
+      { resource: '*', action: 'read' },
+      { resource: '*', action: 'update' },
+      { resource: '*', action: 'delete' },
+    ],
+  },
+  user: {
+    name: 'user',
+    permissions: [
+      { resource: 'profile', action: 'read' },
+      { resource: 'profile', action: 'update' },
+    ],
+  },
+};
+
+function hasPermission(role: string, resource: string, action: string): boolean {
+  return (
+    roles[role]?.permissions.some(
+      (p) => (p.resource === '*' || p.resource === resource) && p.action === action
+    ) ?? false
+  );
+}
+```
 
 ### JWT 令牌验证
 

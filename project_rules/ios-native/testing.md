@@ -44,5 +44,5 @@ swift test --enable-code-coverage
 
 ## 相关技能
 
-- `swift-patterns` - Swift 开发模式，包含协议依赖注入测试
+- `ios-native-patterns` - iOS 开发模式，包含协议依赖注入测试
 - `tdd-workflow` - 测试驱动开发

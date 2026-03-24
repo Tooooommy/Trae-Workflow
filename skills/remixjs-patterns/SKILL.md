@@ -1,9 +1,9 @@
 ---
-name: remixjs-fullstack-stack
+name: remixjs-patterns
 description: Remix 全栈应用开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建基于 React Router 嵌套路由、类型安全、注重 Web 基础且可扩展的生产级应用。
 ---
 
-# Remix 全栈开发模式 (PostgreSQL + Railway)
+# Remix 全栈开发模式
 
 基于 Remix、TypeScript、PostgreSQL、Prisma、Shadcn/ui 和 Railway 的完整开发模式。包含 Remix 特有的嵌套路由、数据加载模式、安全最佳实践、测试策略和部署前验证。
 

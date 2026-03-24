@@ -49,7 +49,7 @@ description: 分析跟踪技能 - 记录 SKILL/Agent 调用、分析使用模式
 {
   "type": "skill_invocation",
   "timestamp": "2024-01-15T10:30:00Z",
-  "skill_name": "authentication-patterns",
+  "skill_name": "backend-patterns",
   "context": {
     "project_type": "nextjs",
     "task_description": "实现 OAuth2 登录",
