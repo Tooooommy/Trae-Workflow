@@ -1,5 +1,5 @@
 ---
-name: node-hono-stack
+name: honojs-patterns
 description: Node.js 现代全栈开发模式，基于 HonoJS、TypeScript、PostgreSQL、Prisma、Redis 和 BullMQ。涵盖高性能 API 设计、类型安全、异步处理、安全实践、测试驱动开发和项目验证循环。
 ---
 
@@ -17,6 +17,18 @@ description: Node.js 现代全栈开发模式，基于 HonoJS、TypeScript、Pos
 - 需要 **Pino** 结构化日志和 **Swagger** 自动 API 文档
 - 使用 **Jest** 进行全面的测试覆盖
 - 构建需要高并发、低延迟的生产级微服务和 API 网关
+
+## 技术栈版本
+
+| 技术        | 最低版本 | 推荐版本 |
+| ----------- | -------- | -------- |
+| Node.js     | 18.0+    | 20.0+    |
+| HonoJS      | 4.0+     | 最新     |
+| TypeScript  | 5.0+     | 最新     |
+| Prisma      | 5.0+     | 最新     |
+| PostgreSQL  | 14.0+    | 16.0+    |
+| Redis       | 7.0+     | 最新     |
+| BullMQ      | 5.0+     | 最新     |
 
 ## 开发模式 (Patterns)
 

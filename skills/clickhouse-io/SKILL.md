@@ -16,6 +16,15 @@ description: ClickHouse数据库模式、查询优化、分析以及高性能分
 - 为分析目的从 PostgreSQL/MySQL 迁移到 ClickHouse
 - 实现实时仪表板或时间序列分析
 
+## 技术栈版本
+
+| 技术        | 最低版本 | 推荐版本 |
+| ----------- | -------- | -------- |
+| ClickHouse  | 23.0+    | 24.0+    |
+| Python      | 3.10+    | 3.12+    |
+| clickhouse-driver | 0.2+ | 最新  |
+| Kafka       | 3.0+     | 最新     |
+
 ## 概述
 
 ClickHouse 是一个用于在线分析处理 (OLAP) 的列式数据库管理系统 (DBMS)。它针对大型数据集上的快速分析查询进行了优化。

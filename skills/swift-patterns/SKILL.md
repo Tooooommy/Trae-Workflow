@@ -19,6 +19,16 @@ description: Swift 开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、A
 - 编写可测试的 Swift 代码时
 - 使用 iOS 26 新特性时（Liquid Glass、FoundationModels）
 
+## 技术栈版本
+
+| 技术       | 最低版本 | 推荐版本 |
+| ---------- | -------- | -------- |
+| Swift      | 5.9+     | 6.0+     |
+| Xcode      | 15.0+    | 16.0+    |
+| iOS        | 17.0+    | 18.0+    |
+| macOS      | 14.0+    | 15.0+    |
+| SwiftUI    | 5.0+     | 最新     |
+
 ---
 
 ## SwiftUI 状态管理

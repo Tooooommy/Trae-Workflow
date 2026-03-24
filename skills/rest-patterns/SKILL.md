@@ -1,13 +1,13 @@
 ---
-name: api-design
-description: REST API设计模式，包括资源命名、状态码、分页、过滤、错误响应、版本控制和生产API的速率限制。
+name: rest-patterns
+description: REST API 设计模式，包括资源命名、状态码、分页、过滤、错误响应、版本控制和生产 API 的速率限制。
 ---
 
-# API 设计模式
+# REST API 设计模式
 
 用于设计一致、对开发者友好的 REST API 的约定和最佳实践。
 
-## 何时启用
+## 何时激活
 
 - 设计新的 API 端点时
 - 审查现有的 API 契约时

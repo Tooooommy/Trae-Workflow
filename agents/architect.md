@@ -171,5 +171,5 @@ builtin_tools:
 | clean-architecture    | 整洁架构模式     |
 | microservices-patterns| 微服务架构模式   |
 | ddd-patterns          | 领域驱动设计模式 |
-| api-design            | API 设计模式     |
+| rest-patterns          | REST API 设计模式     |
 | database-migrations   | 数据库迁移模式   |

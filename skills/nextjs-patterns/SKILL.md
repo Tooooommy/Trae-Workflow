@@ -1,5 +1,5 @@
 ---
-name: nextjs-supabase-stack
+name: nextjs-patterns
 description: Next.js + Supabase 全栈开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建可扩展、类型安全、生产就绪的现代Web应用。
 ---
 
@@ -15,6 +15,17 @@ description: Next.js + Supabase 全栈开发模式，涵盖架构模式、安全
 - 基于 **Shadcn/ui** 和 **Tailwind CSS** 构建现代化UI
 - 计划部署在 **Vercel** 平台
 - 需要完整的开发流程指导，从架构到测试、安全到部署验证
+
+## 技术栈版本
+
+| 技术         | 最低版本 | 推荐版本 |
+| ------------ | -------- | -------- |
+| Next.js      | 14.0+    | 15.0+    |
+| TypeScript   | 5.0+     | 最新     |
+| Supabase     | 2.0+     | 最新     |
+| Tailwind CSS | 3.4+     | 最新     |
+| Shadcn/ui    | 最新     | 最新     |
+| Vercel       | -        | 最新     |
 
 ## 开发模式 (Patterns)
 

@@ -14,23 +14,19 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🎨 前端开发
 
-| 技能               | 描述                               |
-| ------------------ | ---------------------------------- |
-| frontend-patterns  | React、Next.js、状态管理、性能优化 |
-| react-modern-stack | 现代 React SPA 应用开发模式        |
-| vue-patterns       | Vue 3 组合式 API、Pinia 状态管理   |
-| angular-patterns   | Angular 模块设计、RxJS 响应式编程  |
-| svelte-patterns    | Svelte 响应式模式、Store 状态管理  |
-| tailwind-patterns  | Tailwind CSS 原子化 CSS 模式       |
-| a11y-patterns      | 无障碍设计模式、WCAG 合规          |
+| 技能              | 描述                                    |
+| ----------------- | --------------------------------------- |
+| frontend-patterns | React、Next.js、状态管理、性能优化、SPA |
+| vue-patterns      | Vue 3 组合式 API、Pinia 状态管理        |
+| tailwind-patterns | Tailwind CSS 原子化 CSS 模式            |
+| a11y-patterns     | 无障碍设计模式、WCAG 合规               |
 
 ### 🔧 后端开发
 
 | 技能             | 描述                              |
 | ---------------- | --------------------------------- |
 | backend-patterns | 后端架构模式、API 设计            |
-| api-design       | REST API 设计、版本控制、错误处理 |
-| api-versioning   | API 版本控制模式                  |
+| rest-patterns    | REST API 设计、版本控制、错误处理 |
 | graphql-patterns | GraphQL Schema 设计、N+1 问题解决 |
 | grpc-patterns    | gRPC 通信模式、Protocol Buffers   |
 
@@ -47,22 +43,19 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🧪 测试
 
-| 技能           | 描述                      |
-| -------------- | ------------------------- |
-| tdd-workflow   | 测试驱动开发工作流        |
-| e2e-testing    | Playwright E2E 测试模式   |
-| python-testing | Python pytest 测试策略    |
-| golang-testing | Go 表格驱动测试、基准测试 |
+| 技能         | 描述                    |
+| ------------ | ----------------------- |
+| tdd-workflow | 测试驱动开发工作流      |
+| e2e-testing  | Playwright E2E 测试模式 |
 
 ### 🚀 DevOps
 
-| 技能                | 描述                           |
-| ------------------- | ------------------------------ |
-| ci-cd-patterns      | CI/CD 流水线模式、自动化部署   |
-| docker-patterns     | Docker 容器化、多服务编排      |
-| kubernetes-patterns | Kubernetes 部署模式、资源管理  |
-| deployment-patterns | 部署工作流、健康检查、回滚策略 |
-| serverless-patterns | 无服务器模式、Lambda/Functions |
+| 技能                | 描述                               |
+| ------------------- | ---------------------------------- |
+| deployment-patterns | CI/CD 流水线、部署工作流、健康检查 |
+| docker-patterns     | Docker 容器化、多服务编排          |
+| kubernetes-patterns | Kubernetes 部署模式、资源管理      |
+| serverless-patterns | 无服务器模式、Lambda/Functions     |
 
 ### 🔒 安全
 
@@ -77,9 +70,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | 技能                    | 描述                          |
 | ----------------------- | ----------------------------- |
 | react-native-patterns   | React Native 跨平台开发       |
-| flutter-patterns        | Flutter Widget 组合、状态管理 |
 | android-native-patterns | Android 原生、Jetpack Compose |
-| ios-native-patterns     | iOS 原生、SwiftUI/UIKit       |
 
 ### 🖥️ 桌面开发
 
@@ -90,13 +81,13 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🦀 语言特定
 
-| 技能             | 描述                        |
-| ---------------- | --------------------------- |
-| python-patterns  | Pythonic 惯用法、PEP 8 标准 |
-| golang-patterns  | Go 惯用模式、并发安全       |
-| swift-patterns   | Swift/SwiftUI/iOS 开发模式  |
-| django-patterns  | Django 架构模式、安全、测试 |
-| coding-standards | 通用编码标准、最佳实践      |
+| 技能             | 描述                                     |
+| ---------------- | ---------------------------------------- |
+| python-patterns  | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
+| golang-patterns  | Go 惯用模式、并发安全、表格驱动测试      |
+| swift-patterns   | Swift/SwiftUI/iOS 开发模式               |
+| django-patterns  | Django 架构模式、安全、测试              |
+| coding-standards | 通用编码标准、最佳实践                   |
 
 ### 🏗️ 架构模式
 
@@ -106,17 +97,15 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | microservices-patterns | 微服务架构、服务发现     |
 | ddd-patterns           | 领域驱动设计、限界上下文 |
 | cqrs-patterns          | CQRS 命令查询职责分离    |
-| event-driven-patterns  | 事件驱动架构、事件溯源   |
+| message-queue-patterns | 消息队列、事件驱动架构   |
 
 ### 🔄 通信与集成
 
-| 技能                     | 描述                    |
-| ------------------------ | ----------------------- |
-| realtime-websocket       | WebSocket 实时通信      |
-| message-queue-patterns   | RabbitMQ/Kafka 消息队列 |
-| webrtc-patterns          | WebRTC 实时音视频       |
-| llm-integration-patterns | LLM 集成、Prompt 工程   |
-| rag-patterns             | RAG 检索增强生成        |
+| 技能                   | 描述                    |
+| ---------------------- | ----------------------- |
+| realtime-websocket     | WebSocket 实时通信      |
+| message-queue-patterns | RabbitMQ/Kafka 消息队列 |
+| webrtc-patterns        | WebRTC 实时音视频       |
 
 ### 🛠️ 工具与流程
 
@@ -131,36 +120,30 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### ⚡ 性能与优化
 
-| 技能                    | 描述               |
-| ----------------------- | ------------------ |
-| caching-patterns        | 缓存策略、多级缓存 |
-| logging-observability   | 日志、指标、追踪   |
-| error-handling-patterns | 统一错误处理       |
-| validation-patterns     | 数据验证、类型安全 |
-| background-jobs         | 后台任务、异步处理 |
-| circuit-breaker         | 熔断器、服务弹性   |
+| 技能                    | 描述                         |
+| ----------------------- | ---------------------------- |
+| caching-patterns        | 缓存策略、多级缓存、内容哈希 |
+| logging-observability   | 日志、指标、追踪             |
+| error-handling-patterns | 统一错误处理、数据验证       |
+| background-jobs         | 后台任务、异步处理           |
+| circuit-breaker         | 熔断器、服务弹性             |
 
 ### 🤖 AI 与智能体
 
-| 技能                       | 描述                  |
-| -------------------------- | --------------------- |
-| ai-first-engineering       | AI 优先工程运营模型   |
-| agentic-engineering        | 代理工程模式          |
-| agent-harness-construction | AI 代理动作空间设计   |
-| llm-integration-patterns   | LLM 集成、Prompt 工程 |
-| rag-patterns               | RAG 检索增强生成      |
+| 技能                | 描述                                    |
+| ------------------- | --------------------------------------- |
+| agentic-engineering | 代理工程模式、AI 优先工程、动作空间设计 |
 
 ### 📊 全栈框架
 
-| 技能                      | 描述                    |
-| ------------------------- | ----------------------- |
-| node-hono-stack           | Node.js + Hono 全栈     |
-| nextjs-supabase-stack     | Next.js + Supabase 全栈 |
-| remixjs-fullstack-stack   | Remix 全栈应用开发      |
-| fastapi-async-stack       | FastAPI 异步全栈        |
-| react-native-ignite-stack | React Native + Ignite   |
-| shopify-app-stack         | Shopify 应用开发        |
-| django-patterns           | Django 架构模式         |
+| 技能                    | 描述                    |
+| ----------------------- | ----------------------- |
+| honojs-patterns         | Node.js + Hono 全栈     |
+| nextjs-patterns         | Next.js + Supabase 全栈 |
+| remixjs-fullstack-stack | Remix 全栈应用开发      |
+| fastapi-patterns        | FastAPI 异步全栈        |
+| shopify-app-stack       | Shopify 应用开发        |
+| django-patterns         | Django 架构模式         |
 
 ### 🔍 验证与追踪
 
@@ -171,14 +154,14 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ## 🔗 与智能体对应
 
-| 智能体           | 推荐技能                                                |
-| ---------------- | ------------------------------------------------------- |
-| typescript-dev   | coding-standards, react-modern-stack, frontend-patterns |
-| python-dev       | python-patterns, python-testing, django-patterns        |
-| golang-dev       | golang-patterns, golang-testing                         |
-| swift-dev        | swift-patterns, ios-native-patterns                     |
-| react-native-dev | react-native-patterns, frontend-patterns                |
-| kotlin-dev       | android-native-patterns, frontend-patterns              |
+| 智能体           | 推荐技能                                   |
+| ---------------- | ------------------------------------------ |
+| typescript-dev   | coding-standards, frontend-patterns        |
+| python-dev       | python-patterns, django-patterns           |
+| golang-dev       | golang-patterns                            |
+| swift-dev        | swift-patterns                             |
+| react-native-dev | react-native-patterns, frontend-patterns   |
+| kotlin-dev       | android-native-patterns, frontend-patterns |
 
 ## 🔗 与规则对应
 
@@ -221,16 +204,6 @@ description: 技能描述
 ### 实践 1
 
 ### 实践 2
-
-## 相关智能体
-
-- agent-1
-- agent-2
-
-## 相关规则
-
-- rule-1
-- rule-2
 ```
 
 ## 🚀 使用指南
@@ -245,7 +218,6 @@ description: 技能描述
 typescript-dev (Agent)
     ↓ 分析任务
     ↓ 调用技能
-    ├── react-modern-stack (React 模式)
     ├── frontend-patterns (前端优化)
     └── coding-standards (编码标准)
     ↓ 综合建议
@@ -269,41 +241,56 @@ typescript-dev (Agent)
     ↓
 python-dev (Agent)
     ↓ 调用技能
-    ├── fastapi-async-stack (FastAPI 模式)
-    ├── api-design (API 设计)
+    ├── fastapi-patterns (FastAPI 模式)
+    ├── rest-patterns (REST API 设计)
     ├── python-patterns (Python 模式)
     └── tdd-workflow (TDD 工作流)
 ```
 
 ## 📚 技能索引
 
-- **前端**: 7 个技能
-- **后端**: 5 个技能
+- **前端**: 4 个技能
+- **后端**: 4 个技能
 - **数据库**: 6 个技能
-- **测试**: 4 个技能
-- **DevOps**: 5 个技能
+- **测试**: 2 个技能
+- **DevOps**: 4 个技能
 - **安全**: 3 个技能
-- **移动**: 4 个技能
+- **移动**: 2 个技能
 - **桌面**: 2 个技能
-- **语言特定**: 8 个技能
+- **语言特定**: 5 个技能
 - **架构**: 5 个技能
-- **通信**: 5 个技能
+- **通信**: 3 个技能
 - **工具**: 6 个技能
-- **性能**: 6 个技能
-- **AI 与智能体**: 5 个技能
-- **全栈框架**: 7 个技能
+- **性能**: 5 个技能
+- **AI 与智能体**: 1 个技能
+- **全栈框架**: 6 个技能
 - **验证与追踪**: 2 个技能
 
-**总计**: 80+ 个技能
+**总计**: 60 个技能
 
 ## 🔄 更新日志
 
 ### 2026-03-24
 
-- 合并 3 个 Django 技能（django-security、django-tdd、django-verification）到 django-patterns
-- 合并 5 个 Swift 技能（swift-concurrency-6-2、swift-actor-persistence、swift-protocol-di-testing、liquid-glass-design、foundation-models-on-device）到 swift-patterns
-- 删除已合并的技能目录
-- 更新技能分类和组织结构
-- 添加与 Agents 和 Project Rules 的对应关系
-- 完善技能索引和使用指南
-- 重命名 `swiftui-patterns` 为 `swift-patterns` 以保持一致性
+- **技能结构一致性修复**
+  - 统一所有技能的"何时激活"标题（原"何时启用"、"何时使用"、"何时调用"）
+  - 为 7 个技术类技能添加"技术栈版本"部分
+  - 为 7 个方法论技能添加"不依赖特定技术栈"说明，移除技术栈版本
+    - agentic-engineering、clean-architecture、ddd-patterns、coding-standards
+    - tdd-workflow、verification-loop、tech-stack-selector
+- **大规模合并**：从 73 个技能精简为 60 个
+  - api-versioning → rest-patterns
+  - content-hash-cache-pattern → caching-patterns
+  - ci-cd-patterns → deployment-patterns
+  - ai-first-engineering + agent-harness-construction → agentic-engineering
+  - python-testing → python-patterns
+  - golang-testing → golang-patterns
+  - ios-native-patterns → swift-patterns
+  - react-modern-stack → frontend-patterns
+  - react-native-ignite-stack → react-native-patterns
+  - validation-patterns → error-handling-patterns
+- 删除 angular-patterns 和 svelte-patterns 技能
+- 删除 flutter-patterns 技能
+- 删除 ml-engineer 智能体及相关技能（llm-integration-patterns、rag-patterns）
+- 合并 3 个 Django 技能到 django-patterns
+- 合并 5 个 Swift 技能到 swift-patterns

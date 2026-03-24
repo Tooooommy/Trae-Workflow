@@ -411,6 +411,6 @@ GET /api/v1/users
 
 | 技能              | 用途                   |
 | ----------------- | ---------------------- |
-| api-design        | REST API 设计模式       |
+| rest-patterns      | REST API 设计模式       |
 | backend-patterns  | 后端架构模式、API 设计  |
 | frontend-patterns | 前端开发模式           |

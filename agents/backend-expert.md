@@ -85,9 +85,9 @@ SELECT id, name, email FROM users WHERE active = true;
 
 ## 相关技能
 
-| 技能                | 用途         |
-| ------------------- | ------------ |
-| api-design          | API 设计模式 |
-| postgres-patterns   | PostgreSQL   |
-| mongodb-patterns    | MongoDB      |
-| database-migrations | 数据库迁移   |
+| 技能                | 用途              |
+| ------------------- | ----------------- |
+| rest-patterns       | REST API 设计模式 |
+| postgres-patterns   | PostgreSQL        |
+| mongodb-patterns    | MongoDB           |
+| database-migrations | 数据库迁移        |
