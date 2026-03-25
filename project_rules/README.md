@@ -7,6 +7,7 @@
 ```
 project_rules/
 ├── README.md           # 本文件
+├── common/             # 通用规则
 ├── typescript/         # TypeScript/JavaScript 规则
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
@@ -27,6 +28,12 @@ project_rules/<lang>/ ← 语言特定扩展
 当规则冲突时，`user_rules/` 中的规则优先级更高。
 
 ## 📋 语言规则
+
+### 通用规则
+
+| 目录   | 说明     |
+| ------ | -------- |
+| common | 通用规则 |
 
 ### 核心语言
 
