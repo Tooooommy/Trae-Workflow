@@ -115,6 +115,7 @@ Trae Workflow/
 | ios-native       | iOS 专家          | iOS/macOS 开发             |
 | react-native-dev | React Native 专家 | React Native 跨平台开发    |
 | android-native   | Android 专家      | Android/Compose 开发       |
+| mini-program-dev | 小程序专家        | 微信小程序开发             |
 
 ### 测试与质量
 
@@ -206,6 +207,7 @@ Trae Workflow/
 | ----------------------- | ----------------------------- |
 | react-native-patterns   | React Native 跨平台开发       |
 | android-native-patterns | Android 原生、Jetpack Compose |
+| mini-program-patterns   | 微信小程序开发                |
 
 ### 桌面开发
 
@@ -294,6 +296,7 @@ Trae Workflow/
 | ios-native       | ios-native-patterns                        |
 | react-native-dev | react-native-patterns, frontend-patterns   |
 | android-native   | android-native-patterns, frontend-patterns |
+| mini-program-dev | mini-program-patterns                      |
 | testing-expert   | tdd-workflow, e2e-testing                  |
 | code-reviewer    | coding-standards, clean-architecture       |
 | devops-expert    | deployment-patterns, docker-patterns       |
@@ -329,14 +332,15 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ### 项目规则（project_rules）
 
-| 语言       | 框架规则                                     |
-| ---------- | -------------------------------------------- |
-| typescript | react, nextjs, nestjs, electron, tauri, expo |
-| python     | django, fastapi, flask                       |
-| golang     | gin, fiber                                   |
-| rust       | axum, actix                                  |
-| swift      | swiftui                                      |
-| kotlin     | jetpack-compose                              |
+| 语言         | 框架规则                                     |
+| ------------ | -------------------------------------------- |
+| typescript   | react, nextjs, nestjs, electron, tauri, expo |
+| python       | django, fastapi, flask                       |
+| golang       | gin, fiber                                   |
+| rust         | axum, actix                                  |
+| swift        | swiftui                                      |
+| kotlin       | jetpack-compose                              |
+| mini-program | 微信小程序                                   |
 
 ---
 
