@@ -7,13 +7,13 @@
 ```
 project_rules/
 ├── README.md           # 本文件
-├── common/             # 通用规则
 ├── typescript/         # TypeScript/JavaScript 规则
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
+├── rust/               # Rust 规则
 ├── ios-native/         # iOS/Swift 规则
 ├── android-native/     # Android/Kotlin 规则
-├── electron/           # Electron 规则
+├── electron/          # Electron 规则
 └── tauri/             # Tauri 规则
 ```
 
@@ -29,19 +29,14 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ## 📋 语言规则
 
-### 通用规则
-
-| 目录   | 说明     |
-| ------ | -------- |
-| common | 通用规则 |
-
 ### 核心语言
 
 | 目录           | 描述                       | 对应智能体     | 框架规则                 |
 | -------------- | -------------------------- | -------------- | ------------------------ |
 | typescript     | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
 | python         | Python 规则                | python-dev     | django, fastapi, flask   |
-| golang         | Go 规则                    | go-dev         | gin, fiber               |
+| golang         | Go 规则                    | golang-dev     | gin, fiber               |
+| rust           | Rust 规则                  | rust-dev       | axum, actix              |
 | ios-native     | iOS/Swift 规则             | ios-native     | swiftui                  |
 | android-native | Android/Kotlin 规则        | android-native | android                  |
 | electron       | Electron 规则              | -              | patterns                 |
@@ -56,6 +51,7 @@ project_rules/<lang>/ ← 语言特定扩展
 | typescript     | react, nextjs, nestjs, react-native, expo 等 |
 | python         | django, fastapi, flask                       |
 | golang         | gin, fiber                                   |
+| rust           | axum, actix                                  |
 | ios-native     | swiftui                                      |
 | android-native | android                                      |
 | electron       | 桌面应用                                     |
@@ -104,13 +100,14 @@ my-project/
 │       └── typescript/    # 语言规则（包含框架规则）
 ```
 
-## � 与智能体对应
+## 🔗 与智能体对应
 
 | 智能体           | 推荐规则目录    |
 | ---------------- | --------------- |
 | typescript-dev   | typescript/     |
 | python-dev       | python/         |
-| go-dev           | golang/         |
+| golang-dev       | golang/         |
+| rust-dev         | rust/           |
 | ios-native       | ios-native/     |
 | react-native-dev | typescript/     |
 | android-native   | android-native/ |
@@ -122,6 +119,7 @@ my-project/
 | typescript     | react-modern-stack, frontend-patterns |
 | python         | python-patterns, python-testing       |
 | golang         | golang-patterns, golang-testing       |
+| rust           | rust-patterns                         |
 | ios-native     | ios-native-patterns                   |
 | android-native | android-native-patterns               |
 

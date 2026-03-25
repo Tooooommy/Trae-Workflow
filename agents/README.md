@@ -25,6 +25,7 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 | typescript-dev   | TypeScript/JavaScript 开发专家 | TS/JS/React/Node.js   |
 | python-dev       | Python 开发专家                | Python/FastAPI/Django |
 | golang-dev       | Go 开发专家                    | Go 语言开发           |
+| rust-dev         | Rust 开发专家                  | Rust 语言开发         |
 | ios-native       | iOS 开发专家                   | iOS/macOS             |
 | react-native-dev | React Native 开发专家          | React Native 跨平台   |
 | android-native   | Android 开发专家               | Android/Compose       |
@@ -92,6 +93,7 @@ Trae Workflow 提供了一套精简高效的智能体系统，专为个人开发
 | typescript-dev    | frontend-patterns, coding-standards        |
 | python-dev        | python-patterns, django-patterns           |
 | golang-dev        | golang-patterns                            |
+| rust-dev          | rust-patterns                              |
 | ios-native        | ios-native-patterns                        |
 | react-native-dev  | react-native-patterns, frontend-patterns   |
 | android-native    | android-native-patterns, frontend-patterns |

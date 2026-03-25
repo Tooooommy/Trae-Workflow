@@ -80,6 +80,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | ------------------- | ---------------------------------------- |
 | python-patterns     | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
 | golang-patterns     | Go 惯用模式、并发安全、表格驱动测试      |
+| rust-patterns       | Rust 惯用模式、所有权系统、并发安全      |
 | ios-native-patterns | iOS/SwiftUI 原生开发模式                 |
 | django-patterns     | Django 架构模式、安全、测试              |
 | coding-standards    | 通用编码标准、最佳实践                   |
@@ -165,6 +166,7 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 | ----------------------- | ----------------------------- |
 | python-patterns         | project_rules/python/         |
 | golang-patterns         | project_rules/golang/         |
+| rust-patterns           | project_rules/rust/           |
 | ios-native-patterns     | project_rules/ios-native/     |
 | android-native-patterns | project_rules/android-native/ |
 | coding-standards        | project_rules/typescript/     |
