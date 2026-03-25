@@ -19,7 +19,7 @@ function log(message, level = 'info') {
 }
 
 function getAvailableProjectTypes() {
-  const skillsDir = path.join(TRAECONFIG_DIR, 'skills');
+  const skillsDir = path.join(TRAECONFIG_DIR, 'project_rules');
 
   if (!fs.existsSync(skillsDir)) {
     return [];

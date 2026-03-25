@@ -233,13 +233,13 @@ if (Test-TraeRunning) {
     }
 }
 
-$totalSteps = 5
+$totalSteps = 6
 if (-not $SkipMCP) { $totalSteps++ }
 if (-not $SkipSkills) { $totalSteps++ }
 if (-not $SkipAgents) { $totalSteps++ }
 if (-not $SkipRules) { $totalSteps++ }
+if (-not $SkipProjectRules) { $totalSteps++ }
 if (-not $SkipTracking) { $totalSteps++ }
-if (-not $SkipProjectRules -and -not [string]::IsNullOrEmpty($ProjectPath)) { $totalSteps++ }
 
 $currentStep = 0
 
@@ -277,6 +277,9 @@ if ($Backup -or (Test-Path "$TraeConfigDir\mcp.json")) {
         }
         if (Test-Path "$TraeConfigDir\user_rules") {
             Copy-Item "$TraeConfigDir\user_rules" $BackupDir -Recurse -Force
+        }
+        if (Test-Path "$TraeConfigDir\project_rules") {
+            Copy-Item "$TraeConfigDir\project_rules" $BackupDir -Recurse -Force
         }
         if (Test-Path "$TraeConfigDir\tracking.json") {
             Copy-Item "$TraeConfigDir\tracking.json" $BackupDir -Force
@@ -375,6 +378,26 @@ if (-not $SkipRules) {
     Write-Gray "      Skipped Rules config"
 }
 
+if (-not $SkipProjectRules) {
+    Write-Progress -Message "Configuring Project Rules..."
+    try {
+        $ProjectRulesDir = "$TraeConfigDir\project_rules"
+        New-Item -ItemType Directory -Force -Path $ProjectRulesDir | Out-Null
+        Copy-Item "$ScriptDir\project_rules\*" $ProjectRulesDir -Recurse -Force
+        
+        $ProjectRuleCount = (Get-ChildItem $ProjectRulesDir -Directory).Count
+        Write-Success "      OK Copied $ProjectRuleCount project rules"
+        Write-Log -Message "Project Rules copied: $ProjectRuleCount" -Level "INFO"
+    } catch {
+        Write-Error "      ERROR Project Rules config failed: $_"
+        Write-Log -Message "Project Rules config failed: $_" -Level "ERROR"
+        exit 1
+    }
+} else {
+    Write-Progress -Message "Skipping Project Rules config..."
+    Write-Gray "      Skipped Project Rules config"
+}
+
 if (-not $SkipTracking) {
     Write-Progress -Message "Configuring Tracking..."
     try {
@@ -417,6 +440,7 @@ if (-not $Quiet) {
     Write-Gray "  ├── skills\           (Skills directory)"
     Write-Gray "  ├── agents\           (Agents directory)"
     Write-Gray "  ├── user_rules\       (User rules directory)"
+    Write-Gray "  ├── project_rules\    (Project rules directory)"
     Write-Gray "  └── tracking.json     (Tracking config)"
     Write-Host ""
     Write-Info "Project Rules usage:"
@@ -443,10 +467,8 @@ if (-not $Quiet) {
     Write-Host "  - Skills: $(if (-not $SkipSkills) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - Agents: $(if (-not $SkipAgents) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - User Rules: $(if (-not $SkipRules) { 'Configured' } else { 'Skipped' })"
+    Write-Host "  - Project Rules: $(if (-not $SkipProjectRules) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - Tracking: $(if (-not $SkipTracking) { 'Configured' } else { 'Skipped' })"
-    if (-not [string]::IsNullOrEmpty($ProjectPath)) {
-        Write-Host "  - Project Rules: $(if (-not $SkipProjectRules) { 'Initialized' } else { 'Skipped' })"
-    }
     Write-Host ""
 }
 

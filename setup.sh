@@ -292,13 +292,13 @@ main() {
     fi
 
     # Calculate total steps
-    total_steps=5
+    total_steps=6
     [[ "$SKIP_MCP" == false ]] && ((total_steps++))
     [[ "$SKIP_SKILLS" == false ]] && ((total_steps++))
     [[ "$SKIP_AGENTS" == false ]] && ((total_steps++))
     [[ "$SKIP_RULES" == false ]] && ((total_steps++))
+    [[ "$SKIP_PROJECT_RULES" == false ]] && ((total_steps++))
     [[ "$SKIP_TRACKING" == false ]] && ((total_steps++))
-    [[ "$SKIP_PROJECT_RULES" == false ]] && [[ -n "$PROJECT_PATH" ]] && ((total_steps++))
 
     current_step=0
 
@@ -329,6 +329,7 @@ main() {
             [[ -d "$TRAECONFIG_DIR/skills" ]] && cp -r "$TRAECONFIG_DIR/skills" "$backup_dir/"
             [[ -d "$TRAECONFIG_DIR/agents" ]] && cp -r "$TRAECONFIG_DIR/agents" "$backup_dir/"
             [[ -d "$TRAECONFIG_DIR/user_rules" ]] && cp -r "$TRAECONFIG_DIR/user_rules" "$backup_dir/"
+            [[ -d "$TRAECONFIG_DIR/project_rules" ]] && cp -r "$TRAECONFIG_DIR/project_rules" "$backup_dir/"
             [[ -f "$TRAECONFIG_DIR/tracking.json" ]] && cp "$TRAECONFIG_DIR/tracking.json" "$backup_dir/"
             
             print_success "      OK Backup completed: $backup_dir"
@@ -422,6 +423,26 @@ main() {
         print_gray "      Skipped Rules config"
     fi
 
+    # Configure Project Rules
+    if [[ "$SKIP_PROJECT_RULES" == false ]]; then
+        show_progress "Configuring Project Rules..."
+        project_rules_dir="$TRAECONFIG_DIR/project_rules"
+        
+        if mkdir -p "$project_rules_dir" && cp -r "$SCRIPT_DIR/project_rules/"* "$project_rules_dir/"; then
+            local count
+            count=$(find "$project_rules_dir" -maxdepth 1 -type d -not -path "$project_rules_dir" | wc -l)
+            print_success "      OK Copied $count project rules"
+            log "INFO" "Project Rules copied: $count"
+        else
+            print_error "      ERROR Project Rules config failed"
+            log "ERROR" "Project Rules config failed"
+            exit 1
+        fi
+    else
+        show_progress "Skipping Project Rules config..."
+        print_gray "      Skipped Project Rules config"
+    fi
+
     # Configure Tracking
     if [[ "$SKIP_TRACKING" == false ]]; then
         show_progress "Configuring Tracking..."
@@ -466,6 +487,7 @@ main() {
         print_gray "  ├── skills/           (Skills directory)"
         print_gray "  ├── agents/           (Agents directory)"
         print_gray "  ├── user_rules/       (User rules directory)"
+        print_gray "  ├── project_rules/    (Project rules directory)"
         print_gray "  └── tracking.json     (Tracking config)"
         echo ""
         print_info "Project Rules usage:"
@@ -493,10 +515,8 @@ main() {
         [[ "$SKIP_SKILLS" == false ]] && echo -e "${WHITE}  - Skills: Configured${NC}" || echo -e "${WHITE}  - Skills: Skipped${NC}"
         [[ "$SKIP_AGENTS" == false ]] && echo -e "${WHITE}  - Agents: Configured${NC}" || echo -e "${WHITE}  - Agents: Skipped${NC}"
         [[ "$SKIP_RULES" == false ]] && echo -e "${WHITE}  - User Rules: Configured${NC}" || echo -e "${WHITE}  - User Rules: Skipped${NC}"
+        [[ "$SKIP_PROJECT_RULES" == false ]] && echo -e "${WHITE}  - Project Rules: Configured${NC}" || echo -e "${WHITE}  - Project Rules: Skipped${NC}"
         [[ "$SKIP_TRACKING" == false ]] && echo -e "${WHITE}  - Tracking: Configured${NC}" || echo -e "${WHITE}  - Tracking: Skipped${NC}"
-        if [[ -n "$PROJECT_PATH" ]]; then
-            [[ "$SKIP_PROJECT_RULES" == false ]] && echo -e "${WHITE}  - Project Rules: Initialized${NC}" || echo -e "${WHITE}  - Project Rules: Skipped${NC}"
-        fi
         echo ""
     fi
 
