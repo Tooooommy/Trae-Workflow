@@ -9,12 +9,10 @@ project_rules/
 ├── README.md           # 本文件
 ├── typescript/         # TypeScript/JavaScript 规则
 ├── python/             # Python 规则
-├── golang/             # Go 规则
-├── rust/               # Rust 规则
-├── swift/              # Swift/iOS 规则
-├── kotlin/             # Kotlin/Android 规则
-├── electron/          # Electron 规则
-└── tauri/             # Tauri 规则
+├── golang/            # Go 规则
+├── rust/              # Rust 规则
+├── swift/             # Swift/iOS 规则
+└── kotlin/            # Kotlin/Android 规则
 ```
 
 ## 🔄 规则层级
@@ -31,31 +29,27 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ### 核心语言
 
-| 目录       | 描述                       | 对应智能体     | 框架规则                 |
-| ---------- | -------------------------- | -------------- | ------------------------ |
-| typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
-| python     | Python 规则                | python-dev     | django, fastapi, flask   |
-| golang     | Go 规则                    | golang-dev     | gin, fiber               |
-| rust       | Rust 规则                  | rust-dev       | axum, actix              |
-| swift      | Swift/iOS 规则             | ios-native     | swiftui                  |
-| kotlin     | Kotlin/Android 规则        | android-native | jetpack-compose          |
-| electron   | Electron 规则              | -              | patterns                 |
-| tauri      | Tauri 规则                 | -              | patterns                 |
+| 目录       | 描述                       | 对应智能体     | 框架规则                               |
+| ---------- | -------------------------- | -------------- | -------------------------------------- |
+| typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs, electron, tauri |
+| python     | Python 规则                | python-dev     | django, fastapi, flask                 |
+| golang     | Go 规则                    | golang-dev     | gin, fiber                             |
+| rust       | Rust 规则                  | rust-dev       | axum, actix                            |
+| swift      | Swift/iOS 规则             | ios-native     | swiftui                                |
+| kotlin     | Kotlin/Android 规则        | android-native | jetpack-compose                        |
 
 ### 框架规则
 
 每个语言目录下包含特定框架的规则：
 
-| 语言       | 框架规则                                     |
-| ---------- | -------------------------------------------- |
-| typescript | react, nextjs, nestjs, react-native, expo 等 |
-| python     | django, fastapi, flask                       |
-| golang     | gin, fiber                                   |
-| rust       | axum, actix                                  |
-| swift      | swiftui                                      |
-| kotlin     | jetpack-compose                              |
-| electron   | 桌面应用                                     |
-| tauri      | 桌面应用                                     |
+| 语言       | 框架规则                                                   |
+| ---------- | ---------------------------------------------------------- |
+| typescript | react, nextjs, nestjs, electron, tauri, react-native, expo |
+| python     | django, fastapi, flask                                     |
+| golang     | gin, fiber                                                 |
+| rust       | axum, actix                                                |
+| swift      | swiftui                                                    |
+| kotlin     | jetpack-compose                                            |
 
 ## 📝 规则文件格式
 
