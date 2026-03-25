@@ -19,7 +19,6 @@ user_rules/
 ├── patterns.md            # 架构模式
 ├── hooks.md              # Hooks 系统
 ├── performance.md        # 性能优化
-└── agent-invocation.md   # Agent 调用规则
 ```
 
 ---
@@ -39,7 +38,6 @@ user_rules/
 | [patterns.md](patterns.md)                         | 模式详细说明                   |
 | [hooks.md](hooks.md)                               | Hooks 系统                     |
 | [performance.md](performance.md)                   | 性能优化配置                   |
-| [agent-invocation.md](agent-invocation.md)         | Agent 调用规则和规范           |
 
 ---
 
@@ -70,6 +68,5 @@ project_rules/<lang>/ ← 语言/框架特定扩展
 1. **查看成功指标**：[user-rules.md](user-rules.md)
 2. **了解核心原则**：[core-principles.md](core-principles.md)
 3. **查看开发流程**：[development-workflow.md](development-workflow.md)
-4. **学习 Agent 调用**：[agent-invocation.md](agent-invocation.md)
-5. **选择语言特定规则**：[project_rules/](../project_rules/)
-6. **了解智能体系统**：[agents/orchestrator.md](../agents/orchestrator.md)
+4. **选择语言特定规则**：[project_rules/](../project_rules/)
+5. **了解智能体系统**：[agents/README.md](../agents/README.md)
