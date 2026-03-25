@@ -1,6 +1,6 @@
 ---
 name: mongodb-patterns
-description: MongoDB 文档设计、聚合管道、索引优化和事务处理最佳实践。适用于所有 MongoDB 项目。
+description: MongoDB 文档设计、聚合管道、索引优化和事务处理最佳实践。适用于所有 MongoDB 项目。**必须激活当**：用户要求使用 MongoDB、设计文档模型或优化聚合查询时。即使用户没有明确说"MongoDB"，当涉及 NoSQL 数据库或文档存储时也应使用。
 ---
 
 # MongoDB 开发模式

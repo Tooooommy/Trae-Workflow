@@ -1,6 +1,6 @@
 ---
 name: tauri-patterns
-description: Tauri 桌面应用开发、Rust 后端、前端集成和安全最佳实践。适用于所有 Tauri 项目。
+description: Tauri 桌面应用开发、Rust 后端、前端集成和安全最佳实践。适用于所有 Tauri 项目。**必须激活当**：用户要求构建 Tauri 应用、开发桌面应用或使用 Rust 后端时。即使用户没有明确说"Tauri"，当涉及桌面应用开发、Rust 或轻量级桌面框架时也应使用。
 ---
 
 # Tauri 桌面应用模式

@@ -1,6 +1,6 @@
 ---
 name: ios-native-patterns
-description: iOS 原生开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 液态玻璃设计以及现代 iOS/macOS 开发最佳实践。
+description: iOS 原生开发模式，涵盖 SwiftUI、UIKit、Swift Concurrency、Actor 模式、iOS 26 液态玻璃设计以及现代 iOS/macOS 开发最佳实践。**必须激活当**：用户要求构建 iOS 应用、开发 SwiftUI 或使用 UIKit 时。即使用户没有明确说"iOS"，当涉及 Apple 平台开发、Swift 语言或移动应用时也应使用。
 ---
 
 # iOS 原生开发模式

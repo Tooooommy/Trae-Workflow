@@ -1,6 +1,6 @@
 ---
 name: webassembly-patterns
-description: WebAssembly 模式 - WASM 模块、性能优化、互操作最佳实践
+description: WebAssembly 模式 - WASM 模块、性能优化、互操作最佳实践。**必须激活当**：用户要求使用 WebAssembly、实现 WASM 模块或优化性能时。即使用户没有明确说"WASM"，当涉及 WebAssembly 或浏览器性能优化时也应使用。
 ---
 
 # WebAssembly 模式

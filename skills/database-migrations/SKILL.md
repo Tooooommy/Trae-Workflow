@@ -1,6 +1,6 @@
 ---
 name: database-migrations
-description: 数据库迁移最佳实践，涵盖模式变更、数据迁移、回滚以及零停机部署，适用于PostgreSQL、MySQL及常用ORM（Prisma、Drizzle、Django、TypeORM、golang-migrate, Aerich）。
+description: 数据库迁移最佳实践，涵盖模式变更、数据迁移、回滚以及零停机部署，适用于PostgreSQL、MySQL及常用ORM。**必须激活当**：用户要求创建数据库迁移、修改表结构、处理数据迁移或执行回滚时。即使用户没有明确说"迁移"，当涉及数据库 schema 变更或 ORM 模型更新时也应使用。
 ---
 
 # 数据库迁移模式

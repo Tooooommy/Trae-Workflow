@@ -1,6 +1,6 @@
 ---
 name: coding-standards
-description: 适用于 TypeScript、JavaScript、React 和 Node.js 开发的通用编码标准、最佳实践和模式。
+description: 适用于 TypeScript、JavaScript、React 和 Node.js 开发的通用编码标准、最佳实践和模式。**必须激活当**：用户要求审查代码、设置编码规范、重构代码或强制执行命名和格式一致性时。即使用户没有明确说"编码标准"，当涉及代码质量、可维护性或最佳实践时也应使用。
 ---
 
 # 编码标准与最佳实践

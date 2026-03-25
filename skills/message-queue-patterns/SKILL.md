@@ -1,6 +1,6 @@
 ---
 name: message-queue-patterns
-description: 消息队列模式 - RabbitMQ/Kafka/SQS 消息处理、事件驱动架构、事件溯源和 CQRS 最佳实践。适用于分布式系统和异步处理。
+description: 消息队列模式 - RabbitMQ/Kafka/SQS 消息处理、事件驱动架构、事件溯源和 CQRS 最佳实践。适用于分布式系统和异步处理。**必须激活当**：用户要求实现消息队列、设计事件驱动架构或处理异步任务时。即使用户没有明确说"消息队列"，当涉及 RabbitMQ、Kafka、事件驱动或异步处理时也应使用。
 ---
 
 # 消息队列与事件驱动模式

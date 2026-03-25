@@ -1,6 +1,6 @@
 ---
 name: realtime-websocket
-description: 实时通信模式 - WebSocket、SSE、Socket.IO 最佳实践
+description: 实时通信模式 - WebSocket、SSE、Socket.IO 最佳实践。**必须激活当**：用户要求实现实时通信、构建 WebSocket 连接或处理服务器推送事件时。即使用户没有明确说"实时"，当涉及 WebSocket、Socket.IO 或服务器发送事件时也应使用。
 ---
 
 # 实时通信模式

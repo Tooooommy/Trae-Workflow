@@ -1,6 +1,6 @@
 ---
 name: tailwind-patterns
-description: Tailwind CSS 模式 - 原子化 CSS、响应式设计、组件模式最佳实践
+description: Tailwind CSS 模式 - 原子化 CSS、响应式设计、组件模式最佳实践。**必须激活当**：用户要求使用 Tailwind CSS、设计响应式布局或构建组件时。即使用户没有明确说"Tailwind"，当涉及 Tailwind CSS 或原子化 CSS 时也应使用。
 ---
 
 # Tailwind CSS 模式

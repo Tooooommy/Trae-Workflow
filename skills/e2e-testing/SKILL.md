@@ -1,6 +1,6 @@
 ---
 name: e2e-testing
-description: Playwright E2E 测试模式、页面对象模型、配置、CI/CD 集成、工件管理和不稳定测试策略。
+description: Playwright E2E 测试模式、页面对象模型、配置、CI/CD 集成、工件管理和不稳定测试策略。**必须激活当**：用户要求进行端到端测试、编写 Playwright 测试或实现自动化测试时。即使用户没有明确说"E2E"，当涉及 Playwright、自动化测试或浏览器测试时也应使用。
 ---
 
 # E2E 测试模式

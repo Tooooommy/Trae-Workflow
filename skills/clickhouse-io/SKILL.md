@@ -1,6 +1,6 @@
 ---
 name: clickhouse-io
-description: ClickHouse数据库模式、查询优化、分析以及高性能分析工作负载的数据工程最佳实践。
+description: ClickHouse数据库模式、查询优化、分析以及高性能分析工作负载的数据工程最佳实践。**必须激活当**：用户要求使用 ClickHouse、优化分析查询或处理大数据分析时。即使用户没有明确说"ClickHouse"，当涉及 OLAP 数据库或数据分析时也应使用。
 ---
 
 # ClickHouse 分析模式

@@ -1,6 +1,6 @@
 ---
 name: graphql-patterns
-description: GraphQL Schema 设计、查询优化、N+1 问题解决和 Federation 最佳实践。适用于所有 GraphQL 项目。
+description: GraphQL Schema 设计、查询优化、N+1 问题解决和 Federation 最佳实践。适用于所有 GraphQL 项目。**必须激活当**：用户要求设计 GraphQL Schema、实现 Resolver、解决 N+1 查询或构建 Federation 时。即使用户没有明确说"GraphQL"，当涉及 GraphQL API 查询、变更或订阅时也应使用。
 ---
 
 # GraphQL 开发模式

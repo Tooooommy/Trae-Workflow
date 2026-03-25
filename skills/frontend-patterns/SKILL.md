@@ -1,6 +1,6 @@
 ---
 name: frontend-patterns
-description: React、Next.js、状态管理、性能优化和UI最佳实践的前端开发模式。
+description: React、Next.js、状态管理、性能优化和UI最佳实践的前端开发模式。**必须激活当**：用户要求构建 React 组件、管理状态、实现数据获取、优化性能、处理表单或构建 UI。即使用户没有明确说"前端"，当涉及 React、Next.js、组件、hooks、状态管理或 UI 模式时也应使用。
 ---
 
 # 前端开发模式

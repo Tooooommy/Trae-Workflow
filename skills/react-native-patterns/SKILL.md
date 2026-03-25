@@ -1,6 +1,6 @@
 ---
 name: react-native-patterns
-description: React Native 跨平台开发、状态管理、原生模块集成和性能优化最佳实践。适用于所有 React Native 项目。
+description: React Native 跨平台开发、状态管理、原生模块集成和性能优化最佳实践。适用于所有 React Native 项目。**必须激活当**：用户要求构建 React Native 应用、开发跨平台移动应用或集成原生模块时。即使用户没有明确说"React Native"，当涉及移动应用开发或跨平台框架时也应使用。
 ---
 
 # React Native 开发模式

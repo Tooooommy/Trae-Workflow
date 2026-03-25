@@ -1,6 +1,6 @@
 ---
 name: postgres-patterns
-description: 用于查询优化、模式设计、索引和安全性的PostgreSQL数据库模式。基于Supabase最佳实践。
+description: 用于查询优化、模式设计、索引和安全性的PostgreSQL数据库模式。基于Supabase最佳实践。**必须激活当**：用户要求优化 SQL 查询、设计数据库模式、创建索引或排查数据库性能问题时。即使用户没有明确说"PostgreSQL"，当涉及 SQL 查询优化、数据库设计或性能调优时也应使用。
 ---
 
 # PostgreSQL 模式

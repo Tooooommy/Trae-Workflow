@@ -1,6 +1,6 @@
 ---
 name: paypal-patterns
-description: PayPal 支付集成模式 - Checkout、Subscription、Webhook 最佳实践
+description: PayPal 支付集成模式 - Checkout、Subscription、Webhook 最佳实践。**必须激活当**：用户要求集成 PayPal、处理支付或实现订阅时。即使用户没有明确说"PayPal"，当涉及国际支付或 PayPal 集成时也应使用。
 ---
 
 # PayPal 支付集成模式

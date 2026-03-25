@@ -1,6 +1,6 @@
 ---
 name: stripe-patterns
-description: Stripe 支付集成模式 - 订阅、支付、Webhook 最佳实践
+description: Stripe 支付集成模式 - 订阅、支付、Webhook 最佳实践。**必须激活当**：用户要求集成 Stripe、处理支付、设置订阅或实现 Webhook 时。即使用户没有明确说"Stripe"，当涉及支付集成、订阅管理或信用卡处理时也应使用。
 ---
 
 # Stripe 支付集成模式

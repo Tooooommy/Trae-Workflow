@@ -1,6 +1,6 @@
 ---
 name: monorepo-patterns
-description: Monorepo 管理模式 - 多包管理、共享代码、构建优化最佳实践
+description: Monorepo 管理模式 - 多包管理、共享代码、构建优化最佳实践。**必须激活当**：用户要求设置 Monorepo、管理多包项目、配置构建管道或优化共享代码时。即使用户没有明确说"monorepo"，当涉及 pnpm workspace、Turborepo、Nx 或多包管理时也应使用。
 ---
 
 # Monorepo 管理模式

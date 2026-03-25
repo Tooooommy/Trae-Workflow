@@ -1,6 +1,6 @@
 ---
 name: docker-patterns
-description: 用于本地开发的Docker和Docker Compose模式，包括容器安全、网络、卷策略和多服务编排。
+description: 用于本地开发的Docker和Docker Compose模式，包括容器安全、网络、卷策略和多服务编排。**必须激活当**：用户要求容器化应用、设置 Docker Compose、排查容器问题或优化 Dockerfile 时。即使用户没有明确说"Docker"，当涉及容器化、镜像构建或微服务编排时也应使用。
 ---
 
 # Docker 模式

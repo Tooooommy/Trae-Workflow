@@ -1,6 +1,6 @@
 ---
 name: webrtc-patterns
-description: WebRTC 实时音视频模式 - P2P 连接、媒体流、数据通道最佳实践
+description: WebRTC 实时音视频模式 - P2P 连接、媒体流、数据通道最佳实践。**必须激活当**：用户要求实现 WebRTC、处理实时通信或构建 P2P 连接时。即使用户没有明确说"WebRTC"，当涉及实时音视频或 P2P 通信时也应使用。
 ---
 
 # WebRTC 实时音视频模式

@@ -1,6 +1,6 @@
 ---
 name: rest-patterns
-description: REST API 设计模式，包括资源命名、状态码、分页、过滤、错误响应、版本控制和生产 API 的速率限制。
+description: REST API 设计模式，包括资源命名、状态码、分页、过滤、错误响应、版本控制和生产 API 的速率限制。**必须激活当**：用户要求设计 REST API、实现 CRUD、操作资源或处理分页过滤时。即使用户没有明确说"REST"，当涉及 RESTful API 设计或 HTTP API 时也应使用。
 ---
 
 # REST API 设计模式

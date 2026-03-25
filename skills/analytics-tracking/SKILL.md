@@ -1,6 +1,6 @@
 ---
 name: analytics-tracking
-description: 分析跟踪技能 - 记录 SKILL/Agent 调用、分析使用模式、生成改进建议
+description: 分析跟踪技能 - 记录 SKILL/Agent 调用、分析使用模式、生成改进建议。**必须激活当**：用户要求跟踪 Skill 使用、分析性能或生成改进建议时。即使用户没有明确说"分析跟踪"，当涉及使用分析或性能监控时也应使用。
 ---
 
 # 分析跟踪技能

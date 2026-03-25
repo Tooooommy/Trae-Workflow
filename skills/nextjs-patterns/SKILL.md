@@ -1,6 +1,6 @@
 ---
 name: nextjs-patterns
-description: Next.js + Supabase 全栈开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建可扩展、类型安全、生产就绪的现代Web应用。
+description: Next.js + Supabase 全栈开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建可扩展、类型安全、生产就绪的现代Web应用。**必须激活当**：用户要求构建 Next.js 应用、使用 Supabase、实现 SSR/SSG 或处理身份验证时。即使用户没有明确说"Next.js"，当涉及 React 框架、全栈开发或现代 Web 应用时也应使用。
 ---
 
 # Next.js + Supabase 全栈开发模式

@@ -1,6 +1,6 @@
 ---
 name: django-patterns
-description: Django架构模式，使用DRF设计REST API，ORM最佳实践，缓存，信号，中间件，安全，TDD，以及生产级Django应用程序。
+description: Django架构模式，使用DRF设计REST API，ORM最佳实践，缓存，信号，中间件，安全，TDD，以及生产级Django应用程序。**必须激活当**：用户要求构建 Django 应用、设计 REST API 或实现 Django ORM 时。即使用户没有明确说"Django"，当涉及 Python Web 框架或 DRF 时也应使用。
 ---
 
 # Django 开发模式

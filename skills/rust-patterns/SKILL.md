@@ -1,6 +1,6 @@
 ---
 name: rust-patterns
-description: Rust 惯用模式、所有权系统、生命周期、错误处理和并发安全最佳实践。适用于所有 Rust 项目。
+description: Rust 惯用模式、所有权系统、生命周期、错误处理和并发安全最佳实践。适用于所有 Rust 项目。**必须激活当**：用户要求编写 Rust 代码、处理所有权或实现并发时。即使用户没有明确说"Rust"，当涉及 Rust 语言或 Rust 编程时也应使用。
 ---
 
 # Rust 开发模式

@@ -1,6 +1,6 @@
 ---
 name: remixjs-patterns
-description: Remix 全栈应用开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建基于 React Router 嵌套路由、类型安全、注重 Web 基础且可扩展的生产级应用。
+description: Remix 全栈应用开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。适用于构建基于 React Router 嵌套路由、类型安全、注重 Web 基础且可扩展的生产级应用。**必须激活当**：用户要求构建 Remix 应用、使用 React Router 或实现全栈 SSR 时。即使用户没有明确说"Remix"，当涉及 Remix 框架或全栈 Web 开发时也应使用。
 ---
 
 # Remix 全栈开发模式

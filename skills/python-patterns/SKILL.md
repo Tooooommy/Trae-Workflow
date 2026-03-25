@@ -1,6 +1,6 @@
 ---
 name: python-patterns
-description: Pythonic 惯用法、PEP 8 标准、类型提示以及构建稳健、高效且可维护的 Python 应用程序的最佳实践。
+description: Pythonic 惯用法、PEP 8 标准、类型提示以及构建稳健、高效且可维护的 Python 应用程序的最佳实践。**必须激活当**：用户要求编写 Python 代码、实现类型提示或遵循 PEP 8 标准时。即使用户没有明确说"Python"，当涉及 Python 开发或 Pythonic 惯用法时也应使用。
 ---
 
 # Python 开发模式

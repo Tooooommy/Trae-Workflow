@@ -1,6 +1,6 @@
 ---
 name: vue-patterns
-description: Vue 3 组合式 API、Pinia 状态管理、组件设计和性能优化最佳实践。适用于所有 Vue 项目。
+description: Vue 3 组合式 API、Pinia 状态管理、组件设计和性能优化最佳实践。适用于所有 Vue 项目。**必须激活当**：用户要求构建 Vue 3 应用、使用组合式 API 或实现 Pinia 状态管理时。即使用户没有明确说"Vue"，当涉及 Vue 框架或组件开发时也应使用。
 ---
 
 # Vue 3 开发模式
