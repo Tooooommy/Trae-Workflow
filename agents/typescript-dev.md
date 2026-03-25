@@ -42,54 +42,79 @@ npm audit --audit-level=high
 
 ## 最佳实践
 
-### TypeScript
+### 类型系统
 
 ```typescript
-// ✅ 正确：使用接口定义形状
+// 接口定义
 interface User {
   id: string;
   name: string;
   email: string;
 }
 
-// ❌ 错误：使用 any
-const user: any = {};
-
-// ✅ 正确：使用泛型
+// 泛型
 function identity<T>(arg: T): T {
   return arg;
 }
+
+// 可选链 + 空值合并
+const name = response.user?.name ?? 'Unknown';
 ```
 
 ### React
 
 ```typescript
-// ✅ 正确：函数组件
-interface Props {
-  title: string;
-  onClick: () => void;
-}
-
-export const Button: React.FC<Props> = ({ title, onClick }) => {
-  return <button onClick={onClick}>{title}</button>;
+// Props 类型
+type ButtonProps = {
+  label: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 };
+
+export const Button: React.FC<ButtonProps> = ({ label, onClick, disabled }) => (
+  <button onClick={onClick} disabled={disabled}>{label}</button>
+);
 ```
 
 ### Node.js
 
 ```typescript
-// ✅ 正确：异步错误处理
+// 异步错误处理
 async function fetchUser(id: string): Promise<User> {
   try {
     const response = await fetch(`/api/users/${id}`);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return await response.json();
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw error;
   }
+}
+```
+
+### API 类型
+
+```typescript
+// 请求/响应类型
+interface CreateUserRequest {
+  name: string;
+  email: string;
+  role: 'admin' | 'user' | 'guest';
+}
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: { code: string; message: string };
+}
+
+async function createUser(request: CreateUserRequest): Promise<ApiResponse<User>> {
+  const response = await fetch('/api/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(request),
+  });
+  return response.json();
 }
 ```
 

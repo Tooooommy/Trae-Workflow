@@ -32,9 +32,9 @@ builtin_tools:
 | Vue 3   | 快速开发、易上手   |
 | Next.js | SSR/SSG、全栈应用  |
 
-## React 最佳实践
+## 最佳实践
 
-### 组件设计
+### React 组件
 
 ```typescript
 interface ButtonProps {
@@ -43,17 +43,9 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  children,
-  onClick,
-}) => {
-  return (
-    <button className={`btn btn-${variant}`} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+export const Button: React.FC<ButtonProps> = ({ variant, children, onClick }) => (
+  <button className={`btn btn-${variant}`} onClick={onClick}>{children}</button>
+);
 ```
 
 ### 状态管理 (Zustand)
@@ -77,9 +69,7 @@ export const useUserStore = create<UserState>((set) => ({
 }));
 ```
 
-## Vue 3 最佳实践
-
-### 组合式 API
+### Vue 3 组合式 API
 
 ```typescript
 <script setup lang="ts">
@@ -88,6 +78,39 @@ import { ref, computed } from 'vue';
 const user = ref<User | null>(null);
 const displayName = computed(() => user.value?.name ?? 'Unknown');
 </script>
+```
+
+### 虚拟滚动
+
+```typescript
+import { useVirtualizer } from '@tanstack/react-virtual';
+
+const rowVirtualizer = useVirtualizer({
+  count: items.length,
+  getScrollElement: () => parentRef.current,
+  estimateSize: () => 35,
+});
+```
+
+### 代码分割 (Next.js)
+
+```typescript
+import dynamic from 'next/dynamic';
+
+const Chart = dynamic(() => import('@/components/Chart'), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
+```
+
+### 可访问性
+
+```typescript
+// ❌ 错误
+<div className="btn" onClick={onClick}>Click</div>
+
+// ✅ 正确
+<button className="btn" onClick={onClick}>Click</button>
 ```
 
 ## 协作说明

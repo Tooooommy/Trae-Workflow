@@ -24,6 +24,56 @@ builtin_tools:
 4. **测试审查** — 审查测试质量和可维护性
 5. **测试失败排查** — 诊断和修复测试问题
 
+## 最佳实践
+
+### 覆盖率优化
+
+```
+目标：从 50% 提升到 80%
+
+步骤：
+1. 运行覆盖率报告
+2. 优先覆盖核心业务逻辑
+3. 添加边界条件测试
+4. 添加异常处理测试
+5. 验证覆盖率达标
+```
+
+### 异步测试
+
+```typescript
+// Jest 异步测试
+test('should fetch user data', async () => {
+  const user = await userService.getUser('1');
+  expect(user).toBeDefined();
+});
+
+// Fake timers
+jest.useFakeTimers();
+test('should delay execution', async () => {
+  const promise = delay(100);
+  jest.advanceTimersByTime(100);
+  await expect(promise).resolves.toBeDone();
+});
+```
+
+### E2E 配置
+
+```typescript
+// playwright.config.ts
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './e2e',
+  timeout: 30000,
+  retries: 2,
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+  },
+});
+```
+
 ## 协作说明
 
 | 任务     | 委托目标            |

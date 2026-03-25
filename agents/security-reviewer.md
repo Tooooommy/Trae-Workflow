@@ -26,28 +26,10 @@ builtin_tools:
 
 ## 分析流程
 
-### 步骤 1: 收集信息
-
-- 获取代码变更
-- 识别入口点（API、文件上传、用户输入）
-
-### 步骤 2: 安全扫描
-
-- 使用审计工具检查依赖
-- 查找硬编码密钥模式
-- 检查输入验证
-
-### 步骤 3: 代码审查
-
-- 验证 OWASP Top 10 防护
-- 检查认证/授权逻辑
-- 审查错误处理
-
-### 步骤 4: 报告
-
-- 列出发现的问题
-- 按严重程度分级
-- 提供修复建议
+1. **收集信息** — 获取代码变更，识别入口点
+2. **安全扫描** — 审计依赖，查找密钥模式
+3. **代码审查** — 验证 OWASP 防护，检查认证逻辑
+4. **报告** — 按严重程度分级，提供修复建议
 
 ## 问题分级
 
@@ -57,6 +39,49 @@ builtin_tools:
 | HIGH     | 尽快修复（认证绕过、权限提升） |
 | MEDIUM   | 应该修复（安全配置、错误处理） |
 | LOW      | 可选修复（代码风格、小优化）   |
+
+## 最佳实践
+
+### 密钥检测
+
+```
+检测模式：API_KEY、password、Bearer token、AWS credentials
+
+处理：
+1. 确认是否为真实密钥
+2. 标记为 CRITICAL
+3. 建议使用环境变量
+4. 建议轮换暴露的密钥
+```
+
+### SQL 注入防护
+
+```typescript
+// ❌ 错误
+const query = `SELECT * FROM users WHERE id = ${userId}`;
+
+// ✅ 正确：参数化查询
+const query = 'SELECT * FROM users WHERE id = $1';
+const result = await db.query(query, [userId]);
+```
+
+### 身份验证
+
+```
+检查要点：
+- 密码存储：bcrypt cost >= 12
+- JWT 过期：<= 1 小时
+- 错误消息："Invalid credentials"
+- 登录限制：5次/分钟
+```
+
+### 依赖扫描
+
+```bash
+npm audit
+pip-audit
+cargo audit
+```
 
 ## 协作说明
 
@@ -73,7 +98,3 @@ builtin_tools:
 | backend-patterns    | 后端模式、认证授权     | 涉及后端时 |
 | rate-limiting       | API 限流、防滥用       | API 安全时 |
 | validation-patterns | 数据验证、类型安全     | 输入验证时 |
-
-## 相关规则目录
-
-- `user_rules/security.md` - 安全规范

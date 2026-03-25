@@ -47,7 +47,6 @@ pip list --outdated
 ### 类型注解
 
 ```python
-# ✅ 正确：完整类型注解
 from typing import List, Optional
 
 def process_items(items: List[str], limit: Optional[int] = None) -> List[str]:
@@ -59,8 +58,7 @@ def process_items(items: List[str], limit: Optional[int] = None) -> List[str]:
 ### 异步编程
 
 ```python
-# ✅ 正确：async/await
-import asyncio
+import aiohttp
 
 async def fetch_data(url: str) -> dict:
     async with aiohttp.ClientSession() as session:
@@ -71,7 +69,6 @@ async def fetch_data(url: str) -> dict:
 ### 数据类
 
 ```python
-# ✅ 正确：使用 dataclass
 from dataclasses import dataclass
 
 @dataclass
@@ -79,6 +76,51 @@ class User:
     id: int
     name: str
     email: str
+```
+
+### FastAPI + Pydantic
+
+```python
+from pydantic import BaseModel, EmailStr, Field
+from fastapi import FastAPI
+
+app = FastAPI()
+
+class UserCreate(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100)
+    email: EmailStr
+    role: str = Field(default="user")
+
+@app.post("/users", response_model=User)
+async def create_user(user: UserCreate) -> User:
+    return User(id=1, **user.model_dump())
+```
+
+### 异步数据库
+
+```python
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
+
+engine = create_async_engine("sqlite+aiosqlite:///./db.sqlite")
+async_session = sessionmaker(engine, class_=AsyncSession)
+
+async def get_user(user_id: int) -> Optional[User]:
+    async with async_session() as session:
+        result = await session.execute(
+            select(User).where(User.id == user_id)
+        )
+        return result.scalar_one_or_none()
+```
+
+### 类型检查配置
+
+```toml
+# pyproject.toml
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
 ```
 
 ## 协作说明

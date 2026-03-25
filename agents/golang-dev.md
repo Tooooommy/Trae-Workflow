@@ -48,7 +48,7 @@ go mod verify
 ### 错误处理
 
 ```go
-// ✅ 正确：包装错误
+// 包装错误
 func readFile(path string) ([]byte, error) {
     data, err := os.ReadFile(path)
     if err != nil {
@@ -58,24 +58,43 @@ func readFile(path string) ([]byte, error) {
 }
 ```
 
-### 并发
+### 并发安全
 
 ```go
-// ✅ 正确：使用 channel
-func worker(id int, jobs <-chan int, results chan<- int) {
+// Mutex
+type Counter struct {
+    mu    sync.Mutex
+    value int
+}
+
+func (c *Counter) Increment() {
+    c.mu.Lock()
+    defer c.mu.Unlock()
+    c.value++
+}
+
+// Channel
+func worker(jobs <-chan int, results chan<- int) {
     for j := range jobs {
         results <- j * 2
     }
 }
 ```
 
-### Context 使用
+### Context 取消
 
 ```go
-// ✅ 正确：传递 context
-func fetchUser(ctx context.Context, id string) (*User, error) {
+// 超时取消
+func fetchWithTimeout(ctx context.Context, url string) (*Response, error) {
+    ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+    defer cancel()
+
     req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-    // ...
+    if err != nil {
+        return nil, err
+    }
+
+    return http.DefaultClient.Do(req)
 }
 ```
 
@@ -97,5 +116,3 @@ func fetchUser(ctx context.Context, id string) (*User, error) {
 | tdd-workflow    | TDD 工作流    | TDD 开发时 |
 
 ## 相关规则目录
-
-- `project_rules/golang/` - Go 特定规则
