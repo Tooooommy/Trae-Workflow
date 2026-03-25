@@ -94,7 +94,7 @@ async function initProject(projectPath, options = {}) {
     process.exit(1);
   }
 
-  const sourceDir = path.join(TRAECONFIG_DIR, 'skills', projectType);
+  const sourceDir = path.join(TRAECONFIG_DIR, 'project_rules', projectType);
 
   if (!fs.existsSync(sourceDir)) {
     log(`Source directory not found: ${sourceDir}`, 'error');
