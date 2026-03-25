@@ -142,4 +142,4 @@ warn_return_any = true
 
 ## 相关规则目录
 
-- `project_rules/python/` - Python 特定规则
+使用 Python 规则

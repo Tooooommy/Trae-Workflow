@@ -121,11 +121,11 @@ tx.send(data).unwrap();
 
 ## 相关技能
 
-| 技能           | 用途          | 调用时机   |
-| -------------- | ------------- | ---------- |
-| rust-patterns  | Rust 模式     | Rust 开发时 |
-| tdd-workflow   | TDD 工作流    | TDD 开发时 |
+| 技能          | 用途       | 调用时机    |
+| ------------- | ---------- | ----------- |
+| rust-patterns | Rust 模式  | Rust 开发时 |
+| tdd-workflow  | TDD 工作流 | TDD 开发时  |
 
 ## 相关规则目录
 
-project_rules/rust/
+使用 Rust 规则

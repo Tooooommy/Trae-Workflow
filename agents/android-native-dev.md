@@ -305,4 +305,4 @@ fun FilteredList(items: List<Item>, filter: String) {
 
 ## 相关规则目录
 
-- `project_rules/android-native/` - Kotlin/Android 特定规则
+使用 Kotlin 规则

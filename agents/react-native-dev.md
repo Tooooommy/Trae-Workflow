@@ -170,4 +170,4 @@ export const nativeFunction = async () => {
 
 ## 相关规则目录
 
-- `project_rules/typescript/` - TypeScript/JavaScript 特定规则
+使用 TypeScript 规则

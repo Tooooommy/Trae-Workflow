@@ -240,4 +240,4 @@ struct OptimizedImageView: View {
 
 ## 相关规则目录
 
-- `project_rules/ios-native/` - iOS/Swift 特定规则
+使用 Swift 规则
