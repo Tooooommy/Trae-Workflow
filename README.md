@@ -332,15 +332,14 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ### 项目规则（project_rules）
 
-| 语言         | 框架规则                                     |
-| ------------ | -------------------------------------------- |
-| typescript   | react, nextjs, nestjs, electron, tauri, expo |
-| python       | django, fastapi, flask                       |
-| golang       | gin, fiber                                   |
-| rust         | axum, actix                                  |
-| swift        | swiftui                                      |
-| kotlin       | jetpack-compose                              |
-| mini-program | 微信小程序                                   |
+| 语言       | 框架规则                                                   |
+| ---------- | ---------------------------------------------------------- |
+| typescript | react, nextjs, nestjs, electron, tauri, expo, mini-program |
+| python     | django, fastapi, flask                                     |
+| golang     | gin, fiber                                                 |
+| rust       | axum, actix                                                |
+| swift      | swiftui                                                    |
+| kotlin     | jetpack-compose                                            |
 
 ---
 
