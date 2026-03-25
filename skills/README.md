@@ -162,14 +162,14 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ## 🔗 与规则对应
 
-| 技能                    | 规则目录                      |
-| ----------------------- | ----------------------------- |
-| python-patterns         | project_rules/python/         |
-| golang-patterns         | project_rules/golang/         |
-| rust-patterns           | project_rules/rust/           |
-| ios-native-patterns     | project_rules/ios-native/     |
-| android-native-patterns | project_rules/android-native/ |
-| coding-standards        | project_rules/typescript/     |
+| 技能                    | 规则目录                  |
+| ----------------------- | ------------------------- |
+| python-patterns         | project_rules/python/     |
+| golang-patterns         | project_rules/golang/     |
+| rust-patterns           | project_rules/rust/       |
+| ios-native-patterns     | project_rules/swift/      |
+| android-native-patterns | project_rules/kotlin/     |
+| coding-standards        | project_rules/typescript/ |
 
 ## 📝 技能结构
 

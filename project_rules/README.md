@@ -11,8 +11,8 @@ project_rules/
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
 ├── rust/               # Rust 规则
-├── ios-native/         # iOS/Swift 规则
-├── android-native/     # Android/Kotlin 规则
+├── swift/              # Swift/iOS 规则
+├── kotlin/             # Kotlin/Android 规则
 ├── electron/          # Electron 规则
 └── tauri/             # Tauri 规则
 ```
@@ -31,31 +31,31 @@ project_rules/<lang>/ ← 语言特定扩展
 
 ### 核心语言
 
-| 目录           | 描述                       | 对应智能体     | 框架规则                 |
-| -------------- | -------------------------- | -------------- | ------------------------ |
-| typescript     | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
-| python         | Python 规则                | python-dev     | django, fastapi, flask   |
-| golang         | Go 规则                    | golang-dev     | gin, fiber               |
-| rust           | Rust 规则                  | rust-dev       | axum, actix              |
-| ios-native     | iOS/Swift 规则             | ios-native     | swiftui                  |
-| android-native | Android/Kotlin 规则        | android-native | android                  |
-| electron       | Electron 规则              | -              | patterns                 |
-| tauri          | Tauri 规则                 | -              | patterns                 |
+| 目录       | 描述                       | 对应智能体     | 框架规则                 |
+| ---------- | -------------------------- | -------------- | ------------------------ |
+| typescript | TypeScript/JavaScript 规则 | typescript-dev | react, nextjs, nestjs 等 |
+| python     | Python 规则                | python-dev     | django, fastapi, flask   |
+| golang     | Go 规则                    | golang-dev     | gin, fiber               |
+| rust       | Rust 规则                  | rust-dev       | axum, actix              |
+| swift      | Swift/iOS 规则             | ios-native     | swiftui                  |
+| kotlin     | Kotlin/Android 规则        | android-native | jetpack-compose          |
+| electron   | Electron 规则              | -              | patterns                 |
+| tauri      | Tauri 规则                 | -              | patterns                 |
 
 ### 框架规则
 
 每个语言目录下包含特定框架的规则：
 
-| 语言           | 框架规则                                     |
-| -------------- | -------------------------------------------- |
-| typescript     | react, nextjs, nestjs, react-native, expo 等 |
-| python         | django, fastapi, flask                       |
-| golang         | gin, fiber                                   |
-| rust           | axum, actix                                  |
-| ios-native     | swiftui                                      |
-| android-native | android                                      |
-| electron       | 桌面应用                                     |
-| tauri          | 桌面应用                                     |
+| 语言       | 框架规则                                     |
+| ---------- | -------------------------------------------- |
+| typescript | react, nextjs, nestjs, react-native, expo 等 |
+| python     | django, fastapi, flask                       |
+| golang     | gin, fiber                                   |
+| rust       | axum, actix                                  |
+| swift      | swiftui                                      |
+| kotlin     | jetpack-compose                              |
+| electron   | 桌面应用                                     |
+| tauri      | 桌面应用                                     |
 
 ## 📝 规则文件格式
 
@@ -102,26 +102,26 @@ my-project/
 
 ## 🔗 与智能体对应
 
-| 智能体           | 推荐规则目录    |
-| ---------------- | --------------- |
-| typescript-dev   | typescript/     |
-| python-dev       | python/         |
-| golang-dev       | golang/         |
-| rust-dev         | rust/           |
-| ios-native       | ios-native/     |
-| react-native-dev | typescript/     |
-| android-native   | android-native/ |
+| 智能体           | 推荐规则目录 |
+| ---------------- | ------------ |
+| typescript-dev   | typescript/  |
+| python-dev       | python/      |
+| golang-dev       | golang/      |
+| rust-dev         | rust/        |
+| ios-native       | swift/       |
+| react-native-dev | typescript/  |
+| android-native   | kotlin/      |
 
 ## 🔗 与技能对应
 
-| 规则目录       | 相关技能                              |
-| -------------- | ------------------------------------- |
-| typescript     | react-modern-stack, frontend-patterns |
-| python         | python-patterns, python-testing       |
-| golang         | golang-patterns, golang-testing       |
-| rust           | rust-patterns                         |
-| ios-native     | ios-native-patterns                   |
-| android-native | android-native-patterns               |
+| 规则目录   | 相关技能                              |
+| ---------- | ------------------------------------- |
+| typescript | react-modern-stack, frontend-patterns |
+| python     | python-patterns, python-testing       |
+| golang     | golang-patterns, golang-testing       |
+| rust       | rust-patterns                         |
+| swift      | ios-native-patterns                   |
+| kotlin     | android-native-patterns               |
 
 ---
 
