@@ -113,7 +113,7 @@ Trae Workflow/
 | golang-dev       | Go 专家           | Go 语言开发                |
 | rust-dev         | Rust 专家         | Rust 语言开发              |
 | ios-native       | iOS 专家          | iOS/macOS 开发             |
-| react-native-dev | React Native 专家 | React Native 跨平台开发     |
+| react-native-dev | React Native 专家 | React Native 跨平台开发    |
 | android-native   | Android 专家      | Android/Compose 开发       |
 
 ### 测试与质量
@@ -132,11 +132,11 @@ Trae Workflow/
 
 ### 专家智能体
 
-| 智能体           | 角色              | 触发场景                |
-| ---------------- | ----------------- | ----------------------- |
-| backend-expert   | 后端专家          | API 设计、数据库        |
-| frontend-expert  | 前端专家          | 前端架构、UI 组件       |
-| doc-expert       | 文档专家          | 文档编写、API 文档      |
+| 智能体          | 角色     | 触发场景           |
+| --------------- | -------- | ------------------ |
+| backend-expert  | 后端专家 | API 设计、数据库   |
+| frontend-expert | 前端专家 | 前端架构、UI 组件  |
+| doc-expert      | 文档专家 | 文档编写、API 文档 |
 
 ### 智能体协作
 
@@ -174,10 +174,10 @@ Trae Workflow/
 | 技能                | 描述                           |
 | ------------------- | ------------------------------ |
 | postgres-patterns   | PostgreSQL 查询优化、索引策略  |
-| mongodb-patterns   | MongoDB 文档设计、聚合管道     |
+| mongodb-patterns    | MongoDB 文档设计、聚合管道     |
 | database-migrations | 数据库迁移最佳实践、零停机部署 |
-| redis-patterns     | Redis 缓存模式、分布式锁       |
-| clickhouse-io     | ClickHouse 高性能分析          |
+| redis-patterns      | Redis 缓存模式、分布式锁       |
+| clickhouse-io       | ClickHouse 高性能分析          |
 
 ### 测试
 
@@ -221,7 +221,7 @@ Trae Workflow/
 | python-patterns     | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
 | golang-patterns     | Go 惯用模式、并发安全、表格驱动测试      |
 | rust-patterns       | Rust 惯用模式、所有权系统、并发安全      |
-| ios-native-patterns | iOS/SwiftUI 原生开发模式                |
+| ios-native-patterns | iOS/SwiftUI 原生开发模式                 |
 | django-patterns     | Django 架构模式、安全、测试              |
 | coding-standards    | 通用编码标准、最佳实践                   |
 
@@ -320,23 +320,23 @@ project_rules/<lang>/ ← 语言特定扩展
 | project-config.md       | 技术栈、性能目标   |
 | coding-style.md         | 代码格式、命名规范 |
 | development-workflow.md | 详细开发流程       |
-| testing.md             | TDD 流程、测试策略 |
-| security.md            | 检查清单、处理流程 |
-| git-workflow.md        | PR 工作流          |
-| patterns.md            | 模式详细说明       |
-| hooks.md              | Hooks 系统         |
-| performance.md        | 性能优化配置       |
+| testing.md              | TDD 流程、测试策略 |
+| security.md             | 检查清单、处理流程 |
+| git-workflow.md         | PR 工作流          |
+| patterns.md             | 模式详细说明       |
+| hooks.md                | Hooks 系统         |
+| performance.md          | 性能优化配置       |
 
 ### 项目规则（project_rules）
 
-| 语言       | 框架规则                                           |
-| ---------- | -------------------------------------------------- |
-| typescript | react, nextjs, nestjs, electron, tauri, expo     |
-| python     | django, fastapi, flask                             |
-| golang     | gin, fiber                                        |
-| rust       | axum, actix                                      |
-| swift      | swiftui                                           |
-| kotlin     | jetpack-compose                                   |
+| 语言       | 框架规则                                     |
+| ---------- | -------------------------------------------- |
+| typescript | react, nextjs, nestjs, electron, tauri, expo |
+| python     | django, fastapi, flask                       |
+| golang     | gin, fiber                                   |
+| rust       | axum, actix                                  |
+| swift      | swiftui                                      |
+| kotlin     | jetpack-compose                              |
 
 ---
 
