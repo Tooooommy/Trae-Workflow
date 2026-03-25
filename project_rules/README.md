@@ -11,7 +11,9 @@ project_rules/
 ├── python/             # Python 规则
 ├── golang/             # Go 规则
 ├── ios-native/         # iOS/Swift 规则
-└── android-native/     # Android/Kotlin 规则
+├── android-native/     # Android/Kotlin 规则
+├── electron/           # Electron 规则
+└── tauri/             # Tauri 规则
 ```
 
 ## 🔄 规则层级
@@ -35,6 +37,8 @@ project_rules/<lang>/ ← 语言特定扩展
 | golang         | Go 规则                    | go-dev         | gin, fiber               |
 | ios-native     | iOS/Swift 规则             | ios-native     | swiftui                  |
 | android-native | Android/Kotlin 规则        | android-native | android                  |
+| electron       | Electron 规则              | -              | -                        |
+| tauri          | Tauri 规则                 | -              | -                        |
 
 ### 框架规则
 
@@ -47,6 +51,8 @@ project_rules/<lang>/ ← 语言特定扩展
 | golang         | gin, fiber                                   |
 | ios-native     | swiftui                                      |
 | android-native | android                                      |
+| electron       | 桌面应用                                     |
+| tauri          | 桌面应用                                     |
 
 ## 📝 规则文件格式
 
