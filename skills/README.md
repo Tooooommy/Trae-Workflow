@@ -95,11 +95,10 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 🔄 通信与集成
 
-| 技能                   | 描述                    |
-| ---------------------- | ----------------------- |
-| realtime-websocket     | WebSocket 实时通信      |
-| message-queue-patterns | RabbitMQ/Kafka 消息队列 |
-| webrtc-patterns        | WebRTC 实时音视频       |
+| 技能               | 描述               |
+| ------------------ | ------------------ |
+| realtime-websocket | WebSocket 实时通信 |
+| webrtc-patterns    | WebRTC 实时音视频  |
 
 ### 🛠️ 工具与流程
 
