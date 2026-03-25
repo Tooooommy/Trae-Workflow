@@ -3,7 +3,6 @@
 
 param(
     [switch]$Backup,
-    [switch]$SkipMCP,
     [switch]$SkipSkills,
     [switch]$SkipAgents,
     [switch]$SkipRules,
@@ -75,7 +74,6 @@ function Show-Help {
     Write-Host ""
     Write-Host "Options:" -ForegroundColor Yellow
     Write-Host "  -Backup              Backup existing config" -ForegroundColor White
-    Write-Host "  -SkipMCP             Skip MCP config" -ForegroundColor White
     Write-Host "  -SkipSkills          Skip Skills config" -ForegroundColor White
     Write-Host "  -SkipAgents          Skip Agents config" -ForegroundColor White
     Write-Host "  -SkipRules           Skip Rules config" -ForegroundColor White
@@ -205,10 +203,7 @@ if (-not $Quiet) {
 
 Write-Log -Message "Setup script started (Version: $Version)" -Level "INFO"
 
-if (-not (Test-Path "$ScriptDir\mcp.json")) {
-    Write-Error "Please run this script in the Trae Workflow directory"
-    exit 1
-}
+$totalSteps = 5
 
 if (-not (Test-Administrator)) {
     Write-Warning "Note: Running as administrator is recommended"
@@ -233,8 +228,7 @@ if (Test-TraeRunning) {
     }
 }
 
-$totalSteps = 6
-if (-not $SkipMCP) { $totalSteps++ }
+$totalSteps = 5
 if (-not $SkipSkills) { $totalSteps++ }
 if (-not $SkipAgents) { $totalSteps++ }
 if (-not $SkipRules) { $totalSteps++ }
@@ -260,15 +254,12 @@ try {
     exit 1
 }
 
-if ($Backup -or (Test-Path "$TraeConfigDir\mcp.json")) {
+if ($Backup -or (Test-Path "$TraeConfigDir\skills")) {
     Write-Progress -Message "Backing up existing config..."
     try {
         $BackupDir = "$TraeConfigDir\backup_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
         New-Item -ItemType Directory -Force -Path $BackupDir | Out-Null
-        
-        if (Test-Path "$TraeConfigDir\mcp.json") {
-            Copy-Item "$TraeConfigDir\mcp.json" $BackupDir -Force
-        }
+
         if (Test-Path "$TraeConfigDir\skills") {
             Copy-Item "$TraeConfigDir\skills" $BackupDir -Recurse -Force
         }
@@ -284,7 +275,7 @@ if ($Backup -or (Test-Path "$TraeConfigDir\mcp.json")) {
         if (Test-Path "$TraeConfigDir\tracking.json") {
             Copy-Item "$TraeConfigDir\tracking.json" $BackupDir -Force
         }
-        
+
         Write-Success "      OK Backup completed: $BackupDir"
         Write-Log -Message "Backup completed: $BackupDir" -Level "INFO"
     } catch {
@@ -295,28 +286,6 @@ if ($Backup -or (Test-Path "$TraeConfigDir\mcp.json")) {
 } else {
     Write-Progress -Message "Skipping backup..."
     Write-Gray "      Skipped backup"
-}
-
-if (-not $SkipMCP) {
-    Write-Progress -Message "Configuring MCP servers..."
-    try {
-        if (Test-ConfigFile "$ScriptDir\mcp.json") {
-            Copy-Item "$ScriptDir\mcp.json" "$TraeConfigDir\mcp.json" -Force
-            Write-Success "      OK MCP config copied"
-            Write-Log -Message "MCP config copied" -Level "INFO"
-        } else {
-            Write-Error "      ERROR MCP config file is invalid or empty"
-            Write-Log -Message "MCP config file validation failed" -Level "ERROR"
-            exit 1
-        }
-    } catch {
-        Write-Error "      ERROR MCP config copy failed: $_"
-        Write-Log -Message "MCP config copy failed: $_" -Level "ERROR"
-        exit 1
-    }
-} else {
-    Write-Progress -Message "Skipping MCP config..."
-    Write-Gray "      Skipped MCP config"
 }
 
 if (-not $SkipSkills) {
@@ -436,7 +405,6 @@ if (-not $Quiet) {
     Write-Host ""
     Write-Info "Directory structure:"
     Write-Gray "  $TraeConfigDir\"
-    Write-Gray "  ├── mcp.json          (MCP servers config)"
     Write-Gray "  ├── skills\           (Skills directory)"
     Write-Gray "  ├── agents\           (Agents directory)"
     Write-Gray "  ├── user_rules\       (User rules directory)"
@@ -463,7 +431,6 @@ if (-not $Quiet) {
 
 if (-not $Quiet) {
     Write-Info "Summary:"
-    Write-Host "  - MCP servers: $(if (-not $SkipMCP) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - Skills: $(if (-not $SkipSkills) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - Agents: $(if (-not $SkipAgents) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - User Rules: $(if (-not $SkipRules) { 'Configured' } else { 'Skipped' })"
@@ -475,10 +442,7 @@ if (-not $Quiet) {
 if (-not $Quiet) {
     Write-Info "Validating config..."
     $Issues = @()
-    
-    if (-not $SkipMCP -and -not (Test-ConfigFile "$TraeConfigDir\mcp.json")) {
-        $Issues += "MCP config not found or invalid"
-    }
+
     if (-not $SkipSkills -and -not (Test-Path "$TraeConfigDir\skills")) {
         $Issues += "Skills directory not found"
     }
@@ -488,7 +452,7 @@ if (-not $Quiet) {
     if (-not $SkipRules -and -not (Test-Path "$TraeConfigDir\user_rules")) {
         $Issues += "User Rules directory not found"
     }
-    
+
     if ($Issues.Count -eq 0) {
         Write-Success "  OK All configurations validated"
         Write-Log -Message "Config validation passed" -Level "INFO"
