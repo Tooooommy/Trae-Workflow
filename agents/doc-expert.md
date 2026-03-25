@@ -74,7 +74,3 @@ builtin_tools:
 | rest-patterns     | REST API 设计模式 | API 文档时 |
 | backend-patterns  | 后端架构模式      | 后端文档时 |
 | frontend-patterns | 前端开发模式      | 前端文档时 |
-
-## 相关规则
-
-- `user_rules/README.md` - 项目 README 规范

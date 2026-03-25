@@ -104,7 +104,3 @@ func fetchWithTimeout(ctx context.Context, url string) (*Response, error) {
 | --------------- | ------------ | ---------- |
 | golang-patterns | Go 模式      | Go 开发时  |
 | tdd-workflow    | TDD 工作流   | TDD 开发时 |
-
-## 相关规则
-
-使用 Golang 规则

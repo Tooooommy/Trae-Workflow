@@ -100,8 +100,3 @@ builtin_tools:
 | ------------------ | ------------ | ---------- |
 | clean-architecture | 整洁架构模式 | 始终调用   |
 | tdd-workflow       | TDD 工作流   | TDD 开发时 |
-
-## 相关规则
-
-- `user_rules/core-principles.md` - 核心原则
-- `user_rules/development-workflow.md` - 开发工作流

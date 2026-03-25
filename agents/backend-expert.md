@@ -93,8 +93,3 @@ SELECT id, name, email FROM users WHERE active = true;
 | postgres-patterns   | PostgreSQL           | PostgreSQL 时  |
 | mongodb-patterns    | MongoDB              | MongoDB 时     |
 | database-migrations | 数据库迁移           | 迁移时         |
-
-## 相关规则
-
-- `user_rules/project-config.md` - 项目配置
-- `user_rules/patterns.md` - 架构模式

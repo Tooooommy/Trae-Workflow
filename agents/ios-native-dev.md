@@ -237,7 +237,3 @@ struct OptimizedImageView: View {
 | ------------------- | ------------ | ---------- |
 | ios-native-patterns | iOS 原生模式 | iOS 开发时 |
 | tdd-workflow        | TDD 工作流   | TDD 开发时 |
-
-## 相关规则
-
-使用 Swift 规则

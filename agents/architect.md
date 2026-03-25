@@ -96,8 +96,3 @@ builtin_tools:
 | ddd-patterns        | 领域驱动设计模式  | 领域建模时   |
 | rest-patterns       | REST API 设计模式 | API 设计时   |
 | database-migrations | 数据库迁移模式    | 数据库变更时 |
-
-## 相关规则
-
-- `user_rules/patterns.md` - 架构模式
-- `user_rules/core-principles.md` - 核心原则

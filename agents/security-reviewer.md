@@ -98,8 +98,3 @@ cargo audit
 | backend-patterns    | 后端模式、认证授权     | 涉及后端时 |
 | rate-limiting       | API 限流、防滥用       | API 安全性 |
 | validation-patterns | 数据验证、类型安全     | 输入验证时 |
-
-## 相关规则
-
-- `user_rules/security.md` - 安全规范
-- `user_rules/core-principles.md` - 核心原则

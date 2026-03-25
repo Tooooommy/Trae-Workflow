@@ -131,7 +131,3 @@ builtin_tools:
 | --------------------- | ------------ | ---------- |
 | analytics-tracking    | 数据分析模式 | 始终调用   |
 | logging-observability | 日志、监控   | 数据分析时 |
-
-## 相关规则
-
-- `tracking.json` - 跟踪配置

@@ -302,7 +302,3 @@ fun FilteredList(items: List<Item>, filter: String) {
 | ----------------------- | ---------------- | -------------- |
 | android-native-patterns | Android 原生模式 | Android 开发时 |
 | tdd-workflow            | TDD 工作流       | TDD 开发时     |
-
-## 相关规则
-
-使用 Kotlin 规则

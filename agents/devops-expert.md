@@ -43,8 +43,3 @@ builtin_tools:
 | git-workflow          | Git 分支策略、CI/CD 配置 | 版本控制时 |
 | deployment-patterns   | 部署工作流              | 部署时     |
 | logging-observability | 日志、监控              | 监控配置时 |
-
-## 相关规则
-
-- `user_rules/git-workflow.md` - Git 规范
-- `user_rules/deployment-patterns.md` - 部署模式

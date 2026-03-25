@@ -135,7 +135,3 @@ async function createUser(request: CreateUserRequest): Promise<ApiResponse<User>
 | coding-standards  | 编码标准                 | 始终调用   |
 | frontend-patterns | 前端模式、React/Vue 开发 | 前端开发时 |
 | tdd-workflow      | TDD 工作流               | TDD 开发时 |
-
-## 相关规则
-
-使用 TypeScript 规则

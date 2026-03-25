@@ -139,7 +139,3 @@ warn_return_any = true
 | --------------- | ----------------- | ------------- |
 | python-patterns | Python 模式       | Python 开发时 |
 | tdd-workflow    | TDD 工作流        | TDD 开发时    |
-
-## 相关规则
-
-使用 Python 规则

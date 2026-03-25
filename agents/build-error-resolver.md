@@ -56,8 +56,3 @@ builtin_tools:
 | ----------------------- | ------------ | ---------- |
 | coding-standards        | 编码标准     | 始终调用   |
 | error-handling-patterns | 错误处理模式 | 错误诊断时 |
-
-## 相关规则
-
-- `user_rules/coding-style.md` - 代码规范
-- `user_rules/security.md` - 安全规范

@@ -125,7 +125,3 @@ tx.send(data).unwrap();
 | ------------ | ---------- | ----------- |
 | rust-patterns | Rust 模式  | Rust 开发时 |
 | tdd-workflow  | TDD 工作流 | TDD 开发时  |
-
-## 相关规则
-
-使用 Rust 规则

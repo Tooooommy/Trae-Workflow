@@ -67,8 +67,3 @@ builtin_tools:
 | coding-standards        | 编码标准     | 始终调用       |
 | clean-architecture      | 整洁架构     | 架构审查时     |
 | error-handling-patterns | 错误处理模式 | 涉及错误处理时 |
-
-## 相关规则
-
-- `user_rules/coding-style.md` - 代码规范
-- `user_rules/security.md` - 安全规范

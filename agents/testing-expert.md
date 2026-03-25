@@ -90,8 +90,3 @@ export default defineConfig({
 | e2e-testing     | Playwright E2E 测试 | E2E 测试时   |
 | python-patterns | Python 测试模式     | Python 项目时 |
 | golang-patterns | Go 测试模式         | Go 项目时    |
-
-## 相关规则
-
-- `user_rules/testing.md` - 测试规范
-- `user_rules/core-principles.md` - 核心原则

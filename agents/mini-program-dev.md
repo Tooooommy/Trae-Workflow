@@ -27,7 +27,3 @@ mcp_servers:
 | mini-program-patterns | 小程序模式 | 小程序开发时 |
 | frontend-patterns     | 前端模式   | 前端开发时   |
 | tdd-workflow          | TDD 工作流 | TDD 开发时   |
-
-## 相关规则
-
-使用小程序规则
