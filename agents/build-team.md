@@ -33,20 +33,15 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求构建修复
-        │
-        ▼
-┌───────────────────┐
-│   错误类型判断     │
-└───────────────────┘
-        │
-        ├─→ TypeScript ──→ coding-standards
-        ├─→ Node.js ──→ backend-patterns
-        ├─→ Python ──→ python-patterns
-        ├─→ Go ──→ golang-patterns
-        ├─→ Docker ──→ docker-patterns
-        └─→ 依赖冲突 ──→ error-handling-patterns
+```mermaid
+flowchart TD
+    A[用户请求构建修复] --> B{错误类型判断}
+    B -->|TypeScript| C[coding-standards]
+    B -->|Node.js| D[backend-patterns]
+    B -->|Python| E[python-patterns]
+    B -->|Go| F[golang-patterns]
+    B -->|Docker| G[docker-patterns]
+    B -->|依赖冲突| H[error-handling-patterns]
 ```
 
 ## 诊断流程

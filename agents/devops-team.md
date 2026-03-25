@@ -35,19 +35,14 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求 DevOps
-        │
-        ▼
-┌───────────────────┐
-│   DevOps 类型判断   │
-└───────────────────┘
-        │
-        ├─→ CI/CD ──→ git-workflow + deployment-patterns
-        ├─→ Docker ──→ docker-patterns
-        ├─→ 部署 ──→ deployment-patterns
-        ├─→ 监控 ──→ logging-observability
-        └─→ K8s ──→ docker-patterns
+```mermaid
+flowchart TD
+    A[用户请求 DevOps] --> B{DevOps 类型判断}
+    B -->|CI/CD| C[git-workflow + deployment-patterns]
+    B -->|Docker| D[docker-patterns]
+    B -->|部署| E[deployment-patterns]
+    B -->|监控| F[logging-observability]
+    B -->|K8s| G[docker-patterns]
 ```
 
 ## 最佳实践

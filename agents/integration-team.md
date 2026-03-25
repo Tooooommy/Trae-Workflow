@@ -35,22 +35,17 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求集成
-        │
-        ▼
-┌───────────────────┐
-│   集成类型判断     │
-└───────────────────┘
-        │
-        ├─→ 支付 ──→ stripe-patterns / alipay-patterns
-        ├─→ 消息队列 ──→ message-queue-patterns
-        ├─→ 短信 ──→ message-queue-patterns
-        ├─→ 邮件 ──→ email-patterns
-        ├─→ OAuth ──→ security-review
-        ├─→ 地图 ──→ backend-patterns
-        ├─→ 存储 ──→ file-storage-patterns
-        └─→ AI ──→ backend-patterns
+```mermaid
+flowchart TD
+    A[用户请求集成] --> B{集成类型判断}
+    B -->|支付| C[stripe-patterns / alipay-patterns]
+    B -->|消息队列| D[message-queue-patterns]
+    B -->|短信| E[message-queue-patterns]
+    B -->|邮件| F[email-patterns]
+    B -->|OAuth| G[security-review]
+    B -->|地图| H[backend-patterns]
+    B -->|存储| I[file-storage-patterns]
+    B -->|AI| J[backend-patterns]
 ```
 
 ## 集成最佳实践

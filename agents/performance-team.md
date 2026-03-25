@@ -32,20 +32,15 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求性能优化
-        │
-        ▼
-┌───────────────────┐
-│   性能类型判断     │
-└───────────────────┘
-        │
-        ├─→ 前端性能 ──→ frontend-patterns
-        ├─→ 后端性能 ──→ backend-patterns
-        ├─→ 数据库性能 ──→ postgres-patterns
-        ├─→ 缓存 ──→ caching-patterns
-        ├─→ 监控 ──→ logging-observability
-        └─→ 负载测试 ──→ k6, artillery
+```mermaid
+flowchart TD
+    A[用户请求性能优化] --> B{性能类型判断}
+    B -->|前端性能| C[frontend-patterns]
+    B -->|后端性能| D[backend-patterns]
+    B -->|数据库性能| E[postgres-patterns]
+    B -->|缓存| F[caching-patterns]
+    B -->|监控| G[logging-observability]
+    B -->|负载测试| H[caching-patterns]
 ```
 
 ## 性能指标

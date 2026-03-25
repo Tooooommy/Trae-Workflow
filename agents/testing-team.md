@@ -25,19 +25,16 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求测试
-        │
-        ▼
-┌───────────────────┐
-│   测试类型判断     │
-└───────────────────┘
-        │
-        ├─→ TDD 流程 ──→ tdd-workflow
-        ├─→ 单元测试 ──→ tdd-workflow
-        ├─→ 集成测试 ──→ tdd-workflow
-        ├─→ E2E 测试 ──→ e2e-testing + Playwright
-        └─→ 性能测试 ──→ caching-patterns
+```mermaid
+flowchart TD
+    A[用户请求测试] --> B{测试类型判断}
+    B -->|TDD 流程| C[tdd-workflow]
+    B -->|单元测试| C
+    B -->|集成测试| C
+    B -->|E2E 测试| D[e2e-testing + Playwright]
+    B -->|性能测试| E[caching-patterns]
+
+    所有测试 --> F[coding-standards]
 ```
 
 ## 核心职责

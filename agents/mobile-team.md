@@ -24,21 +24,16 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求移动端开发
-        │
-        ▼
-┌───────────────────┐
-│   平台判断         │
-└───────────────────┘
-        │
-        ├─→ iOS ──→ ios-native-patterns + coding-standards
-        ├─→ Android ──→ android-native-patterns + coding-standards
-        ├─→ React Native ──→ react-native-patterns + coding-standards
-        ├─→ 微信小程序 ──→ mini-program-patterns
-        └─→ 跨平台桌面 ──→ electron-patterns / tauri-patterns
-
-所有移动端开发都调用: coding-standards + tdd-workflow
+```mermaid
+flowchart TD
+    A[用户请求移动端开发] --> B{平台判断}
+    B -->|iOS| C[ios-native-patterns + coding-standards]
+    B -->|Android| D[android-native-patterns + coding-standards]
+    B -->|React Native| E[react-native-patterns + coding-standards]
+    B -->|微信小程序| F[mini-program-patterns]
+    B -->|跨平台桌面| G[electron-patterns / tauri-patterns]
+    
+    所有移动端 --> H[coding-standards + tdd-workflow]
 ```
 
 ## 核心职责

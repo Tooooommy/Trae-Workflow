@@ -24,17 +24,12 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求安全审查
-        │
-        ▼
-┌───────────────────┐
-│   安全类型判断     │
-└───────────────────┘
-        │
-        └─→ security-review ──→ 全面安全检查清单
-
-所有安全任务都调用: coding-standards (安全编码)
+```mermaid
+flowchart TD
+    A[用户请求安全审查] --> B{安全类型判断}
+    B -->|所有类型| C[security-review]
+    
+    所有安全任务 --> D[coding-standards]
 ```
 
 ## 核心职责

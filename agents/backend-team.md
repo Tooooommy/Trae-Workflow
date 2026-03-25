@@ -27,22 +27,17 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求后端开发
-        │
-        ▼
-┌───────────────────┐
-│   技术架构判断     │
-└───────────────────┘
-        │
-        ├─→ Node.js/Express ──→ backend-patterns + express-patterns
-        ├─→ Python/FastAPI ──→ fastapi-patterns
-        ├─→ Python/Django ──→ django-patterns
-        ├─→ Go ──→ golang-patterns
-        └─→ Rust ──→ rust-patterns
-
-所有后端开发都调用: coding-standards + tdd-workflow
-根据需要调用: postgres-patterns, caching-patterns
+```mermaid
+flowchart TD
+    A[用户请求后端开发] --> B{技术架构判断}
+    B -->|Node.js/Express| C[backend-patterns + express-patterns]
+    B -->|Python/FastAPI| D[fastapi-patterns]
+    B -->|Python/Django| E[django-patterns]
+    B -->|Go| F[golang-patterns]
+    B -->|Rust| G[rust-patterns]
+    
+    所有后端 --> H[coding-standards + tdd-workflow]
+    所有后端 -.->|需要时| I[postgres-patterns, caching-patterns]
 ```
 
 ## 核心职责

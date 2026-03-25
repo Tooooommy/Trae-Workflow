@@ -24,21 +24,16 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求代码审查
-        │
-        ▼
-┌───────────────────┐
-│   语言/框架判断   │
-└───────────────────┘
-        │
-        ├─→ TypeScript/JavaScript ──→ coding-standards + frontend-patterns
-        ├─→ Python ──→ coding-standards + python-patterns
-        ├─→ Go ──→ coding-standards + golang-patterns
-        ├─→ Rust ──→ coding-standards + rust-patterns
-        └─→ Vue ──→ coding-standards + vue-patterns
-
-所有审查都调用: coding-standards
+```mermaid
+flowchart TD
+    A[用户请求代码审查] --> B{语言/框架判断}
+    B -->|TypeScript/JavaScript| C[coding-standards + frontend-patterns]
+    B -->|Python| D[coding-standards + python-patterns]
+    B -->|Go| E[coding-standards + golang-patterns]
+    B -->|Rust| F[coding-standards + rust-patterns]
+    B -->|Vue| G[coding-standards + vue-patterns]
+    
+    所有审查 --> H[coding-standards]
 ```
 
 ## 核心职责

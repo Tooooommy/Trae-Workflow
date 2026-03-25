@@ -25,22 +25,17 @@ mcp_servers:
 
 ## 协作流程
 
-```
-用户请求前端开发
-        │
-        ▼
-┌───────────────────┐
-│   技术架构判断     │
-└───────────────────┘
-        │
-        ├─→ React/Next.js ──→ frontend-patterns + coding-standards
-        ├─→ Vue 3 ──→ vue-patterns + coding-standards
-        ├─→ Tailwind ──→ tailwind-patterns
-        ├─→ Electron ──→ electron-patterns
-        ├─→ Tauri ──→ tauri-patterns
-        └─→ Remix ──→ remixjs-patterns
-
-所有前端开发都调用: coding-standards + tdd-workflow
+```mermaid
+flowchart TD
+    A[用户请求前端开发] --> B{技术架构判断}
+    B -->|React/Next.js| C[frontend-patterns + coding-standards]
+    B -->|Vue 3| D[vue-patterns + coding-standards]
+    B -->|Tailwind| E[tailwind-patterns]
+    B -->|Electron| F[electron-patterns]
+    B -->|Tauri| G[tauri-patterns]
+    B -->|Remix| H[remixjs-patterns]
+    
+    所有前端 --> I[coding-standards + tdd-workflow]
 ```
 
 ## 核心职责

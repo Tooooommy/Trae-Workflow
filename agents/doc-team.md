@@ -32,19 +32,14 @@ mcp_servers:
 
 ## 文档判断流程
 
-```
-用户请求文档
-        │
-        ▼
-┌───────────────────┐
-│   文档类型判断     │
-└───────────────────┘
-        │
-        ├─→ API 文档 ──→ rest-patterns
-        ├─→ README ──→ 项目说明模板
-        ├─→ 架构文档 ──→ clean-architecture
-        ├─→ 变更日志 ──→ conventional commits
-        └─→ 贡献指南 ──→ git-workflow
+```mermaid
+flowchart TD
+    A[用户请求文档] --> B{文档类型判断}
+    B -->|API 文档| C[rest-patterns]
+    B -->|README| D[项目说明模板]
+    B -->|架构文档| E[clean-architecture]
+    B -->|变更日志| F[conventional commits]
+    B -->|贡献指南| G[git-workflow]
 ```
 
 ## 文档最佳实践
