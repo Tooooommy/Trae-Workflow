@@ -162,11 +162,11 @@ export const nativeFunction = async () => {
 
 ## 相关技能
 
-| 技能                  | 用途                  |
-| --------------------- | --------------------- |
-| react-native-patterns | React Native 开发模式 |
-| frontend-patterns     | 前端开发模式          |
-| tdd-workflow          | TDD 工作流            |
+| 技能                  | 用途                  | 调用时机          |
+| --------------------- | --------------------- | ----------------- |
+| react-native-patterns | React Native 开发模式 | React Native 开发时 |
+| frontend-patterns     | 前端开发模式          | 前端开发时        |
+| tdd-workflow          | TDD 工作流            | TDD 开发时        |
 
 ## 相关规则目录
 

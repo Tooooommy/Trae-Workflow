@@ -298,10 +298,10 @@ fun FilteredList(items: List<Item>, filter: String) {
 
 ## 相关技能
 
-| 技能                    | 用途             |
-| ----------------------- | ---------------- |
-| android-native-patterns | Android 原生模式 |
-| tdd-workflow            | TDD 工作流       |
+| 技能                    | 用途             | 调用时机       |
+| ----------------------- | ---------------- | -------------- |
+| android-native-patterns | Android 原生模式 | Android 开发时 |
+| tdd-workflow            | TDD 工作流       | TDD 开发时     |
 
 ## 相关规则目录
 

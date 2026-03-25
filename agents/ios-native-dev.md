@@ -233,10 +233,10 @@ struct OptimizedImageView: View {
 
 ## 相关技能
 
-| 技能                | 用途         |
-| ------------------- | ------------ |
-| ios-native-patterns | iOS 原生模式 |
-| tdd-workflow        | TDD 工作流   |
+| 技能                | 用途         | 调用时机   |
+| ------------------- | ------------ | ---------- |
+| ios-native-patterns | iOS 原生模式 | iOS 开发时 |
+| tdd-workflow        | TDD 工作流   | TDD 开发时 |
 
 ## 相关规则目录
 
