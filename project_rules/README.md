@@ -37,8 +37,8 @@ project_rules/<lang>/ ← 语言特定扩展
 | golang         | Go 规则                    | go-dev         | gin, fiber               |
 | ios-native     | iOS/Swift 规则             | ios-native     | swiftui                  |
 | android-native | Android/Kotlin 规则        | android-native | android                  |
-| electron       | Electron 规则              | -              | -                        |
-| tauri          | Tauri 规则                 | -              | -                        |
+| electron       | Electron 规则              | -              | patterns                 |
+| tauri          | Tauri 规则                 | -              | patterns                 |
 
 ### 框架规则
 
