@@ -78,3 +78,6 @@ cli/.temp/
 
 # Setup logs
 setup-*.log
+
+# Trae Project
+.trae/
