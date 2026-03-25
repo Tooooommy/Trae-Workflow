@@ -44,11 +44,11 @@ builtin_tools:
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 代码审查 | `code-reviewer` |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 代码审查 | `code-reviewer`     |
 | 安全审查 | `security-reviewer` |
-| TDD 流程 | `tdd-guide` |
+| TDD 流程 | `tdd-guide`         |
 
 ## 相关技能
 

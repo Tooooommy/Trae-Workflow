@@ -79,32 +79,32 @@ traew version
 
 ## 支持的项目类型
 
-| 类型       | 说明              |
-| ---------- | ----------------- |
+| 类型       | 说明                  |
+| ---------- | --------------------- |
 | typescript | TypeScript/JavaScript |
-| python     | Python            |
-| golang     | Go                |
-| rust       | Rust              |
-| java       | Java              |
-| kotlin     | Kotlin            |
-| swift      | Swift             |
+| python     | Python                |
+| golang     | Go                    |
+| rust       | Rust                  |
+| java       | Java                  |
+| kotlin     | Kotlin                |
+| swift      | Swift                 |
 
 ---
 
 ## 安装选项
 
-| 选项                   | 说明               |
-| ---------------------- | ------------------ |
-| `-b, --backup`         | 备份现有配置       |
-| `--skip-mcp`           | 跳过 MCP 配置      |
-| `--skip-skills`        | 跳过 Skills 配置   |
-| `--skip-agents`        | 跳过 Agents 配置   |
-| `--skip-rules`         | 跳过 Rules 配置    |
-| `-q, --quiet`          | 静默模式           |
-| `-f, --force`          | 强制执行           |
-| `-p, --path <path>`    | 项目路径           |
-| `-t, --type <type>`    | 项目类型           |
-| `-l, --local <dir>`    | 从本地目录安装     |
+| 选项                | 说明             |
+| ------------------- | ---------------- |
+| `-b, --backup`      | 备份现有配置     |
+| `--skip-mcp`        | 跳过 MCP 配置    |
+| `--skip-skills`     | 跳过 Skills 配置 |
+| `--skip-agents`     | 跳过 Agents 配置 |
+| `--skip-rules`      | 跳过 Rules 配置  |
+| `-q, --quiet`       | 静默模式         |
+| `-f, --force`       | 强制执行         |
+| `-p, --path <path>` | 项目路径         |
+| `-t, --type <type>` | 项目类型         |
+| `-l, --local <dir>` | 从本地目录安装   |
 
 ---
 

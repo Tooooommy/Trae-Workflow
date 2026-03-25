@@ -62,11 +62,11 @@ builtin_tools:
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 代码审查 | `code-reviewer` |
+| 任务     | 委托目标               |
+| -------- | ---------------------- |
+| 代码审查 | `code-reviewer`        |
 | 构建错误 | `build-error-resolver` |
-| 安全审查 | `security-reviewer` |
+| 安全审查 | `security-reviewer`    |
 
 ## 相关技能
 

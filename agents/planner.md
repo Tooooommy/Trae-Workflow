@@ -44,20 +44,20 @@ builtin_tools:
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 架构设计 | `architect` |
-| 代码实现 | 语言特定开发智能体 |
-| 测试策略 | `testing-expert` |
+| 任务     | 委托目标            |
+| -------- | ------------------- |
+| 架构设计 | `architect`         |
+| 代码实现 | 语言特定开发智能体  |
+| 测试策略 | `testing-expert`    |
 | 安全审查 | `security-reviewer` |
-| DevOps | `devops-expert` |
+| DevOps   | `devops-expert`     |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| clean-architecture | 整洁架构模式 | 始终调用 |
-| tdd-workflow | TDD 工作流 | TDD 开发时 |
+| 技能               | 用途         | 调用时机   |
+| ------------------ | ------------ | ---------- |
+| clean-architecture | 整洁架构模式 | 始终调用   |
+| tdd-workflow       | TDD 工作流   | TDD 开发时 |
 
 ## 相关规则目录
 

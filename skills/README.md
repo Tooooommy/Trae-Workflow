@@ -133,14 +133,14 @@ Trae Workflow 提供了一套全面的技能系统，涵盖前端、后端、Dev
 
 ### 📊 全栈框架
 
-| 技能                    | 描述                    |
-| ----------------------- | ----------------------- |
-| express-patterns        | Node.js + Express 全栈  |
-| nextjs-patterns         | Next.js + Supabase 全栈 |
-| remixjs-patterns | Remix 全栈应用开发      |
-| fastapi-patterns        | FastAPI 异步全栈        |
+| 技能                 | 描述                    |
+| -------------------- | ----------------------- |
+| express-patterns     | Node.js + Express 全栈  |
+| nextjs-patterns      | Next.js + Supabase 全栈 |
+| remixjs-patterns     | Remix 全栈应用开发      |
+| fastapi-patterns     | FastAPI 异步全栈        |
 | shopify-app-patterns | Shopify 应用开发        |
-| django-patterns         | Django 架构模式         |
+| django-patterns      | Django 架构模式         |
 
 ### 🔍 验证与追踪
 

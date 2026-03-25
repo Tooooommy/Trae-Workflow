@@ -52,11 +52,13 @@ project_rules/<lang>/ ← 语言/框架特定扩展
 ```
 
 **层级说明**：
+
 - `user_rules/` 是项目通用规则，适用于所有项目
 - `project_rules/<lang>/` 是语言特定扩展，继承并覆盖通用规则
 - 当规则冲突时，优先级高的规则生效
 
 **与 Skills 的关系**：
+
 - Rules 定义「行为规范和约束」
 - Skills 定义「具体可执行的能力」
 - Agents 使用 Rules 约束 + Skills 能力来完成任务

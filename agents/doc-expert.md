@@ -25,13 +25,13 @@ builtin_tools:
 
 ## 文档类型
 
-| 类型       | 内容                           | 格式         |
-| ---------- | ------------------------------ | ------------ |
-| README     | 项目概述、安装、使用           | Markdown     |
-| API 文档   | 端点、参数、响应               | OpenAPI/Markdown |
-| 架构文档   | 系统设计、组件关系             | Markdown/C4  |
-| 变更日志   | 版本变更、迁移指南             | Markdown     |
-| 贡献指南   | 开发流程、代码规范             | Markdown     |
+| 类型     | 内容                 | 格式             |
+| -------- | -------------------- | ---------------- |
+| README   | 项目概述、安装、使用 | Markdown         |
+| API 文档 | 端点、参数、响应     | OpenAPI/Markdown |
+| 架构文档 | 系统设计、组件关系   | Markdown/C4      |
+| 变更日志 | 版本变更、迁移指南   | Markdown         |
+| 贡献指南 | 开发流程、代码规范   | Markdown         |
 
 ## README 模板
 
@@ -170,27 +170,27 @@ GET /api/v1/users
 
 **参数**
 
-| 参数   | 类型    | 必填 | 说明       |
-| ------ | ------- | ---- | ---------- |
-| page   | integer | 否   | 页码，默认 1 |
-| limit  | integer | 否   | 每页数量，默认 20 |
+| 参数  | 类型    | 必填 | 说明              |
+| ----- | ------- | ---- | ----------------- |
+| page  | integer | 否   | 页码，默认 1      |
+| limit | integer | 否   | 每页数量，默认 20 |
 
 **响应**
 
 \`\`\`json
 {
-  "data": [
-    {
-      "id": "123",
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
-  ],
-  "meta": {
-    "total": 100,
-    "page": 1,
-    "limit": 20
-  }
+"data": [
+{
+"id": "123",
+"name": "John Doe",
+"email": "john@example.com"
+}
+],
+"meta": {
+"total": 100,
+"page": 1,
+"limit": 20
+}
 }
 \`\`\`
 
@@ -230,27 +230,27 @@ GET /api/v1/users
 
 \`\`\`
 用户 → API Gateway → 服务 A → 数据库
-                   → 服务 B → 缓存
+→ 服务 B → 缓存
 \`\`\`
 
 ## 部署架构
 
 \`\`\`
-┌─────────────┐     ┌─────────────┐
-│   CDN       │────▶│   LB        │
-└─────────────┘     └─────────────┘
-                          │
-                    ┌─────┴─────┐
-                    ▼           ▼
-              ┌─────────┐ ┌─────────┐
-              │ App 1   │ │ App 2   │
-              └─────────┘ └─────────┘
-                    │           │
-                    └─────┬─────┘
-                          ▼
-                    ┌─────────┐
-                    │   DB    │
-                    └─────────┘
+┌─────────────┐ ┌─────────────┐
+│ CDN │────▶│ LB │
+└─────────────┘ └─────────────┘
+│
+┌─────┴─────┐
+▼ ▼
+┌─────────┐ ┌─────────┐
+│ App 1 │ │ App 2 │
+└─────────┘ └─────────┘
+│ │
+└─────┬─────┘
+▼
+┌─────────┐
+│ DB │
+└─────────┘
 \`\`\`
 
 ## 技术决策
@@ -276,26 +276,32 @@ GET /api/v1/users
 ## [Unreleased]
 
 ### 新增
+
 - 待发布的新功能
 
 ## [1.1.0] - 2024-01-15
 
 ### 新增
+
 - 用户认证功能
 - API 限流
 
 ### 变更
+
 - 优化数据库查询性能
 
 ### 修复
+
 - 修复登录页面样式问题
 
 ### 移除
+
 - 废弃的 v1 API 端点
 
 ## [1.0.0] - 2024-01-01
 
 ### 新增
+
 - 初始版本发布
 - 基础用户管理功能
 ```
@@ -376,24 +382,28 @@ GET /api/v1/users
 ## Documentation Report
 
 ### Updated Files
-| File | Changes |
-|------|---------|
-| README.md | Added installation section |
-| docs/api.md | Updated endpoints |
+
+| File        | Changes                    |
+| ----------- | -------------------------- |
+| README.md   | Added installation section |
+| docs/api.md | Updated endpoints          |
 
 ### New Files
-| File | Purpose |
-|------|---------|
+
+| File                 | Purpose             |
+| -------------------- | ------------------- |
 | docs/architecture.md | System architecture |
-| CHANGELOG.md | Version history |
+| CHANGELOG.md         | Version history     |
 
 ### Issues Found
-| Issue | File | Recommendation |
-|-------|------|----------------|
-| Outdated API version | docs/api.md | Update to v2 |
-| Missing examples | README.md | Add usage examples |
+
+| Issue                | File        | Recommendation     |
+| -------------------- | ----------- | ------------------ |
+| Outdated API version | docs/api.md | Update to v2       |
+| Missing examples     | README.md   | Add usage examples |
 
 ### Recommendations
+
 1. Add API response examples
 2. Create troubleshooting guide
 3. Update architecture diagram
@@ -401,19 +411,19 @@ GET /api/v1/users
 
 ## 协作说明
 
-| 任务           | 委托目标          |
-| -------------- | ----------------- |
-| 功能规划       | `planner`         |
-| API 设计       | `backend-expert`  |
-| 代码实现       | 语言特定开发智能体 |
+| 任务     | 委托目标           |
+| -------- | ------------------ |
+| 功能规划 | `planner`          |
+| API 设计 | `backend-expert`   |
+| 代码实现 | 语言特定开发智能体 |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| rest-patterns | REST API 设计模式 | API 文档时 |
-| backend-patterns | 后端架构模式 | 后端文档时 |
-| frontend-patterns | 前端开发模式 | 前端文档时 |
+| 技能              | 用途              | 调用时机   |
+| ----------------- | ----------------- | ---------- |
+| rest-patterns     | REST API 设计模式 | API 文档时 |
+| backend-patterns  | 后端架构模式      | 后端文档时 |
+| frontend-patterns | 前端开发模式      | 前端文档时 |
 
 ## 相关规则目录
 
