@@ -5,11 +5,6 @@ mcp_servers:
   - memory
   - sequential-thinking
   - context7
-builtin_tools:
-  - read
-  - filesystem
-  - terminal
-  - web-search
 ---
 
 # TDD 工作流专家

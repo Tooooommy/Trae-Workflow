@@ -7,11 +7,6 @@ mcp_servers:
   - context7
   - docker
   - github
-builtin_tools:
-  - read
-  - filesystem
-  - terminal
-  - web-search
 ---
 
 # DevOps 专家

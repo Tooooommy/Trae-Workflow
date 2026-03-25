@@ -6,11 +6,6 @@ mcp_servers:
   - sequential-thinking
   - context7
   - github
-builtin_tools:
-  - read
-  - filesystem
-  - terminal
-  - web-search
 ---
 
 # 代码审查专家

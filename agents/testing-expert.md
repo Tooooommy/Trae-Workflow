@@ -5,11 +5,6 @@ mcp_servers:
   - memory
   - sequential-thinking
   - context7
-builtin_tools:
-  - read
-  - filesystem
-  - terminal
-  - web-search
 ---
 
 # 测试专家
