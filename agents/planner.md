@@ -114,7 +114,7 @@ mcp_servers:
 | 测试策略 | `testing-team`     |
 | 安全审查 | `security-team`    |
 | 代码审查 | `code-review-team` |
-| DevOps   | `devops-expert`    |
+| DevOps   | `devops-team`      |
 
 ## 相关技能
 

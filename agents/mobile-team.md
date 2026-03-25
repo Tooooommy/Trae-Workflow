@@ -115,11 +115,11 @@ npm run build:weapp
 | 任务 | 委托目标 |
 |------|----------|
 | 功能规划 | `planner` |
-| 架构设计 | `architect` |
-| 代码审查 | `code-reviewer` |
-| 测试策略 | `testing-expert` |
-| 安全审查 | `security-reviewer` |
-| 性能优化 | `performance-expert` |
+| 架构设计 | `clean-architecture` |
+| 代码审查 | `code-review-team` |
+| 测试策略 | `testing-team` |
+| 安全审查 | `security-team` |
+| 性能优化 | `performance-team` |
 | 前端开发 | `frontend-team` |
 | 后端开发 | `backend-team` |
 
@@ -134,4 +134,4 @@ npm run build:weapp
 | frontend-patterns | 前端模式 | UI 开发时 |
 | coding-standards | 编码标准 | 始终调用 |
 | tdd-workflow | TDD 工作流 | TDD 开发时 |
-| performance-expert | 性能优化 | 性能问题时 |
+| caching-patterns | 缓存策略 | 性能问题时 |

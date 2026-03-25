@@ -13,14 +13,14 @@ mcp_servers:
 
 ## 评审类型判断
 
-| 语言/框架 | 调用 Skill | 触发关键词 |
-|---------|-----------|------------|
-| TypeScript/JS | `coding-standards` | TypeScript, JavaScript, React |
-| Python | `coding-standards` + `python-patterns` | Python, pytest |
-| Go | `coding-standards` + `golang-patterns` | Go, Golang |
-| Rust | `coding-standards` + `rust-patterns` | Rust, async |
-| Vue | `coding-standards` + `vue-patterns` | Vue, Vue3 |
-| 通用代码 | `coding-standards` | 通用审查 |
+| 语言/框架     | 调用 Skill                             | 触发关键词                    |
+| ------------- | -------------------------------------- | ----------------------------- |
+| TypeScript/JS | `coding-standards`                     | TypeScript, JavaScript, React |
+| Python        | `coding-standards` + `python-patterns` | Python, pytest                |
+| Go            | `coding-standards` + `golang-patterns` | Go, Golang                    |
+| Rust          | `coding-standards` + `rust-patterns`   | Rust, async                   |
+| Vue           | `coding-standards` + `vue-patterns`    | Vue, Vue3                     |
+| 通用代码      | `coding-standards`                     | 通用审查                      |
 
 ## 协作流程
 
@@ -52,6 +52,7 @@ mcp_servers:
 ## 评审清单
 
 ### 代码质量
+
 - [ ] 代码简洁、清晰
 - [ ] 适当的命名规范
 - [ ] 没有重复代码
@@ -59,18 +60,21 @@ mcp_servers:
 - [ ] 错误处理完善
 
 ### 最佳实践
+
 - [ ] 遵循 SOLID 原则
 - [ ] 适当的抽象层次
 - [ ] 依赖注入/接口隔离
 - [ ] 不可变性原则
 
 ### 性能
+
 - [ ] 没有不必要的循环
 - [ ] 适当的缓存
 - [ ] 数据库查询优化
 - [ ] 懒加载适当的资源
 
 ### 安全
+
 - [ ] 没有硬编码密钥
 - [ ] 用户输入验证
 - [ ] 适当的权限检查
@@ -94,23 +98,24 @@ complexity-report
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 功能规划 | `planner` |
-| 架构设计 | `architect` |
+| 任务     | 委托目标                         |
+| -------- | -------------------------------- |
+| 功能规划 | `planner`                        |
+| 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
-| 测试 | `testing-team` |
-| 安全审查 | `security-team` |
-| DevOps | `devops-team` |
+| 测试     | `testing-team`                   |
+| 安全审查 | `security-team`                  |
+| DevOps   | `devops-team`                    |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| coding-standards | 编码标准 | 所有审查 |
-| frontend-patterns | 前端模式 | 前端代码时 |
-| backend-patterns | 后端模式 | 后端代码时 |
-| python-patterns | Python 模式 | Python 代码时 |
-| golang-patterns | Go 模式 | Go 代码时 |
-| vue-patterns | Vue 模式 | Vue 代码时 |
-| security-review | 安全审查 | 安全相关时 |
+| 技能              | 用途        | 调用时机      |
+| ----------------- | ----------- | ------------- |
+| coding-standards  | 编码标准    | 所有审查      |
+| frontend-patterns | 前端模式    | 前端代码时    |
+| backend-patterns  | 后端模式    | 后端代码时    |
+| python-patterns   | Python 模式 | Python 代码时 |
+| golang-patterns   | Go 模式     | Go 代码时     |
+| rust-patterns     | Rust 模式   | Rust 代码时   |
+| vue-patterns      | Vue 模式    | Vue 代码时    |
+| security-review   | 安全审查    | 安全相关时    |

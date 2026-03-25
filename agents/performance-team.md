@@ -28,7 +28,7 @@ mcp_servers:
 | 数据库性能 | `postgres-patterns`     | 慢查询, 索引        |
 | 缓存       | `caching-patterns`      | Redis, 缓存命中率   |
 | 监控       | `logging-observability` | Prometheus, Grafana |
-| 负载测试   | `performance-expert`    | k6, JMeter, 压测    |
+| 负载测试   | `caching-patterns`    | k6, JMeter, 压测    |
 
 ## 协作流程
 
