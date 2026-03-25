@@ -1,6 +1,6 @@
 ---
 name: backend-patterns
-description: 后端架构模式、API设计、数据库优化以及适用于Node.js、Express和Next.js API路由的服务器端最佳实践。在构建 API、设计数据库、实现认证、处理文件上传或创建服务端逻辑时激活。
+description: 后端架构模式、API设计、数据库优化以及适用于Node.js、Express和Next.js API路由的服务器端最佳实践。**必须激活当**：用户要求构建 API、设计数据库、实现认证、处理文件上传或创建服务端逻辑时。即使用户没有明确说"后端"，当涉及服务器端开发、API 设计或数据库优化时也应使用。
 ---
 
 # 后端开发模式
