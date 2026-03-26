@@ -26,30 +26,44 @@ mcp_servers:
 flowchart TD
     User[用户/PM提出需求] --> Orchestrator[中央调度器]
 
-    Orchestrator --> Product[产品团队]
+    Orchestrator --> Product[product-team-patterns]
     Product --> Orchestrator
 
-    Orchestrator --> Design[设计团队]
+    Orchestrator --> Design[design-team-patterns]
     Design --> Orchestrator
 
     Orchestrator --> Parallel[并行触发]
-    Parallel --> Dev[工程技术部]
-    Parallel --> Mobile[移动端开发部]
-    Parallel -.-> Expert[专项技术部]
+    Parallel --> Dev[engineering-team-patterns]
+    Parallel --> Mobile[mobile-team-patterns]
+    Parallel -.-> Expert[specialized-team-patterns]
 
     Dev --> Orchestrator
     Mobile --> Orchestrator
 
-    Orchestrator --> QA[质量保障部]
+    Orchestrator --> QA[quality-team-patterns]
     QA --> Orchestrator
 
-    Orchestrator --> Ops[运维与架构部]
+    Orchestrator --> Ops[platform-team-patterns]
     Ops --> Orchestrator
 
     Orchestrator --> User
 
     Expert -. 专家支持 .-> Orchestrator
 ```
+
+---
+
+## Skills 映射表
+
+| 部门 | 调用 Skill | 触发场景 |
+| ---- | --------- | -------- |
+| 产品团队 | `product-team-patterns` | 产品规划, 需求分析, PRD |
+| 设计团队 | `design-team-patterns` | UI设计, 交互设计, 原型 |
+| 工程技术部 | `engineering-team-patterns` | 后端开发, 前端开发, API |
+| 移动端开发部 | `mobile-team-patterns` | iOS, Android, 小程序 |
+| 质量保障部 | `quality-team-patterns` | 测试, 代码审查, QA |
+| 运维与架构部 | `platform-team-patterns` | 部署, 监控, DevOps |
+| 专项技术部 | `specialized-team-patterns` | 架构迁移, 性能攻坚 |
 
 ---
 
@@ -241,17 +255,20 @@ flowchart TD
 sequenceDiagram
     participant U as 用户
     participant O as 调度器
-    participant P as 产品与设计部
-    participant E as 工程技术部
-    participant M as 移动端开发部
-    participant S as 专项技术部
-    participant Q as 质量保障部
-    participant Ops as 运维与架构部
+    participant P as product-team-patterns
+    participant D as design-team-patterns
+    participant E as engineering-team-patterns
+    participant M as mobile-team-patterns
+    participant S as specialized-team-patterns
+    participant Q as quality-team-patterns
+    participant Ops as platform-team-patterns
 
     U->>O: 需求：登录+仪表盘
     O->>O: 阶段1：创建任务工单
     O->>P: 阶段2：产出PRD+原型+设计稿
     P->>O: PRD + 原型 + 设计稿
+    O->>D: 设计团队产出设计稿
+    D->>O: 设计稿确认
     O->>U: 请求用户确认
     U->>O: 确认通过
     par 并行开发
