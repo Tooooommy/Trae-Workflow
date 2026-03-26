@@ -13,31 +13,38 @@ mcp_servers:
 
 ## 技术架构判断
 
-| 技术栈            | 调用 Skill          | 触发关键词            |
-| ----------------- | ------------------- | --------------------- |
-| Node.js / Express | `backend-patterns`  | Express, Node.js, API |
-| Python / FastAPI  | `fastapi-patterns`  | FastAPI, Python API   |
-| Python / Django   | `django-patterns`   | Django, DRF           |
-| Go                | `golang-patterns`   | Go, Golang, goroutine |
-| Rust              | `rust-patterns`     | Rust, async           |
-| GraphQL           | `graphql-patterns`  | GraphQL, Apollo       |
-| 数据库 / SQL      | `postgres-patterns` | PostgreSQL, SQL       |
-| 文档数据库        | `mongodb-patterns`  | MongoDB, NoSQL        |
-| 缓存              | `redis-patterns`    | Redis, 缓存           |
+| 场景              | 调用 Skill            | 触发关键词                     |
+| ----------------- | --------------------- | ------------------------------ |
+| **技术选型**      | `tech-stack-selector` | 选择技术栈、确定框架、技术决策 |
+| Node.js / Express | `backend-patterns`    | Express, Node.js, API          |
+| Python / FastAPI  | `fastapi-patterns`    | FastAPI, Python API            |
+| Python / Django   | `django-patterns`     | Django, DRF                    |
+| Go                | `golang-patterns`     | Go, Golang, goroutine          |
+| Rust              | `rust-patterns`       | Rust, async                    |
+| GraphQL           | `graphql-patterns`    | GraphQL, Apollo                |
+| 数据库 / SQL      | `postgres-patterns`   | PostgreSQL, SQL                |
+| 文档数据库        | `mongodb-patterns`    | MongoDB, NoSQL                 |
+| 缓存              | `redis-patterns`      | Redis, 缓存                    |
 
 ## 协作流程
 
 ```mermaid
 flowchart TD
-    A[用户请求后端开发] --> B{技术架构判断}
-    B -->|Node.js/Express| C[backend-patterns + express-patterns]
-    B -->|Python/FastAPI| D[fastapi-patterns]
-    B -->|Python/Django| E[django-patterns]
-    B -->|Go| F[golang-patterns]
-    B -->|Rust| G[rust-patterns]
+    A[用户请求后端开发] --> B{技术选型?}
+    B -->|是| C[tech-stack-selector]
+    B -->|否| D{技术架构判断}
+    D -->|Node.js/Express| E[backend-patterns + express-patterns]
+    D -->|Python/FastAPI| F[fastapi-patterns]
+    D -->|Python/Django| G[django-patterns]
+    D -->|Go| H[golang-patterns]
+    D -->|Rust| I[rust-patterns]
 
-    所有后端 --> H[coding-standards + tdd-workflow]
-    所有后端 -.->|需要时| I[postgres-patterns, caching-patterns]
+    E --> J[coding-standards + tdd-workflow]
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+    J -.->|需要时| K[postgres-patterns, caching-patterns]
 ```
 
 ## 核心职责
@@ -138,6 +145,7 @@ go vet .
 
 | 技能                | 用途         | 调用时机           |
 | ------------------- | ------------ | ------------------ |
+| tech-stack-selector | 技术选型     | 技术选型时         |
 | backend-patterns    | Node.js 模式 | Node.js 开发时     |
 | express-patterns    | Express 模式 | Express 开发时     |
 | fastapi-patterns    | FastAPI 模式 | FastAPI 开发时     |
