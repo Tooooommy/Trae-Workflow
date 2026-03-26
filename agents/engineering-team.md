@@ -19,19 +19,67 @@ mcp_servers:
 4. **集成开发** - 第三方服务对接、支付集成、消息队列
 5. **文档编写** - API 文档、技术文档、开发指南
 
+## 核心流程
+
+```
+需求/设计评审 → 技术设计 → 编码实现 → 集成交付
+```
+
+## 内部工作流程
+
+### 1. 评审
+
+- 参与需求与设计评审
+- 评估技术可行性
+
+### 2. 设计
+
+- 复杂功能需撰写《技术设计方案》
+- 进行技术评审
+
+### 3. 实现
+
+- 编码
+- 单元测试
+- 代码审查
+
+### 4. 文档
+
+- 编写或更新《API文档》
+- 编写《技术设计文档》
+
+### 5. 提测
+
+- 将可部署的版本提交给质量保障部
+- 提供《版本发布说明》
+
+## 输入文档
+
+- 《产品需求文档》
+- 视觉设计稿
+- API接口文档（来自其他团队）
+
+## 产出文档
+
+| 文档         | 说明                   |
+| ------------ | ---------------------- |
+| 技术设计方案 | 复杂功能的技术实现方案 |
+| API文档      | 接口定义与使用说明     |
+| 版本发布说明 | 本版本的变更说明       |
+
 ## 开发类型判断
 
-| 类型       | 调用 Skill                          | 触发关键词                    |
-| ---------- | ----------------------------------- | ----------------------------- |
-| Node.js    | `express-patterns`                 | Node.js, Express              |
-| Python     | `fastapi-patterns`, `django-patterns` | Python, FastAPI, Django     |
-| Go         | `golang-patterns`, `gin-patterns`  | Go, Gin                       |
-| Rust       | `rust-patterns`                     | Rust                          |
-| React      | `frontend-patterns`, `nextjs-patterns` | React, Next.js             |
-| Vue        | `vue-patterns`                      | Vue.js                        |
-| 支付集成   | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns`, `paypal-patterns` | 支付, Stripe, 支付宝, 微信支付 |
-| 消息队列   | `kafka-patterns`, `rabbitmq-patterns` | Kafka, RabbitMQ             |
-| 邮件服务   | `email-patterns`                    | 邮件, 邮件服务                 |
+| 类型     | 调用 Skill                                                                    | 触发关键词                     |
+| -------- | ----------------------------------------------------------------------------- | ------------------------------ |
+| Node.js  | `express-patterns`                                                            | Node.js, Express               |
+| Python   | `fastapi-patterns`, `django-patterns`                                         | Python, FastAPI, Django        |
+| Go       | `golang-patterns`, `gin-patterns`                                             | Go, Gin                        |
+| Rust     | `rust-patterns`                                                               | Rust                           |
+| React    | `frontend-patterns`, `nextjs-patterns`                                        | React, Next.js                 |
+| Vue      | `vue-patterns`                                                                | Vue.js                         |
+| 支付集成 | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns`, `paypal-patterns` | 支付, Stripe, 支付宝, 微信支付 |
+| 消息队列 | `kafka-patterns`, `rabbitmq-patterns`                                         | Kafka, RabbitMQ                |
+| 邮件服务 | `email-patterns`                                                              | 邮件, 邮件服务                 |
 
 ## 协作流程
 
@@ -49,6 +97,13 @@ flowchart TD
     F --> G
 ```
 
+## 跨部门协作
+
+| 阶段           | 协同部门                 | 核心动作                 | 输入文档             | 产出文档                    |
+| -------------- | ------------------------ | ------------------------ | -------------------- | --------------------------- |
+| 技术方案       | 运维与架构部、专项技术部 | 技术方案设计评审         | 产品需求文档         | 技术设计方案、API文档初稿   |
+| 开发与测试左移 | 质量保障部               | 编码、单元测试、代码审查 | 技术设计方案、视觉稿 | 代码、测试用例、API文档定稿 |
+
 ## 工作要求
 
 ### 开发原则
@@ -60,12 +115,12 @@ flowchart TD
 
 ### 质量门禁
 
-| 阶段     | 检查项       | 阈值     |
-| -------- | ------------ | -------- |
-| 代码     | lint / type | 100%    |
-| 测试     | 单元测试     | ≥ 80%   |
-| 安全     | 漏洞扫描     | 0 高危   |
-| 文档     | 文档完整     | ≥ 90%   |
+| 阶段 | 检查项      | 阈值   |
+| ---- | ----------- | ------ |
+| 代码 | lint / type | 100%   |
+| 测试 | 单元测试    | ≥ 80%  |
+| 安全 | 漏洞扫描    | 0 高危 |
+| 文档 | 文档完整    | ≥ 90%  |
 
 ## 关键输出
 

@@ -20,6 +20,48 @@ mcp_servers:
 5. **桌面开发** - Electron / Tauri 桌面应用
 6. **SDK 开发** - 移动端 SDK 封装与发布
 
+## 核心流程
+
+```
+需求/API评审 → 移动端设计与开发 → 测试发布
+```
+
+## 内部工作流程
+
+### 1. 协同评审
+
+- 参与产品与API评审
+- 评估移动端实现方案
+
+### 2. 开发
+
+- 进行UI实现
+- 业务逻辑编码
+- 与后端联调
+
+### 3. 发布准备
+
+- 打包应用
+- 准备应用商店描述、截图等物料
+
+### 4. 提交
+
+- 将应用包提交给质量保障部测试
+- 最终发布至应用商店
+
+## 输入文档
+
+- 《产品需求文档》
+- 视觉稿
+- 后端《API文档》
+
+## 产出文档
+
+| 文档             | 说明                 |
+| ---------------- | -------------------- |
+| 移动端技术方案   | 如需要的技术实现方案 |
+| 应用商店发布说明 | 应用描述、截图等物料 |
+
 ## 平台判断
 
 | 平台         | 调用 Skill                | 触发关键词                       |
@@ -48,6 +90,16 @@ flowchart TD
     F --> H
     G --> H
 ```
+
+## 跨部门协作
+
+| 阶段           | 协同部门     | 核心动作                     | 输入文档             | 产出文档       |
+| -------------- | ------------ | ---------------------------- | -------------------- | -------------- |
+| 规划与设计     | 产品与设计部 | 提供产品需求与设计           | 产品需求文档、视觉稿 | 移动端需求确认 |
+| 技术方案       | 工程技术部   | API评审与联调                | 后端API文档          | API对接方案    |
+| 开发与测试左移 | 质量保障部   | 编码、单元测试、代码审查     | 技术方案             | 代码、测试用例 |
+| 测试与集成     | 质量保障部   | 集成测试、系统测试、缺陷修复 | 可部署版本           | 缺陷报告       |
+| 发布与部署     | 运维与架构部 | 应用商店发布、监控           | 通过测试的版本       | 应用商店发布包 |
 
 ## 工作要求
 
@@ -91,31 +143,6 @@ xcodebuild -workspace App.xcworkspace -scheme App build
 # 小程序
 npm run build:weapp
 ```
-
-## 协作团队
-
-| 功能规划 | `product-design-team` |
-| 架构设计 | `clean-architecture` |
-| 代码审查 | `quality-team` |
-| 测试策略 | `quality-team` |
-| 安全审查 | `platform-team` |
-| 性能优化 | `platform-team` |
-| 前端开发 | `engineering-team` |
-| 后端开发 | `engineering-team` |
-
-## Skills 协同
-
-| Skill                   | 说明          | 调用时机        |
-| ----------------------- | ------------- | --------------- |
-| ios-native-patterns     | iOS 开发      | iOS 项目时      |
-| android-native-patterns | Android 开发  | Android 项目时  |
-| react-native-patterns   | React Native  | 跨平台 RN 时    |
-| mini-program-patterns   | 微信小程序    | 小程序开发时    |
-| electron-patterns       | Electron 桌面 | Electron 开发时 |
-| tauri-patterns          | Tauri 桌面    | Tauri 开发时    |
-| frontend-patterns       | 前端模式      | UI 开发时       |
-| coding-standards        | 编码标准      | 始终调用        |
-| tdd-workflow            | TDD 工作流    | TDD 开发时      |
 
 ## 关键输出
 
