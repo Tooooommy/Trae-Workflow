@@ -10,8 +10,8 @@ Trae Workflow 提供了一套完整的 AI 编码助手配置，基于 **MCP-Rule
 
 ### 核心特性
 
-- **15 个精简智能体** - 覆盖规划、开发、测试、安全、DevOps 等领域
-- **60+ 专业技能** - 保留所有主流语言的开发技能
+- **14 个精简智能体** - 1 个规划师 + 13 个专业团队
+- **62 项专业技能** - 覆盖前端、后端、移动端、桌面端、DevOps 等
 - **完整的规则体系** - 通用规则 + 语言特定规则
 - **一键安装** - CLI 工具快速安装和配置
 
@@ -86,8 +86,8 @@ git clone https://github.com/Tooooommy/Trae-Workflow.git
 
 ```
 Trae Workflow/
-├── agents/           # 智能体配置（15 个核心智能体）
-├── skills/           # 技能配置（60+ 项技能）
+├── agents/           # 智能体配置（14 个智能体）
+├── skills/           # 技能配置（62 项技能）
 ├── user_rules/       # 用户规则（最高优先级）
 ├── project_rules/    # 项目规则（语言特定）
 └── cli/              # CLI 工具
@@ -97,57 +97,85 @@ Trae Workflow/
 
 ## 🤖 智能体系统
 
-### 规划与设计
+### 规划层
 
-| 智能体    | 角色   | 触发场景                     |
-| --------- | ------ | ---------------------------- |
-| planner   | 规划师 | 功能实现、任务分解、风险评估 |
-| architect | 架构师 | 系统设计、技术决策、架构模式 |
+| 智能体  | 角色     | 说明                           |
+| ------- | -------- | ------------------------------ |
+| planner | 技术总监 | 功能规划、技术架构、技术决策   |
 
-### 开发与编码
+### 开发团队
 
-| 智能体           | 角色              | 触发场景                   |
-| ---------------- | ----------------- | -------------------------- |
-| typescript-dev   | TypeScript 专家   | TS/JS/React/Node.js 开发   |
-| python-dev       | Python 专家       | Python/FastAPI/Django 开发 |
-| golang-dev       | Go 专家           | Go 语言开发                |
-| rust-dev         | Rust 专家         | Rust 语言开发              |
-| ios-native       | iOS 专家          | iOS/macOS 开发             |
-| react-native-dev | React Native 专家 | React Native 跨平台开发    |
-| android-native   | Android 专家      | Android/Compose 开发       |
-| mini-program-dev | 小程序专家        | 微信小程序开发             |
+| 智能体           | 角色           | 触发场景                         |
+| ---------------- | -------------- | -------------------------------- |
+| backend-team     | 后端团队       | Node.js/Python/Go/Rust 后端开发  |
+| frontend-team    | 前端团队       | React/Vue/Next.js 前端开发       |
+| mobile-team      | 移动端团队     | iOS/Android/React Native 开发   |
+| design-team      | 设计团队       | UI/UX 设计、可视化               |
 
-### 测试与质量
+### 质量保证
 
-| 智能体         | 角色     | 触发场景                |
-| -------------- | -------- | ----------------------- |
-| testing-expert | 测试专家 | TDD、E2E 测试、代码质量 |
-| code-reviewer  | 审查专家 | 代码审查、最佳实践      |
+| 智能体             | 角色           | 触发场景                     |
+| ------------------ | -------------- | ---------------------------- |
+| testing-team       | 测试团队       | TDD、E2E 测试、测试覆盖率    |
+| code-review-team   | 代码审查团队   | PR 审查、代码质量、最佳实践   |
+| security-team      | 安全团队       | 漏洞检测、密钥检测、安全审查  |
 
-### 安全与 DevOps
+### 基础设施
 
-| 智能体            | 角色        | 触发场景                     |
-| ----------------- | ----------- | ---------------------------- |
-| security-reviewer | 安全专家    | 漏洞检测、密钥检测、安全审查 |
-| devops-expert     | DevOps 专家 | CI/CD、Git、Docker、监控     |
+| 智能体         | 角色         | 触发场景                         |
+| -------------- | ------------ | -------------------------------- |
+| devops-team    | DevOps 团队  | CI/CD、Git、Docker、监控、部署   |
+| build-team     | 构建团队     | 构建错误、编译问题、依赖冲突     |
 
-### 专家智能体
+### 专业团队
 
-| 智能体          | 角色     | 触发场景           |
-| --------------- | -------- | ------------------ |
-| backend-expert  | 后端专家 | API 设计、数据库   |
-| frontend-expert | 前端专家 | 前端架构、UI 组件  |
-| doc-expert      | 文档专家 | 文档编写、API 文档 |
+| 智能体             | 角色             | 触发场景                     |
+| ------------------ | ---------------- | ---------------------------- |
+| performance-team   | 性能团队         | 性能分析、优化、APM          |
+| integration-team   | 集成团队         | API 集成、第三方服务集成     |
+| doc-team          | 文档团队         | API 文档、技术文档、README   |
 
-### 智能体协作
+### 团队协作流程
 
-| 任务     | 委托目标            |
-| -------- | ------------------- |
-| 功能规划 | `planner`           |
-| 架构设计 | `architect`         |
-| 测试策略 | `testing-expert`    |
-| 安全审查 | `security-reviewer` |
-| DevOps   | `devops-expert`     |
+```
+planner (技术总监)
+    ↓
+分解任务
+    ↓
+┌─────────────────────────────────────────────────────┐
+│                    开发团队                           │
+│  backend-team / frontend-team / mobile-team         │
+└─────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────┐
+│                    质量保证                           │
+│  testing-team / code-review-team / security-team     │
+└─────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────┐
+│                    基础设施                           │
+│  devops-team / build-team / performance-team        │
+└─────────────────────────────────────────────────────┘
+```
+
+### 智能体协作表
+
+| 任务       | 委托目标             |
+| ---------- | -------------------- |
+| 功能规划   | `planner`            |
+| 架构设计   | `planner`            |
+| 后端开发   | `backend-team`       |
+| 前端开发   | `frontend-team`      |
+| 移动端开发 | `mobile-team`        |
+| UI 设计    | `design-team`        |
+| 测试策略   | `testing-team`       |
+| 代码审查   | `code-review-team`   |
+| 安全审查   | `security-team`      |
+| DevOps     | `devops-team`        |
+| 构建修复   | `build-team`         |
+| 性能优化   | `performance-team`   |
+| 集成      | `integration-team`   |
+| 文档      | `doc-team`           |
 
 ---
 
@@ -169,6 +197,9 @@ Trae Workflow/
 | backend-patterns | 后端架构模式、API 设计            |
 | rest-patterns    | REST API 设计、版本控制、错误处理 |
 | graphql-patterns | GraphQL Schema 设计、N+1 问题解决 |
+| express-patterns | Node.js + Express 全栈             |
+| fastapi-patterns | FastAPI 异步全栈                  |
+| django-patterns   | Django 架构模式、安全、测试        |
 
 ### 数据库
 
@@ -180,33 +211,13 @@ Trae Workflow/
 | redis-patterns      | Redis 缓存模式、分布式锁       |
 | clickhouse-io       | ClickHouse 高性能分析          |
 
-### 测试
-
-| 技能         | 描述                    |
-| ------------ | ----------------------- |
-| tdd-workflow | 测试驱动开发工作流      |
-| e2e-testing  | Playwright E2E 测试模式 |
-
-### DevOps
-
-| 技能                | 描述                               |
-| ------------------- | ---------------------------------- |
-| deployment-patterns | CI/CD 流水线、部署工作流、健康检查 |
-| docker-patterns     | Docker 容器化、多服务编排          |
-
-### 安全
-
-| 技能            | 描述                   |
-| --------------- | ---------------------- |
-| security-review | 安全检查清单、漏洞检测 |
-| rate-limiting   | API 限流、防滥用       |
-
 ### 移动开发
 
 | 技能                    | 描述                          |
 | ----------------------- | ----------------------------- |
+| ios-native-patterns     | iOS/SwiftUI 原生开发模式     |
+| android-native-patterns | Android/Jetpack Compose 原生 |
 | react-native-patterns   | React Native 跨平台开发       |
-| android-native-patterns | Android 原生、Jetpack Compose |
 | mini-program-patterns   | 微信小程序开发                |
 
 ### 桌面开发
@@ -223,9 +234,29 @@ Trae Workflow/
 | python-patterns     | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
 | golang-patterns     | Go 惯用模式、并发安全、表格驱动测试      |
 | rust-patterns       | Rust 惯用模式、所有权系统、并发安全      |
-| ios-native-patterns | iOS/SwiftUI 原生开发模式                 |
-| django-patterns     | Django 架构模式、安全、测试              |
 | coding-standards    | 通用编码标准、最佳实践                   |
+
+### 测试
+
+| 技能         | 描述                    |
+| ------------ | ----------------------- |
+| tdd-workflow | 测试驱动开发工作流      |
+| e2e-testing  | Playwright E2E 测试模式 |
+
+### DevOps
+
+| 技能                | 描述                               |
+| ------------------- | ---------------------------------- |
+| deployment-patterns | CI/CD 流水线、部署工作流、健康检查 |
+| docker-patterns     | Docker 容器化、多服务编排          |
+| git-workflow        | Git 分支策略、提交规范             |
+
+### 安全
+
+| 技能            | 描述                   |
+| --------------- | ---------------------- |
+| security-review | 安全检查清单、漏洞检测 |
+| rate-limiting   | API 限流、防滥用       |
 
 ### 架构模式
 
@@ -235,27 +266,6 @@ Trae Workflow/
 | ddd-patterns           | 领域驱动设计、限界上下文 |
 | cqrs-patterns          | CQRS 命令查询职责分离    |
 | message-queue-patterns | 消息队列、事件驱动架构   |
-
-### 通信与集成
-
-| 技能               | 描述               |
-| ------------------ | ------------------ |
-| realtime-websocket | WebSocket 实时通信 |
-| webrtc-patterns    | WebRTC 实时音视频  |
-
-### 工具与流程
-
-| 技能                  | 描述                   |
-| --------------------- | ---------------------- |
-| git-workflow          | Git 分支策略、提交规范 |
-| feature-flags         | 功能开关、A/B 测试     |
-| i18n-patterns         | 国际化、多语言支持     |
-| email-patterns        | 邮件服务、模板最佳实践 |
-| file-storage-patterns | 文件上传、对象存储     |
-| stripe-patterns       | Stripe 支付集成        |
-| paypal-patterns       | PayPal 支付集成        |
-| wechatpay-patterns    | 微信支付集成           |
-| alipay-patterns       | 支付宝支付集成         |
 
 ### 性能与优化
 
@@ -267,41 +277,52 @@ Trae Workflow/
 | background-jobs         | 后台任务、异步处理           |
 | circuit-breaker         | 熔断器、服务弹性             |
 
+### 通信与集成
+
+| 技能               | 描述               |
+| ------------------ | ------------------ |
+| realtime-websocket | WebSocket 实时通信 |
+| webrtc-patterns   | WebRTC 实时音视频  |
+
+### 支付集成
+
+| 技能            | 描述             |
+| --------------- | ---------------- |
+| stripe-patterns | Stripe 支付集成  |
+| paypal-patterns | PayPal 支付集成  |
+| wechatpay-patterns | 微信支付集成  |
+| alipay-patterns | 支付宝支付集成   |
+
 ### AI 与智能体
 
 | 技能                | 描述                                    |
 | ------------------- | --------------------------------------- |
 | agentic-engineering | 代理工程模式、AI 优先工程、动作空间设计 |
 
+### 其他
+
+| 技能                  | 描述                   |
+| --------------------- | ---------------------- |
+| feature-flags         | 功能开关、A/B 测试     |
+| i18n-patterns         | 国际化、多语言支持     |
+| email-patterns        | 邮件服务、模板最佳实践 |
+| file-storage-patterns | 文件上传、对象存储     |
+| monorepo-patterns     | Monorepo 多包管理      |
+| webassembly-patterns  | WASM 模块、性能优化    |
+
 ### 全栈框架
 
 | 技能                 | 描述                    |
 | -------------------- | ----------------------- |
-| express-patterns     | Node.js + Express 全栈  |
 | nextjs-patterns      | Next.js + Supabase 全栈 |
 | remixjs-patterns     | Remix 全栈应用开发      |
-| fastapi-patterns     | FastAPI 异步全栈        |
 | shopify-app-patterns | Shopify 应用开发        |
 
-### 智能体与技能对应
+### 技能创建
 
-| 智能体           | 核心技能                                   |
-| ---------------- | ------------------------------------------ |
-| planner          | clean-architecture, tdd-workflow           |
-| architect        | clean-architecture, ddd-patterns           |
-| typescript-dev   | frontend-patterns, coding-standards        |
-| python-dev       | python-patterns, django-patterns           |
-| golang-dev       | golang-patterns                            |
-| rust-dev         | rust-patterns                              |
-| ios-native       | ios-native-patterns                        |
-| react-native-dev | react-native-patterns, frontend-patterns   |
-| android-native   | android-native-patterns, frontend-patterns |
-| mini-program-dev | mini-program-patterns                      |
-| testing-expert   | tdd-workflow, e2e-testing                  |
-| code-reviewer    | coding-standards, clean-architecture       |
-| devops-expert    | deployment-patterns, docker-patterns       |
-| backend-expert   | rest-patterns, postgres-patterns           |
-| frontend-expert  | frontend-patterns, vue-patterns            |
+| 技能           | 描述                     |
+| -------------- | ------------------------ |
+| skill-creator | SKILL 创建工具和最佳实践 |
 
 ---
 
@@ -327,8 +348,6 @@ project_rules/<lang>/ ← 语言特定扩展
 | security.md             | 检查清单、处理流程 |
 | git-workflow.md         | PR 工作流          |
 | patterns.md             | 模式详细说明       |
-| hooks.md                | Hooks 系统         |
-| performance.md          | 性能优化配置       |
 
 ### 项目规则（project_rules）
 
@@ -348,13 +367,14 @@ project_rules/<lang>/ ← 语言特定扩展
 ### 开发新功能
 
 ```
-1. 规划阶段    → 使用 planner 进行功能规划
-2. 架构设计    → 使用 architect 进行架构设计
-3. 开发实现    → 使用语言特定智能体（如 typescript-dev）
-4. 测试验证    → 使用 testing-expert 遵循 TDD 工作流
-5. 代码审查    → 使用 code-reviewer 审查代码
-6. 安全审查    → 使用 security-reviewer 进行安全审查
-7. 部署上线    → 使用 devops-expert 部署
+1. 规划阶段    → 使用 planner 进行功能规划和技术架构
+2. 任务分解    → planner 分解任务并分配给对应团队
+3. 开发实现    → backend-team / frontend-team / mobile-team
+4. 测试验证    → testing-team 遵循 TDD 工作流
+5. 代码审查    → code-review-team 审查代码
+6. 安全审查    → security-team 进行安全审查
+7. 性能优化    → performance-team 进行性能分析
+8. 部署上线    → devops-team 部署
 ```
 
 ---

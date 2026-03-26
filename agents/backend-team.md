@@ -35,7 +35,7 @@ flowchart TD
     B -->|Python/Django| E[django-patterns]
     B -->|Go| F[golang-patterns]
     B -->|Rust| G[rust-patterns]
-    
+
     所有后端 --> H[coding-standards + tdd-workflow]
     所有后端 -.->|需要时| I[postgres-patterns, caching-patterns]
 ```
