@@ -57,6 +57,9 @@ flowchart TD
     Orchestrator --> Progress[progress-patterns]
     Progress --> Orchestrator
 
+    Orchestrator --> Anti[anti-patterns]
+    Anti --> Orchestrator
+
     Orchestrator --> User
 ```
 
