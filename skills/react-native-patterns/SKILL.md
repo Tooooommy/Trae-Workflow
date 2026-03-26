@@ -18,11 +18,44 @@ description: React Native 跨平台开发、状态管理、原生模块集成和
 
 | 技术             | 最低版本 | 推荐版本 |
 | ---------------- | -------- | -------- |
-| React Native     | 0.73+    | 0.75+    |
-| React            | 18.2+    | 18.3+    |
+| React Native     | 0.73+    | 0.76+    |
+| React            | 18.2+    | 19.0+    |
 | TypeScript       | 5.0+     | 最新     |
 | React Navigation | 6.0+     | 最新     |
 | Hermes           | 内置     | 启用     |
+
+## 推荐项目模板
+
+### Ignite (推荐)
+
+[Ignite](https://github.com/infinitered/ignite) 是最受欢迎且经过实战验证的 React Native 起点模板，由 Infinite Red 团队维护。
+
+| 技术             | 版本 | 说明               |
+| ---------------- | ---- | ------------------ |
+| React Native     | 0.81 | 跨平台移动框架     |
+| React            | 19   | 最流行的 UI 框架   |
+| TypeScript       | 5    | 静态类型检查       |
+| React Navigation | 7    | 高性能导航框架     |
+| Expo             | 55   | 可选 Expo 模块支持 |
+| MMKV             | 3    | 状态持久化         |
+| apisauce         | 3    | REST 客户端        |
+| Jest             | 29   | 测试运行器         |
+| Reactotron       | 5    | JS 调试器          |
+
+```bash
+# 使用 Ignite 创建新项目
+npx ignite-cli@latest new PizzaApp
+
+# 快速创建（使用所有默认配置）
+npx ignite-cli@latest new PizzaApp --yes
+```
+
+### Expo (轻量级)
+
+```bash
+# 创建 Expo 项目
+npx create-expo-app MyApp
+```
 
 ## 核心原则
 
