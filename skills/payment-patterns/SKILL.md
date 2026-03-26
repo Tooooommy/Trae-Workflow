@@ -428,5 +428,6 @@ async function processRefund(provider: string, params: RefundParams): Promise<Re
 | stripe-patterns   | Stripe 详细集成 |
 | alipay-patterns   | 支付宝详细集成 |
 | wechatpay-patterns | 微信支付详细集成 |
-| paypal-patterns   | PayPal 详细集成 |
-| security-patterns | 支付安全       |
+| paypal-patterns    | PayPal 详细集成      |
+| douyinpay-patterns | 抖音支付详细集成     |
+| security-patterns  | 支付安全             |
