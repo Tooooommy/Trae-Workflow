@@ -63,10 +63,10 @@ flowchart TD
 // 技术栈
 Node.js + Express / Fastify + TypeScript + Prisma + PostgreSQL;
 // Skills
-backend-patterns;
-express-patterns;
-tdd-workflow (Jest);
-coding-standards;
+backend - patterns;
+express - patterns;
+tdd - workflow(Jest);
+coding - standards;
 ```
 
 ### Python 生态
@@ -151,8 +151,10 @@ go vet .
 | fastapi-patterns    | FastAPI 模式 | FastAPI 开发时     |
 | django-patterns     | Django 模式  | Django 开发时      |
 | golang-patterns     | Go 模式      | Go 开发时          |
+| gin-patterns        | Gin Web 框架 | Gin 框架开发时     |
 | rust-patterns       | Rust 模式    | Rust 开发时        |
 | graphql-patterns    | GraphQL 模式 | GraphQL 开发时     |
+| kafka-patterns      | Kafka 消息流 | Kafka 消息队列时   |
 | postgres-patterns   | PostgreSQL   | 使用 PostgreSQL 时 |
 | mongodb-patterns    | MongoDB      | 使用 MongoDB 时    |
 | redis-patterns      | Redis 缓存   | 使用 Redis 时      |
