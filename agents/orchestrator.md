@@ -183,12 +183,12 @@ flowchart TD
 
 #### 3.4 专项技术（specialized-patterns，按需）
 
-| 类型     | 调用 Skill            | 触发关键词     |
-| -------- | --------------------- | -------------- |
-| 架构迁移 | `clean-architecture`  | 架构迁移, 重构 |
-| 性能攻坚 | `caching-patterns`    | 性能瓶颈, 优化 |
-| 算法优化 | `ddd-patterns`        | 算法, 领域驱动 |
-| 技术选型 | `tech-stack-selector` | 技术选型, 评估 |
+| 类型     | 调用 Skill                | 触发关键词     |
+| -------- | ------------------------- | -------------- |
+| 架构迁移 | `clean-architecture`      | 架构迁移, 重构 |
+| 性能攻坚 | `caching-patterns`        | 性能瓶颈, 优化 |
+| 算法优化 | `ddd-patterns`            | 算法, 领域驱动 |
+| 技术选型 | `tech-selection-patterns` | 技术选型, 评估 |
 
 **并行策略**：
 

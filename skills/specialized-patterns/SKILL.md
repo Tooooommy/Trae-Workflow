@@ -34,7 +34,7 @@ description: 专项技术部模式。负责"前瞻性技术探索与复杂专项
 | 架构迁移 | `clean-architecture` | 架构迁移, 重构, 微服务 |
 | 性能攻坚 | `caching-patterns` | 性能瓶颈, 优化 |
 | 算法优化 | `ddd-patterns` | 算法, 领域驱动 |
-| 技术选型 | `tech-stack-selector` | 技术选型, 评估 |
+| 技术选型 | `tech-selection-patterns` | 技术选型, 评估 |
 | 分布式系统 | `kafka-patterns` | 分布式, 一致性 |
 | 缓存架构 | `redis-patterns` | 缓存, Redis |
 | 安全专项 | `security-review` | 安全, 渗透, 加密 |
