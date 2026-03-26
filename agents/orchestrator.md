@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、工程技术、质量保障、运维与架构、移动端开发、专项技术等 Patterns 的协作。
+description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、工程（前端/后端）、移动端、质量保障、运维与架构、专项技术等 Patterns 的协作。
 mcp_servers:
   - memory
   - sequential-thinking
@@ -33,11 +33,16 @@ flowchart TD
     Design --> Orchestrator
 
     Orchestrator --> Parallel[并行触发]
-    Parallel --> Dev[engineering-patterns]
+    Parallel --> Eng[engineering-patterns]
     Parallel --> Mobile[mobile-patterns]
     Parallel -.-> Expert[specialized-patterns]
 
-    Dev --> Orchestrator
+    Eng --> FE[frontend-patterns]
+    Eng --> BE[backend-patterns]
+
+    Eng --> Orchestrator
+    FE --> Eng
+    BE --> Eng
     Mobile --> Orchestrator
 
     Orchestrator --> QA[quality-patterns]
@@ -53,17 +58,19 @@ flowchart TD
 
 ---
 
-## Skills 映射表
+## Patterns 映射表
 
-| Patterns               | 触发场景                |
-| ---------------------- | ----------------------- |
-| `product-patterns`     | 产品规划, 需求分析, PRD |
-| `design-patterns`      | UI设计, 交互设计, 原型  |
-| `engineering-patterns` | 后端开发, 前端开发, API |
-| `mobile-patterns`      | iOS, Android, 小程序    |
-| `quality-patterns`     | 测试, 代码审查, QA      |
-| `platform-patterns`    | 部署, 监控, DevOps      |
-| `specialized-patterns` | 架构迁移, 性能攻坚      |
+| Patterns               | 说明           | 触发场景                 |
+| ---------------------- | -------------- | ------------------------ |
+| `product-patterns`     | 产品团队       | 产品规划, 需求分析, PRD  |
+| `design-patterns`      | 设计团队       | UI设计, 交互设计, 原型   |
+| `engineering-patterns` | 工程技术调度器 | 前端/后端开发判断与分发  |
+| `frontend-patterns`    | 前端开发       | React, Vue, Next.js, UI  |
+| `backend-patterns`     | 后端开发       | Node.js, Python, Go, API |
+| `mobile-patterns`      | 移动端开发     | iOS, Android, 小程序     |
+| `quality-patterns`     | 质量保障       | 测试, 代码审查, QA       |
+| `platform-patterns`    | 运维与架构     | 部署, 监控, DevOps       |
+| `specialized-patterns` | 专项技术       | 架构迁移, 性能攻坚       |
 
 ---
 
@@ -89,7 +96,7 @@ flowchart TD
 
 ### 阶段 2：产品定义
 
-**调度**：产品团队 → 设计团队
+**调度**：product-patterns → design-patterns
 
 **协同**：中央调度器（验证）
 
@@ -97,13 +104,11 @@ flowchart TD
 
 **动作**：
 
-1. **需求细化** - 基于历史数据细化需求
-2. **产出 PRD** - 调用 product-patterns 生成产品需求文档
-3. **用户确认** - 请求用户确认需求文档
-
-4. **交互原型** - 调用 design-patterns 产出用户流程和交互原型
-5. **UI 设计稿** - 产出高保真视觉设计稿
-6. **设计确认** - 请求用户确认设计稿
+1. **需求细化** - 调用 product-patterns 生成产品需求文档
+2. **用户确认** - 请求用户确认需求文档
+3. **交互原型** - 调用 design-patterns 产出用户流程和交互原型
+4. **UI 设计稿** - 产出高保真视觉设计稿
+5. **设计确认** - 请求用户确认设计稿
 
 **输出**：
 
@@ -115,48 +120,92 @@ flowchart TD
 
 ### 阶段 3：并行开发
 
-**调度**：工程技术部 + 移动端开发部（并行）
+**调度**：engineering-patterns + mobile-patterns（并行）
 
-**协同**：专项技术部（按需）
+**协同**：specialized-patterns（按需）
 
-**输入**：PRD、设计稿、技术栈预设
+#### 3.1 工程技术调度器（engineering-patterns）
 
-**动作**：
+负责判断用户需求属于前端还是后端，并调度至对应的 Patterns。
 
-#### 3.1 工程技术部
+**调度决策树**：
 
-1. **后端开发** - 生成 Web 后端代码、API、数据库脚本
-2. **前端开发** - 生成 Web 前端代码
-3. **单元测试** - 编写并执行单元测试
-4. **代码提交** - 提交至 Git 仓库
+```mermaid
+flowchart TD
+    Start[用户需求] --> Check{判断类型}
+    Check -->|UI/组件/页面| Frontend[frontend-patterns]
+    Check -->|服务/API/数据库| Backend[backend-patterns]
+    Check -->|前后端都需要| Both[并行触发]
+    Both --> Frontend
+    Both --> Backend
+    Frontend --> Output1[前端交付]
+    Backend --> Output2[后端交付]
+```
 
-#### 3.2 移动端开发部
+**前端子技能映射**：
 
-1. **移动端开发** - 生成 iOS/Android 应用代码
-2. **API 联调** - 与后端 API 对接
-3. **单元测试** - 编写并执行单元测试
-4. **代码提交** - 提交至 Git 仓库
+| 类型            | 调用 Skill          | 触发关键词          |
+| --------------- | ------------------- | ------------------- |
+| React / Next.js | `nextjs-patterns`   | React, Next.js      |
+| Vue.js          | `vue-patterns`      | Vue, Vue.js         |
+| 组件设计        | `frontend-patterns` | 组件, UI            |
+| Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
+| 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
 
-#### 3.3 专项技术部（可选）
+**后端子技能映射**：
 
-- **复杂算法** - 如涉及个性化推荐、搜索排序等复杂算法
-- **核心模块** - 提供核心模块代码
-- **技术方案** - 出具专项技术方案
+| 类型              | 调用 Skill                                                 | 触发关键词       |
+| ----------------- | ---------------------------------------------------------- | ---------------- |
+| Node.js / Express | `express-patterns`                                         | Node.js, Express |
+| Python / FastAPI  | `fastapi-patterns`                                         | Python, FastAPI  |
+| Python / Django   | `django-patterns`                                          | Python, Django   |
+| Go / Gin          | `gin-patterns`                                             | Go, Gin          |
+| Go / General      | `golang-patterns`                                          | Go, Golang       |
+| Rust              | `rust-patterns`                                            | Rust, async      |
+| GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo  |
+| 实时通信          | `realtime-websocket`                                       | WebSocket, SSE   |
+| 支付集成          | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns` | 支付             |
+| 消息队列          | `kafka-patterns`, `rabbitmq-patterns`                      | Kafka, RabbitMQ  |
+| 邮件服务          | `email-patterns`                                           | 邮件, Email      |
+| 文件存储          | `file-storage-patterns`                                    | 文件上传, OSS    |
+| SQL 数据库        | `postgres-patterns`                                        | PostgreSQL, SQL  |
+| NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
+| 缓存              | `redis-patterns`                                           | Redis, 缓存      |
+| 后台任务          | `background-jobs`                                          | 后台任务, Cron   |
+| 安全              | `security-review`, `coding-standards`                      | 安全, 漏洞       |
+| 限流熔断          | `rate-limiting`, `circuit-breaker`                         | 限流, 熔断       |
+| REST API          | `rest-patterns`                                            | REST, API        |
+| 代码规范          | `coding-standards`                                         | lint, type       |
+| 测试驱动          | `tdd-workflow`                                             | TDD              |
+
+#### 3.2 移动端开发部（mobile-patterns）
+
+| 平台         | 调用 Skill                | 触发关键词          |
+| ------------ | ------------------------- | ------------------- |
+| iOS 原生     | `ios-native-patterns`     | iOS, Swift, SwiftUI |
+| Android 原生 | `android-native-patterns` | Android, Kotlin     |
+| React Native | `react-native-patterns`   | React Native        |
+| 微信小程序   | `mini-program-patterns`   | 微信小程序          |
+
+#### 3.3 专项技术部（specialized-patterns，按需）
+
+| 类型     | 调用 Skill            | 触发关键词     |
+| -------- | --------------------- | -------------- |
+| 架构迁移 | `clean-architecture`  | 架构迁移, 重构 |
+| 性能攻坚 | `caching-patterns`    | 性能瓶颈, 优化 |
+| 算法优化 | `ddd-patterns`        | 算法, 领域驱动 |
+| 技术选型 | `tech-stack-selector` | 技术选型, 评估 |
 
 **输出**：
 
-- Web 后端与前端代码
+- Web 前端与后端代码
 - 移动端应用代码
 - 单元测试报告
 - Git 提交记录
 
 ### 阶段 4：质量保障
 
-**调度**：质量保障部
-
-**协同**：中央调度器（缺陷分配）
-
-**输入**：代码库、测试用例
+**调度**：quality-patterns
 
 **动作**：
 
@@ -169,7 +218,7 @@ flowchart TD
 
 **缺陷处理**：
 
-- 严重问题 → 自动创建任务 → 指派回开发部门修复
+- 严重问题 → 自动创建任务 → 指派回开发团队修复
 - 中低问题 → 记录待办 → 进入缺陷池
 
 **输出**：
@@ -181,11 +230,7 @@ flowchart TD
 
 ### 阶段 5：部署与上线
 
-**调度**：运维与架构部
-
-**协同**：质量保障部（验证）
-
-**输入**：通过测试的版本
+**调度**：platform-patterns
 
 **动作**：
 
@@ -205,11 +250,9 @@ flowchart TD
 
 ### 阶段 6：闭环与迭代
 
-**调度**：运维与架构部 + 质量保障部
+**调度**：platform-patterns + quality-patterns
 
-**协同**：产品与设计部
-
-**输入**：线上服务、监控数据、用户反馈
+**协同**：product-patterns
 
 **动作**：
 
@@ -229,12 +272,13 @@ flowchart TD
 
 ## 并行策略
 
-| 场景          | 调度策略                      |
-| ------------- | ----------------------------- |
-| Web + 移动端  | 工程技术部 + 移动端开发部并行 |
-| 多端 API 联调 | 串行，后端先完成              |
-| 独立功能模块  | 按模块并行开发                |
-| 复杂算法需求  | 专项技术部同步咨询            |
+| 场景            | 调度策略                                    |
+| --------------- | ------------------------------------------- |
+| Web 前端 + 后端 | engineering-patterns 内并行                 |
+| Web + 移动端    | engineering-patterns + mobile-patterns 并行 |
+| 多端 API 联调   | 串行，后端先完成                            |
+| 独立功能模块    | 按模块并行开发                              |
+| 复杂算法需求    | specialized-patterns 同步咨询               |
 
 ## 异常处理
 
@@ -243,7 +287,7 @@ flowchart TD
 | 用户需求不明确     | 返回阶段 1，请求用户补充         |
 | 设计稿未确认       | 返回阶段 2，重新设计             |
 | 技术方案评审不通过 | 返回阶段 3，重新设计             |
-| 测试失败           | 创建缺陷任务，指派回工程团队修复 |
+| 测试失败           | 创建缺陷任务，指派回开发团队修复 |
 | 部署失败           | 返回阶段 5，排查后重试           |
 | 需架构专家支持     | 调用 specialized-patterns        |
 
@@ -257,7 +301,9 @@ sequenceDiagram
     participant O as 调度器
     participant P as product-patterns
     participant D as design-patterns
-    participant E as engineering-patterns
+    participant Eng as engineering-patterns
+    participant FE as frontend-patterns
+    participant BE as backend-patterns
     participant M as mobile-patterns
     participant S as specialized-patterns
     participant Q as quality-patterns
@@ -265,21 +311,24 @@ sequenceDiagram
 
     U->>O: 需求：登录+仪表盘
     O->>O: 阶段1：创建任务工单
-    O->>P: 阶段2：产出PRD+原型+设计稿
-    P->>O: PRD + 原型 + 设计稿
-    O->>D: 设计团队产出设计稿
+    O->>P: 阶段2：产出PRD
+    P->>O: PRD确认
+    O->>D: 产出设计稿
     D->>O: 设计稿确认
     O->>U: 请求用户确认
     U->>O: 确认通过
     par 并行开发
-        O->>E: 3a. Web后端+前端
-        E->>O: Web代码
+        O->>Eng: 工程开发
+        Eng->>FE: 前端UI/组件
+        FE->>Eng: 前端代码
+        Eng->>BE: 后端API/服务
+        BE->>Eng: 后端代码
     and
-        O->>M: 3b. 移动端（如需要）
+        O->>M: 移动端（如需要）
         M->>O: 移动端代码
     and
-        O->>S: 3c. 复杂算法咨询（如需要）
-        S->>O: 核心模块代码
+        O->>S: 复杂算法咨询（如需要）
+        S->>O: 核心模块
     end
     O->>Q: 阶段4：触发QA
     Q->>O: 测试报告+缺陷列表
@@ -297,3 +346,12 @@ sequenceDiagram
 - **质量内建** - 每个阶段都有质量检查
 - **快速反馈** - 及时向用户汇报进度
 - **持续优化** - 闭环反馈，迭代改进
+
+## 质量门禁
+
+| 阶段 | 检查项      | 阈值   |
+| ---- | ----------- | ------ |
+| 前端 | lint / type | 100%   |
+| 后端 | lint / type | 100%   |
+| 测试 | 单元测试    | ≥ 80%  |
+| 安全 | 漏洞扫描    | 0 高危 |
