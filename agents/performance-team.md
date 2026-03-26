@@ -114,7 +114,7 @@ MONITOR
 
 | 任务     | 委托目标                         |
 | -------- | -------------------------------- |
-| 功能规划 | `planner`                        |
+| 功能规划 | `tech-director` |
 | 代码实现 | `frontend-team` / `backend-team` |
 | 代码审查 | `code-review-team`               |
 | 安全审查 | `security-team`                  |

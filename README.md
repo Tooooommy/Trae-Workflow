@@ -99,9 +99,9 @@ Trae Workflow/
 
 ### 规划层
 
-| 智能体  | 角色     | 说明                         |
-| ------- | -------- | ---------------------------- |
-| planner | 技术总监 | 功能规划、技术架构、技术决策 |
+| 智能体        | 角色     | 说明                         |
+| ------------- | -------- | ---------------------------- |
+| tech-director | 技术总监 | 功能规划、技术架构、技术决策 |
 
 ### 开发团队
 
@@ -138,7 +138,7 @@ Trae Workflow/
 ### 团队协作流程
 
 ```
-planner (技术总监)
+tech-director (技术总监)
     ↓
 分解任务
     ↓
@@ -162,8 +162,8 @@ planner (技术总监)
 
 | 任务       | 委托目标           |
 | ---------- | ------------------ |
-| 功能规划   | `planner`          |
-| 架构设计   | `planner`          |
+| 功能规划   | `tech-director`    |
+| 架构设计   | `tech-director`    |
 | 后端开发   | `backend-team`     |
 | 前端开发   | `frontend-team`    |
 | 移动端开发 | `mobile-team`      |
@@ -374,8 +374,8 @@ project_rules/<lang>/ ← 语言特定扩展
 ### 开发新功能
 
 ```
-1. 规划阶段    → 使用 planner 进行功能规划和技术架构
-2. 任务分解    → planner 分解任务并分配给对应团队
+1. 规划阶段    → 使用 tech-director 进行功能规划和技术架构
+2. 任务分解    → tech-director 分解任务并分配给对应团队
 3. 开发实现    → backend-team / frontend-team / mobile-team
 4. 测试验证    → testing-team 遵循 TDD 工作流
 5. 代码审查    → code-review-team 审查代码

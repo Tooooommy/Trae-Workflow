@@ -131,7 +131,7 @@ go vet .
 
 | 任务     | 委托目标                                 |
 | -------- | ---------------------------------------- |
-| 功能规划 | `planner`                                |
+| 功能规划 | `tech-director`                          |
 | 架构设计 | `clean-architecture`                     |
 | 代码审查 | `code-review-team`                       |
 | 测试策略 | `testing-team`                           |

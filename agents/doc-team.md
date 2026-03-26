@@ -72,7 +72,7 @@ flowchart TD
 
 | 任务     | 委托目标                                         |
 | -------- | ------------------------------------------------ |
-| 功能规划 | `planner`                                        |
+| 功能规划 | `tech-director` |
 | API 设计 | `backend-team`                                   |
 | 代码实现 | `frontend-team` / `backend-team` / `mobile-team` |
 | 代码审查 | `code-review-team`                               |

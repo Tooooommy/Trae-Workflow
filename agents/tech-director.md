@@ -1,5 +1,5 @@
 ---
-name: planner
+name: tech-director
 description: 技术总监。负责功能规划、技术架构、技术决策。在新功能开发、架构变更、技术选型或复杂重构时使用。
 mcp_servers:
   - memory

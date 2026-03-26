@@ -90,7 +90,7 @@ gosec ./...
 
 | 任务     | 委托目标                         |
 | -------- | -------------------------------- |
-| 功能规划 | `planner`                        |
+| 功能规划 | `tech-director` |
 | 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
 | 测试     | `testing-team`                   |

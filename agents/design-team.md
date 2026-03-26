@@ -149,7 +149,7 @@ flowchart TD
 
 | 任务       | 委托目标           |
 | ---------- | ------------------ |
-| 功能规划   | `planner`          |
+| 功能规划   | `tech-director`    |
 | 前端实现   | `frontend-team`    |
 | 移动端开发 | `mobile-team`      |
 | 无障碍设计 | `a11y-patterns`    |
