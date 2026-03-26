@@ -143,21 +143,22 @@ go vet .
 
 ## 相关技能
 
-| 技能                | 用途         | 调用时机           |
-| ------------------- | ------------ | ------------------ |
-| tech-stack-selector | 技术选型     | 技术选型时         |
-| backend-patterns    | Node.js 模式 | Node.js 开发时     |
-| express-patterns    | Express 模式 | Express 开发时     |
-| fastapi-patterns    | FastAPI 模式 | FastAPI 开发时     |
-| django-patterns     | Django 模式  | Django 开发时      |
-| golang-patterns     | Go 模式      | Go 开发时          |
-| gin-patterns        | Gin Web 框架 | Gin 框架开发时     |
-| rust-patterns       | Rust 模式    | Rust 开发时        |
-| graphql-patterns    | GraphQL 模式 | GraphQL 开发时     |
-| kafka-patterns      | Kafka 消息流 | Kafka 消息队列时   |
-| postgres-patterns   | PostgreSQL   | 使用 PostgreSQL 时 |
-| mongodb-patterns    | MongoDB      | 使用 MongoDB 时    |
-| redis-patterns      | Redis 缓存   | 使用 Redis 时      |
-| database-migrations | 数据库迁移   | 数据库迁移时       |
-| coding-standards    | 编码标准     | 始终调用           |
-| tdd-workflow        | TDD 工作流   | TDD 开发时         |
+| 技能                | 用途          | 调用时机            |
+| ------------------- | ------------- | ------------------- |
+| tech-stack-selector | 技术选型      | 技术选型时          |
+| backend-patterns    | Node.js 模式  | Node.js 开发时      |
+| express-patterns    | Express 模式  | Express 开发时      |
+| fastapi-patterns    | FastAPI 模式  | FastAPI 开发时      |
+| django-patterns     | Django 模式   | Django 开发时       |
+| golang-patterns     | Go 模式       | Go 开发时           |
+| gin-patterns        | Gin Web 框架  | Gin 框架开发时      |
+| rust-patterns       | Rust 模式     | Rust 开发时         |
+| graphql-patterns    | GraphQL 模式  | GraphQL 开发时      |
+| kafka-patterns      | Kafka 消息流  | Kafka 消息队列时    |
+| rabbitmq-patterns   | RabbitMQ 消息 | RabbitMQ 消息队列时 |
+| postgres-patterns   | PostgreSQL    | 使用 PostgreSQL 时  |
+| mongodb-patterns    | MongoDB       | 使用 MongoDB 时     |
+| redis-patterns      | Redis 缓存    | 使用 Redis 时       |
+| database-migrations | 数据库迁移    | 数据库迁移时        |
+| coding-standards    | 编码标准      | 始终调用            |
+| tdd-workflow        | TDD 工作流    | TDD 开发时          |
