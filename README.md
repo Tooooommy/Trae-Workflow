@@ -314,7 +314,7 @@ planner (技术总监)
 | i18n-patterns         | 国际化、多语言支持     |
 | email-patterns        | 邮件服务、模板最佳实践 |
 | file-storage-patterns | 文件上传、对象存储     |
-| monorepo-patterns     | Monorepo 多包管理      |
+
 | webassembly-patterns  | WASM 模块、性能优化    |
 
 ### 全栈框架
