@@ -8,7 +8,7 @@
 
 | 智能体 | 技能 | 规则     |
 | ------ | ---- | -------- |
-| 6      | 62+  | 完整体系 |
+| 7      | 62+  | 完整体系 |
 
 ---
 
@@ -24,6 +24,37 @@ Agents (决策) → Skills (执行) → Rules (约束) → MCP (连接)
 | **Skills** | 原子能力   | 如何完成特定动作             |
 | **Rules**  | 行为规范   | 什么能做，什么不能做         |
 | **MCP**    | 通信协议   | 如何连接和交换数据           |
+
+---
+
+## 🎛️ 中央调度器
+
+**orchestrator** - 解析用户需求，按顺序调用或并行触发相应的智能体部门
+
+```mermaid
+flowchart TD
+    User[用户/PM提出需求] --> Orchestrator[中央调度器]
+
+    Orchestrator --> Product[产品与设计部]
+    Product --> Orchestrator
+
+    Orchestrator --> Parallel[并行触发]
+    Parallel --> Dev[工程技术部]
+    Parallel --> Mobile[移动端开发部]
+
+    Dev --> Orchestrator
+    Mobile --> Orchestrator
+
+    Orchestrator --> QA[质量保障部]
+    QA --> Orchestrator
+
+    Orchestrator --> Ops[运维与架构部]
+    Ops --> Orchestrator
+
+    Orchestrator --> User
+
+    Expert[专项技术部] -. 专家支持 .-> Orchestrator
+```
 
 ---
 
@@ -98,6 +129,7 @@ traew update
 
 | 部门         | Agent                 | 触发场景                            |
 | ------------ | --------------------- | ----------------------------------- |
+| 中央调度器   | `orchestrator`        | 用户需求解析、流程编排、任务调度      |
 | 产品与设计部 | `product-design-team` | 产品规划、需求变更、设计任务        |
 | 工程技术部   | `engineering-team`    | 后端开发、前端开发、API 集成、文档  |
 | 质量保障部   | `quality-team`        | 测试、代码审查、质量验证            |
@@ -110,15 +142,19 @@ traew update
 ### 协作流程
 
 ```
-产品与设计部 → 需求文档 + 设计稿
-       ↓
-工程技术部 / 移动端开发部 → 开发实现
-       ↓
-质量保障部 → 测试 + 代码审查
-       ↓
-运维与架构部 → CI/CD + 部署 + 监控
-       ↓
-专项技术部 → 复杂问题攻坚（如需）
+用户需求 → 中央调度器（解析+编排）
+                ↓
+        产品与设计部 → 需求文档 + 设计稿
+                ↓
+        工程技术部 / 移动端开发部（并行）
+                ↓
+        质量保障部 → 测试 + 代码审查
+                ↓
+        运维与架构部 → CI/CD + 部署 + 监控
+                ↓
+        专项技术部 → 复杂问题攻坚（如需）
+                ↓
+        中央调度器 → 验收 + 反馈
 ```
 
 ---
@@ -180,11 +216,11 @@ traew update
 
 ---
 
-## � 项目结构
+## 📁 项目结构
 
 ```
 Trae-Workflow/
-├── agents/              # 6 个智能体
+├── agents/              # 7 个智能体
 ├── skills/              # 62+ 技能
 ├── project_rules/       # 项目规则
 ├── user_rules/          # 用户规则
@@ -205,6 +241,6 @@ Trae-Workflow/
 
 ---
 
-## � 许可
+## 📄 许可
 
 MIT
