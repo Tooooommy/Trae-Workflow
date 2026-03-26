@@ -271,7 +271,8 @@ planner (技术总监)
 | clean-architecture     | 整洁架构、分层设计       |
 | ddd-patterns           | 领域驱动设计、限界上下文 |
 | cqrs-patterns          | CQRS 命令查询职责分离    |
-| message-queue-patterns | 消息队列、事件驱动架构   |
+| kafka-patterns | Kafka 分布式消息流 |
+| rabbitmq-patterns | RabbitMQ 消息队列 |
 
 ### 性能与优化
 

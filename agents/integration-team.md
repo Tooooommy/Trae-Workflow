@@ -22,16 +22,16 @@ mcp_servers:
 
 ## 集成类型判断
 
-| 类型 | 调用 Skill | 触发关键词 |
-|------|-----------|------------|
-| 支付 | `stripe-patterns` / `alipay-patterns` | 支付, Stripe, 支付宝 |
-| 消息队列 | `message-queue-patterns` | Kafka, RabbitMQ, SQS |
-| 短信 | `message-queue-patterns` | 短信, SMS, Twilio |
-| 邮件 | `email-patterns` | 邮件, SMTP, SendGrid |
-| OAuth | `security-review` | OAuth, SSO, 登录 |
-| 地图 | `backend-patterns` | 地图, 高德, Google Maps |
-| 存储 | `file-storage-patterns` | OSS, S3, CDN |
-| AI 服务 | `backend-patterns` | OpenAI, Claude, LLM |
+| 类型     | 调用 Skill                             | 触发关键词              |
+| -------- | -------------------------------------- | ----------------------- |
+| 支付     | `stripe-patterns` / `alipay-patterns`  | 支付, Stripe, 支付宝    |
+| 消息队列 | `kafka-patterns` / `rabbitmq-patterns` | Kafka, RabbitMQ         |
+| 短信     | `message-queue-patterns`               | 短信, SMS, Twilio       |
+| 邮件     | `email-patterns`                       | 邮件, SMTP, SendGrid    |
+| OAuth    | `security-review`                      | OAuth, SSO, 登录        |
+| 地图     | `backend-patterns`                     | 地图, 高德, Google Maps |
+| 存储     | `file-storage-patterns`                | OSS, S3, CDN            |
+| AI 服务  | `backend-patterns`                     | OpenAI, Claude, LLM     |
 
 ## 协作流程
 
@@ -39,7 +39,7 @@ mcp_servers:
 flowchart TD
     A[用户请求集成] --> B{集成类型判断}
     B -->|支付| C[stripe-patterns / alipay-patterns]
-    B -->|消息队列| D[message-queue-patterns]
+    B -->|消息队列| D[kafka-patterns / rabbitmq-patterns]
     B -->|短信| E[message-queue-patterns]
     B -->|邮件| F[email-patterns]
     B -->|OAuth| G[security-review]
@@ -51,6 +51,7 @@ flowchart TD
 ## 集成最佳实践
 
 ### 支付集成
+
 ```
 1. 支付意图分离
 2. 幂等性保证
@@ -60,6 +61,7 @@ flowchart TD
 ```
 
 ### 消息队列
+
 ```
 1. 消息持久化
 2. 消费者分组
@@ -69,6 +71,7 @@ flowchart TD
 ```
 
 ### OAuth/SSO
+
 ```
 1. 安全令牌存储
 2. 刷新令牌轮换
@@ -79,26 +82,27 @@ flowchart TD
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 功能规划 | `planner` |
-| 架构设计 | `planner` |
-| 代码实现 | `backend-team` |
+| 任务     | 委托目标           |
+| -------- | ------------------ |
+| 功能规划 | `planner`          |
+| 架构设计 | `planner`          |
+| 代码实现 | `backend-team`     |
 | 代码审查 | `code-review-team` |
-| 安全审查 | `security-team` |
-| 测试 | `testing-team` |
-| DevOps | `devops-team` |
+| 安全审查 | `security-team`    |
+| 测试     | `testing-team`     |
+| DevOps   | `devops-team`      |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| stripe-patterns | Stripe 支付 | Stripe 集成时 |
-| alipay-patterns | 支付宝支付 | 支付宝集成时 |
-| wechatpay-patterns | 微信支付 | 微信支付时 |
-| paypal-patterns | PayPal 支付 | PayPal 集成时 |
-| message-queue-patterns | 消息队列 | MQ 集成时 |
-| email-patterns | 邮件服务 | 邮件集成时 |
-| file-storage-patterns | 文件存储 | 文件存储时 |
-| security-review | 安全审查 | OAuth/SSO 时 |
-| backend-patterns | 后端模式 | API 集成时 |
+| 技能                  | 用途          | 调用时机        |
+| --------------------- | ------------- | --------------- |
+| stripe-patterns       | Stripe 支付   | Stripe 集成时   |
+| alipay-patterns       | 支付宝支付    | 支付宝集成时    |
+| wechatpay-patterns    | 微信支付      | 微信支付时      |
+| paypal-patterns       | PayPal 支付   | PayPal 集成时   |
+| kafka-patterns        | Kafka 消息流  | Kafka 集成时    |
+| rabbitmq-patterns     | RabbitMQ 消息 | RabbitMQ 集成时 |
+| email-patterns        | 邮件服务      | 邮件集成时      |
+| file-storage-patterns | 文件存储      | 文件存储时      |
+| security-review       | 安全审查      | OAuth/SSO 时    |
+| backend-patterns      | 后端模式      | API 集成时      |

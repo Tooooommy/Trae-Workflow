@@ -235,8 +235,8 @@ await producer.send({
 
 ## 相关技能
 
-| 技能                   | 说明             |
-| ---------------------- | ---------------- |
-| message-queue-patterns | 消息队列通用模式 |
-| backend-patterns       | 后端架构模式     |
-| microservice-patterns  | 微服务架构模式   |
+| 技能              | 说明              |
+| ----------------- | ----------------- |
+| kafka-patterns    | Kafka 消息流      |
+| rabbitmq-patterns | RabbitMQ 消息队列 |
+| backend-patterns  | 后端架构模式      |
