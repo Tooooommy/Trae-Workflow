@@ -39,7 +39,7 @@ description: 质量保障部模式。负责产品的"质量保障与卓越工程
 | 代码审查   | `coding-standards`  | 代码审查, lint          |
 | API 测试   | `rest-patterns`     | API, 集成测试           |
 | 单元测试   | `tdd-patterns`      | 单元测试, Jest, pytest  |
-| 移动端测试 | `mobile-team`       | iOS 测试, Android 测试  |
+| 移动端测试 | `mobile-patterns`   | iOS 测试, Android 测试  |
 | 数据库测试 | `postgres-patterns` | 数据库测试, SQL         |
 | 缓存测试   | `caching-patterns`  | 缓存测试, Redis         |
 | 负载测试   | `caching-patterns`  | 负载测试, k6, artillery |

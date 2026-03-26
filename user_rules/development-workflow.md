@@ -3,9 +3,9 @@
 ## 4 步流程
 
 ```
-1. 规划 → product-design-team
+1. 规划 → product-patterns
 2. TDD  → tdd-patterns
-3. 审查 → quality-team
+3. 审查 → quality-patterns
 4. 提交 → 约定式提交
 ```
 

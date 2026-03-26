@@ -394,13 +394,13 @@ export POSTGRES_URL="your_postgres_connection_string"
 - 使用 `context7` 查找文档
 - 使用 `filesystem` 读取文件
 
-### 4. 测试智能体
+### 4. 测试 Skill
 
-尝试使用以下智能体：
+尝试使用以下 Skill：
 
-1. **product-design-team**：请求制定一个简单的实施计划
+1. **product-patterns**：请求制定一个简单的实施计划
 2. **tdd-patterns**：请求指导 TDD 工作流
-3. **review-team**：审查一段代码
+3. **quality-patterns**：审查一段代码
 
 ### 5. 验证规则加载
 

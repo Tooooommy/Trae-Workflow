@@ -155,7 +155,7 @@ python -m scripts.improve_description <skill-path>
 | ----------------- | -------------- |
 | frontend-patterns | 前端开发模式   |
 | backend-patterns  | 后端开发模式   |
-| mobile-team       | 移动端团队     |
+| mobile-patterns   | 移动端模式     |
 | design-patterns   | UI/UX 设计模式 |
 | tdd-patterns      | 测试驱动开发   |
 | security-review   | 安全审查       |
