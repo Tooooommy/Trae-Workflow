@@ -127,7 +127,7 @@ mcp_servers:
 | 代码实现 | 开发团队 |
 | 测试策略 | `testing-team` |
 | 安全审查 | `security-team` |
-| 代码审查 | `code-review-team` |
+| 代码审查 | `review-team` |
 | DevOps | `ops-team` |
 
 | clean-architecture | 整洁架构模式 | 始终调用 |

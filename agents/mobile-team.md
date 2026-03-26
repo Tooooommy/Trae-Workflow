@@ -93,7 +93,7 @@ npm run build:weapp
 
 | 功能规划 | `planning-team`      |
 | 架构设计 | `clean-architecture` |
-| 代码审查 | `code-review-team`   |
+| 代码审查 | `review-team`   |
 | 测试策略 | `testing-team`       |
 | 安全审查 | `security-team`      |
 | 性能优化 | `performance-team`   |

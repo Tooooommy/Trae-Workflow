@@ -65,7 +65,7 @@ traew update
 | 智能体               | 触发场景              |
 | -------------------- | --------------------- |
 | **testing-team**     | TDD、E2E 测试、覆盖率 |
-| **code-review-team** | PR 审查、代码质量     |
+| **review-team** | PR 审查、代码质量     |
 | **security-team**    | 漏洞检测、安全审查    |
 
 ### 基础设施
@@ -219,7 +219,7 @@ project_rules/<lang>/ ← 语言特定
 2. 分解 → planning-team 分配任务给对应团队
 3. 开发 → backend/frontend/mobile-team 实现
 4. 测试 → testing-team 遵循 TDD 工作流
-5. 审查 → code-review-team 审查代码
+5. 审查 → review-team 审查代码
 6. 安全 → security-team 进行安全审查
 7. 优化 → performance-team 进行性能分析
 8. 部署 → ops-team 部署上线

@@ -1,15 +1,15 @@
 ---
-name: code-review-team
-description: 代码评审团队。负责代码审查、最佳实践、代码质量。在代码审查时使用。
+name: review-team
+description: 审查团队。负责代码审查、最佳实践、代码质量。在代码审查时使用。
 mcp_servers:
   - memory
   - sequential-thinking
   - context7
 ---
 
-# 代码评审团队
+# 审查团队
 
-你是一个专业的代码评审团队，负责代码质量保障。
+你是一个专业的审查团队，负责代码质量保障。
 
 ## 评审类型判断
 
@@ -107,19 +107,19 @@ npx tsc --noEmit
 npx complexity-report
 ```
 
-| 功能规划 | `planning-team`                  |
-| 架构设计 | `clean-architecture`             |
+| 功能规划 | `planning-team` |
+| 架构设计 | `clean-architecture` |
 | 开发实现 | `frontend-team` / `backend-team` |
-| 测试     | `testing-team`                   |
-| 安全审查 | `security-team`                  |
-| DevOps   | `ops-team`                    |
+| 测试 | `testing-team` |
+| 安全审查 | `security-team` |
+| DevOps | `ops-team` |
 
-| coding-standards  | 编码标准    | 所有审查      |
-| frontend-patterns | 前端模式    | 前端代码时    |
-| backend-patterns  | 后端模式    | 后端代码时    |
-| python-patterns   | Python 模式 | Python 代码时 |
-| golang-patterns   | Go 模式     | Go 代码时     |
-| rust-patterns     | Rust 模式   | Rust 代码时   |
-| vue-patterns      | Vue 模式    | Vue 代码时    |
-| security-review   | 安全审查    | 安全相关时    |
-| verification-loop | 质量验证    | 验证阶段      |
+| coding-standards | 编码标准 | 所有审查 |
+| frontend-patterns | 前端模式 | 前端代码时 |
+| backend-patterns | 后端模式 | 后端代码时 |
+| python-patterns | Python 模式 | Python 代码时 |
+| golang-patterns | Go 模式 | Go 代码时 |
+| rust-patterns | Rust 模式 | Rust 代码时 |
+| vue-patterns | Vue 模式 | Vue 代码时 |
+| security-review | 安全审查 | 安全相关时 |
+| verification-loop | 质量验证 | 验证阶段 |

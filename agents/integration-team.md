@@ -101,7 +101,7 @@ flowchart TD
 | 功能规划 | `planning-team`    |
 | 架构设计 | `planning-team`    |
 | 代码实现 | `backend-team`     |
-| 代码审查 | `code-review-team` |
+| 代码审查 | `review-team` |
 | 安全审查 | `security-team`    |
 | 测试     | `testing-team`     |
 | DevOps   | `ops-team`      |

@@ -174,7 +174,7 @@ flowchart TD
 | 前端实现   | `frontend-team`    |
 | 移动端开发 | `mobile-team`      |
 | 无障碍设计 | `a11y-patterns`    |
-| 代码审查   | `code-review-team` |
+| 代码审查   | `review-team` |
 
 | design-patterns   | UI/UX 设计模式 | 始终调用     |
 | a11y-patterns     | 无障碍设计     | 需要无障碍时 |
