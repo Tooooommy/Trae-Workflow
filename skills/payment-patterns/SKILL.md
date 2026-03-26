@@ -20,27 +20,27 @@ description: 支付集成模式 - 微信支付、支付宝、抖音支付、Stri
 | 技术          | 最低版本 | 推荐版本 |
 | ------------- | -------- | -------- |
 | Stripe SDK    | 14.0+    | 最新     |
-| Alipay SDK    | 4.0+     | 最新     |
-| WeChatPay SDK | 2.0+     | 最新     |
-| PayPal SDK    | 1.0+     | 最新     |
-| Node.js       | 18.0+    | 20.0+   |
+| Alipay SDK    | 4.35.0+  | 最新     |
+| WeChatPay SDK | 3.1.0+   | 最新     |
+| PayPal SDK    | 1.0.0+   | 最新     |
+| Node.js       | 18.0+    | 20.0+    |
 
 ## 支付方案对比
 
-| 方案       | 类型       | 适用场景           | 特点                  |
-| ---------- | ---------- | ------------------ | --------------------- |
-| Stripe     | 国际支付   | 跨境电商、SaaS     | 订阅强大、全球覆盖    |
-| PayPal     | 国际支付   | 跨境电商、外贸     | 用户基数大、覆盖广    |
-| 支付宝     | 国内支付   | 国内电商、移动支付 | 成熟稳定、用户广泛    |
-| 微信支付   | 国内支付   | 国内电商、社交电商 | 微信生态、小程序集成  |
-| 抖音支付   | 国内支付   | 抖音电商、直播带货 | 流量入口、场景丰富    |
+| 方案     | 类型     | 适用场景           | 特点                 |
+| -------- | -------- | ------------------ | -------------------- |
+| Stripe   | 国际支付 | 跨境电商、SaaS     | 订阅强大、全球覆盖   |
+| PayPal   | 国际支付 | 跨境电商、外贸     | 用户基数大、覆盖广   |
+| 支付宝   | 国内支付 | 国内电商、移动支付 | 成熟稳定、用户广泛   |
+| 微信支付 | 国内支付 | 国内电商、社交电商 | 微信生态、小程序集成 |
+| 抖音支付 | 国内支付 | 抖音电商、直播带货 | 流量入口、场景丰富   |
 
 ## 统一支付接口
 
 ```typescript
 interface PaymentProvider {
   createPayment(params: PaymentParams): Promise<PaymentResult>;
-  refundPayment(paymentId: string, amount: number): Promise<RefundResult>;
+  refundPayment(params: RefundParams): Promise<RefundResult>;
   queryPayment(paymentId: string): Promise<PaymentStatus>;
   handleWebhook(payload: unknown): Promise<void>;
 }
@@ -52,6 +52,10 @@ interface PaymentParams {
   description?: string;
   metadata?: Record<string, string>;
   returnUrl?: string;
+  payer?: {
+    openid?: string;
+    email?: string;
+  };
 }
 
 interface PaymentResult {
@@ -60,6 +64,52 @@ interface PaymentResult {
   paymentUrl?: string;
   qrCode?: string;
   expiresAt?: Date;
+}
+
+interface RefundParams {
+  paymentId: string;
+  refundId: string;
+  amount: number;
+  reason?: string;
+}
+
+interface RefundResult {
+  success: boolean;
+  refundId: string;
+  status: string;
+}
+
+interface PaymentStatus {
+  paymentId: string;
+  status: 'pending' | 'paid' | 'closed' | 'refunded';
+  amount: number;
+  paidAt?: Date;
+}
+```
+
+## 统一支付工厂
+
+```typescript
+function createPaymentProvider(type: string): PaymentProvider {
+  switch (type) {
+    case 'stripe':
+      return new StripeProvider();
+    case 'paypal':
+      return new PayPalProvider();
+    case 'alipay':
+      return new AlipayProvider();
+    case 'wechatpay':
+      return new WeChatPayProvider();
+    case 'douyinpay':
+      return new DouyinPayProvider();
+    default:
+      throw new Error(`Unsupported payment provider: ${type}`);
+  }
+}
+
+async function unifiedPayment(providerType: string, params: PaymentParams) {
+  const provider = createPaymentProvider(providerType);
+  return provider.createPayment(params);
 }
 ```
 
@@ -153,12 +203,15 @@ async function handleStripeWebhook(payload: Buffer, signature: string): Promise<
 ### 初始化
 
 ```typescript
-import { Client, Environment } from '@paypal/react-paypal-js';
+import checkout from '@paypal/checkout-server-sdk';
 
-const paypalClient = new Client({
+const paypalClient = new checkout.PayPalHttpClient({
   clientId: process.env.PAYPAL_CLIENT_ID!,
   clientSecret: process.env.PAYPAL_CLIENT_SECRET!,
-  environment: Environment.Sandbox,
+  environment:
+    process.env.NODE_ENV === 'production'
+      ? checkout.CoreEnvironments.Live
+      : checkout.CoreEnvironments.Sandbox,
 });
 ```
 
@@ -166,37 +219,31 @@ const paypalClient = new Client({
 
 ```typescript
 async function createPayPalOrder(params: PaymentParams): Promise<PaymentResult> {
-  const response = await fetch(`${process.env.PAYPAL_API_URL}/v2/checkout/orders`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${await getPayPalAccessToken()}`,
-    },
-    body: JSON.stringify({
-      intent: 'CAPTURE',
-      purchase_units: [
-        {
-          reference_id: params.orderId,
-          amount: {
-            currency_code: params.currency,
-            value: params.amount.toFixed(2),
-          },
-          description: params.description,
+  const request = new checkout.orders.OrdersCreateRequest();
+  request.requestBody({
+    intent: 'CAPTURE',
+    purchase_units: [
+      {
+        reference_id: params.orderId,
+        amount: {
+          currency_code: params.currency,
+          value: params.amount.toFixed(2),
         },
-      ],
-      application_context: {
-        return_url: params.returnUrl,
-        cancel_url: `${params.returnUrl}/cancel`,
+        description: params.description,
       },
-    }),
+    ],
+    application_context: {
+      return_url: params.returnUrl,
+      cancel_url: `${params.returnUrl}/cancel`,
+    },
   });
 
-  const order = await response.json();
+  const response = await paypalClient.execute(request);
 
   return {
-    paymentId: order.id,
+    paymentId: response.result.id,
     status: 'pending',
-    paymentUrl: order.links.find((l: any) => l.rel === 'approve')?.href,
+    paymentUrl: response.result.links.find((l) => l.rel === 'approve')?.href,
   };
 }
 ```
@@ -205,22 +252,14 @@ async function createPayPalOrder(params: PaymentParams): Promise<PaymentResult> 
 
 ```typescript
 async function capturePayPalOrder(orderId: string): Promise<PaymentResult> {
-  const response = await fetch(
-    `${process.env.PAYPAL_API_URL}/v2/checkout/orders/${orderId}/capture`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${await getPayPalAccessToken()}`,
-      },
-    }
-  );
+  const request = new checkout.orders.OrdersCaptureRequest(orderId);
+  request.requestBody({});
 
-  const capture = await response.json();
+  const response = await paypalClient.execute(request);
 
   return {
-    paymentId: capture.id,
-    status: capture.status === 'COMPLETED' ? 'completed' : 'pending',
+    paymentId: response.result.id,
+    status: response.result.status === 'COMPLETED' ? 'completed' : 'pending',
   };
 }
 ```
@@ -230,13 +269,13 @@ async function capturePayPalOrder(orderId: string): Promise<PaymentResult> {
 ### 初始化
 
 ```typescript
-import Alipay from 'alipay';
-import fs from 'fs';
+import AlipaySdk from 'alipay-sdk';
 
-const alipay = new Alipay({
+const alipay = new AlipaySdk({
   appId: process.env.ALIPAY_APP_ID!,
-  privateKey: fs.readFileSync(process.env.ALIPAY_PRIVATE_KEY_PATH!, 'utf8'),
-  alipayPublicKey: fs.readFileSync(process.env.ALIPAY_ALIPAY_PUBLIC_KEY_PATH!, 'utf8'),
+  privateKey: process.env.ALIPAY_PRIVATE_KEY!,
+  alipayPublicKey: process.env.ALIPAY_PUBLIC_KEY!,
+  signType: 'RSA2',
   gateway: 'https://openapi.alipay.com/gateway.do',
 });
 ```
@@ -251,6 +290,7 @@ async function createAlipayPayment(params: PaymentParams): Promise<PaymentResult
     subject: params.description || 'Payment',
     productCode: 'FAST_INSTANT_TRADE_PAY',
     returnUrl: params.returnUrl,
+    notifyUrl: `${process.env.API_URL}/webhooks/alipay`,
   });
 
   return {
@@ -264,15 +304,18 @@ async function createAlipayPayment(params: PaymentParams): Promise<PaymentResult
 ### 退款
 
 ```typescript
-async function refundAlipayPayment(paymentId: string, amount: number): Promise<RefundResult> {
+async function refundAlipayPayment(refundParams: RefundParams): Promise<RefundResult> {
   const result = await alipay.exec('alipay.trade.refund', {
-    outTradeNo: paymentId,
-    refundAmount: amount.toFixed(2),
+    outTradeNo: refundParams.paymentId,
+    refundAmount: refundParams.amount.toFixed(2),
+    refundReason: refundParams.reason,
+    outRequestNo: refundParams.refundId,
   });
 
   return {
-    success: result.success,
+    success: result.code === '10000',
     refundId: result.trade_no,
+    status: result.msg,
   };
 }
 ```
@@ -282,15 +325,13 @@ async function refundAlipayPayment(paymentId: string, amount: number): Promise<R
 ### 初始化
 
 ```typescript
-import { WeChatPay } from 'wechatpay';
+import { WeChatPay } from 'wechatpay-node-sdk';
 
 const wxpay = new WeChatPay({
   mchid: process.env.WX_MCHID!,
   serial: process.env.WX_SERIAL_NO!,
-  privateKey: fs.readFileSync(process.env.WX_PRIVATE_KEY_PATH!, 'utf8'),
-  certs: {
-    [process.env.WX_SERIAL_NO!]: fs.readFileSync(process.env.WX_PUBLIC_KEY_PATH!, 'utf8'),
-  },
+  privateKey: process.env.WX_PRIVATE_KEY!,
+  certificates: {},
 });
 ```
 
@@ -298,7 +339,7 @@ const wxpay = new WeChatPay({
 
 ```typescript
 async function createWeChatPayment(params: PaymentParams): Promise<PaymentResult> {
-  const result = await wxpay.v3.pay.transactions.native({
+  const result = await wxpay.v3.pay.pay.transactions.native({
     amount: {
       total: Math.round(params.amount * 100),
       currency: params.currency,
@@ -324,7 +365,7 @@ async function createWeChatJSAPIPayment(
   params: PaymentParams,
   openid: string
 ): Promise<PaymentResult> {
-  const result = await wxpay.v3.pay.transactions.jsapi({
+  const result = await wxpay.v3.pay.pay.transactions.jsapi({
     amount: {
       total: Math.round(params.amount * 100),
       currency: params.currency,
@@ -332,9 +373,7 @@ async function createWeChatJSAPIPayment(
     appid: process.env.WX_APPID!,
     description: params.description,
     out_trade_no: params.orderId,
-    payer: {
-      openid,
-    },
+    payer: { openid },
     notify_url: `${process.env.API_URL}/webhooks/wechatpay`,
   });
 
@@ -363,7 +402,7 @@ const dyPay = new DouyinPay({
 
 ```typescript
 async function createDouyinPayment(params: PaymentParams): Promise<PaymentResult> {
-  const order = await dyPay.createOrder({
+  const order = await dyPay.order.create({
     order_id: params.orderId,
     amount: Math.round(params.amount * 100),
     currency: params.currency === 'CNY' ? 'CNY' : 'USD',
@@ -381,28 +420,33 @@ async function createDouyinPayment(params: PaymentParams): Promise<PaymentResult
 }
 ```
 
-## 退款处理
+## 统一退款处理
 
 ```typescript
-interface RefundParams {
-  paymentId: string;
-  amount: number;
-  reason?: string;
-}
-
 async function processRefund(provider: string, params: RefundParams): Promise<RefundResult> {
   switch (provider) {
     case 'stripe':
-      return stripe.refunds.create({
+      const stripeRefund = await stripe.refunds.create({
         payment_intent: params.paymentId,
         amount: Math.round(params.amount * 100),
       });
-    case 'alipay':
-      return refundAlipayPayment(params.paymentId, params.amount);
-    case 'wechatpay':
-      return refundWeChatPayment(params.paymentId, params.amount);
+      return { success: true, refundId: stripeRefund.id, status: stripeRefund.status };
+
     case 'paypal':
-      return refundPayPalPayment(params.paymentId, params.amount);
+      const captureId = params.metadata?.captureId;
+      if (!captureId) throw new Error('Missing captureId for PayPal refund');
+      const paypalRefund = await refundPayPalCapture(captureId, params.amount);
+      return { success: true, refundId: paypalRefund.refundId, status: paypalRefund.status };
+
+    case 'alipay':
+      return refundAlipayPayment(params);
+
+    case 'wechatpay':
+      return refundWeChatPayment(params);
+
+    case 'douyinpay':
+      return refundDouyinPayment(params);
+
     default:
       throw new Error(`Unsupported provider: ${provider}`);
   }
@@ -411,23 +455,51 @@ async function processRefund(provider: string, params: RefundParams): Promise<Re
 
 ## 支付安全最佳实践
 
-| 措施           | 实现                         |
-| -------------- | ---------------------------- |
-| 签名验证       | 验证回调签名确保真实性       |
-| 幂等性         | 使用订单号防止重复支付       |
-| 金额校验       | 服务端校验金额与数据库一致   |
-| 异步处理       | 支付回调异步处理避免超时     |
-| 日志记录       | 完整记录支付流程便于审计     |
-| 限流           | 防止恶意请求刷单             |
-| 证书安全       | 私钥妥善保管，旋转更新       |
+| 措施         | 实现                       |
+| ------------ | -------------------------- |
+| 签名验证     | 验证回调签名确保真实性     |
+| 幂等性       | 使用订单号防止重复支付     |
+| 金额校验     | 服务端校验金额与数据库一致 |
+| 异步处理     | 支付回调异步处理避免超时   |
+| 日志记录     | 完整记录支付流程便于审计   |
+| 限流         | 防止恶意请求刷单           |
+| 证书安全     | 私钥妥善保管，旋转更新     |
+| 敏感数据保护 | 不在日志中记录完整卡号等   |
+
+## 错误处理
+
+```typescript
+class PaymentError extends Error {
+  constructor(
+    public code: string,
+    message: string,
+    public provider: string,
+    public isRetryable: boolean = false
+  ) {
+    super(message);
+    this.name = 'PaymentError';
+  }
+}
+
+async function handlePaymentError(error: unknown, provider: string) {
+  if (error instanceof PaymentError) {
+    console.error(`Payment error [${provider}]:`, error.code, error.message);
+    if (error.isRetryable) {
+      await requeuePayment(error);
+    }
+  } else {
+    console.error('Unexpected payment error:', error);
+  }
+}
+```
 
 ## 相关技能
 
-| 技能              | 说明           |
-| ----------------- | -------------- |
-| stripe-patterns   | Stripe 详细集成 |
-| alipay-patterns   | 支付宝详细集成 |
+| 技能               | 说明             |
+| ------------------ | ---------------- |
+| stripe-patterns    | Stripe 详细集成  |
+| alipay-patterns    | 支付宝详细集成   |
 | wechatpay-patterns | 微信支付详细集成 |
-| paypal-patterns    | PayPal 详细集成      |
-| douyinpay-patterns | 抖音支付详细集成     |
-| security-patterns  | 支付安全             |
+| paypal-patterns    | PayPal 详细集成  |
+| douyinpay-patterns | 抖音支付详细集成 |
+| security-patterns  | 支付安全         |
