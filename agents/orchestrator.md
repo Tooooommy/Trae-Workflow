@@ -73,6 +73,7 @@ flowchart TD
 | `platform-patterns`    | 运维与架构 | 部署, 监控, DevOps         |
 | `specialized-patterns` | 专项技术   | 架构迁移, 性能攻坚         |
 | `progress-patterns`    | 进度追踪   | 进度跟踪, 优化建议         |
+| `anti-patterns`        | 反模式     | 错误记录, 反模式, 经验沉淀 |
 
 ---
 
