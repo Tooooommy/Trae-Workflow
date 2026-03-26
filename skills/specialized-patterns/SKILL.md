@@ -1,5 +1,5 @@
 ---
-name: specialized-team-patterns
+name: specialized-patterns
 description: 专项技术部模式。负责"前瞻性技术探索与复杂专项攻坚"。当需要进行架构迁移、性能攻坚、技术可行性评估、复杂算法优化时使用此 Skill。
 ---
 

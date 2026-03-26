@@ -1,5 +1,5 @@
 ---
-name: platform-team-patterns
+name: platform-patterns
 description: 运维与架构部模式。负责系统的"稳定、安全与高效"。当需要进行架构设计、CI/CD、监控安全、性能优化时使用此 Skill。
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: quality-team-patterns
+name: quality-patterns
 description: 质量保障部模式。负责产品的"质量保障与卓越工程"。当需要进行测试策略、单元测试、集成测试、E2E 测试、代码审查时使用此 Skill。
 ---
 
