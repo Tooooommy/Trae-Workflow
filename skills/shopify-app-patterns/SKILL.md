@@ -275,17 +275,17 @@ Shopify 嵌入式应用运行在 iframe 中，需配置 `Content-Security-Policy
 
 ### 安全清单
 
-- \[ ] **环境变量**：`SHOPIFY_API_KEY`, `SHOPIFY_API_SECRET`, `SCOPES`, `DATABASE_URL` 等通过环境变量管理。**绝对不要**提交到代码仓库。
-- \[ ] **`shopify.app.toml` 配置**：
+- [ ] **环境变量**：`SHOPIFY_API_KEY`, `SHOPIFY_API_SECRET`, `SCOPES`, `DATABASE_URL` 等通过环境变量管理。**绝对不要**提交到代码仓库。
+- [ ] **`shopify.app.toml` 配置**：
   - 正确配置 `app_url` 和 `auth.callback_path`。
   - 使用 `read_` 和 `write_` 前缀精确声明所需权限。
   - 正确配置 **App 级别的 Webhook** 订阅和终结点。
-- \[ ] **数据库安全**：
+- [ ] **数据库安全**：
   - 为会话表（`Session`）建立索引并设置合理的清理任务。
   - 使用 Prisma 参数化查询，防止 SQL 注入。
-- \[ ] **输入验证**：对所有来自前端和 Webhook 的输入数据使用 **Zod** 进行验证和类型转换。
-- \[ ] **错误处理**：在生产环境中，不要将详细的数据库错误或堆栈跟踪返回给客户端。记录到日志服务。
-- \[ ] **依赖安全**：定期运行 `npm audit` 和更新 `@shopify/app-bridge-*` 等相关依赖。
+- [ ] **输入验证**：对所有来自前端和 Webhook 的输入数据使用 **Zod** 进行验证和类型转换。
+- [ ] **错误处理**：在生产环境中，不要将详细的数据库错误或堆栈跟踪返回给客户端。记录到日志服务。
+- [ ] **依赖安全**：定期运行 `npm audit` 和更新 `@shopify/app-bridge-*` 等相关依赖。
 
 ## 测试驱动开发 (TDD)
 

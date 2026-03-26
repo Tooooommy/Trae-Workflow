@@ -399,18 +399,18 @@ export default function DashboardLayout() {
 
 ### 安全清单
 
-- \[ ] **环境变量**：敏感密钥（`DATABASE_URL`、`SESSION_SECRET`、`REDIS_URL`）通过 Railway 环境变量管理，不提交到仓库。
-- \[ ] **数据库安全**：
+- [ ] **环境变量**：敏感密钥（`DATABASE_URL`、`SESSION_SECRET`、`REDIS_URL`）通过 Railway 环境变量管理，不提交到仓库。
+- [ ] **数据库安全**：
   - 使用 Prisma 的查询参数化防止 SQL 注入。
   - 在应用层（如 `requireUserId`）和数据库层（通过行级安全，如 PostgreSQL 的 RLS）实施访问控制。
   - 为生产环境使用不同的数据库凭据。
-- \[ ] **会话安全**：
+- [ ] **会话安全**：
   - Cookie 标记为 `httpOnly`、`secure`（生产环境）和 `sameSite=lax`。
   - 会话数据存储在服务端（Redis），客户端仅持有不透明的 Session ID。
   - 设置合理的会话过期时间（TTL）。
-- \[ ] **输入验证与清理**：对所有用户输入（URL 参数、表单数据、请求体）使用 Zod 进行验证。对输出到 HTML 的内容进行转义。
-- \[ ] **CORS 配置**：在 `vercel.json` 或 Railway 的 `railway.json` 中为必要的 API 路由精确配置允许的来源。
-- \[ ] **安全头**：在 `entry.server.tsx` 中设置安全头，或通过 Railway 的网络配置设置。
+- [ ] **输入验证与清理**：对所有用户输入（URL 参数、表单数据、请求体）使用 Zod 进行验证。对输出到 HTML 的内容进行转义。
+- [ ] **CORS 配置**：在 `vercel.json` 或 Railway 的 `railway.json` 中为必要的 API 路由精确配置允许的来源。
+- [ ] **安全头**：在 `entry.server.tsx` 中设置安全头，或通过 Railway 的网络配置设置。
 
   ```ts
     // app/entry.server.tsx
@@ -427,8 +427,8 @@ export default function DashboardLayout() {
     }
   ```
 
-- \[ ] **依赖扫描**：定期运行 `npm audit` 和 `prisma generate` 检查更新。
-- \[ ] **错误处理**：在生产环境中，避免向用户暴露堆栈跟踪或数据库错误细节。使用自定义错误边界。
+- [ ] **依赖扫描**：定期运行 `npm audit` 和 `prisma generate` 检查更新。
+- [ ] **错误处理**：在生产环境中，避免向用户暴露堆栈跟踪或数据库错误细节。使用自定义错误边界。
 
 ## 测试驱动开发 (TDD)
 

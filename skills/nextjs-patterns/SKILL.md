@@ -251,14 +251,14 @@ USING (is_published = true OR auth.uid() = user_id);
 
 ### 安全清单
 
-- \[ ] **环境变量**：敏感密钥存储在 `.env.local`，不提交到仓库
-- \[ ] **CORS 配置**：在 Supabase 中正确配置允许的来源
-- \[ ] **输入验证**：使用 Zod 验证所有用户输入
-- \[ ] **SQL 注入防护**：使用 Supabase 客户端，避免原始 SQL
-- \[ ] **XSS 防护**：对用户内容进行清理，使用 `DOMPurify`
-- \[ ] **CSRF 保护**：使用 SameSite cookies 和 CSRF tokens
-- \[ ] **速率限制**：在 API 路由和 Server Actions 中实现
-- \[ ] **安全头**：配置 `next.config.js` 中的安全头
+- [ ] **环境变量**：敏感密钥存储在 `.env.local`，不提交到仓库
+- [ ] **CORS 配置**：在 Supabase 中正确配置允许的来源
+- [ ] **输入验证**：使用 Zod 验证所有用户输入
+- [ ] **SQL 注入防护**：使用 Supabase 客户端，避免原始 SQL
+- [ ] **XSS 防护**：对用户内容进行清理，使用 `DOMPurify`
+- [ ] **CSRF 保护**：使用 SameSite cookies 和 CSRF tokens
+- [ ] **速率限制**：在 API 路由和 Server Actions 中实现
+- [ ] **安全头**：配置 `next.config.js` 中的安全头
 
 ## 测试驱动开发 (TDD)
 
