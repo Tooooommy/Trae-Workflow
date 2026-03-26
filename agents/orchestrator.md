@@ -149,28 +149,28 @@ flowchart TD
 
 #### 3.2 后端开发（backend-patterns）
 
-| 类型              | 调用 Skill                                                 | 触发关键词                |
-| ----------------- | ---------------------------------------------------------- | ------------------------- |
-| Node.js / Express | `express-patterns`                                         | Node.js, Express          |
-| Python / FastAPI  | `fastapi-patterns`                                         | Python, FastAPI           |
-| Python / Django   | `django-patterns`                                          | Python, Django            |
-| Go / Gin          | `golang-patterns`                                          | Go, Gin                   |
-| Rust              | `rust-patterns`                                            | Rust, async               |
-| GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo           |
-| 实时通信          | `realtime-websocket`                                       | WebSocket, SSE            |
-| 支付集成          | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns` | 支付                      |
-| 消息队列          | `message-queue-patterns`                                   | Kafka, RabbitMQ, 消息队列 |
-| 邮件服务          | `email-patterns`                                           | 邮件, Email               |
-| 文件存储          | `file-storage-patterns`                                    | 文件上传, OSS             |
-| SQL 数据库        | `postgres-patterns`                                        | PostgreSQL, SQL           |
-| NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL            |
-| 缓存              | `caching-patterns`                                         | Redis, 缓存               |
-| 后台任务          | `background-jobs`                                          | 后台任务, Cron            |
-| 安全              | `security-review`, `coding-standards`                      | 安全, 漏洞                |
-| 限流熔断          | `rate-limiting`, `circuit-breaker`                         | 限流, 熔断                |
-| REST API          | `rest-patterns`                                            | REST, API                 |
-| 代码规范          | `coding-standards`                                         | lint, type                |
-| 测试驱动          | `tdd-workflow`                                             | TDD                       |
+| 类型              | 调用 Skill                            | 触发关键词                |
+| ----------------- | ------------------------------------- | ------------------------- |
+| Node.js / Express | `express-patterns`                    | Node.js, Express          |
+| Python / FastAPI  | `fastapi-patterns`                    | Python, FastAPI           |
+| Python / Django   | `django-patterns`                     | Python, Django            |
+| Go / Gin          | `golang-patterns`                     | Go, Gin                   |
+| Rust              | `rust-patterns`                       | Rust, async               |
+| GraphQL           | `graphql-patterns`                    | GraphQL, Apollo           |
+| 实时通信          | `realtime-websocket`                  | WebSocket, SSE            |
+| 支付集成          | `payment-patterns`                    | 支付                      |
+| 消息队列          | `message-queue-patterns`              | Kafka, RabbitMQ, 消息队列 |
+| 邮件服务          | `email-patterns`                      | 邮件, Email               |
+| 文件存储          | `file-storage-patterns`               | 文件上传, OSS             |
+| SQL 数据库        | `postgres-patterns`                   | PostgreSQL, SQL           |
+| NoSQL 数据库      | `mongodb-patterns`                    | MongoDB, NoSQL            |
+| 缓存              | `caching-patterns`                    | Redis, 缓存               |
+| 后台任务          | `background-jobs`                     | 后台任务, Cron            |
+| 安全              | `security-review`, `coding-standards` | 安全, 漏洞                |
+| 限流熔断          | `rate-limiting`, `circuit-breaker`    | 限流, 熔断                |
+| REST API          | `rest-patterns`                       | REST, API                 |
+| 代码规范          | `coding-standards`                    | lint, type                |
+| 测试驱动          | `tdd-workflow`                        | TDD                       |
 
 #### 3.3 移动端开发（mobile-patterns）
 
