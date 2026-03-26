@@ -23,7 +23,13 @@ mcp_servers:
 | 任务 | 调用 Skill | 触发关键词 |
 | ---- | --------- | ---------- |
 | UI/UX 设计 | `design-patterns` | UI 设计、交互设计、原型 |
-| 文档编写 | `markdown-patterns` | 文档、README、格式 |
+| 视觉设计 | `tailwind-patterns` | Tailwind, CSS, 视觉稿 |
+| 无障碍设计 | `a11y-patterns` | 无障碍, WCAG, 可访问性 |
+| 响应式设计 | `tailwind-patterns` | 响应式, responsive |
+| 前端组件 | `frontend-patterns` | 组件设计, React, Vue |
+| 移动端设计 | `mobile-team` | iOS 设计, Android 设计 |
+| 文档编写 | `markdown-patterns` | 文档, README, 格式 |
+| 产品分析 | `product-patterns` | 用户研究, 用户画像 |
 
 ## 核心流程
 

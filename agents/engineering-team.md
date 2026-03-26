@@ -69,17 +69,31 @@ mcp_servers:
 
 ## 开发类型判断
 
-| 类型     | 调用 Skill                                                                    | 触发关键词                     |
-| -------- | ----------------------------------------------------------------------------- | ------------------------------ |
-| Node.js  | `express-patterns`                                                            | Node.js, Express               |
-| Python   | `fastapi-patterns`, `django-patterns`                                         | Python, FastAPI, Django        |
-| Go       | `golang-patterns`, `gin-patterns`                                             | Go, Gin                        |
-| Rust     | `rust-patterns`                                                               | Rust                           |
-| React    | `frontend-patterns`, `nextjs-patterns`                                        | React, Next.js                 |
-| Vue      | `vue-patterns`                                                                | Vue.js                         |
-| 支付集成 | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns`, `paypal-patterns` | 支付, Stripe, 支付宝, 微信支付 |
-| 消息队列 | `kafka-patterns`, `rabbitmq-patterns`                                         | Kafka, RabbitMQ                |
-| 邮件服务 | `email-patterns`                                                              | 邮件, 邮件服务                 |
+| 类型              | 调用 Skill                                                                    | 触发关键词                     |
+| ----------------- | ----------------------------------------------------------------------------- | ------------------------------ |
+| Node.js / Express | `express-patterns`                                                            | Node.js, Express               |
+| Python / FastAPI  | `fastapi-patterns`                                                            | Python, FastAPI                |
+| Python / Django   | `django-patterns`                                                             | Python, Django                 |
+| Go / Gin          | `gin-patterns`                                                                | Go, Gin                        |
+| Go / General      | `golang-patterns`                                                             | Go, Golang                     |
+| Rust              | `rust-patterns`                                                               | Rust, async                    |
+| React / Next.js   | `nextjs-patterns`                                                             | React, Next.js                 |
+| Vue.js            | `vue-patterns`                                                                | Vue, Vue.js                    |
+| GraphQL           | `graphql-patterns`                                                            | GraphQL, Apollo                |
+| 实时通信          | `realtime-websocket`                                                          | WebSocket, SSE                 |
+| 支付集成          | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns`, `paypal-patterns` | 支付, Stripe, 支付宝, 微信支付 |
+| 消息队列          | `kafka-patterns`, `rabbitmq-patterns`                                         | Kafka, RabbitMQ, 消息队列      |
+| 邮件服务          | `email-patterns`                                                              | 邮件, Email                    |
+| 文件存储          | `file-storage-patterns`                                                       | 文件上传, 存储, OSS            |
+| 数据库 / SQL      | `postgres-patterns`                                                           | PostgreSQL, SQL                |
+| 数据库 / NoSQL    | `mongodb-patterns`                                                            | MongoDB, NoSQL                 |
+| 缓存              | `redis-patterns`                                                              | Redis, 缓存                    |
+| 后台任务          | `background-jobs`                                                             | 后台任务, 定时任务, Cron       |
+| 安全编码          | `security-review`, `coding-standards`                                         | 安全, 漏洞, XSS, SQL注入       |
+| 限流熔断          | `rate-limiting`, `circuit-breaker`                                            | 限流, 熔断, 高并发             |
+| API 设计          | `rest-patterns`                                                               | REST, API, 接口                |
+| 代码规范          | `coding-standards`                                                            | lint, type, 代码规范           |
+| 测试驱动          | `tdd-workflow`                                                                | TDD, 测试驱动                  |
 
 ## 协作流程
 

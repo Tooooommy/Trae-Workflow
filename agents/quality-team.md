@@ -68,14 +68,22 @@ mcp_servers:
 
 ## 测试类型判断
 
-| 类型       | 调用 Skill           | 触发关键词                    |
-| ---------- | -------------------- | ----------------------------- |
-| TDD        | `tdd-workflow`      | TDD, 测试驱动                  |
-| E2E        | `e2e-testing`        | E2E, 端到端                   |
-| 性能测试   | `caching-patterns`  | 性能, 缓存, 压测               |
-| 安全测试   | `security-review`    | 安全, 漏洞, 渗透               |
-| 代码审查   | `coding-standards`  | 代码审查, lint                |
-| API 测试   | `backend-patterns`   | API, 集成测试                 |
+| 类型 | 调用 Skill | 触发关键词 |
+| ---- | --------- | ---------- |
+| TDD | `tdd-workflow` | TDD, 测试驱动 |
+| E2E | `e2e-testing` | E2E, 端到端, Playwright |
+| 性能测试 | `caching-patterns` | 性能, 压测, JMeter |
+| 安全测试 | `security-review` | 安全, 漏洞, 渗透 |
+| 代码审查 | `coding-standards` | 代码审查, lint |
+| API 测试 | `rest-patterns` | API, 集成测试 |
+| 单元测试 | `tdd-workflow` | 单元测试, Jest, pytest |
+| 移动端测试 | `mobile-team` | iOS 测试, Android 测试 |
+| 数据库测试 | `postgres-patterns` | 数据库测试, SQL |
+| 缓存测试 | `redis-patterns` | 缓存测试, Redis |
+| 负载测试 | `caching-patterns` | 负载测试, k6, artillery |
+| 冒烟测试 | `tdd-workflow` | 冒烟测试, 快速验证 |
+| 回归测试 | `tdd-workflow` | 回归测试 |
+| 覆盖率 | `tdd-workflow` | 覆盖率, coverage |
 
 ## 协作流程
 

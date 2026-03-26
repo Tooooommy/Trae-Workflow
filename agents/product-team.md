@@ -22,8 +22,14 @@ mcp_servers:
 
 | 任务 | 调用 Skill | 触发关键词 |
 | ---- | --------- | ---------- |
-| 需求文档 | `product-patterns` | PRD、用户故事、需求分析、MVP |
-| 文档编写 | `markdown-patterns` | 文档、README、格式 |
+| 需求文档 | `product-patterns` | PRD, 用户故事, 需求分析, MVP |
+| 文档编写 | `markdown-patterns` | 文档, README, 格式 |
+| 市场分析 | `product-patterns` | 竞品分析, 市场洞察 |
+| 用户研究 | `product-patterns` | 用户访谈, 用户画像, 调研 |
+| 技术选型 | `tech-stack-selector` | 技术选型, 方案评估 |
+| 数据分析 | `analytics-tracking` | 数据分析, 指标, 埋点 |
+| A/B 测试 | `feature-flags` | A/B 测试, 功能开关 |
+| 商业模式 | `product-patterns` | 商业模式, 定价, 变现 |
 
 ## 核心流程
 
