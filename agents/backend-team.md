@@ -63,10 +63,10 @@ flowchart TD
 // 技术栈
 Node.js + Express / Fastify + TypeScript + Prisma + PostgreSQL;
 // Skills
-backend - patterns;
-express - patterns;
-tdd - workflow(Jest);
-coding - standards;
+backend-patterns;
+express-patterns;
+tdd-workflow (Jest);
+coding-standards;
 ```
 
 ### Python 生态
