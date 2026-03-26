@@ -401,7 +401,7 @@ r.GET("/page", func(c *gin.Context) {
 | 技能              | 说明            |
 | ----------------- | --------------- |
 | golang-patterns   | Go 通用模式     |
-| backend-patterns  | 后端架构模式    |
+| backend-expert    | 后端架构模式    |
 | postgres-patterns | PostgreSQL 模式 |
 | caching-patterns  | 缓存模式        |
 | kafka-patterns    | Kafka 消息模式  |

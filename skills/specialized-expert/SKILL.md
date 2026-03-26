@@ -1,9 +1,9 @@
 ---
-name: specialized-patterns
-description: 专项技术部模式。负责"前瞻性技术探索与复杂专项攻坚"。当需要进行架构迁移、性能攻坚、技术可行性评估、复杂算法优化时使用此 Skill。
+name: specialized-expert
+description: 专项技术专家模式。负责"前瞻性技术探索与复杂专项攻坚"。当需要进行架构迁移、性能攻坚、技术可行性评估、复杂算法优化时使用此 Skill。
 ---
 
-# 专项技术部模式
+# 专项技术专家模式
 
 你是一个专业的专项技术部门，负责"前瞻性技术探索与复杂专项攻坚"。
 
@@ -43,8 +43,8 @@ description: 专项技术部模式。负责"前瞻性技术探索与复杂专项
 | 消息队列    | `message-queue-patterns`  | RabbitMQ, 消息队列     |
 | WebAssembly | `webassembly-patterns`    | WASM, WebAssembly      |
 | 实时通信    | `realtime-websocket`      | WebSocket, SSE         |
-| 移动端优化  | `mobile-patterns`         | 移动端优化, 性能       |
-| 前端优化    | `frontend-patterns`       | 前端优化, 渲染性能     |
+| 移动端优化  | `mobile-expert`        | 移动端优化, 性能       |
+| 前端优化    | `frontend-expert`       | 前端优化, 渲染性能     |
 
 ## 工作流程
 

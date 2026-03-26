@@ -448,4 +448,4 @@ await channel.waitForConfirms();
 | ----------------- | ------------------ |
 | kafka-patterns    | Kafka 分布式消息流 |
 | rabbitmq-patterns | RabbitMQ 消息队列  |
-| backend-patterns  | 后端架构模式       |
+| backend-expert  | 后端架构模式       |

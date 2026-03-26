@@ -502,4 +502,4 @@ async function handlePaymentError(error: unknown, provider: string) {
 | wechatpay-patterns | 微信支付详细集成 |
 | paypal-patterns    | PayPal 详细集成  |
 | douyinpay-patterns | 抖音支付详细集成 |
-| security-patterns  | 支付安全         |
+| security-expert    | 支付安全         |

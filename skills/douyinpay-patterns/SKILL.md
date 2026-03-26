@@ -401,6 +401,6 @@ async function closeOrder(orderId: string) {
 | 技能               | 说明         |
 | ------------------ | ------------ |
 | payment-patterns   | 统一支付接口 |
-| security-patterns  | 支付安全     |
+| security-expert    | 支付安全     |
 | wechatpay-patterns | 微信支付集成 |
 | alipay-patterns    | 支付宝集成   |

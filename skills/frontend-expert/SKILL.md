@@ -1,9 +1,9 @@
 ---
-name: frontend-patterns
-description: 前端开发模式。根据PRD和设计稿生成前端代码、API集成、组件开发。当需要进行React/Vue组件开发、页面开发、API集成、响应式UI实现时使用此Skill。
+name: frontend-expert
+description: 前端开发专家模式。根据PRD和设计稿生成前端代码、API集成、组件开发。当需要进行React/Vue组件开发、页面开发、API集成、响应式UI实现时使用此Skill。
 ---
 
-# 前端开发模式
+# 前端开发专家模式
 
 根据 PRD 和设计稿生成前端代码，实现 API 集成和响应式 UI。
 
@@ -252,5 +252,5 @@ export function useUserForm(defaultValues?: Partial<UserFormData>) {
 | Vue.js          | `vue-patterns`      | Vue, Vue.js             |
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式     |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG            |
-| 表单验证        | `frontend-patterns` | 表单, react-hook-form   |
-| 状态管理        | `frontend-patterns` | zustand, context, redux |
+| 表单验证        | `frontend-expert` | 表单, react-hook-form   |
+| 状态管理        | `frontend-expert` | zustand, context, redux |

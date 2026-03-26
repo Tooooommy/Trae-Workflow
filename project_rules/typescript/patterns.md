@@ -52,5 +52,5 @@ function useData<T>(url: string) {
 
 ## 相关技能
 
-- `frontend-patterns` - 前端开发模式
+- `frontend-expert` - 前端开发模式
 - `clean-architecture` - 整洁架构

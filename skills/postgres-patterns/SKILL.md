@@ -273,7 +273,7 @@ VALUES ('avatars', 'avatars', true);
 
 | 技能                | 说明                |
 | ------------------- | ------------------- |
-| backend-patterns    | API 和后端模式      |
+| backend-expert      | API 和后端模式      |
 | database-migrations | 数据库迁移最佳实践  |
 | clickhouse-io       | ClickHouse 分析模式 |
 | caching-patterns    | 缓存模式            |

@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、前端、后端、移动端、质量保障、运维与架构、专项技术等 Patterns 的协作。
+description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、前端、后端、移动端、质量保障、运维与架构、专项技术等 Expert 的协作。
 mcp_servers:
   - memory
   - sequential-thinking
@@ -26,22 +26,22 @@ mcp_servers:
 flowchart TD
     User[用户/PM提出需求] --> Orchestrator[中央调度器]
 
-    Orchestrator --> Product[product-patterns]
+    Orchestrator --> Product[product-expert]
     Product --> Orchestrator
 
-    Orchestrator --> Design[design-patterns]
+    Orchestrator --> Design[design-expert]
     Design --> Orchestrator
 
     Orchestrator --> ParallelDev[并行开发]
-    ParallelDev --> FE[frontend-patterns]
-    ParallelDev --> BE[backend-patterns]
-    ParallelDev --> Mobile[mobile-patterns]
-    ParallelDev --> Security[security-patterns]
-    ParallelDev -.-> Expert[specialized-patterns]
+    ParallelDev --> FE[frontend-expert]
+    ParallelDev --> BE[backend-expert]
+    ParallelDev --> Mobile[mobile-expert]
+    ParallelDev --> Security[security-expert]
+    ParallelDev -.-> Expert[specialized-expert]
 
     FE --> DocReq{需要文档?}
     BE --> DocReq
-    DocReq -->|是| Doc[documentation-patterns]
+    DocReq -->|是| Doc[documentation-expert]
     DocReq -->|否| QA
 
     FE --> Orchestrator
@@ -51,13 +51,13 @@ flowchart TD
     Expert -. 专家支持 .-> Orchestrator
     Doc --> Orchestrator
 
-    Orchestrator --> QA[quality-patterns]
+    Orchestrator --> QA[quality-expert]
     QA --> Orchestrator
 
-    Orchestrator --> Ops[platform-patterns]
+    Orchestrator --> Ops[platform-expert]
     Ops --> Orchestrator
 
-    Orchestrator --> Progress[progress-patterns]
+    Orchestrator --> Progress[progress-expert]
     Progress --> Orchestrator
 
     Orchestrator --> Anti[anti-patterns]
@@ -68,22 +68,22 @@ flowchart TD
 
 ---
 
-## Patterns 映射表
+## Skills 映射表
 
-| Patterns                 | 说明       | 触发场景                   |
-| ------------------------ | ---------- | -------------------------- |
-| `product-patterns`       | 产品团队   | 产品规划, 需求分析, PRD    |
-| `design-patterns`        | 设计团队   | UI设计, 交互设计, 原型     |
-| `documentation-patterns` | 文档团队   | API文档, README, 知识库    |
-| `frontend-patterns`      | 前端开发   | React, Vue, Next.js, UI    |
-| `backend-patterns`       | 后端开发   | Node.js, Python, Go, API   |
-| `mobile-patterns`        | 移动端开发 | iOS, Android, 小程序       |
-| `security-patterns`      | 安全团队   | 身份验证, 授权, 密钥, 漏洞 |
-| `quality-patterns`       | 质量保障   | 测试, 代码审查, QA         |
-| `platform-patterns`      | 运维与架构 | 部署, 监控, DevOps         |
-| `specialized-patterns`   | 专项技术   | 架构迁移, 性能攻坚         |
-| `progress-patterns`      | 进度追踪   | 进度跟踪, 优化建议         |
-| `anti-patterns`          | 反模式     | 错误记录, 反模式, 经验沉淀 |
+| Skills                 | 说明     | 触发场景                   |
+| ---------------------- | -------- | -------------------------- |
+| `product-expert`       | 产品专家 | 产品规划, 需求分析, PRD    |
+| `design-expert`        | 设计专家 | UI设计, 交互设计, 原型     |
+| `documentation-expert` | 文档专家 | API文档, README, 知识库    |
+| `frontend-expert`      | 前端专家 | React, Vue, Next.js, UI    |
+| `backend-expert`       | 后端专家 | Node.js, Python, Go, API   |
+| `mobile-expert`        | 移动专家 | iOS, Android, 小程序       |
+| `security-expert`      | 安全专家 | 身份验证, 授权, 密钥, 漏洞 |
+| `quality-expert`       | 质量专家 | 测试, 代码审查, QA         |
+| `platform-expert`      | 运维专家 | 部署, 监控, DevOps         |
+| `specialized-expert`   | 专项专家 | 架构迁移, 性能攻坚         |
+| `progress-expert`      | 进度专家 | 进度跟踪, 优化建议         |
+| `anti-patterns`        | 反模式   | 错误记录, 反模式, 经验沉淀 |
 
 ---
 
@@ -99,7 +99,7 @@ flowchart TD
 
 1. **理解意图** - 解析需求类型（产品/功能/Bug/优化）
 2. **创建工单** - 生成任务工单，记录需求描述
-3. **初步评估** - 评估复杂度、所需 Patterns、预计工期
+3. **初步评估** - 评估复杂度、所需 Skills、预计工期
 
 **输出**：
 
@@ -109,7 +109,7 @@ flowchart TD
 
 ### 阶段 2：产品定义
 
-**调度**：product-patterns → design-patterns
+**调度**：product-expert → design-expert
 
 **协同**：中央调度器（验证）
 
@@ -117,9 +117,9 @@ flowchart TD
 
 **动作**：
 
-1. **需求细化** - 调用 product-patterns 生成产品需求文档
+1. **需求细化** - 调用 product-expert 生成产品需求文档
 2. **用户确认** - 请求用户确认需求文档
-3. **交互原型** - 调用 design-patterns 产出用户流程和交互原型
+3. **交互原型** - 调用 design-expert 产出用户流程和交互原型
 4. **UI 设计稿** - 产出高保真视觉设计稿
 5. **设计确认** - 请求用户确认设计稿
 
@@ -133,21 +133,21 @@ flowchart TD
 
 ### 阶段 3：并行开发
 
-**调度**：frontend-patterns + backend-patterns + mobile-patterns + security-patterns（并行）
+**调度**：frontend-expert + backend-expert + mobile-expert + security-expert（并行）
 
-**协同**：specialized-patterns（按需）
+**协同**：specialized-expert（按需）
 
-#### 3.1 前端开发（frontend-patterns）
+#### 3.1 前端开发（frontend-expert）
 
 | 类型            | 调用 Skill          | 触发关键词          |
 | --------------- | ------------------- | ------------------- |
 | React / Next.js | `nextjs-patterns`   | React, Next.js      |
 | Vue.js          | `vue-patterns`      | Vue, Vue.js         |
-| 组件设计        | `frontend-patterns` | 组件, UI            |
+| 组件设计        | `frontend-expert`   | 组件, UI            |
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
 
-#### 3.2 后端开发（backend-patterns）
+#### 3.2 后端开发（backend-expert）
 
 | 类型              | 调用 Skill                            | 触发关键词                |
 | ----------------- | ------------------------------------- | ------------------------- |
@@ -172,7 +172,7 @@ flowchart TD
 | 代码规范          | `coding-standards`                    | lint, type                |
 | 测试驱动          | `tdd-patterns`                        | TDD                       |
 
-#### 3.3 移动端开发（mobile-patterns）
+#### 3.3 移动端开发（mobile-expert）
 
 | 平台         | 调用 Skill                | 触发关键词          |
 | ------------ | ------------------------- | ------------------- |
@@ -181,7 +181,7 @@ flowchart TD
 | React Native | `react-native-patterns`   | React Native        |
 | 微信小程序   | `mini-program-patterns`   | 微信小程序          |
 
-#### 3.4 专项技术（specialized-patterns，按需）
+#### 3.4 专项技术（specialized-expert，按需）
 
 | 类型     | 调用 Skill                | 触发关键词     |
 | -------- | ------------------------- | -------------- |
@@ -192,13 +192,13 @@ flowchart TD
 
 **并行策略**：
 
-| 场景            | 调度策略                                                    |
-| --------------- | ----------------------------------------------------------- |
-| Web 前端 + 后端 | frontend-patterns + backend-patterns 并行                   |
-| Web + 移动端    | frontend-patterns + backend-patterns + mobile-patterns 并行 |
-| 多端 API 联调   | 串行，后端先完成                                            |
-| 独立功能模块    | 按模块并行开发                                              |
-| 复杂算法需求    | specialized-patterns 同步咨询                               |
+| 场景            | 调度策略                                              |
+| --------------- | ----------------------------------------------------- |
+| Web 前端 + 后端 | frontend-expert + backend-expert 并行                 |
+| Web + 移动端    | frontend-expert + backend-expert + mobile-expert 并行 |
+| 多端 API 联调   | 串行，后端先完成                                      |
+| 独立功能模块    | 按模块并行开发                                        |
+| 复杂算法需求    | specialized-expert 同步咨询                           |
 
 **输出**：
 
@@ -210,7 +210,7 @@ flowchart TD
 
 ### 阶段 4：质量保障
 
-**调度**：quality-patterns
+**调度**：quality-expert
 
 **动作**：
 
@@ -235,7 +235,7 @@ flowchart TD
 
 ### 阶段 5：部署与上线
 
-**调度**：platform-patterns
+**调度**：platform-expert
 
 **动作**：
 
@@ -255,9 +255,9 @@ flowchart TD
 
 ### 阶段 6：闭环与迭代
 
-**调度**：platform-patterns + quality-patterns
+**调度**：platform-expert + quality-expert
 
-**协同**：product-patterns
+**协同**：product-expert
 
 **动作**：
 
@@ -284,13 +284,13 @@ flowchart TD
 | 技术方案评审不通过 | 返回阶段 3，重新设计             |
 | 测试失败           | 创建缺陷任务，指派回开发团队修复 |
 | 部署失败           | 返回阶段 5，排查后重试           |
-| 需架构专家支持     | 调用 specialized-patterns        |
+| 需架构专家支持     | 调用 specialized-expert          |
 | 发现错误或反模式   | 调用 anti-patterns 记录          |
-| 需要进度跟踪       | 调用 progress-patterns           |
+| 需要进度跟踪       | 调用 progress-expert             |
 
 ## 进度跟踪
 
-调度器在以下情况调用 `progress-patterns`：
+调度器在以下情况调用 `progress-expert`：
 
 - 项目启动时初始化进度文件
 - 阶段开始或完成时更新进度
@@ -298,7 +298,7 @@ flowchart TD
 - 发现阻塞事项时记录
 - 项目完成时生成总结报告
 
-由 `progress-patterns` 负责：
+由 `progress-expert` 负责：
 
 - 创建和维护 progress.md 文件
 - 跟踪各阶段进度
@@ -330,15 +330,15 @@ flowchart TD
 sequenceDiagram
     participant U as 用户
     participant O as 调度器
-    participant P as product-patterns
-    participant D as design-patterns
-    participant FE as frontend-patterns
-    participant BE as backend-patterns
-    participant M as mobile-patterns
-    participant Sec as security-patterns
-    participant S as specialized-patterns
-    participant Q as quality-patterns
-    participant Ops as platform-patterns
+    participant P as product-expert
+    participant D as design-expert
+    participant FE as frontend-expert
+    participant BE as backend-expert
+    participant M as mobile-expert
+    participant Sec as security-expert
+    participant S as specialized-expert
+    participant Q as quality-expert
+    participant Ops as platform-expert
 
     U->>O: 需求：登录+仪表盘
     O->>O: 阶段1：创建任务工单
@@ -358,34 +358,12 @@ sequenceDiagram
         O->>M: 移动端（如需要）
         M->>O: 移动端代码
     and
-        O->>Sec: 安全评估与实现
-        Sec->>O: 安全代码/漏洞修复
-    and
-        O->>S: 复杂算法咨询（如需要）
-        S->>O: 核心模块
+        O->>Sec: 安全实现
+        Sec->>O: 安全方案
     end
-    O->>Q: 阶段4：触发QA
-    Q->>O: 测试报告+缺陷列表
-    O->>Ops: 阶段5：部署
-    Ops->>O: 上线+监控面板
-    O->>U: 阶段6：验收+反馈
+    O->>Q: 阶段4：质量保障
+    Q->>O: 测试报告
+    O->>Ops: 阶段5：部署上线
+    Ops->>O: 线上服务
+    O->>U: 完成
 ```
-
-## 工作原则
-
-- **理解优先** - 充分理解用户需求再调度
-- **用户确认** - 每个关键阶段需用户确认
-- **顺序正确** - 按依赖关系排序，避免返工
-- **并行高效** - 独立任务并行执行
-- **质量内建** - 每个阶段都有质量检查
-- **快速反馈** - 及时向用户汇报进度
-- **持续优化** - 闭环反馈，迭代改进
-
-## 质量门禁
-
-| 阶段 | 检查项      | 阈值   |
-| ---- | ----------- | ------ |
-| 前端 | lint / type | 100%   |
-| 后端 | lint / type | 100%   |
-| 测试 | 单元测试    | ≥ 80%  |
-| 安全 | 漏洞扫描    | 0 高危 |

@@ -34,13 +34,13 @@ Orchestrator (调度) → Skills (执行) → Rules (约束) → MCP (连接)
 ```mermaid
 flowchart TD
     User[用户提出需求] --> Orchestrator[orchestrator]
-    Orchestrator --> Product[product-patterns]
-    Orchestrator --> Design[design-patterns]
-    Orchestrator --> Frontend[frontend-patterns]
-    Orchestrator --> Backend[backend-patterns]
-    Orchestrator --> Mobile[mobile-patterns]
-    Orchestrator --> QA[quality-patterns]
-    Orchestrator --> Ops[platform-patterns]
+    Orchestrator --> Product[product-expert]
+    Orchestrator --> Design[design-expert]
+    Orchestrator --> Frontend[frontend-expert]
+    Orchestrator --> Backend[backend-expert]
+    Orchestrator --> Mobile[mobile-expert]
+    Orchestrator --> QA[quality-expert]
+    Orchestrator --> Ops[platform-expert]
     Orchestrator --> User
 ```
 
@@ -65,19 +65,19 @@ traew update
 
 ### 产品 & 设计
 
-- **product-patterns** - 产品规划、需求分析、MVP 定义
-- **design-patterns** - UI/UX 设计模式
+- **product-expert** - 产品规划、需求分析、MVP 定义
+- **design-expert** - UI/UX 设计模式
 
 ### 前端 & UI
 
-- **frontend-patterns** - React、Next.js、状态管理
+- **frontend-expert** - React、Next.js、状态管理
 - **vue-patterns** - Vue 3 组合式 API
 - **tailwind-patterns** - Tailwind CSS 原子化
 - **a11y-patterns** - 无障碍设计、WCAG
 
 ### 后端 & API
 
-- **backend-patterns** - 后端架构模式
+- **backend-expert** - 后端架构模式
 - **rest-patterns** - REST API 设计
 - **graphql-patterns** - GraphQL Schema
 - **express-patterns** - Node.js + Express
@@ -86,7 +86,7 @@ traew update
 
 ### 移动端
 
-- **mobile-patterns** - 移动端统一入口
+- **mobile-expert** - 移动端统一入口
 - **ios-native-patterns** - iOS Swift/SwiftUI
 - **android-native-patterns** - Android Kotlin
 - **react-native-patterns** - React Native
@@ -138,22 +138,24 @@ traew update
 - **deployment-patterns** - 部署流水线
 - **tdd-patterns** - 测试驱动开发
 - **e2e-testing** - Playwright E2E 测试
-- **quality-patterns** - 质量保障与验证流程
-- **platform-patterns** - 架构、CI/CD、监控、安全
+- **quality-expert** - 质量保障与验证流程
+- **platform-expert** - 架构、CI/CD、监控、安全
 
 ---
 
 ## 📁 项目结构
 
 ```
+
 Trae-Workflow/
-├── agents/              # 1 个调度器
-│   └── orchestrator.md
-├── skills/              # 70+ 技能
-├── project_rules/       # 项目规则
-├── user_rules/          # 用户规则
-├── .trae/               # 规则目录
+├── agents/ # 1 个调度器
+│ └── orchestrator.md
+├── skills/ # 70+ 技能
+├── project_rules/ # 项目规则
+├── user_rules/ # 用户规则
+├── .trae/ # 规则目录
 └── README.md
+
 ```
 
 ---
@@ -173,3 +175,7 @@ Trae-Workflow/
 ## 📄 许可
 
 MIT
+
+```
+
+```
