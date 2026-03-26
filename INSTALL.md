@@ -366,7 +366,6 @@ export POSTGRES_URL="your_postgres_connection_string"
 ├── tracking.json              # 跟踪分析配置（可选）
 ├── skills/                    # 技能目录（70+ 技能）
 │   ├── tdd-workflow/
-│   ├── analytics-tracking/
 │   └── ...
 └── user_rules/                # 用户规则目录
     ├── user-rules.md
