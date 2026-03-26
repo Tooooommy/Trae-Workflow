@@ -23,7 +23,11 @@ mcp_servers:
 
 | 类型 | 调用 Skill | 触发关键词 |
 |------|-----------|------------|
-| UI 设计 | `tailwind-patterns` | UI, 界面, 布局 |
+| UI/UX 设计 | `design-patterns` | UI, UX, 设计, 界面 |
+| 设计系统 | `design-patterns` | 设计系统, token, 组件库 |
+| 品牌视觉 | `design-patterns` | 品牌, 色彩, 字体, 视觉 |
+| 交互设计 | `design-patterns` | 交互, 动画, 微交互 |
+| UI 实现 | `tailwind-patterns` | UI, 界面, 布局 |
 | 响应式设计 | `tailwind-patterns` | 响应式, responsive |
 | 组件设计 | `frontend-patterns` | 组件, component |
 | 移动端设计 | `mobile-team` | 移动端, iOS, Android |
@@ -34,13 +38,15 @@ mcp_servers:
 ```mermaid
 flowchart TD
     A[用户请求设计] --> B{设计类型判断}
-    B -->|UI/布局| C[tailwind-patterns]
-    B -->|响应式| D[tailwind-patterns]
-    B -->|组件| E[frontend-patterns]
-    B -->|移动端| F[mobile-team]
-    B -->|前端实现| G[frontend-team]
-    
-    所有设计 --> H[设计规范]
+    B -->|UI/UX| C[design-patterns]
+    B -->|设计系统| D[design-patterns]
+    B -->|品牌视觉| E[design-patterns]
+    B -->|交互| F[design-patterns]
+    B -->|UI 实现| G[tailwind-patterns]
+    B -->|移动端| H[mobile-team]
+    B -->|前端实现| I[frontend-team]
+
+    所有设计 --> J[设计规范 + a11y-patterns]
 ```
 
 ## 核心职责

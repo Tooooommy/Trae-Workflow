@@ -99,41 +99,41 @@ Trae Workflow/
 
 ### 规划层
 
-| 智能体  | 角色     | 说明                           |
-| ------- | -------- | ------------------------------ |
-| planner | 技术总监 | 功能规划、技术架构、技术决策   |
+| 智能体  | 角色     | 说明                         |
+| ------- | -------- | ---------------------------- |
+| planner | 技术总监 | 功能规划、技术架构、技术决策 |
 
 ### 开发团队
 
-| 智能体           | 角色           | 触发场景                         |
-| ---------------- | -------------- | -------------------------------- |
-| backend-team     | 后端团队       | Node.js/Python/Go/Rust 后端开发  |
-| frontend-team    | 前端团队       | React/Vue/Next.js 前端开发       |
-| mobile-team      | 移动端团队     | iOS/Android/React Native 开发   |
-| design-team      | 设计团队       | UI/UX 设计、可视化               |
+| 智能体        | 角色       | 触发场景                        |
+| ------------- | ---------- | ------------------------------- |
+| backend-team  | 后端团队   | Node.js/Python/Go/Rust 后端开发 |
+| frontend-team | 前端团队   | React/Vue/Next.js 前端开发      |
+| mobile-team   | 移动端团队 | iOS/Android/React Native 开发   |
+| design-team   | 设计团队   | UI/UX 设计、可视化              |
 
 ### 质量保证
 
-| 智能体             | 角色           | 触发场景                     |
-| ------------------ | -------------- | ---------------------------- |
-| testing-team       | 测试团队       | TDD、E2E 测试、测试覆盖率    |
-| code-review-team   | 代码审查团队   | PR 审查、代码质量、最佳实践   |
-| security-team      | 安全团队       | 漏洞检测、密钥检测、安全审查  |
+| 智能体           | 角色         | 触发场景                     |
+| ---------------- | ------------ | ---------------------------- |
+| testing-team     | 测试团队     | TDD、E2E 测试、测试覆盖率    |
+| code-review-team | 代码审查团队 | PR 审查、代码质量、最佳实践  |
+| security-team    | 安全团队     | 漏洞检测、密钥检测、安全审查 |
 
 ### 基础设施
 
-| 智能体         | 角色         | 触发场景                         |
-| -------------- | ------------ | -------------------------------- |
-| devops-team    | DevOps 团队  | CI/CD、Git、Docker、监控、部署   |
-| build-team     | 构建团队     | 构建错误、编译问题、依赖冲突     |
+| 智能体      | 角色        | 触发场景                       |
+| ----------- | ----------- | ------------------------------ |
+| devops-team | DevOps 团队 | CI/CD、Git、Docker、监控、部署 |
+| build-team  | 构建团队    | 构建错误、编译问题、依赖冲突   |
 
 ### 专业团队
 
-| 智能体             | 角色             | 触发场景                     |
-| ------------------ | ---------------- | ---------------------------- |
-| performance-team   | 性能团队         | 性能分析、优化、APM          |
-| integration-team   | 集成团队         | API 集成、第三方服务集成     |
-| doc-team          | 文档团队         | API 文档、技术文档、README   |
+| 智能体           | 角色     | 触发场景                   |
+| ---------------- | -------- | -------------------------- |
+| performance-team | 性能团队 | 性能分析、优化、APM        |
+| integration-team | 集成团队 | API 集成、第三方服务集成   |
+| doc-team         | 文档团队 | API 文档、技术文档、README |
 
 ### 团队协作流程
 
@@ -160,22 +160,22 @@ planner (技术总监)
 
 ### 智能体协作表
 
-| 任务       | 委托目标             |
-| ---------- | -------------------- |
-| 功能规划   | `planner`            |
-| 架构设计   | `planner`            |
-| 后端开发   | `backend-team`       |
-| 前端开发   | `frontend-team`      |
-| 移动端开发 | `mobile-team`        |
-| UI 设计    | `design-team`        |
-| 测试策略   | `testing-team`       |
-| 代码审查   | `code-review-team`   |
-| 安全审查   | `security-team`      |
-| DevOps     | `devops-team`        |
-| 构建修复   | `build-team`         |
-| 性能优化   | `performance-team`   |
-| 集成      | `integration-team`   |
-| 文档      | `doc-team`           |
+| 任务       | 委托目标           |
+| ---------- | ------------------ |
+| 功能规划   | `planner`          |
+| 架构设计   | `planner`          |
+| 后端开发   | `backend-team`     |
+| 前端开发   | `frontend-team`    |
+| 移动端开发 | `mobile-team`      |
+| UI 设计    | `design-team`      |
+| 测试策略   | `testing-team`     |
+| 代码审查   | `code-review-team` |
+| 安全审查   | `security-team`    |
+| DevOps     | `devops-team`      |
+| 构建修复   | `build-team`       |
+| 性能优化   | `performance-team` |
+| 集成       | `integration-team` |
+| 文档       | `doc-team`         |
 
 ---
 
@@ -190,6 +190,12 @@ planner (技术总监)
 | tailwind-patterns | Tailwind CSS 原子化 CSS 模式            |
 | a11y-patterns     | 无障碍设计模式、WCAG 合规               |
 
+### UI/UX 设计
+
+| 技能            | 描述                                 |
+| --------------- | ------------------------------------ |
+| design-patterns | UI/UX 设计模式、色彩系统、布局、交互 |
+
 ### 后端开发
 
 | 技能             | 描述                              |
@@ -197,9 +203,9 @@ planner (技术总监)
 | backend-patterns | 后端架构模式、API 设计            |
 | rest-patterns    | REST API 设计、版本控制、错误处理 |
 | graphql-patterns | GraphQL Schema 设计、N+1 问题解决 |
-| express-patterns | Node.js + Express 全栈             |
+| express-patterns | Node.js + Express 全栈            |
 | fastapi-patterns | FastAPI 异步全栈                  |
-| django-patterns   | Django 架构模式、安全、测试        |
+| django-patterns  | Django 架构模式、安全、测试       |
 
 ### 数据库
 
@@ -213,12 +219,12 @@ planner (技术总监)
 
 ### 移动开发
 
-| 技能                    | 描述                          |
-| ----------------------- | ----------------------------- |
+| 技能                    | 描述                         |
+| ----------------------- | ---------------------------- |
 | ios-native-patterns     | iOS/SwiftUI 原生开发模式     |
 | android-native-patterns | Android/Jetpack Compose 原生 |
-| react-native-patterns   | React Native 跨平台开发       |
-| mini-program-patterns   | 微信小程序开发                |
+| react-native-patterns   | React Native 跨平台开发      |
+| mini-program-patterns   | 微信小程序开发               |
 
 ### 桌面开发
 
@@ -229,12 +235,12 @@ planner (技术总监)
 
 ### 语言特定
 
-| 技能                | 描述                                     |
-| ------------------- | ---------------------------------------- |
-| python-patterns     | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
-| golang-patterns     | Go 惯用模式、并发安全、表格驱动测试      |
-| rust-patterns       | Rust 惯用模式、所有权系统、并发安全      |
-| coding-standards    | 通用编码标准、最佳实践                   |
+| 技能             | 描述                                     |
+| ---------------- | ---------------------------------------- |
+| python-patterns  | Pythonic 惯用法、PEP 8 标准、pytest 测试 |
+| golang-patterns  | Go 惯用模式、并发安全、表格驱动测试      |
+| rust-patterns    | Rust 惯用模式、所有权系统、并发安全      |
+| coding-standards | 通用编码标准、最佳实践                   |
 
 ### 测试
 
@@ -282,16 +288,16 @@ planner (技术总监)
 | 技能               | 描述               |
 | ------------------ | ------------------ |
 | realtime-websocket | WebSocket 实时通信 |
-| webrtc-patterns   | WebRTC 实时音视频  |
+| webrtc-patterns    | WebRTC 实时音视频  |
 
 ### 支付集成
 
-| 技能            | 描述             |
-| --------------- | ---------------- |
-| stripe-patterns | Stripe 支付集成  |
-| paypal-patterns | PayPal 支付集成  |
-| wechatpay-patterns | 微信支付集成  |
-| alipay-patterns | 支付宝支付集成   |
+| 技能               | 描述            |
+| ------------------ | --------------- |
+| stripe-patterns    | Stripe 支付集成 |
+| paypal-patterns    | PayPal 支付集成 |
+| wechatpay-patterns | 微信支付集成    |
+| alipay-patterns    | 支付宝支付集成  |
 
 ### AI 与智能体
 
@@ -320,8 +326,8 @@ planner (技术总监)
 
 ### 技能创建
 
-| 技能           | 描述                     |
-| -------------- | ------------------------ |
+| 技能          | 描述                     |
+| ------------- | ------------------------ |
 | skill-creator | SKILL 创建工具和最佳实践 |
 
 ---
