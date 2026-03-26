@@ -131,19 +131,11 @@ git status
 git log --oneline -10
 ```
 
-## 协作说明
-
-| 任务     | 委托目标           |
-| -------- | ------------------ |
 | 功能规划 | `tech-director` |
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team`    |
 | 测试     | `testing-team`     |
 
-## 相关技能
-
-| 技能                  | 用途          | 调用时机   |
-| --------------------- | ------------- | ---------- |
 | git-workflow          | Git 分支策略  | 版本控制时 |
 | docker-patterns       | Docker 容器化 | 容器化时   |
 | deployment-patterns   | 部署工作流    | 部署时     |

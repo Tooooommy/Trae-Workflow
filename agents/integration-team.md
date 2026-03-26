@@ -98,10 +98,6 @@ flowchart TD
 5. PKCE 支持
 ```
 
-## 协作说明
-
-| 任务     | 委托目标           |
-| -------- | ------------------ |
 | 功能规划 | `tech-director`    |
 | 架构设计 | `tech-director`    |
 | 代码实现 | `backend-team`     |
@@ -110,10 +106,6 @@ flowchart TD
 | 测试     | `testing-team`     |
 | DevOps   | `devops-team`      |
 
-## 相关技能
-
-| 技能                  | 用途          | 调用时机        |
-| --------------------- | ------------- | --------------- |
 | stripe-patterns       | Stripe 支付   | Stripe 集成时   |
 | alipay-patterns       | 支付宝支付    | 支付宝集成时    |
 | wechatpay-patterns    | 微信支付      | 微信支付时      |

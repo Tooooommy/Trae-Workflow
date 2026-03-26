@@ -90,10 +90,6 @@ npm run test -- --coverage
 pytest --cov
 ```
 
-## 协作说明
-
-| 任务     | 委托目标                         |
-| -------- | -------------------------------- |
 | 功能规划 | `tech-director`                  |
 | 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
@@ -102,10 +98,6 @@ pytest --cov
 | 性能优化 | `performance-team`               |
 | DevOps   | `devops-team`                    |
 
-## 相关技能
-
-| 技能              | 用途           | 调用时机   |
-| ----------------- | -------------- | ---------- |
 | tdd-workflow      | TDD 工作流     | TDD 开发时 |
 | e2e-testing       | Playwright E2E | E2E 测试时 |
 | coding-standards  | 编码标准       | 代码审查时 |

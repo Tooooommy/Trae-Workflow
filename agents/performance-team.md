@@ -92,10 +92,6 @@ SELECT * FROM pg_stat_statements ORDER BY mean_exec_time DESC;
 redis-cli info stats | grep hit_rate
 ```
 
-## 协作说明
-
-| 任务 | 委托目标 |
-|------|----------|
 | 功能规划 | `tech-director` |
 | 代码实现 | `frontend-team` / `backend-team` |
 | 代码审查 | `code-review-team` |
@@ -103,10 +99,6 @@ redis-cli info stats | grep hit_rate
 | 测试 | `testing-team` |
 | DevOps | `devops-team` |
 
-## 相关技能
-
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
 | frontend-patterns | 前端性能 | 前端优化时 |
 | backend-patterns | 后端性能 | 后端优化时 |
 | postgres-patterns | 数据库优化 | 数据库优化时 |

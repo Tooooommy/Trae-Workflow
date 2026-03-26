@@ -86,20 +86,12 @@ flowchart TD
 - 提供搜索关键字
 - 链接相关文档
 
-## 协作说明
-
-| 任务     | 委托目标                                         |
-| -------- | ------------------------------------------------ |
 | 功能规划 | `tech-director` |
 | API 设计 | `backend-team`                                   |
 | 代码实现 | `frontend-team` / `backend-team` / `mobile-team` |
 | 代码审查 | `code-review-team`                               |
 | 测试     | `testing-team`                                   |
 
-## 相关技能
-
-| 技能               | 用途              | 调用时机     |
-| ------------------ | ----------------- | ------------ |
 | rest-patterns      | REST API 设计模式 | API 文档时   |
 | clean-architecture | 整洁架构模式      | 架构文档时   |
 | git-workflow       | Git 工作流        | 贡献指南时   |

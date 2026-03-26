@@ -91,10 +91,6 @@ xcodebuild -workspace App.xcworkspace -scheme App build
 npm run build:weapp
 ```
 
-## 协作说明
-
-| 任务     | 委托目标             |
-| -------- | -------------------- |
 | 功能规划 | `tech-director`      |
 | 架构设计 | `clean-architecture` |
 | 代码审查 | `code-review-team`   |
@@ -104,10 +100,6 @@ npm run build:weapp
 | 前端开发 | `frontend-team`      |
 | 后端开发 | `backend-team`       |
 
-## 相关技能
-
-| 技能                    | 用途          | 调用时机        |
-| ----------------------- | ------------- | --------------- |
 | ios-native-patterns     | iOS 开发      | iOS 项目时      |
 | android-native-patterns | Android 开发  | Android 项目时  |
 | react-native-patterns   | React Native  | 跨平台 RN 时    |

@@ -86,10 +86,6 @@ vue-tsc --noEmit && npm run build
 npx lighthouse <url> --view
 ```
 
-## 协作说明
-
-| 任务 | 委托目标 |
-|------|----------|
 | 功能规划 | `tech-director` |
 | 架构设计 | `clean-architecture` |
 | 代码审查 | `code-review-team` |
@@ -99,10 +95,6 @@ npx lighthouse <url> --view
 | 移动端开发 | `mobile-team` |
 | 后端开发 | `backend-team` |
 
-## 相关技能
-
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
 | frontend-patterns | React 模式 | React 开发时 |
 | nextjs-patterns | Next.js 全栈 | Next.js 项目时 |
 | vue-patterns | Vue 3 模式 | Vue 3 项目时 |

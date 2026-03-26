@@ -170,20 +170,12 @@ flowchart TD
 | Adobe XD | 原型设计 | .xd      |
 | Framer   | 交互原型 | -        |
 
-## 协作说明
-
-| 任务       | 委托目标           |
-| ---------- | ------------------ |
 | 功能规划   | `tech-director`    |
 | 前端实现   | `frontend-team`    |
 | 移动端开发 | `mobile-team`      |
 | 无障碍设计 | `a11y-patterns`    |
 | 代码审查   | `code-review-team` |
 
-## 相关技能
-
-| 技能              | 用途           | 调用时机     |
-| ----------------- | -------------- | ------------ |
 | design-patterns   | UI/UX 设计模式 | 始终调用     |
 | a11y-patterns     | 无障碍设计     | 需要无障碍时 |
 | tailwind-patterns | Tailwind CSS   | UI 实现时    |

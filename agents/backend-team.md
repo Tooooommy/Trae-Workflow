@@ -91,10 +91,6 @@ python -m py_compile . && ruff check . && mypy .
 go build ./... && go vet ./... && golangci-lint run
 ```
 
-## 协作说明
-
-| 任务 | 委托目标 |
-|------|----------|
 | 功能规划 | `tech-director` |
 | 架构设计 | `clean-architecture` |
 | 代码审查 | `code-review-team` |
@@ -104,10 +100,6 @@ go build ./... && go vet ./... && golangci-lint run
 | 前端开发 | `frontend-team` |
 | DevOps | `devops-team` |
 
-## 相关技能
-
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
 | tech-stack-selector | 技术选型 | 技术选型时 |
 | backend-patterns | Node.js 模式 | Node.js 开发时 |
 | express-patterns | Express 模式 | Express 开发时 |

@@ -137,20 +137,12 @@ go mod tidy
 go build ./...
 ```
 
-## 协作说明
-
-| 任务     | 委托目标           |
-| -------- | ------------------ |
 | 功能规划 | `tech-director` |
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team`    |
 | 测试     | `testing-team`     |
 | DevOps   | `devops-team`      |
 
-## 相关技能
-
-| 技能                    | 用途         | 调用时机       |
-| ----------------------- | ------------ | -------------- |
 | coding-standards        | 编码标准     | 始终调用       |
 | error-handling-patterns | 错误处理模式 | 错误诊断时     |
 | backend-patterns        | Node.js 模式 | Node.js 问题时 |

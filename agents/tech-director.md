@@ -124,20 +124,12 @@ mcp_servers:
 - 灰度发布验证
 ```
 
-## 协作说明
-
-| 任务     | 委托目标           |
-| -------- | ------------------ |
 | 代码实现 | 开发团队           |
 | 测试策略 | `testing-team`     |
 | 安全审查 | `security-team`    |
 | 代码审查 | `code-review-team` |
 | DevOps   | `devops-team`      |
 
-## 相关技能
-
-| 技能                | 用途              | 调用时机     |
-| ------------------- | ----------------- | ------------ |
 | clean-architecture  | 整洁架构模式      | 始终调用     |
 | ddd-patterns        | 领域驱动设计模式  | 领域建模时   |
 | rest-patterns       | REST API 设计模式 | API 设计时   |

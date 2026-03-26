@@ -107,10 +107,6 @@ npx tsc --noEmit
 npx complexity-report
 ```
 
-## 协作说明
-
-| 任务     | 委托目标                         |
-| -------- | -------------------------------- |
 | 功能规划 | `tech-director`                  |
 | 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
@@ -118,10 +114,6 @@ npx complexity-report
 | 安全审查 | `security-team`                  |
 | DevOps   | `devops-team`                    |
 
-## 相关技能
-
-| 技能              | 用途        | 调用时机      |
-| ----------------- | ----------- | ------------- |
 | coding-standards  | 编码标准    | 所有审查      |
 | frontend-patterns | 前端模式    | 前端代码时    |
 | backend-patterns  | 后端模式    | 后端代码时    |
