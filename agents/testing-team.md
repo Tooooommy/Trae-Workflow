@@ -1,6 +1,6 @@
 ---
 name: testing-team
-description: 测试团队。负责测试策略、单元测试、集成测试、E2E 测试。根据测试类型调用对应 Skills。在需要测试时使用。
+description: 测试团队。负责测试策略、单元测试、集成测试、E2E 测试。在需要测试时使用。
 mcp_servers:
   - memory
   - sequential-thinking
@@ -28,13 +28,13 @@ mcp_servers:
 ```mermaid
 flowchart TD
     A[用户请求测试] --> B{测试类型判断}
-    B -->|TDD 流程| C[tdd-workflow]
+    B -->|TDD| C[tdd-workflow]
     B -->|单元测试| C
     B -->|集成测试| C
-    B -->|E2E 测试| D[e2e-testing + Playwright]
+    B -->|E2E| D[e2e-testing]
     B -->|性能测试| E[caching-patterns]
-
-    所有测试 --> F[coding-standards]
+    C --> F[coding-standards]
+    D --> F
 ```
 
 ## 核心职责
@@ -46,35 +46,32 @@ flowchart TD
 5. **测试覆盖率** - 确保测试覆盖率达到 80%+
 6. **测试报告** - 生成测试报告和质量指标
 
-## 技术栈映射
+## 工作要求
 
-### 前端测试
+### 测试覆盖率
 
-```javascript
-// 技术栈
-Vitest / Jest + React Testing Library / Vue Test Utils
-// Skills
-tdd-workflow (前端测试部分)
-e2e-testing (Playwright)
-```
+| 指标     | 目标   | 说明               |
+| -------- | ------ | ------------------ |
+| 总覆盖率 | ≥ 80%  | 整体代码覆盖率     |
+| 核心业务 | ≥ 90%  | 关键模块必须高覆盖 |
+| 新增代码 | ≥ 80%  | PR 必须满足        |
+| 单元测试 | < 50ms | 单个测试执行时间   |
 
-### 后端测试
+### 测试原则
 
-```python
-// 技术栈
-pytest / JUnit / Go testing
-// Skills
-tdd-workflow (后端测试部分)
-```
+- **测试优先** - 先写测试，再写实现
+- **隔离运行** - 测试之间无依赖
+- **名称清晰** - 测试名称描述意图
+- **快速反馈** - 单元测试 < 50ms
 
-### E2E 测试
+### 质量门禁
 
-```javascript
-// 技术栈
-Playwright / Cypress / Selenium;
-// Skills
-e2e - testing;
-```
+| 阶段     | 检查项   | 阈值  |
+| -------- | -------- | ----- |
+| 构建     | 编译成功 | 100%  |
+| 单元测试 | 通过率   | 100%  |
+| 覆盖率   | 覆盖率   | ≥ 80% |
+| E2E      | 通过率   | ≥ 95% |
 
 ## 诊断命令
 
@@ -85,8 +82,8 @@ pytest                    # Python
 go test ./...            # Go
 
 # E2E 测试
-npx playwright test
-npx cypress run
+npx playwright test       # Playwright
+npx cypress run          # Cypress
 
 # 覆盖率
 npm run test -- --coverage
@@ -97,7 +94,7 @@ pytest --cov
 
 | 任务     | 委托目标                         |
 | -------- | -------------------------------- |
-| 功能规划 | `tech-director` |
+| 功能规划 | `tech-director`                  |
 | 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
 | 代码审查 | `code-review-team`               |
@@ -107,9 +104,10 @@ pytest --cov
 
 ## 相关技能
 
-| 技能             | 用途           | 调用时机   |
-| ---------------- | -------------- | ---------- |
-| tdd-workflow     | TDD 工作流     | TDD 开发时 |
-| e2e-testing      | Playwright E2E | E2E 测试时 |
-| coding-standards | 编码标准       | 代码审查时 |
-| caching-patterns | 性能与缓存     | 性能测试时 |
+| 技能              | 用途           | 调用时机   |
+| ----------------- | -------------- | ---------- |
+| tdd-workflow      | TDD 工作流     | TDD 开发时 |
+| e2e-testing       | Playwright E2E | E2E 测试时 |
+| coding-standards  | 编码标准       | 代码审查时 |
+| caching-patterns  | 性能与缓存     | 性能测试时 |
+| verification-loop | 质量验证       | 验证阶段   |
