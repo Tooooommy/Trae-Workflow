@@ -266,13 +266,13 @@ planner (技术总监)
 
 ### 架构模式
 
-| 技能                   | 描述                     |
-| ---------------------- | ------------------------ |
-| clean-architecture     | 整洁架构、分层设计       |
-| ddd-patterns           | 领域驱动设计、限界上下文 |
-| cqrs-patterns          | CQRS 命令查询职责分离    |
-| kafka-patterns | Kafka 分布式消息流 |
-| rabbitmq-patterns | RabbitMQ 消息队列 |
+| 技能               | 描述                     |
+| ------------------ | ------------------------ |
+| clean-architecture | 整洁架构、分层设计       |
+| ddd-patterns       | 领域驱动设计、限界上下文 |
+| cqrs-patterns      | CQRS 命令查询职责分离    |
+| kafka-patterns     | Kafka 分布式消息流       |
+| rabbitmq-patterns  | RabbitMQ 消息队列        |
 
 ### 性能与优化
 
@@ -314,7 +314,7 @@ planner (技术总监)
 | i18n-patterns         | 国际化、多语言支持     |
 | email-patterns        | 邮件服务、模板最佳实践 |
 | file-storage-patterns | 文件上传、对象存储     |
-
+| markdown-patterns     | Markdown 文档编写      |
 | webassembly-patterns  | WASM 模块、性能优化    |
 
 ### 全栈框架
