@@ -41,7 +41,7 @@ description: 质量保障部模式。负责产品的"质量保障与卓越工程
 | 单元测试 | `tdd-workflow` | 单元测试, Jest, pytest |
 | 移动端测试 | `mobile-team` | iOS 测试, Android 测试 |
 | 数据库测试 | `postgres-patterns` | 数据库测试, SQL |
-| 缓存测试 | `redis-patterns` | 缓存测试, Redis |
+| 缓存测试 | `caching-patterns` | 缓存测试, Redis |
 | 负载测试 | `caching-patterns` | 负载测试, k6, artillery |
 | 冒烟测试 | `tdd-workflow` | 冒烟测试, 快速验证 |
 | 回归测试 | `tdd-workflow` | 回归测试 |

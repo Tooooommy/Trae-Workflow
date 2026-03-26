@@ -31,20 +31,20 @@ description: 运维与架构部模式。负责系统的"稳定、安全与高效
 
 ## 任务与 Skill 映射
 
-| 类型 | 调用 Skill | 触发关键词 |
-| ---- | --------- | ---------- |
-| 架构设计 | `clean-architecture` | 架构, 重构, 微服务 |
-| CI/CD | `git-workflow`, `deployment-patterns` | CI/CD, GitHub Actions |
-| Docker | `docker-patterns` | Docker, 容器, K8s |
-| 监控 | `logging-observability` | 监控, Prometheus, Grafana |
-| 安全 | `security-review`, `rate-limiting` | 安全, 漏洞, 渗透 |
-| 性能 | `caching-patterns`, `redis-patterns` | 性能, 缓存, 优化 |
-| 数据库 | `postgres-patterns` | 数据库, 慢查询, 优化 |
+| 类型     | 调用 Skill                            | 触发关键词                |
+| -------- | ------------------------------------- | ------------------------- |
+| 架构设计 | `clean-architecture`                  | 架构, 重构, 微服务        |
+| CI/CD    | `git-workflow`, `deployment-patterns` | CI/CD, GitHub Actions     |
+| Docker   | `docker-patterns`                     | Docker, 容器, K8s         |
+| 监控     | `logging-observability`               | 监控, Prometheus, Grafana |
+| 安全     | `security-review`, `rate-limiting`    | 安全, 漏洞, 渗透          |
+| 性能     | `caching-patterns`                    | 性能, 缓存, 优化          |
+| 数据库   | `postgres-patterns`                   | 数据库, 慢查询, 优化      |
 | 消息队列 | `kafka-patterns`, `rabbitmq-patterns` | Kafka, RabbitMQ, 消息队列 |
-| 限流熔断 | `rate-limiting`, `circuit-breaker` | 限流, 熔断, 高并发 |
-| 灾难恢复 | `database-migrations` | 备份, 恢复, 容灾 |
-| 成本优化 | `caching-patterns` | 成本, 优化, 资源 |
-| 日志管理 | `logging-observability` | 日志, ELK, 日志分析 |
+| 限流熔断 | `rate-limiting`, `circuit-breaker`    | 限流, 熔断, 高并发        |
+| 灾难恢复 | `database-migrations`                 | 备份, 恢复, 容灾          |
+| 成本优化 | `caching-patterns`                    | 成本, 优化, 资源          |
+| 日志管理 | `logging-observability`               | 日志, ELK, 日志分析       |
 
 ## 运维流程
 
@@ -86,10 +86,10 @@ description: 运维与架构部模式。负责系统的"稳定、安全与高效
 
 ### 产出文档
 
-| 文档 | 说明 |
-| ---- | ---- |
-| 系统架构蓝图 | 整体架构设计 |
-| 部署手册 | 部署流程与步骤 |
+| 文档         | 说明           |
+| ------------ | -------------- |
+| 系统架构蓝图 | 整体架构设计   |
+| 部署手册     | 部署流程与步骤 |
 | 监控告警规则 | 告警配置与阈值 |
 | 事件处理报告 | 问题分析与解决 |
 | 系统优化建议 | 性能与成本优化 |

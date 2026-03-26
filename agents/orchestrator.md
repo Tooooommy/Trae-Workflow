@@ -164,7 +164,7 @@ flowchart TD
 | 文件存储          | `file-storage-patterns`                                    | 文件上传, OSS    |
 | SQL 数据库        | `postgres-patterns`                                        | PostgreSQL, SQL  |
 | NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
-| 缓存              | `redis-patterns`                                           | Redis, 缓存      |
+| 缓存              | `caching-patterns`                                         | Redis, 缓存      |
 | 后台任务          | `background-jobs`                                          | 后台任务, Cron   |
 | 安全              | `security-review`, `coding-standards`                      | 安全, 漏洞       |
 | 限流熔断          | `rate-limiting`, `circuit-breaker`                         | 限流, 熔断       |

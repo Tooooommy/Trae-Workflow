@@ -276,7 +276,7 @@ VALUES ('avatars', 'avatars', true);
 | backend-patterns    | API 和后端模式      |
 | database-migrations | 数据库迁移最佳实践  |
 | clickhouse-io       | ClickHouse 分析模式 |
-| redis-patterns      | 缓存模式            |
+| caching-patterns    | 缓存模式            |
 
 ---
 
