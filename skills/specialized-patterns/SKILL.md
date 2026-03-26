@@ -40,7 +40,7 @@ description: 专项技术部模式。负责"前瞻性技术探索与复杂专项
 | 安全专项    | `security-review`         | 安全, 渗透, 加密       |
 | 数据库优化  | `postgres-patterns`       | 数据库, 慢查询, 优化   |
 | CQRS/ES     | `cqrs-patterns`           | CQRS, 事件溯源         |
-| 消息队列    | `rabbitmq-patterns`       | RabbitMQ, 消息队列     |
+| 消息队列    | `message-queue-patterns`  | RabbitMQ, 消息队列     |
 | WebAssembly | `webassembly-patterns`    | WASM, WebAssembly      |
 | 实时通信    | `realtime-websocket`      | WebSocket, SSE         |
 | 移动端优化  | `mobile-team`             | 移动端优化, 性能       |

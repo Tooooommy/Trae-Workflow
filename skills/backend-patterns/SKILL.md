@@ -425,7 +425,7 @@ export class UserService {
 | GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo  |
 | 实时通信          | `realtime-websocket`                                       | WebSocket, SSE   |
 | 支付集成          | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns` | 支付             |
-| 消息队列          | `kafka-patterns`, `rabbitmq-patterns`                      | Kafka, RabbitMQ  |
+| 消息队列          | `message-queue-patterns`                                   | Kafka, RabbitMQ  |
 | SQL 数据库        | `postgres-patterns`                                        | PostgreSQL, SQL  |
 | NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
 | 缓存              | `caching-patterns`                                         | 缓存, 性能       |

@@ -40,7 +40,7 @@ description: 运维与架构部模式。负责系统的"稳定、安全与高效
 | 安全     | `security-review`, `rate-limiting`    | 安全, 漏洞, 渗透          |
 | 性能     | `caching-patterns`                    | 性能, 缓存, 优化          |
 | 数据库   | `postgres-patterns`                   | 数据库, 慢查询, 优化      |
-| 消息队列 | `kafka-patterns`, `rabbitmq-patterns` | Kafka, RabbitMQ, 消息队列 |
+| 消息队列 | `message-queue-patterns`              | Kafka, RabbitMQ, 消息队列 |
 | 限流熔断 | `rate-limiting`, `circuit-breaker`    | 限流, 熔断, 高并发        |
 | 灾难恢复 | `database-migrations`                 | 备份, 恢复, 容灾          |
 | 成本优化 | `caching-patterns`                    | 成本, 优化, 资源          |
