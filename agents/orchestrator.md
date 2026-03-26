@@ -36,11 +36,13 @@ flowchart TD
     ParallelDev --> FE[frontend-patterns]
     ParallelDev --> BE[backend-patterns]
     ParallelDev --> Mobile[mobile-patterns]
+    ParallelDev --> Security[security-patterns]
     ParallelDev -.-> Expert[specialized-patterns]
 
     FE --> Orchestrator
     BE --> Orchestrator
     Mobile --> Orchestrator
+    Security --> Orchestrator
     Expert -. 专家支持 .-> Orchestrator
 
     Orchestrator --> QA[quality-patterns]
@@ -56,16 +58,17 @@ flowchart TD
 
 ## Patterns 映射表
 
-| Patterns               | 说明       | 触发场景                 |
-| ---------------------- | ---------- | ------------------------ |
-| `product-patterns`     | 产品团队   | 产品规划, 需求分析, PRD  |
-| `design-patterns`      | 设计团队   | UI设计, 交互设计, 原型   |
-| `frontend-patterns`    | 前端开发   | React, Vue, Next.js, UI  |
-| `backend-patterns`     | 后端开发   | Node.js, Python, Go, API |
-| `mobile-patterns`      | 移动端开发 | iOS, Android, 小程序     |
-| `quality-patterns`     | 质量保障   | 测试, 代码审查, QA       |
-| `platform-patterns`    | 运维与架构 | 部署, 监控, DevOps       |
-| `specialized-patterns` | 专项技术   | 架构迁移, 性能攻坚       |
+| Patterns               | 说明       | 触发场景                   |
+| ---------------------- | ---------- | -------------------------- |
+| `product-patterns`     | 产品团队   | 产品规划, 需求分析, PRD    |
+| `design-patterns`      | 设计团队   | UI设计, 交互设计, 原型     |
+| `frontend-patterns`    | 前端开发   | React, Vue, Next.js, UI    |
+| `backend-patterns`     | 后端开发   | Node.js, Python, Go, API   |
+| `mobile-patterns`      | 移动端开发 | iOS, Android, 小程序       |
+| `security-patterns`    | 安全团队   | 身份验证, 授权, 密钥, 漏洞 |
+| `quality-patterns`     | 质量保障   | 测试, 代码审查, QA         |
+| `platform-patterns`    | 运维与架构 | 部署, 监控, DevOps         |
+| `specialized-patterns` | 专项技术   | 架构迁移, 性能攻坚         |
 
 ---
 
@@ -115,7 +118,7 @@ flowchart TD
 
 ### 阶段 3：并行开发
 
-**调度**：frontend-patterns + backend-patterns + mobile-patterns（并行）
+**调度**：frontend-patterns + backend-patterns + mobile-patterns + security-patterns（并行）
 
 **协同**：specialized-patterns（按需）
 
@@ -281,6 +284,7 @@ sequenceDiagram
     participant FE as frontend-patterns
     participant BE as backend-patterns
     participant M as mobile-patterns
+    participant Sec as security-patterns
     participant S as specialized-patterns
     participant Q as quality-patterns
     participant Ops as platform-patterns
@@ -302,6 +306,9 @@ sequenceDiagram
     and
         O->>M: 移动端（如需要）
         M->>O: 移动端代码
+    and
+        O->>Sec: 安全评估与实现
+        Sec->>O: 安全代码/漏洞修复
     and
         O->>S: 复杂算法咨询（如需要）
         S->>O: 核心模块
