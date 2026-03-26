@@ -29,22 +29,22 @@ description: 移动端开发部模式。负责移动端产品的"原生体验与
 
 ## 平台与 Skill 映射
 
-| 平台 | 调用 Skill | 触发关键词 |
-| ---- | --------- | ---------- |
-| iOS 原生 | `ios-native-patterns` | iOS, Swift, SwiftUI, UIKit |
+| 平台         | 调用 Skill                | 触发关键词                       |
+| ------------ | ------------------------- | -------------------------------- |
+| iOS 原生     | `ios-native-patterns`     | iOS, Swift, SwiftUI, UIKit       |
 | Android 原生 | `android-native-patterns` | Android, Kotlin, Jetpack Compose |
-| React Native | `react-native-patterns` | React Native, RN |
-| 微信小程序 | `mini-program-patterns` | 微信小程序, WeChat |
-| 跨平台桌面 | `electron-patterns` | Electron, 桌面 |
-| 轻量桌面 | `tauri-patterns` | Tauri, Rust |
-| 响应式布局 | `tailwind-patterns` | Tailwind, CSS, 响应式 |
-| 实时通信 | `webrtc-patterns` | WebRTC, 实时音视频 |
-| 国际化 | `i18n-patterns` | i18n, 国际化, 多语言 |
-| 后台任务 | `background-jobs` | 后台任务, 推送通知 |
-| 安全编码 | `security-review` | 安全, 加密, 数据保护 |
-| 性能优化 | `caching-patterns` | 性能优化, 缓存 |
-| 代码规范 | `coding-standards` | lint, type, 代码规范 |
-| 测试驱动 | `tdd-workflow` | TDD, 测试驱动 |
+| React Native | `react-native-patterns`   | React Native, RN                 |
+| 微信小程序   | `mini-program-patterns`   | 微信小程序, WeChat               |
+| 跨平台桌面   | `electron-patterns`       | Electron, 桌面                   |
+| 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
+| 响应式布局   | `tailwind-patterns`       | Tailwind, CSS, 响应式            |
+| 实时通信     | `webrtc-patterns`         | WebRTC, 实时音视频               |
+| 国际化       | `i18n-patterns`           | i18n, 国际化, 多语言             |
+| 后台任务     | `background-jobs`         | 后台任务, 推送通知               |
+| 安全编码     | `security-review`         | 安全, 加密, 数据保护             |
+| 性能优化     | `caching-patterns`        | 性能优化, 缓存                   |
+| 代码规范     | `coding-standards`        | lint, type, 代码规范             |
+| 测试驱动     | `tdd-patterns`            | TDD, 测试驱动                    |
 
 ## 开发流程
 
@@ -83,19 +83,19 @@ description: 移动端开发部模式。负责移动端产品的"原生体验与
 
 ### 产出文档
 
-| 文档 | 说明 |
-| ---- | ---- |
-| 移动端技术方案 | 如需要的技术实现方案 |
+| 文档             | 说明                 |
+| ---------------- | -------------------- |
+| 移动端技术方案   | 如需要的技术实现方案 |
 | 应用商店发布说明 | 应用描述、截图等物料 |
 
 ## 性能目标
 
-| 指标 | 目标 | 说明 |
-| ---- | ---- | ---- |
-| 启动时间 | < 2s | 冷启动时间 |
+| 指标     | 目标    | 说明         |
+| -------- | ------- | ------------ |
+| 启动时间 | < 2s    | 冷启动时间   |
 | 内存占用 | < 150MB | 基础内存占用 |
-| 电量消耗 | < 5%/h | 后台功耗 |
-| 平台测试 | 兼容性 | ≥ 95% |
+| 电量消耗 | < 5%/h  | 后台功耗     |
+| 平台测试 | 兼容性  | ≥ 95%        |
 
 ## 诊断命令
 

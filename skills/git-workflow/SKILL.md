@@ -368,4 +368,4 @@ git revert <commit-hash>
 - [ci-cd-patterns](../ci-cd-patterns/) — CI/CD 流程配置
 - [deployment-patterns](../deployment-patterns/) — 部署模式
 - [coding-standards](../coding-standards/) — 编码规范
-- [tdd-workflow](../tdd-workflow/) — 测试驱动开发
+- [tdd-patterns](../tdd-patterns/) — 测试驱动开发

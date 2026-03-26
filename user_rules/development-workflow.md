@@ -4,7 +4,7 @@
 
 ```
 1. 规划 → product-design-team
-2. TDD  → tdd-workflow
+2. TDD  → tdd-patterns
 3. 审查 → quality-team
 4. 提交 → 约定式提交
 ```

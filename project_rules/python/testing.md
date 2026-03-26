@@ -51,4 +51,4 @@ def client():
 ## 相关技能
 
 - `python-testing` - pytest 测试策略
-- `tdd-workflow` - 测试驱动开发
+- `tdd-patterns` - 测试驱动开发

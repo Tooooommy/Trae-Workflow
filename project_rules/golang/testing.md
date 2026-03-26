@@ -58,4 +58,4 @@ go test -cover ./...
 ## 相关技能
 
 - `golang-testing` - Go 测试模式
-- `tdd-workflow` - 测试驱动开发
+- `tdd-patterns` - 测试驱动开发

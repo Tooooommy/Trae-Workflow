@@ -157,7 +157,7 @@ python -m scripts.improve_description <skill-path>
 | backend-patterns  | 后端开发模式   |
 | mobile-team       | 移动端团队     |
 | design-patterns   | UI/UX 设计模式 |
-| tdd-workflow      | 测试驱动开发   |
+| tdd-patterns      | 测试驱动开发   |
 | security-review   | 安全审查       |
 
 ## 相关技能
@@ -165,4 +165,4 @@ python -m scripts.improve_description <skill-path>
 | 技能             | 说明         |
 | ---------------- | ------------ |
 | coding-standards | 编码标准     |
-| tdd-workflow     | 测试驱动开发 |
+| tdd-patterns     | 测试驱动开发 |

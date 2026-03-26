@@ -43,5 +43,5 @@ describe('User', () => {
 
 ## 相关技能
 
-- `tdd-workflow` - 测试驱动开发
+- `tdd-patterns` - 测试驱动开发
 - `e2e-testing` - Playwright E2E 测试

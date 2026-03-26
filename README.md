@@ -217,7 +217,7 @@ traew update
 - **git-workflow** - Git 版本控制
 - **docker-patterns** - Docker 容器化
 - **deployment-patterns** - 部署流水线
-- **tdd-workflow** - 测试驱动开发
+- **tdd-patterns** - 测试驱动开发
 - **e2e-testing** - Playwright E2E 测试
 
 ---

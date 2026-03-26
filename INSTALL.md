@@ -365,7 +365,7 @@ export POSTGRES_URL="your_postgres_connection_string"
 ├── mcp.json                   # MCP 服务器配置
 ├── tracking.json              # 跟踪分析配置（可选）
 ├── skills/                    # 技能目录（70+ 技能）
-│   ├── tdd-workflow/
+│   ├── tdd-patterns/
 │   └── ...
 └── user_rules/                # 用户规则目录
     ├── user-rules.md
@@ -399,7 +399,7 @@ export POSTGRES_URL="your_postgres_connection_string"
 尝试使用以下智能体：
 
 1. **product-design-team**：请求制定一个简单的实施计划
-2. **tdd-workflow**：请求指导 TDD 工作流
+2. **tdd-patterns**：请求指导 TDD 工作流
 3. **review-team**：审查一段代码
 
 ### 5. 验证规则加载

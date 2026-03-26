@@ -61,4 +61,4 @@ fun `should validate format`(format: String) {
 ## 相关技能
 
 - `android-native-patterns` - Android 开发模式
-- `tdd-workflow` - 测试驱动开发
+- `tdd-patterns` - 测试驱动开发

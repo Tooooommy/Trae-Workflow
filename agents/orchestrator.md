@@ -170,7 +170,7 @@ flowchart TD
 | 限流熔断          | `rate-limiting`, `circuit-breaker`    | 限流, 熔断                |
 | REST API          | `rest-patterns`                       | REST, API                 |
 | 代码规范          | `coding-standards`                    | lint, type                |
-| 测试驱动          | `tdd-workflow`                        | TDD                       |
+| 测试驱动          | `tdd-patterns`                        | TDD                       |
 
 #### 3.3 移动端开发（mobile-patterns）
 
