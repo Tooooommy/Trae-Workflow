@@ -13,27 +13,31 @@ mcp_servers:
 
 ## 平台判断
 
-| 平台 | 调用 Skill | 触发关键词 |
-|------|-----------|------------|
-| iOS 原生 | `ios-native-patterns` | iOS, Swift, SwiftUI, UIKit, Xcode |
+| 平台         | 调用 Skill                | 触发关键词                       |
+| ------------ | ------------------------- | -------------------------------- |
+| iOS 原生     | `ios-native-patterns`     | iOS, Swift, SwiftUI, UIKit       |
 | Android 原生 | `android-native-patterns` | Android, Kotlin, Jetpack Compose |
-| React Native | `react-native-patterns` | React Native, RN |
-| 微信小程序 | `mini-program-patterns` | 微信小程序, WeChat |
-| 跨平台桌面 | `electron-patterns` | Electron, 桌面 |
-| 轻量桌面 | `tauri-patterns` | Tauri, Rust |
+| React Native | `react-native-patterns`   | React Native, RN                 |
+| 微信小程序   | `mini-program-patterns`   | 微信小程序, WeChat               |
+| 跨平台桌面   | `electron-patterns`       | Electron, 桌面                   |
+| 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
 
 ## 协作流程
 
 ```mermaid
 flowchart TD
     A[用户请求移动端开发] --> B{平台判断}
-    B -->|iOS| C[ios-native-patterns + coding-standards]
-    B -->|Android| D[android-native-patterns + coding-standards]
-    B -->|React Native| E[react-native-patterns + coding-standards]
+    B -->|iOS| C[ios-native-patterns]
+    B -->|Android| D[android-native-patterns]
+    B -->|React Native| E[react-native-patterns]
     B -->|微信小程序| F[mini-program-patterns]
-    B -->|跨平台桌面| G[electron-patterns / tauri-patterns]
-    
-    所有移动端 --> H[coding-standards + tdd-workflow]
+    B -->|桌面| G[electron-patterns / tauri-patterns]
+
+    C --> H[coding-standards + tdd-workflow]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
 ```
 
 ## 核心职责
@@ -44,62 +48,44 @@ flowchart TD
 4. **用户体验** - 遵循平台设计规范
 5. **测试策略** - 移动端特定测试方案
 
-## 技术栈映射
+## 工作要求
 
-### iOS
-```swift
-// 技术栈
-Swift + SwiftUI / UIKit + Xcode + Core Data
-// Skills
-ios-native-patterns
-tdd-workflow (XCTest)
-coding-standards
-```
+### 性能目标
 
-### Android
-```kotlin
-// 技术栈
-Kotlin + Jetpack Compose + Android Studio + Room
-// Skills
-android-native-patterns
-tdd-workflow (Espresso)
-coding-standards
-```
+| 指标     | 目标    | 说明           |
+| -------- | ------- | -------------- |
+| 冷启动   | < 2s    | 应用冷启动时间 |
+| 内存占用 | < 200MB | 正常运行内存   |
+| APK 大小 | < 30MB  | 安装包大小     |
+| 帧率     | ≥ 60fps | 流畅度         |
 
-### React Native
-```javascript
-// 技术栈
-React Native + TypeScript + Redux/Zustand
-// Skills
-react-native-patterns
-frontend-patterns (部分)
-tdd-workflow
-coding-standards
-```
+### 平台规范
 
-### 微信小程序
-```javascript
-// 技术栈
-微信小程序 + WXML + WXSS + JavaScript
-// Skills
-mini-program-patterns
-coding-standards
-```
+- **iOS** - HIG (Human Interface Guidelines)
+- **Android** - Material Design 3
+- **React Native** - 遵循各平台规范
+- **小程序** - 微信小程序开发规范
+
+### 质量门禁
+
+| 阶段     | 检查项   | 阈值  |
+| -------- | -------- | ----- |
+| 构建     | 编译成功 | 100%  |
+| 单元测试 | 通过率   | 100%  |
+| 覆盖率   | 覆盖率   | ≥ 80% |
+| 平台测试 | 兼容性   | ≥ 95% |
 
 ## 诊断命令
 
 ```bash
 # React Native
-npx react-native run-ios
-npx react-native run-android
-npx react-native bundle --platform ios --dev false
+npx react-native run-ios && npx react-native run-android
 
 # iOS
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug build
+xcodebuild -workspace App.xcworkspace -scheme App build
 
 # Android
-./gradlew assembleDebug
-./gradlew assembleRelease
+./gradlew assembleDebug && ./gradlew assembleRelease
 
 # 小程序
 npm run build:weapp
@@ -107,26 +93,27 @@ npm run build:weapp
 
 ## 协作说明
 
-| 任务 | 委托目标 |
-|------|----------|
-| 功能规划 | `tech-director` |
+| 任务     | 委托目标             |
+| -------- | -------------------- |
+| 功能规划 | `tech-director`      |
 | 架构设计 | `clean-architecture` |
-| 代码审查 | `code-review-team` |
-| 测试策略 | `testing-team` |
-| 安全审查 | `security-team` |
-| 性能优化 | `performance-team` |
-| 前端开发 | `frontend-team` |
-| 后端开发 | `backend-team` |
+| 代码审查 | `code-review-team`   |
+| 测试策略 | `testing-team`       |
+| 安全审查 | `security-team`      |
+| 性能优化 | `performance-team`   |
+| 前端开发 | `frontend-team`      |
+| 后端开发 | `backend-team`       |
 
 ## 相关技能
 
-| 技能 | 用途 | 调用时机 |
-|------|------|----------|
-| ios-native-patterns | iOS 开发 | iOS 项目时 |
-| android-native-patterns | Android 开发 | Android 项目时 |
-| react-native-patterns | React Native | 跨平台 RN 时 |
-| mini-program-patterns | 微信小程序 | 小程序开发时 |
-| frontend-patterns | 前端模式 | UI 开发时 |
-| coding-standards | 编码标准 | 始终调用 |
-| tdd-workflow | TDD 工作流 | TDD 开发时 |
-| caching-patterns | 缓存策略 | 性能问题时 |
+| 技能                    | 用途          | 调用时机        |
+| ----------------------- | ------------- | --------------- |
+| ios-native-patterns     | iOS 开发      | iOS 项目时      |
+| android-native-patterns | Android 开发  | Android 项目时  |
+| react-native-patterns   | React Native  | 跨平台 RN 时    |
+| mini-program-patterns   | 微信小程序    | 小程序开发时    |
+| electron-patterns       | Electron 桌面 | Electron 开发时 |
+| tauri-patterns          | Tauri 桌面    | Tauri 开发时    |
+| frontend-patterns       | 前端模式      | UI 开发时       |
+| coding-standards        | 编码标准      | 始终调用        |
+| tdd-workflow            | TDD 工作流    | TDD 开发时      |

@@ -13,18 +13,18 @@ mcp_servers:
 
 ## 技术架构判断
 
-| 场景              | 调用 Skill            | 触发关键词                     |
-| ----------------- | --------------------- | ------------------------------ |
-| **技术选型**      | `tech-stack-selector` | 选择技术栈、确定框架、技术决策 |
-| Node.js / Express | `backend-patterns`    | Express, Node.js, API          |
-| Python / FastAPI  | `fastapi-patterns`    | FastAPI, Python API            |
-| Python / Django   | `django-patterns`     | Django, DRF                    |
-| Go                | `golang-patterns`     | Go, Golang, goroutine          |
-| Rust              | `rust-patterns`       | Rust, async                    |
-| GraphQL           | `graphql-patterns`    | GraphQL, Apollo                |
-| 数据库 / SQL      | `postgres-patterns`   | PostgreSQL, SQL                |
-| 文档数据库        | `mongodb-patterns`    | MongoDB, NoSQL                 |
-| 缓存              | `redis-patterns`      | Redis, 缓存                    |
+| 场景 | 调用 Skill | 触发关键词 |
+|------|------------|-------------|
+| **技术选型** | `tech-stack-selector` | 选择技术栈、确定框架 |
+| Node.js / Express | `backend-patterns` + `express-patterns` | Express, Node.js, API |
+| Python / FastAPI | `fastapi-patterns` | FastAPI, Python API |
+| Python / Django | `django-patterns` | Django, DRF |
+| Go | `golang-patterns` + `gin-patterns` | Go, Golang, Gin |
+| Rust | `rust-patterns` | Rust, async |
+| GraphQL | `graphql-patterns` | GraphQL, Apollo |
+| 数据库 / SQL | `postgres-patterns` | PostgreSQL, SQL |
+| 文档数据库 | `mongodb-patterns` | MongoDB, NoSQL |
+| 缓存 | `redis-patterns` | Redis, 缓存 |
 
 ## 协作流程
 
@@ -33,18 +33,16 @@ flowchart TD
     A[用户请求后端开发] --> B{技术选型?}
     B -->|是| C[tech-stack-selector]
     B -->|否| D{技术架构判断}
-    D -->|Node.js/Express| E[backend-patterns + express-patterns]
-    D -->|Python/FastAPI| F[fastapi-patterns]
-    D -->|Python/Django| G[django-patterns]
-    D -->|Go| H[golang-patterns]
-    D -->|Rust| I[rust-patterns]
+    D -->|Node.js| E[backend-patterns + express-patterns]
+    D -->|Python| F[fastapi-patterns / django-patterns]
+    D -->|Go| G[golang-patterns + gin-patterns]
+    D -->|Rust| H[rust-patterns]
 
-    E --> J[coding-standards + tdd-workflow]
-    F --> J
-    G --> J
-    H --> J
-    I --> J
-    J -.->|需要时| K[postgres-patterns, caching-patterns]
+    E --> I[coding-standards + tdd-workflow]
+    F --> I
+    G --> I
+    H --> I
+    I -.->|需要时| J[postgres-patterns, redis-patterns, caching-patterns]
 ```
 
 ## 核心职责
@@ -55,110 +53,72 @@ flowchart TD
 4. **性能优化** - 优化 API 响应时间
 5. **安全实现** - 实现身份验证、授权
 
-## 技术栈映射
+## 工作要求
 
-### Node.js 生态
+### 性能目标
 
-```javascript
-// 技术栈
-Node.js + Express / Fastify + TypeScript + Prisma + PostgreSQL;
-// Skills
-backend - patterns;
-express - patterns;
-tdd - workflow(Jest);
-coding - standards;
-```
+| 指标 | 目标 | 说明 |
+|------|------|------|
+| API 响应 | < 200ms (P95) | P95 分位延迟 |
+| 错误率 | < 0.1% | 5xx 错误占比 |
+| 可用性 | > 99.9% | 服务可用时间 |
 
-### Python 生态
+### 安全要求
 
-```python
-# 技术栈
-Python + FastAPI/Django + SQLAlchemy + PostgreSQL
-# Skills
-fastapi-patterns / django-patterns
-python-patterns
-tdd-workflow (pytest)
-coding-standards
-```
+- **输入验证** - 所有输入必须验证
+- **SQL 注入** - 防止 SQL 注入
+- **XSS 防护** - 输出转义
+- **认证授权** - JWT/OAuth2
+- **限流** - API 限流保护
 
-### Go 生态
+### 架构原则
 
-```go
-// 技术栈
-Go + Gin/Echo + GORM + PostgreSQL
-// Skills
-golang-patterns
-tdd-workflow (testing)
-coding-standards
-```
-
-### 数据库选择
-
-```sql
--- 关系型: PostgreSQL
-postgres-patterns + database-migrations
-
--- 文档型: MongoDB
-mongodb-patterns
-
--- 缓存: Redis
-redis-patterns + caching-patterns
-
--- 分析型: ClickHouse
-clickhouse-io
-```
+- **依赖抽象** - 依赖接口不依赖实现
+- **单一职责** - 每个模块职责单一
+- **松耦合** - 模块间低耦合
+- **可测试** - 业务逻辑可测试
 
 ## 诊断命令
 
 ```bash
 # Node.js
-npm run build
-npm run lint
-npm test
+npm run build && npm run lint && npx tsc --noEmit
 
 # Python
-python -m pytest
-ruff check .
-mypy .
+python -m py_compile . && ruff check . && mypy .
 
 # Go
-go build ./...
-go test ./...
-go vet .
+go build ./... && go vet ./... && golangci-lint run
 ```
 
 ## 协作说明
 
-| 任务     | 委托目标                                 |
-| -------- | ---------------------------------------- |
-| 功能规划 | `tech-director`                          |
-| 架构设计 | `clean-architecture`                     |
-| 代码审查 | `code-review-team`                       |
-| 测试策略 | `testing-team`                           |
-| 安全审查 | `security-team`                          |
-| 性能优化 | `performance-team`                       |
-| 数据库   | `postgres-patterns` / `mongodb-patterns` |
-| 前端开发 | `frontend-team`                          |
-| DevOps   | `devops-team`                            |
+| 任务 | 委托目标 |
+|------|----------|
+| 功能规划 | `tech-director` |
+| 架构设计 | `clean-architecture` |
+| 代码审查 | `code-review-team` |
+| 测试策略 | `testing-team` |
+| 安全审查 | `security-team` |
+| 性能优化 | `performance-team` |
+| 前端开发 | `frontend-team` |
+| DevOps | `devops-team` |
 
 ## 相关技能
 
-| 技能                | 用途          | 调用时机            |
-| ------------------- | ------------- | ------------------- |
-| tech-stack-selector | 技术选型      | 技术选型时          |
-| backend-patterns    | Node.js 模式  | Node.js 开发时      |
-| express-patterns    | Express 模式  | Express 开发时      |
-| fastapi-patterns    | FastAPI 模式  | FastAPI 开发时      |
-| django-patterns     | Django 模式   | Django 开发时       |
-| golang-patterns     | Go 模式       | Go 开发时           |
-| gin-patterns        | Gin Web 框架  | Gin 框架开发时      |
-| rust-patterns       | Rust 模式     | Rust 开发时         |
-| graphql-patterns    | GraphQL 模式  | GraphQL 开发时      |
-| kafka-patterns      | Kafka 消息流  | Kafka 消息队列时    |
-| rabbitmq-patterns   | RabbitMQ 消息 | RabbitMQ 消息队列时 |
-| postgres-patterns   | PostgreSQL    | 使用 PostgreSQL 时  |
-| mongodb-patterns    | MongoDB       | 使用 MongoDB 时     |
-| redis-patterns      | Redis 缓存    | 使用 Redis 时       |
-| database-migrations | 数据库迁移    | 数据库迁移时        |
-| coding-standards    | 编码标准      | 始终调用            |
-| tdd-workflow        | TDD 工作流    | TDD 开发时          |
+| 技能 | 用途 | 调用时机 |
+|------|------|----------|
+| tech-stack-selector | 技术选型 | 技术选型时 |
+| backend-patterns | Node.js 模式 | Node.js 开发时 |
+| express-patterns | Express 模式 | Express 开发时 |
+| fastapi-patterns | FastAPI 模式 | FastAPI 开发时 |
+| django-patterns | Django 模式 | Django 开发时 |
+| golang-patterns | Go 模式 | Go 开发时 |
+| gin-patterns | Gin 模式 | Gin 开发时 |
+| rust-patterns | Rust 模式 | Rust 开发时 |
+| postgres-patterns | PostgreSQL | 数据库设计时 |
+| redis-patterns | Redis 缓存 | 缓存设计时 |
+| graphql-patterns | GraphQL | GraphQL 开发时 |
+| coding-standards | 编码标准 | 始终调用 |
+| tdd-workflow | TDD 工作流 | TDD 开发时 |
+| clean-architecture | 整洁架构 | 架构设计时 |

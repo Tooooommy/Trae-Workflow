@@ -14,11 +14,29 @@ mcp_servers:
 ## 核心职责
 
 1. **支付集成** - 支付网关、钱包、银行卡
-2. **消息队列** - RabbitMQ/Kafka/SQS
+2. **消息队列** - RabbitMQ/Kafka
 3. **短信/邮件** - 通知服务集成
 4. **社交登录** - OAuth/SSO 集成
 5. **地图服务** - 地理位置服务
 6. **云存储** - 文件存储、CDN
+
+## 工作要求
+
+### 集成原则
+
+- **幂等性** - 重复调用结果一致
+- **超时处理** - 设置合理超时
+- **重试机制** - 指数退避重试
+- **错误处理** - 优雅降级处理
+
+### 质量门禁
+
+| 阶段     | 检查项   | 阈值 |
+| -------- | -------- | ---- |
+| 集成测试 | 通过率   | 100% |
+| 幂等性   | 测试     | 通过 |
+| 超时     | 配置合理 | 是   |
+| 错误处理 | 降级测试 | 通过 |
 
 ## 集成类型判断
 
@@ -26,7 +44,7 @@ mcp_servers:
 | -------- | -------------------------------------- | ----------------------- |
 | 支付     | `stripe-patterns` / `alipay-patterns`  | 支付, Stripe, 支付宝    |
 | 消息队列 | `kafka-patterns` / `rabbitmq-patterns` | Kafka, RabbitMQ         |
-| 短信     | `message-queue-patterns`               | 短信, SMS, Twilio       |
+| 短信     | `backend-patterns`                     | 短信, SMS, Twilio       |
 | 邮件     | `email-patterns`                       | 邮件, SMTP, SendGrid    |
 | OAuth    | `security-review`                      | OAuth, SSO, 登录        |
 | 地图     | `backend-patterns`                     | 地图, 高德, Google Maps |
@@ -40,7 +58,7 @@ flowchart TD
     A[用户请求集成] --> B{集成类型判断}
     B -->|支付| C[stripe-patterns / alipay-patterns]
     B -->|消息队列| D[kafka-patterns / rabbitmq-patterns]
-    B -->|短信| E[message-queue-patterns]
+    B -->|短信| E[backend-patterns]
     B -->|邮件| F[email-patterns]
     B -->|OAuth| G[security-review]
     B -->|地图| H[backend-patterns]
@@ -84,8 +102,8 @@ flowchart TD
 
 | 任务     | 委托目标           |
 | -------- | ------------------ |
-| 功能规划 | `tech-director` |
-| 架构设计 | `tech-director` |
+| 功能规划 | `tech-director`    |
+| 架构设计 | `tech-director`    |
 | 代码实现 | `backend-team`     |
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team`    |
