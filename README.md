@@ -8,7 +8,7 @@
 
 | 智能体 | 技能 | 规则     |
 | ------ | ---- | -------- |
-| 7      | 62+  | 完整体系 |
+| 7      | 70+  | 完整体系 |
 
 ---
 
@@ -189,6 +189,12 @@ traew update
 - **ios-native-patterns** - iOS Swift/SwiftUI
 - **android-native-patterns** - Android Kotlin
 - **react-native-patterns** - React Native
+- **mini-program-patterns** - 微信小程序
+
+### 桌面端
+
+- **electron-patterns** - Electron 桌面应用
+- **tauri-patterns** - Tauri 桌面应用
 
 ### 架构 & 工程
 
@@ -196,21 +202,33 @@ traew update
 - **cqrs-patterns** - CQRS 命令查询分离
 - **ddd-patterns** - 领域驱动设计
 
+### 支付集成
+
+- **payment-patterns** - 统一支付接口
+- **stripe-patterns** - Stripe 支付集成
+- **alipay-patterns** - 支付宝支付集成
+- **wechatpay-patterns** - 微信支付集成
+- **douyinpay-patterns** - 抖音支付集成
+- **paypal-patterns** - PayPal 支付集成
+
 ### 消息 & 集成
 
 - **kafka-patterns** - Kafka 分布式消息
 - **rabbitmq-patterns** - RabbitMQ 消息队列
-- **stripe-patterns** - Stripe 支付集成
-- **alipay-patterns** - 支付宝支付集成
-- **wechatpay-patterns** - 微信支付集成
-- **paypal-patterns** - PayPal 支付集成
+- **message-queue-patterns** - 消息队列模式
 
 ### 性能 & 缓存
 
 - **caching-patterns** - 多级缓存策略
 - **redis-patterns** - Redis 数据结构
 - **postgres-patterns** - PostgreSQL 优化
+- **clickhouse-io** - ClickHouse 分析数据库
 - **logging-observability** - 日志与可观测性
+
+### Web & 跨平台
+
+- **webassembly-patterns** - WebAssembly 高性能计算
+- **webrtc-patterns** - WebRTC 实时通信
 
 ### 开发工具
 
@@ -227,9 +245,10 @@ traew update
 ```
 Trae-Workflow/
 ├── agents/              # 7 个智能体
-├── skills/              # 62+ 技能
+├── skills/              # 70+ 技能
 ├── project_rules/       # 项目规则
 ├── user_rules/          # 用户规则
+├── .trae/               # 规则目录
 └── README.md
 ```
 
