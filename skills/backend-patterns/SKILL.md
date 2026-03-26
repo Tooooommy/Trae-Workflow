@@ -430,6 +430,6 @@ export class UserService {
 | NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
 | 缓存              | `redis-patterns`                                           | Redis, 缓存      |
 | 后台任务          | `background-jobs`                                          | 后台任务, Cron   |
-| 安全              | `security-review`                                          | 安全, 漏洞       |
+| 安全              | `security-patterns`                                        | 安全, 漏洞       |
 | REST API          | `rest-patterns`                                            | REST, API        |
 | 数据库迁移        | `database-migrations`                                      | 迁移, schema     |
