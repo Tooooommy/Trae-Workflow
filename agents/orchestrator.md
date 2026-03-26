@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、工程（前端/后端）、移动端、质量保障、运维与架构、专项技术等 Patterns 的协作。
+description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、前端、后端、移动端、质量保障、运维与架构、专项技术等 Patterns 的协作。
 mcp_servers:
   - memory
   - sequential-thinking
@@ -32,18 +32,16 @@ flowchart TD
     Orchestrator --> Design[design-patterns]
     Design --> Orchestrator
 
-    Orchestrator --> Parallel[并行触发]
-    Parallel --> Eng[engineering-patterns]
-    Parallel --> Mobile[mobile-patterns]
-    Parallel -.-> Expert[specialized-patterns]
+    Orchestrator --> ParallelDev[并行开发]
+    ParallelDev --> FE[frontend-patterns]
+    ParallelDev --> BE[backend-patterns]
+    ParallelDev --> Mobile[mobile-patterns]
+    ParallelDev -.-> Expert[specialized-patterns]
 
-    Eng --> FE[frontend-patterns]
-    Eng --> BE[backend-patterns]
-
-    Eng --> Orchestrator
-    FE --> Eng
-    BE --> Eng
+    FE --> Orchestrator
+    BE --> Orchestrator
     Mobile --> Orchestrator
+    Expert -. 专家支持 .-> Orchestrator
 
     Orchestrator --> QA[quality-patterns]
     QA --> Orchestrator
@@ -52,25 +50,22 @@ flowchart TD
     Ops --> Orchestrator
 
     Orchestrator --> User
-
-    Expert -. 专家支持 .-> Orchestrator
 ```
 
 ---
 
 ## Patterns 映射表
 
-| Patterns               | 说明           | 触发场景                 |
-| ---------------------- | -------------- | ------------------------ |
-| `product-patterns`     | 产品团队       | 产品规划, 需求分析, PRD  |
-| `design-patterns`      | 设计团队       | UI设计, 交互设计, 原型   |
-| `engineering-patterns` | 工程技术调度器 | 前端/后端开发判断与分发  |
-| `frontend-patterns`    | 前端开发       | React, Vue, Next.js, UI  |
-| `backend-patterns`     | 后端开发       | Node.js, Python, Go, API |
-| `mobile-patterns`      | 移动端开发     | iOS, Android, 小程序     |
-| `quality-patterns`     | 质量保障       | 测试, 代码审查, QA       |
-| `platform-patterns`    | 运维与架构     | 部署, 监控, DevOps       |
-| `specialized-patterns` | 专项技术       | 架构迁移, 性能攻坚       |
+| Patterns               | 说明       | 触发场景                 |
+| ---------------------- | ---------- | ------------------------ |
+| `product-patterns`     | 产品团队   | 产品规划, 需求分析, PRD  |
+| `design-patterns`      | 设计团队   | UI设计, 交互设计, 原型   |
+| `frontend-patterns`    | 前端开发   | React, Vue, Next.js, UI  |
+| `backend-patterns`     | 后端开发   | Node.js, Python, Go, API |
+| `mobile-patterns`      | 移动端开发 | iOS, Android, 小程序     |
+| `quality-patterns`     | 质量保障   | 测试, 代码审查, QA       |
+| `platform-patterns`    | 运维与架构 | 部署, 监控, DevOps       |
+| `specialized-patterns` | 专项技术   | 架构迁移, 性能攻坚       |
 
 ---
 
@@ -86,7 +81,7 @@ flowchart TD
 
 1. **理解意图** - 解析需求类型（产品/功能/Bug/优化）
 2. **创建工单** - 生成任务工单，记录需求描述
-3. **初步评估** - 评估复杂度、所需部门、预计工期
+3. **初步评估** - 评估复杂度、所需 Patterns、预计工期
 
 **输出**：
 
@@ -120,29 +115,11 @@ flowchart TD
 
 ### 阶段 3：并行开发
 
-**调度**：engineering-patterns + mobile-patterns（并行）
+**调度**：frontend-patterns + backend-patterns + mobile-patterns（并行）
 
 **协同**：specialized-patterns（按需）
 
-#### 3.1 工程技术调度器（engineering-patterns）
-
-负责判断用户需求属于前端还是后端，并调度至对应的 Patterns。
-
-**调度决策树**：
-
-```mermaid
-flowchart TD
-    Start[用户需求] --> Check{判断类型}
-    Check -->|UI/组件/页面| Frontend[frontend-patterns]
-    Check -->|服务/API/数据库| Backend[backend-patterns]
-    Check -->|前后端都需要| Both[并行触发]
-    Both --> Frontend
-    Both --> Backend
-    Frontend --> Output1[前端交付]
-    Backend --> Output2[后端交付]
-```
-
-**前端子技能映射**：
+#### 3.1 前端开发（frontend-patterns）
 
 | 类型            | 调用 Skill          | 触发关键词          |
 | --------------- | ------------------- | ------------------- |
@@ -152,15 +129,14 @@ flowchart TD
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
 
-**后端子技能映射**：
+#### 3.2 后端开发（backend-patterns）
 
 | 类型              | 调用 Skill                                                 | 触发关键词       |
 | ----------------- | ---------------------------------------------------------- | ---------------- |
 | Node.js / Express | `express-patterns`                                         | Node.js, Express |
 | Python / FastAPI  | `fastapi-patterns`                                         | Python, FastAPI  |
 | Python / Django   | `django-patterns`                                          | Python, Django   |
-| Go / Gin          | `gin-patterns`                                             | Go, Gin          |
-| Go / General      | `golang-patterns`                                          | Go, Golang       |
+| Go / Gin          | `golang-patterns`                                          | Go, Gin          |
 | Rust              | `rust-patterns`                                            | Rust, async      |
 | GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo  |
 | 实时通信          | `realtime-websocket`                                       | WebSocket, SSE   |
@@ -178,7 +154,7 @@ flowchart TD
 | 代码规范          | `coding-standards`                                         | lint, type       |
 | 测试驱动          | `tdd-workflow`                                             | TDD              |
 
-#### 3.2 移动端开发部（mobile-patterns）
+#### 3.3 移动端开发（mobile-patterns）
 
 | 平台         | 调用 Skill                | 触发关键词          |
 | ------------ | ------------------------- | ------------------- |
@@ -187,7 +163,7 @@ flowchart TD
 | React Native | `react-native-patterns`   | React Native        |
 | 微信小程序   | `mini-program-patterns`   | 微信小程序          |
 
-#### 3.3 专项技术部（specialized-patterns，按需）
+#### 3.4 专项技术（specialized-patterns，按需）
 
 | 类型     | 调用 Skill            | 触发关键词     |
 | -------- | --------------------- | -------------- |
@@ -196,9 +172,20 @@ flowchart TD
 | 算法优化 | `ddd-patterns`        | 算法, 领域驱动 |
 | 技术选型 | `tech-stack-selector` | 技术选型, 评估 |
 
+**并行策略**：
+
+| 场景            | 调度策略                                                    |
+| --------------- | ----------------------------------------------------------- |
+| Web 前端 + 后端 | frontend-patterns + backend-patterns 并行                   |
+| Web + 移动端    | frontend-patterns + backend-patterns + mobile-patterns 并行 |
+| 多端 API 联调   | 串行，后端先完成                                            |
+| 独立功能模块    | 按模块并行开发                                              |
+| 复杂算法需求    | specialized-patterns 同步咨询                               |
+
 **输出**：
 
-- Web 前端与后端代码
+- Web 前端代码
+- Web 后端代码
 - 移动端应用代码
 - 单元测试报告
 - Git 提交记录
@@ -270,16 +257,6 @@ flowchart TD
 
 ---
 
-## 并行策略
-
-| 场景            | 调度策略                                    |
-| --------------- | ------------------------------------------- |
-| Web 前端 + 后端 | engineering-patterns 内并行                 |
-| Web + 移动端    | engineering-patterns + mobile-patterns 并行 |
-| 多端 API 联调   | 串行，后端先完成                            |
-| 独立功能模块    | 按模块并行开发                              |
-| 复杂算法需求    | specialized-patterns 同步咨询               |
-
 ## 异常处理
 
 | 场景               | 处理方式                         |
@@ -301,7 +278,6 @@ sequenceDiagram
     participant O as 调度器
     participant P as product-patterns
     participant D as design-patterns
-    participant Eng as engineering-patterns
     participant FE as frontend-patterns
     participant BE as backend-patterns
     participant M as mobile-patterns
@@ -318,11 +294,11 @@ sequenceDiagram
     O->>U: 请求用户确认
     U->>O: 确认通过
     par 并行开发
-        O->>Eng: 工程开发
-        Eng->>FE: 前端UI/组件
-        FE->>Eng: 前端代码
-        Eng->>BE: 后端API/服务
-        BE->>Eng: 后端代码
+        O->>FE: 前端UI/组件
+        FE->>O: 前端代码
+    and
+        O->>BE: 后端API/服务
+        BE->>O: 后端代码
     and
         O->>M: 移动端（如需要）
         M->>O: 移动端代码
