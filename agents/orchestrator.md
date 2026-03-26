@@ -32,9 +32,6 @@ flowchart TD
     Orchestrator --> Design[design-patterns]
     Design --> Orchestrator
 
-    Orchestrator --> Doc[documentation-patterns]
-    Doc --> Orchestrator
-
     Orchestrator --> ParallelDev[并行开发]
     ParallelDev --> FE[frontend-patterns]
     ParallelDev --> BE[backend-patterns]
@@ -42,11 +39,17 @@ flowchart TD
     ParallelDev --> Security[security-patterns]
     ParallelDev -.-> Expert[specialized-patterns]
 
+    FE --> DocReq{需要文档?}
+    BE --> DocReq
+    DocReq -->|是| Doc[documentation-patterns]
+    DocReq -->|否| QA
+
     FE --> Orchestrator
     BE --> Orchestrator
     Mobile --> Orchestrator
     Security --> Orchestrator
     Expert -. 专家支持 .-> Orchestrator
+    Doc --> Orchestrator
 
     Orchestrator --> QA[quality-patterns]
     QA --> Orchestrator
@@ -282,16 +285,42 @@ flowchart TD
 | 测试失败           | 创建缺陷任务，指派回开发团队修复 |
 | 部署失败           | 返回阶段 5，排查后重试           |
 | 需架构专家支持     | 调用 specialized-patterns        |
+| 发现错误或反模式   | 调用 anti-patterns 记录          |
 | 需要进度跟踪       | 调用 progress-patterns           |
 
 ## 进度跟踪
 
-调度器在需要进度跟踪时调用 `progress-patterns`，由其负责：
+调度器在以下情况调用 `progress-patterns`：
+
+- 项目启动时初始化进度文件
+- 阶段开始或完成时更新进度
+- 每日检查并更新项目状态
+- 发现阻塞事项时记录
+- 项目完成时生成总结报告
+
+由 `progress-patterns` 负责：
 
 - 创建和维护 progress.md 文件
 - 跟踪各阶段进度
 - 记录阻塞事项
 - 提供功能优化建议
+
+## 反模式沉淀
+
+调度器在以下情况调用 `anti-patterns`：
+
+- 发现错误或设计失误时
+- 遇到技术债或架构问题
+- 项目失败或回滚时
+- 代码审查中发现反模式
+- 项目完成时总结经验
+
+由 `anti-patterns` 负责：
+
+- 记录错误案例和解决方案
+- 总结常见反模式和避免方法
+- 沉淀失败经验供团队参考
+- 存储至 .trae/rules/ 目录
 
 ## 调度示例
 
