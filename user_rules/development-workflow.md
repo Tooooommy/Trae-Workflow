@@ -3,9 +3,9 @@
 ## 4 步流程
 
 ```
-1. 规划 → planning-team
-2. TDD  → tdd-guide
-3. 审查 → code-reviewer
+1. 规划 → product-design-team
+2. TDD  → tdd-workflow
+3. 审查 → quality-team
 4. 提交 → 约定式提交
 ```
 

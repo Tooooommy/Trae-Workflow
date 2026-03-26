@@ -202,5 +202,5 @@ go build ./... && go vet ./... && golangci-lint run
 | tdd-workflow     | 测试驱动开发 |
 | coding-standards | 编码标准     |
 | security-review  | 安全审查     |
-| review-team | 代码审查     |
-| testing-team     | 测试策略     |
+| review-team  | 代码审查     |
+| quality-team | 测试策略     |

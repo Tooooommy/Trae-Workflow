@@ -91,15 +91,21 @@ xcodebuild -workspace App.xcworkspace -scheme App build
 npm run build:weapp
 ```
 
-| 功能规划 | `planning-team`      |
-| 架构设计 | `clean-architecture` |
-| 代码审查 | `review-team`   |
-| 测试策略 | `testing-team`       |
-| 安全审查 | `security-team`      |
-| 性能优化 | `performance-team`   |
-| 前端开发 | `frontend-team`      |
-| 后端开发 | `backend-team`       |
+## 协作团队
 
+| 功能规划 | `product-design-team` |
+| 架构设计 | `clean-architecture` |
+| 代码审查 | `quality-team` |
+| 测试策略 | `quality-team` |
+| 安全审查 | `platform-team` |
+| 性能优化 | `platform-team` |
+| 前端开发 | `engineering-team` |
+| 后端开发 | `engineering-team` |
+
+## Skills 协同
+
+| Skill                   | 说明          | 调用时机        |
+| ----------------------- | ------------- | --------------- |
 | ios-native-patterns     | iOS 开发      | iOS 项目时      |
 | android-native-patterns | Android 开发  | Android 项目时  |
 | react-native-patterns   | React Native  | 跨平台 RN 时    |

@@ -47,13 +47,16 @@ description: 简短描述文档内容
 # 文档标题
 
 ## 概述
+
 简要介绍...
 
 ## 前置条件
+
 - 条件1
 - 条件2
 
 ## 开始
+
 详细步骤...
 ```
 
@@ -63,10 +66,15 @@ description: 简短描述文档内容
 
 ```markdown
 # 一级标题 (h1) - 页面主标题
+
 ## 二级标题 (h2) - 主要章节
+
 ### 三级标题 (h3) - 子章节
+
 #### 四级标题 (h4) - 细节
+
 ##### 五级标题 (h5) - 列表项
+
 ###### 六级标题 (h6) - 不推荐
 ```
 
@@ -74,6 +82,7 @@ description: 简短描述文档内容
 
 ```markdown
 ### 无序列表
+
 - 项目一
 - 项目二
   - 嵌套项目
@@ -81,6 +90,7 @@ description: 简短描述文档内容
 - 项目三
 
 ### 有序列表
+
 1. 第一步
 2. 第二步
    1. 子步骤
@@ -88,6 +98,7 @@ description: 简短描述文档内容
 3. 第三步
 
 ### 任务列表
+
 - [x] 已完成任务
 - [ ] 待办任务
 - [ ] 另一个待办
@@ -128,8 +139,8 @@ const sum = a + b;
 ````markdown
 ```javascript highlight="2,3"
 const a = 1;
-const b = 2;  // 高亮
-const c = 3;  // 高亮
+const b = 2; // 高亮
+const c = 3; // 高亮
 ```
 ````
 
@@ -144,10 +155,13 @@ const c = 3;  // 高亮
 
 ### 代码块中的转义
 
-````markdown
-````
+```markdown
+
+```
+
 code block with backticks
-``````
+
+`````
 
 ## 表格
 
@@ -432,6 +446,7 @@ const response = await fetch('https://api.example.com/users/123', {
 
 | 技能 | 说明 |
 |------|------|
-| doc-team | 文档团队 |
+| engineering-team | 工程技术部 |
 | skill-creator | Skill 创建 |
 | design-patterns | 设计模式 |
+`````

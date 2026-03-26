@@ -8,7 +8,7 @@
 
 | 智能体 | 技能 | 规则     |
 | ------ | ---- | -------- |
-| 14     | 62+  | 完整体系 |
+| 6      | 62+  | 完整体系 |
 
 ---
 
@@ -42,59 +42,83 @@ traew update
 
 ---
 
-## 🤖 智能体系统
+## 🤖 部门结构
 
-### 规划层
+### 1. 产品与设计部
 
-| 智能体            | 角色     | 说明                         |
-| ----------------- | -------- | ---------------------------- |
-| **planning-team** | 规划专家 | 功能规划、技术架构、技术决策 |
-| **product-team**  | 产品经理 | 需求分析、产品设计、数据分析 |
+**product-design-team** - 定义"做什么"和"做成什么样"
 
-### 开发团队
+| 整合来源                       | 核心职责                               |
+| ------------------------------ | -------------------------------------- |
+| 产品团队 + 规划团队 + 设计团队 | 产品规划、交互设计、视觉设计、用户研究 |
 
-| 智能体            | 触发场景                    |
-| ----------------- | --------------------------- |
-| **backend-team**  | Node.js/Python/Go/Rust 后端 |
-| **frontend-team** | React/Vue/Next.js 前端      |
-| **mobile-team**   | iOS/Android/React Native    |
-| **design-team**   | UI/UX 设计、可视化          |
+### 2. 工程技术部
 
-### 质量保证
+**engineering-team** - 负责产品的"构建与实现"
 
-| 智能体               | 触发场景              |
-| -------------------- | --------------------- |
-| **testing-team**     | TDD、E2E 测试、覆盖率 |
-| **review-team** | PR 审查、代码质量     |
-| **security-team**    | 漏洞检测、安全审查    |
+| 整合来源                                  | 核心职责                                         |
+| ----------------------------------------- | ------------------------------------------------ |
+| 后端开发 + 前端开发 + 集成团队 + 文档团队 | 后端开发、前端开发、API 设计、集成开发、技术文档 |
 
-### 基础设施
+### 3. 质量保障部
 
-| 智能体               | 触发场景                |
-| -------------------- | ----------------------- |
-| **ops-team**         | 运维、CI/CD、构建、部署 |
-| **performance-team** | 性能分析、APM           |
-| **integration-team** | API 集成、第三方服务    |
-| **doc-team**         | API 文档、README        |
+**quality-team** - 负责产品的"质量保障与卓越工程"
+
+| 整合来源            | 核心职责                                 |
+| ------------------- | ---------------------------------------- |
+| 测试团队 + 审查团队 | 测试策略、自动化测试、代码审查、安全检查 |
+
+### 4. 运维与架构部
+
+**platform-team** - 负责系统的"稳定、安全与高效"
+
+| 整合来源                       | 核心职责                                              |
+| ------------------------------ | ----------------------------------------------------- |
+| 运维团队 + 安全团队 + 性能团队 | 技术架构、CI/CD、容器化、监控告警、安全策略、性能优化 |
+
+### 5. 移动端开发部
+
+**mobile-team** - 负责移动端产品的"原生体验与交付"
+
+| 整合来源       | 核心职责                           |
+| -------------- | ---------------------------------- |
+| 移动端开发团队 | iOS/Android/跨端框架开发、应用优化 |
+
+### 6. 专项技术部
+
+**specialized-team** - 负责"前瞻性技术探索与复杂专项攻坚"
+
+| 整合来源                           | 核心职责                                                 |
+| ---------------------------------- | -------------------------------------------------------- |
+| 从原规划、集成、性能团队中抽取专家 | 技术可行性研究、架构迁移、核心算法优化、重大性能瓶颈攻克 |
+
+---
+
+### 部门速览
+
+| 部门         | Agent                 | 触发场景                            |
+| ------------ | --------------------- | ----------------------------------- |
+| 产品与设计部 | `product-design-team` | 产品规划、需求变更、设计任务        |
+| 工程技术部   | `engineering-team`    | 后端开发、前端开发、API 集成、文档  |
+| 质量保障部   | `quality-team`        | 测试、代码审查、质量验证            |
+| 运维与架构部 | `platform-team`       | 架构设计、CI/CD、监控安全、性能优化 |
+| 移动端开发部 | `mobile-team`         | iOS、Android、React Native          |
+| 专项技术部   | `specialized-team`    | 架构迁移、性能瓶颈、技术可行性      |
+
+---
 
 ### 协作流程
 
 ```
-product-team → 需求分析
+产品与设计部 → 需求文档 + 设计稿
        ↓
-planning-team → 技术规划
+工程技术部 / 移动端开发部 → 开发实现
        ↓
-  ┌────────────────────┐
-  │  开发团队 (开发实现) │
-  └────────────────────┘
+质量保障部 → 测试 + 代码审查
        ↓
-  ┌────────────────────┐
-  │ 质量团队 (测试审查) │
-  └────────────────────┘
+运维与架构部 → CI/CD + 部署 + 监控
        ↓
-  ┌────────────────────┐
-  │ 基础设施 (部署监控) │
-  └────────────────────┘
+专项技术部 → 复杂问题攻坚（如需）
 ```
 
 ---
@@ -118,132 +142,69 @@ planning-team → 技术规划
 - **fastapi-patterns** - FastAPI 异步
 - **django-patterns** - Django 架构
 
-### 数据库
+### 移动端
 
-- **postgres-patterns** - PostgreSQL 优化
-- **mongodb-patterns** - MongoDB 聚合
-- **redis-patterns** - 缓存、分布式锁
-- **database-migrations** - 迁移最佳实践
-- **clickhouse-io** - 高性能分析
+- **ios-native-patterns** - iOS Swift/SwiftUI
+- **android-native-patterns** - Android Kotlin
+- **react-native-patterns** - React Native
 
-### 移动开发
-
-- **ios-native-patterns** - SwiftUI 原生
-- **android-native-patterns** - Jetpack Compose
-- **react-native-patterns** - 跨平台
-- **mini-program-patterns** - 微信小程序
-
-### 桌面 & 语言
-
-- **electron-patterns** / **tauri-patterns** - 桌面应用
-- **python-patterns** - Pythonic 惯用法
-- **golang-patterns** - Go 并发模式
-- **rust-patterns** - 所有权系统
-
-### 架构 & 消息
+### 架构 & 工程
 
 - **clean-architecture** - 整洁架构
+- **cqrs-patterns** - CQRS 命令查询分离
 - **ddd-patterns** - 领域驱动设计
-- **cqrs-patterns** - 命令查询分离
-- **kafka-patterns** / **rabbitmq-patterns** - 消息队列
 
-### 测试 & DevOps
+### 消息 & 集成
 
+- **kafka-patterns** - Kafka 分布式消息
+- **rabbitmq-patterns** - RabbitMQ 消息队列
+- **stripe-patterns** - Stripe 支付集成
+- **alipay-patterns** - 支付宝支付集成
+- **wechatpay-patterns** - 微信支付集成
+- **paypal-patterns** - PayPal 支付集成
+
+### 性能 & 缓存
+
+- **caching-patterns** - 多级缓存策略
+- **redis-patterns** - Redis 数据结构
+- **postgres-patterns** - PostgreSQL 优化
+- **logging-observability** - 日志与可观测性
+
+### 开发工具
+
+- **git-workflow** - Git 版本控制
+- **docker-patterns** - Docker 容器化
+- **deployment-patterns** - 部署流水线
 - **tdd-workflow** - 测试驱动开发
-- **e2e-testing** - Playwright E2E
-- **deployment-patterns** - CI/CD 流水线
-- **docker-patterns** - 容器化
-- **git-workflow** - Git 分支策略
-
-### 安全 & 性能
-
-- **security-review** - 安全检查清单
-- **rate-limiting** - API 限流
-- **caching-patterns** - 多级缓存
-- **logging-observability** - 日志与追踪
-- **circuit-breaker** - 熔断器模式
-
-### 支付 & 集成
-
-- **stripe-patterns** / **paypal-patterns** - 支付集成
-- **wechatpay-patterns** / **alipay-patterns** - 国内支付
-- **realtime-websocket** - WebSocket 实时通信
-- **webrtc-patterns** - WebRTC 音视频
-
-### 其他
-
-- **agentic-engineering** - AI 代理工程
-- **feature-flags** - 功能开关、A/B 测试
-- **i18n-patterns** - 国际化
-- **email-patterns** / **file-storage-patterns** - 文件与邮件
-- **markdown-patterns** - Markdown 编写
-- **skill-creator** - SKILL 创建工具
+- **e2e-testing** - Playwright E2E 测试
 
 ---
 
-## 📋 规则体系
-
-### 层级结构
+## � 项目结构
 
 ```
-user_rules/           ← 最高优先级
-    ↓
-project_rules/<lang>/ ← 语言特定
-```
-
-### 核心规则 (user_rules)
-
-| 文件                    | 说明               |
-| ----------------------- | ------------------ |
-| core-principles.md      | 五条核心原则       |
-| project-config.md       | 技术栈、性能目标   |
-| coding-style.md         | 代码格式、命名规范 |
-| development-workflow.md | 开发流程           |
-| testing.md              | TDD、测试策略      |
-| security.md             | 安全检查清单       |
-| git-workflow.md         | PR 工作流          |
-| patterns.md             | 架构模式说明       |
-
-### 项目规则 (project_rules)
-
-按语言组织: `typescript` / `python` / `golang` / `rust` / `swift` / `kotlin`
-
-每个语言目录包含: coding-style、hooks、patterns、security、testing
-
----
-
-## 🔄 标准工作流
-
-```
-1. 规划 → planning-team 进行功能规划和技术架构
-2. 分解 → planning-team 分配任务给对应团队
-3. 开发 → backend/frontend/mobile-team 实现
-4. 测试 → testing-team 遵循 TDD 工作流
-5. 审查 → review-team 审查代码
-6. 安全 → security-team 进行安全审查
-7. 优化 → performance-team 进行性能分析
-8. 部署 → ops-team 部署上线
+Trae-Workflow/
+├── agents/              # 6 个智能体
+├── skills/              # 62+ 技能
+├── project_rules/       # 项目规则
+├── user_rules/          # 用户规则
+└── README.md
 ```
 
 ---
 
-## 📦 项目结构
+## 🔧 MCP 服务器
 
-```
-Trae Workflow/
-├── agents/           # 14 个智能体配置
-├── skills/           # 62+ 项技能配置
-├── user_rules/       # 用户规则（最高优先级）
-├── project_rules/    # 项目规则（语言特定）
-└── cli/              # CLI 工具
-```
+| 服务器              | 用途        |
+| ------------------- | ----------- |
+| memory              | 长期记忆    |
+| sequential-thinking | 链式思维    |
+| context7            | 代码上下文  |
+| docker              | Docker 管理 |
+| github              | GitHub API  |
 
 ---
 
-## 🤝 贡献
+## � 许可
 
-欢迎提交 Issue 和 Pull Request！
-
-## 📄 许可证
-
-MIT License
+MIT
