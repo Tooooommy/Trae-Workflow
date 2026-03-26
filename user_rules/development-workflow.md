@@ -3,7 +3,7 @@
 ## 4 步流程
 
 ```
-1. 规划 → tech-director
+1. 规划 → planning-team
 2. TDD  → tdd-guide
 3. 审查 → code-reviewer
 4. 提交 → 约定式提交

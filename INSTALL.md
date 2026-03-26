@@ -399,7 +399,7 @@ export POSTGRES_URL="your_postgres_connection_string"
 
 尝试使用以下智能体：
 
-1. **tech-director**：请求制定一个简单的实施计划
+1. **planning-team**：请求制定一个简单的实施计划
 2. **tdd-guide**：请求指导 TDD 工作流
 3. **code-reviewer**：审查一段代码
 

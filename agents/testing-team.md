@@ -90,7 +90,7 @@ npm run test -- --coverage
 pytest --cov
 ```
 
-| 功能规划 | `tech-director`                  |
+| 功能规划 | `planning-team`                  |
 | 架构设计 | `clean-architecture`             |
 | 开发实现 | `frontend-team` / `backend-team` |
 | 代码审查 | `code-review-team`               |

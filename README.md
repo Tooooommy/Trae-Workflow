@@ -48,7 +48,7 @@ traew update
 
 | 智能体            | 角色     | 说明                         |
 | ----------------- | -------- | ---------------------------- |
-| **tech-director** | 技术总监 | 功能规划、技术架构、技术决策 |
+| **planning-team** | 技术总监 | 功能规划、技术架构、技术决策 |
 
 ### 开发团队
 
@@ -80,7 +80,7 @@ traew update
 ### 协作流程
 
 ```
-tech-director → 分解任务
+planning-team → 分解任务
        ↓
   ┌────────────────────┐
   │  开发团队 (开发实现) │
@@ -213,8 +213,8 @@ project_rules/<lang>/ ← 语言特定
 ## 🔄 标准工作流
 
 ```
-1. 规划 → tech-director 进行功能规划和技术架构
-2. 分解 → tech-director 分配任务给对应团队
+1. 规划 → planning-team 进行功能规划和技术架构
+2. 分解 → planning-team 分配任务给对应团队
 3. 开发 → backend/frontend/mobile-team 实现
 4. 测试 → testing-team 遵循 TDD 工作流
 5. 审查 → code-review-team 审查代码

@@ -86,7 +86,7 @@ vue-tsc --noEmit && npm run build
 npx lighthouse <url> --view
 ```
 
-| 功能规划 | `tech-director` |
+| 功能规划 | `planning-team` |
 | 架构设计 | `clean-architecture` |
 | 代码审查 | `code-review-team` |
 | 测试策略 | `testing-team` |

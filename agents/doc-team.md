@@ -86,7 +86,7 @@ flowchart TD
 - 提供搜索关键字
 - 链接相关文档
 
-| 功能规划 | `tech-director` |
+| 功能规划 | `planning-team` |
 | API 设计 | `backend-team`                                   |
 | 代码实现 | `frontend-team` / `backend-team` / `mobile-team` |
 | 代码审查 | `code-review-team`                               |

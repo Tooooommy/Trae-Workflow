@@ -170,7 +170,7 @@ flowchart TD
 | Adobe XD | 原型设计 | .xd      |
 | Framer   | 交互原型 | -        |
 
-| 功能规划   | `tech-director`    |
+| 功能规划   | `planning-team`    |
 | 前端实现   | `frontend-team`    |
 | 移动端开发 | `mobile-team`      |
 | 无障碍设计 | `a11y-patterns`    |

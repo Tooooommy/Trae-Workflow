@@ -92,7 +92,7 @@ SELECT * FROM pg_stat_statements ORDER BY mean_exec_time DESC;
 redis-cli info stats | grep hit_rate
 ```
 
-| 功能规划 | `tech-director` |
+| 功能规划 | `planning-team` |
 | 代码实现 | `frontend-team` / `backend-team` |
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team` |

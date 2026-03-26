@@ -131,7 +131,7 @@ git status
 git log --oneline -10
 ```
 
-| 功能规划 | `tech-director` |
+| 功能规划 | `planning-team` |
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team`    |
 | 测试     | `testing-team`     |
