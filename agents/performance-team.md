@@ -97,7 +97,7 @@ redis-cli info stats | grep hit_rate
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team` |
 | 测试 | `testing-team` |
-| DevOps | `devops-team` |
+| DevOps | `ops-team` |
 
 | frontend-patterns | 前端性能 | 前端优化时 |
 | backend-patterns | 后端性能 | 后端优化时 |

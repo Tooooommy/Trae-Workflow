@@ -128,7 +128,7 @@ mcp_servers:
 | 测试策略 | `testing-team` |
 | 安全审查 | `security-team` |
 | 代码审查 | `code-review-team` |
-| DevOps | `devops-team` |
+| DevOps | `ops-team` |
 
 | clean-architecture | 整洁架构模式 | 始终调用 |
 | ddd-patterns | 领域驱动设计模式 | 领域建模时 |

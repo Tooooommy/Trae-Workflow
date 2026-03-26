@@ -100,7 +100,7 @@ grep -rn "sk-\|api_key\|password" --include="*.ts"
 | 开发实现 | `frontend-team` / `backend-team` |
 | 测试     | `testing-team`                   |
 | 代码审查 | `code-review-team`               |
-| DevOps   | `devops-team`                    |
+| DevOps   | `ops-team`                    |
 
 | security-review   | 安全审查 | 所有安全任务 |
 | rate-limiting     | 限流模式 | API 限流时   |

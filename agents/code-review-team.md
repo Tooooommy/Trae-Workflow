@@ -112,7 +112,7 @@ npx complexity-report
 | 开发实现 | `frontend-team` / `backend-team` |
 | 测试     | `testing-team`                   |
 | 安全审查 | `security-team`                  |
-| DevOps   | `devops-team`                    |
+| DevOps   | `ops-team`                    |
 
 | coding-standards  | 编码标准    | 所有审查      |
 | frontend-patterns | 前端模式    | 前端代码时    |

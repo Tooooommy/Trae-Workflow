@@ -104,7 +104,7 @@ flowchart TD
 | 代码审查 | `code-review-team` |
 | 安全审查 | `security-team`    |
 | 测试     | `testing-team`     |
-| DevOps   | `devops-team`      |
+| DevOps   | `ops-team`      |
 
 | stripe-patterns       | Stripe 支付   | Stripe 集成时   |
 | alipay-patterns       | 支付宝支付    | 支付宝集成时    |

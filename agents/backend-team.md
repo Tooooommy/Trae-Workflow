@@ -98,7 +98,7 @@ go build ./... && go vet ./... && golangci-lint run
 | 安全审查 | `security-team` |
 | 性能优化 | `performance-team` |
 | 前端开发 | `frontend-team` |
-| DevOps | `devops-team` |
+| DevOps | `ops-team` |
 
 | tech-stack-selector | 技术选型 | 技术选型时 |
 | backend-patterns | Node.js 模式 | Node.js 开发时 |

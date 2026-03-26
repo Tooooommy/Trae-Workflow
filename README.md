@@ -69,13 +69,12 @@ traew update
 
 ### 基础设施
 
-| 智能体               | 触发场景             |
-| -------------------- | -------------------- |
-| **devops-team**      | CI/CD、Docker、部署  |
-| **build-team**       | 构建错误、依赖冲突   |
-| **performance-team** | 性能分析、APM        |
-| **integration-team** | API 集成、第三方服务 |
-| **doc-team**         | API 文档、README     |
+| 智能体               | 触发场景                |
+| -------------------- | ----------------------- |
+| **ops-team**         | 运维、CI/CD、构建、部署 |
+| **performance-team** | 性能分析、APM           |
+| **integration-team** | API 集成、第三方服务    |
+| **doc-team**         | API 文档、README        |
 
 ### 协作流程
 
@@ -220,7 +219,7 @@ project_rules/<lang>/ ← 语言特定
 5. 审查 → code-review-team 审查代码
 6. 安全 → security-team 进行安全审查
 7. 优化 → performance-team 进行性能分析
-8. 部署 → devops-team 部署上线
+8. 部署 → ops-team 部署上线
 ```
 
 ---

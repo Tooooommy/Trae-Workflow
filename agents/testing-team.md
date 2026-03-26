@@ -96,7 +96,7 @@ pytest --cov
 | 代码审查 | `code-review-team`               |
 | 安全审查 | `security-team`                  |
 | 性能优化 | `performance-team`               |
-| DevOps   | `devops-team`                    |
+| DevOps   | `ops-team`                    |
 
 | tdd-workflow      | TDD 工作流     | TDD 开发时 |
 | e2e-testing       | Playwright E2E | E2E 测试时 |
