@@ -543,454 +543,6 @@ flowchart LR
 
 ---
 
-## 项目初始化流程
-
-### 1. 创建项目目录结构
-
-```bash
-# 创建核心目录
-mkdir -p .ai-team/orchestrator/decision-registry
-mkdir -p .ai-team/experts/{product-strategist,tech-architect,ux-engineer,frontend-specialist,backend-specialist,mobile-specialist,devops-engineer,security-auditor,quality-engineer,performance-specialist,docs-engineer,retro-facilitator}
-mkdir -p .ai-team/shared-context
-mkdir -p docs/{01-requirements,02-design,03-implementation,04-testing,05-deployment}
-mkdir -p src tests .github/workflows
-```
-
-### 2. 初始化核心文件
-
-```bash
-# 任务看板（主状态文件）
-cat > .ai-team/orchestrator/task-board.json << 'EOF'
-{
-  "project": {
-    "id": "",
-    "name": "",
-    "version": "1.0.0",
-    "status": "pending",
-    "createdAt": "",
-    "updatedAt": ""
-  },
-  "phases": [],
-  "experts": {
-    "product-strategist": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "tech-architect": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "ux-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "frontend-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "backend-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "mobile-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "devops-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "security-auditor": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "quality-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "performance-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "docs-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
-    "retro-facilitator": { "status": "available", "currentTask": null, "recentActivity": "" }
-  }
-}
-EOF
-
-# 工作流日志
-cat > .ai-team/orchestrator/workflow-log.md << 'EOF'
-# 工作流日志
-
-> 项目:
-> 创建时间:
-
-## 日志记录
-
-| 时间 | 专家 | 动作 | 状态 | 备注 |
-|------|------|------|------|------|
-EOF
-
-# 项目上下文
-cat > .ai-team/shared-context/project-context.json << 'EOF'
-{
-  "project": {
-    "id": "",
-    "name": "",
-    "version": "1.0.0",
-    "techStack": {
-      "frontend": "",
-      "backend": "",
-      "database": "",
-      "deployment": ""
-    },
-    "constraints": {
-      "budget": "",
-      "timeline": "",
-      "team": []
-    }
-  },
-  "stakeholders": [],
-  "milestones": [],
-  "decisions": []
-}
-EOF
-
-# 知识图谱
-cat > .ai-team/shared-context/knowledge-graph.md << 'EOF'
-# 知识图谱
-
-> 项目:
-
-## 技术栈
-
-| 层级 | 技术 | 版本 | 说明 |
-|------|------|------|------|
-| 前端 | - | - | - |
-| 后端 | - | - | - |
-| 数据库 | - | - | - |
-| 部署 | - | - | - |
-
-## 核心概念
-
-_暂无_
-
-## 关键决策
-
-_暂无_
-
-## 经验教训
-
-_暂无_
-EOF
-```
-
-### 3. 初始化各专家工作区
-
-```bash
-for expert in product-strategist tech-architect ux-engineer frontend-specialist backend-specialist mobile-specialist devops-engineer security-auditor quality-engineer performance-specialist docs-engineer retro-facilitator; do
-  cat > .ai-team/experts/$expert/WORKSPACE.md << EOF
-# ${expert} 工作区
-
-> 当前任务：暂无
-
-## 工作记录
-
-| 日期 | 任务 | 状态 | 输出 |
-|------|------|------|------|
-EOF
-done
-```
-
-### 4. 初始化文档目录
-
-```bash
-for dir in 01-requirements 02-design 03-implementation 04-testing 05-deployment; do
-  echo "# ${dir#*-} 文档目录\n\n_暂无文档_" > docs/$dir/README.md
-done
-```
-
-### 5. 任务看板数据结构
-
-```json
-{
-  "project": {
-    "id": "PROJ-2024-001",
-    "name": "社交图片分享应用MVP",
-    "version": "1.0.0",
-    "status": "in-progress",
-    "createdAt": "2024-01-15T10:00:00Z",
-    "updatedAt": "2024-01-15T14:30:00Z"
-  },
-  "phases": [
-    {
-      "id": "phase-1",
-      "name": "需求分析阶段",
-      "status": "completed",
-      "startDate": "2024-01-15",
-      "endDate": "2024-01-16",
-      "tasks": [
-        {
-          "id": "task-001",
-          "title": "编写产品需求文档",
-          "description": "基于初始需求，输出完整的PRD",
-          "assignee": "product-strategist",
-          "status": "completed",
-          "priority": "high",
-          "estimatedHours": 4,
-          "actualHours": 3.5,
-          "dependencies": [],
-          "inputFiles": ["../shared-context/project-context.json"],
-          "outputFiles": ["../../docs/01-requirements/prd-v1.0.md"],
-          "checkpoints": [
-            {
-              "name": "prd-outline",
-              "status": "approved",
-              "approvedBy": "orchestrator",
-              "timestamp": "2024-01-15T11:30:00Z"
-            }
-          ],
-          "comments": [
-            {
-              "expert": "product-strategist",
-              "timestamp": "2024-01-15T12:00:00Z",
-              "content": "已生成PRD初版，等待评审"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "experts": {
-    "product-strategist": {
-      "status": "available",
-      "currentTask": null,
-      "recentActivity": "2024-01-15T12:00:00Z"
-    }
-  }
-}
-```
-
-#### 状态枚举
-
-| 字段              | 可选值                                           |
-| ----------------- | ------------------------------------------------ |
-| project.status    | pending, in-progress, review, completed, blocked |
-| phase.status      | pending, in-progress, completed                  |
-| task.status       | pending, in-progress, review, completed, blocked |
-| task.priority     | critical, high, medium, low                      |
-| expert.status     | available, busy, blocked                         |
-| checkpoint.status | pending, approved, rejected                      |
-
-### 6. 使用方法
-
-初始化完成后，与 orchestrator-expert 对话启动项目：
-
-```
-"我们需要开发一个具有社交功能的图片分享应用MVP，
-请在2周内给出可上线的版本。"
-```
-
-协调中枢将会：
-
-1. 创建项目阶段和任务
-2. 分配专家并更新 `experts` 状态
-3. 跟踪任务进度和检查点
-4. 记录工作流日志
-
----
-
-## 专家工作文档模板
-
-### 专家状态文件
-
-位置: `.ai-team/experts/{expert-name}/expert-status.yaml`
-
-```yaml
-expert: product-strategist
-status: available
-currentTask: null
-recentWork:
-  - taskId: task-001
-    description: 编写产品需求文档
-    startedAt: 2024-01-15T10:00:00Z
-    completedAt: 2024-01-15T12:00:00Z
-    outputFiles:
-      - ../../docs/01-requirements/prd-v1.0.md
-workQueue: []
-specializations:
-  - product-planning
-  - requirements-analysis
-  - market-research
-capabilities:
-  - generate-prd
-  - create-user-stories
-  - define-success-metrics
-```
-
-### 专家工作日志
-
-位置: `.ai-team/experts/{expert-name}/WORKSPACE.md`
-
-```markdown
-## 2024-01-15
-
-### 10:00-12:00: 任务 task-001
-
-**任务**: 编写产品需求文档
-**输入**:
-
-- project-context.json
-- business-goals.md
-  **输出**:
-- prd-v1.0.md
-  **关键决策**:
-
-1. 确定核心功能优先级: 图片上传 > 社交互动 > 用户管理
-2. 定义MVP范围: 排除高级滤镜和视频功能
-3. 设定成功指标: 日活用户 > 1000, 留存率 > 40%
-   **问题与阻塞**: 无
-   **下一步**: 等待tech-architect评审技术可行性
-```
-
----
-
-## 共享上下文文档
-
-位置: `.ai-team/shared-context/project-context.json`
-
-```json
-{
-  "project": {
-    "name": "PicShare - 社交图片分享应用",
-    "vision": "让用户简单、快捷地分享生活瞬间",
-    "targetUsers": ["摄影爱好者", "旅行者", "学生群体"],
-    "timeline": {
-      "startDate": "2024-01-15",
-      "mvpDueDate": "2024-02-15",
-      "releaseDate": "2024-03-01"
-    },
-    "constraints": {
-      "budget": "中等",
-      "teamSize": "小型团队",
-      "techStack": ["React", "Node.js", "MongoDB"],
-      "platforms": ["Web", "iOS", "Android"]
-    }
-  },
-  "decisions": {
-    "architecture": {
-      "frontend": "采用React + TypeScript，支持SSR",
-      "backend": "Node.js + Express，RESTful API",
-      "database": "MongoDB for metadata, S3 for images",
-      "stateManagement": "Context API + Zustand"
-    },
-    "infrastructure": {
-      "hosting": "Vercel for frontend, AWS for backend",
-      "ciCd": "GitHub Actions",
-      "monitoring": "Sentry + Datadog"
-    }
-  },
-  "dependencies": {
-    "external": [
-      {
-        "name": "Cloudinary",
-        "purpose": "图片存储与处理",
-        "status": "pending-integration"
-      }
-    ],
-    "internal": [
-      {
-        "from": "frontend-specialist",
-        "to": "backend-specialist",
-        "dependency": "用户认证API",
-        "dueDate": "2024-01-20"
-      }
-    ]
-  },
-  "qualityAttributes": {
-    "performance": "页面加载时间 < 2s",
-    "reliability": "99.9% uptime",
-    "security": "OWASP Top 10 compliance",
-    "scalability": "支持10万用户"
-  }
-}
-```
-
-### 文档结构说明
-
-| 字段              | 说明                                       |
-| ----------------- | ------------------------------------------ |
-| project           | 项目基本信息、愿景、目标用户、时间线、约束 |
-| decisions         | 架构决策、基础设施决策                     |
-| dependencies      | 外部依赖、内部专家间依赖                   |
-| qualityAttributes | 性能、可靠性、安全性、可扩展性要求         |
-
----
-
-## 任务工作指令模板
-
-当协调中枢分配任务时，生成详细的工作指令：
-
-位置: `.ai-team/experts/{expert-name}/tasks/{task-id}-instruction.yaml`
-
-```yaml
-task:
-  id: task-002
-  title: 技术架构设计
-  description: 基于PRD设计系统技术架构
-  phase: 设计阶段
-  priority: high
-
-context:
-  project: 社交图片分享应用MVP
-  inputDocuments:
-    - 路径: docs/01-requirements/prd-v1.0.md
-      类型: 需求文档
-      重要性: 必须
-    - 路径: .ai-team/shared-context/project-context.json
-      类型: 项目上下文
-      重要性: 必须
-  constraints:
-    - 技术栈: React, Node.js, MongoDB
-    - 时间: 需要在2天内完成
-    - 预算: 中等规模AWS资源
-
-requirements:
-  outputDocuments:
-    - 路径: docs/02-design/system-architecture.md
-      格式: Markdown
-      必需内容:
-        - 架构图
-        - 技术选型说明
-        - 数据模型设计
-        - API设计概览
-        - 部署架构
-    - 路径: docs/02-design/data-models.md
-      格式: Markdown
-      必需内容:
-        - 数据库表设计
-        - 索引策略
-        - 数据迁移计划
-
-qualityCriteria:
-  - 架构必须支持10万用户
-  - API响应时间 < 200ms
-  - 必须包含容灾方案
-  - 必须符合安全最佳实践
-
-collaboration:
-  requiredReviewers:
-    - security-auditor
-    - devops-engineer
-  dependencies:
-    - 等待: product-strategist完成PRD
-    - 阻塞: frontend-specialist开始开发
-
-instructions:
-  steps:
-    - 步骤1: 阅读输入文档，理解需求
-    - 步骤2: 绘制系统架构图
-    - 步骤3: 设计数据模型
-    - 步骤4: 设计API接口
-    - 步骤5: 编写架构文档
-    - 步骤6: 发送评审请求
-
-  thinkingProcess:
-    - 考虑: 如何平衡性能和开发速度？
-    - 考虑: 未来扩展性需求？
-    - 考虑: 团队技术栈熟悉度？
-
-  examples:
-    - 参考: docs/examples/architecture-template.md
-    - 模板: .ai-team/templates/architecture-design.md
-
-deadline: 2024-01-17T18:00:00Z
-```
-
-### 指令结构说明
-
-| 字段            | 说明                                                   |
-| --------------- | ------------------------------------------------------ |
-| task            | 任务基本信息 (id, title, description, phase, priority) |
-| context         | 项目上下文、输入文档、约束条件                         |
-| requirements    | 输出文档要求、格式、必需内容                           |
-| qualityCriteria | 质量验收标准                                           |
-| collaboration   | 评审者、依赖关系、阻塞关系                             |
-| instructions    | 执行步骤、思考过程、参考示例                           |
-| deadline        | 任务截止时间                                           |
-
----
-
 ## 调度器自动化流程
 
 ### 完整工作流程
@@ -1097,4 +649,154 @@ flowchart TB
   - 更新知识库
   - 生成项目报告
   - 归档项目文档
+```
+
+---
+
+## 核心文件结构
+
+### 项目目录结构
+
+```bash
+.ai-team/
+├── orchestrator/
+│   ├── task-board.json      # 任务看板（主状态文件）
+│   ├── workflow-log.md      # 工作流日志
+│   └── decision-registry/   # 决策记录
+├── experts/
+│   ├── {expert-name}/
+│   │   ├── WORKSPACE.md     # 工作记录
+│   │   ├── expert-status.yaml # 专家状态
+│   │   └── tasks/           # 任务指令
+│   └── ...
+└── shared-context/
+    ├── project-context.json # 项目上下文
+    └── knowledge-graph.md   # 知识图谱
+
+docs/
+├── 01-requirements/  # 需求文档
+├── 02-design/        # 设计文档
+├── 03-implementation/ # 实现文档
+├── 04-testing/       # 测试文档
+└── 05-deployment/    # 部署文档
+```
+
+### 任务看板结构
+
+位置: `.ai-team/orchestrator/task-board.json`
+
+```json
+{
+  "project": {
+    "id": "PROJ-2024-001",
+    "name": "项目名称",
+    "status": "in-progress",
+    "createdAt": "2024-01-15T10:00:00Z"
+  },
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "需求分析阶段",
+      "status": "completed",
+      "tasks": [
+        {
+          "id": "task-001",
+          "title": "任务标题",
+          "assignee": "expert-name",
+          "status": "completed",
+          "priority": "high",
+          "dependencies": [],
+          "inputFiles": [],
+          "outputFiles": []
+        }
+      ]
+    }
+  ],
+  "experts": {
+    "product-strategist": { "status": "available", "currentTask": null }
+  }
+}
+```
+
+#### 状态枚举
+
+| 字段           | 可选值                                           |
+| -------------- | ------------------------------------------------ |
+| project.status | pending, in-progress, review, completed, blocked |
+| task.status    | pending, in-progress, review, completed, blocked |
+| task.priority  | critical, high, medium, low                      |
+| expert.status  | available, busy, blocked                         |
+
+### 专家状态文件
+
+位置: `.ai-team/experts/{expert-name}/expert-status.yaml`
+
+```yaml
+expert: product-strategist
+status: available
+currentTask: null
+specializations:
+  - product-planning
+  - requirements-analysis
+capabilities:
+  - generate-prd
+  - create-user-stories
+```
+
+### 项目上下文
+
+位置: `.ai-team/shared-context/project-context.json`
+
+```json
+{
+  "project": {
+    "name": "项目名称",
+    "vision": "项目愿景",
+    "targetUsers": [],
+    "timeline": { "startDate": "", "mvpDueDate": "" }
+  },
+  "decisions": {
+    "architecture": { "frontend": "", "backend": "", "database": "" }
+  },
+  "dependencies": { "external": [], "internal": [] },
+  "qualityAttributes": { "performance": "", "security": "" }
+}
+```
+
+### 任务工作指令
+
+位置: `.ai-team/experts/{expert-name}/tasks/{task-id}-instruction.yaml`
+
+```yaml
+task:
+  id: task-002
+  title: 任务标题
+  description: 任务描述
+  priority: high
+
+context:
+  inputDocuments:
+    - 路径: docs/01-requirements/prd-v1.0.md
+      类型: 需求文档
+  constraints:
+    - 技术栈: React, Node.js
+
+requirements:
+  outputDocuments:
+    - 路径: docs/02-design/system-architecture.md
+      必需内容: [架构图, 技术选型]
+
+qualityCriteria:
+  - 架构必须支持10万用户
+
+collaboration:
+  requiredReviewers: [security-auditor]
+  dependencies: []
+
+instructions:
+  steps:
+    - 步骤1: 阅读输入文档
+    - 步骤2: 设计方案
+
+deadline: 2024-01-17T18:00:00Z
 ```

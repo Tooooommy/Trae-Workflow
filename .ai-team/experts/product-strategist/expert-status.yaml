@@ -1,0 +1,20 @@
+# .ai-team/experts/product-strategist/expert-status.yaml
+expert: product-strategist
+status: available
+currentTask: null
+recentWork:
+  - taskId: task-001
+    description: 编写产品需求文档
+    startedAt: 2024-01-15T10:00:00Z
+    completedAt: 2024-01-15T12:00:00Z
+    outputFiles:
+      - ../../docs/01-requirements/prd-v1.0.md
+workQueue: []
+specializations:
+  - product-planning
+  - requirements-analysis
+  - market-research
+capabilities:
+  - generate-prd
+  - create-user-stories
+  - define-success-metrics
