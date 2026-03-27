@@ -5,7 +5,7 @@ description: 支付集成模式 - 微信支付、支付宝、抖音支付、Stri
 
 # 支付集成模式
 
-> 聚合多种支付渠道的统一支付模式
+> 聚合多种支付渠道的统一支付模式，定义标准化接口和开发规范
 
 ## 何时激活
 
@@ -14,6 +14,8 @@ description: 支付集成模式 - 微信支付、支付宝、抖音支付、Stri
 - 订阅管理
 - 跨境支付
 - 支付安全
+
+> **提示**：各支付渠道详细实现请参考对应的专项技能（stripe-patterns、alipay-patterns、wechatpay-patterns、paypal-patterns、douyinpay-patterns）
 
 ## 技术栈版本
 
@@ -493,13 +495,15 @@ async function handlePaymentError(error: unknown, provider: string) {
 }
 ```
 
-## 相关技能
+## 支付渠道专项技能
 
-| 技能               | 说明             |
-| ------------------ | ---------------- |
-| stripe-patterns    | Stripe 详细集成  |
-| alipay-patterns    | 支付宝详细集成   |
-| wechatpay-patterns | 微信支付详细集成 |
-| paypal-patterns    | PayPal 详细集成  |
-| douyinpay-patterns | 抖音支付详细集成 |
-| security-expert    | 支付安全         |
+各支付渠道的详细实现请参考以下专项技能：
+
+| 技能                                                 | 说明             | 核心功能                  |
+| ---------------------------------------------------- | ---------------- | ------------------------- |
+| [stripe-patterns](../stripe-patterns/SKILL.md)       | Stripe 详细集成  | 订阅、支付Intent、Webhook |
+| [alipay-patterns](../alipay-patterns/SKILL.md)       | 支付宝详细集成   | 电脑/手机支付、当面付     |
+| [wechatpay-patterns](../wechatpay-patterns/SKILL.md) | 微信支付详细集成 | Native、JSAPI、小程序     |
+| [paypal-patterns](../paypal-patterns/SKILL.md)       | PayPal 详细集成  | 订单、结账、退款          |
+| [douyinpay-patterns](../douyinpay-patterns/SKILL.md) | 抖音支付详细集成 | 订单、H5、回调处理        |
+| [security-expert](../security-expert/SKILL.md)       | 支付安全         | 签名、验签、密钥管理      |
