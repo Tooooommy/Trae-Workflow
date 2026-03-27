@@ -77,6 +77,8 @@ PRD_用户登录模块_v1.0_2026-03-26
 
 ### 2. PRD 模板
 
+详见: `templates/prd-template.md`
+
 ```markdown
 ## 1. 概述
 

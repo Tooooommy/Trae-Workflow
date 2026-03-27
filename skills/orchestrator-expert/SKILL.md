@@ -122,27 +122,6 @@ flowchart TD
     Orchestrator --> User
 ```
 
----
-
-## Skills 映射表
-
-| Skills                   | 说明     | 触发场景                   |
-| ------------------------ | -------- | -------------------------- |
-| `product-strategist`     | 产品战略 | 产品规划, 需求分析, PRD    |
-| `ux-engineer`            | 体验工程 | UI设计, 交互设计, 原型     |
-| `docs-engineer`          | 文档工程 | API文档, README, 知识库    |
-| `frontend-specialist`    | 前端开发 | React, Next.js, UI         |
-| `backend-specialist`     | 后端开发 | Node.js, Python, API       |
-| `mobile-specialist`      | 移动开发 | iOS, Android, 小程序       |
-| `security-auditor`       | 安全审计 | 身份验证, 授权, 密钥, 漏洞 |
-| `quality-engineer`       | 质量工程 | 测试, 代码审查, QA         |
-| `devops-engineer`        | 运维工程 | 部署, 监控, DevOps         |
-| `performance-specialist` | 性能工程 | 架构迁移, 性能攻坚         |
-| `retro-facilitator`      | 复盘改进 | 复盘, 错误记录, 经验沉淀   |
-| `tech-architect`         | 技术架构 | 技术选型, 系统架构         |
-
----
-
 ## 阶段详解
 
 ### 阶段 1：需求输入与解析
@@ -192,56 +171,6 @@ flowchart TD
 **调度**：frontend-specialist + backend-specialist + mobile-specialist + security-auditor（并行）
 
 **协同**：performance-specialist（按需）
-
-#### 3.1 前端开发（frontend-specialist）
-
-| 类型            | 调用 Skill            | 触发关键词          |
-| --------------- | --------------------- | ------------------- |
-| React / Next.js | `nextjs-dev`          | React, Next.js      |
-| 组件设计        | `frontend-specialist` | 组件, UI            |
-| Tailwind CSS    | `tailwind-patterns`   | Tailwind, CSS, 样式 |
-| 无障碍          | `a11y-patterns`       | 无障碍, WCAG        |
-| 国际化          | `i18n-patterns`       | 多语言，本地化      |
-
-#### 3.2 后端开发（backend-specialist）
-
-| 类型              | 调用 Skill                                           | 触发关键词                |
-| ----------------- | ---------------------------------------------------- | ------------------------- |
-| Node.js / Express | `express-dev`                                        | Node.js, Express          |
-| Python / FastAPI  | `fastapi-dev`                                        | Python, FastAPI           |
-| GraphQL           | `graphql-patterns`                                   | GraphQL, Apollo           |
-| 实时通信          | `websocket-patterns`                                 | WebSocket, SSE            |
-| 支付集成          | `payment-patterns`                                   | 支付                      |
-| 消息队列          | `message-queue-patterns`                             | Kafka, RabbitMQ, 消息队列 |
-| 邮件服务          | `email-patterns`                                     | 邮件, Email               |
-| 文件存储          | `file-storage-patterns`                              | 文件上传, OSS             |
-| SQL 数据库        | `postgres-patterns`                                  | PostgreSQL, SQL           |
-| NoSQL 数据库      | `mongodb-patterns`                                   | MongoDB, NoSQL            |
-| 缓存              | `cache-strategy-patterns`                            | Redis, 缓存               |
-| 后台任务          | `tasks-patterns`                                     | 后台任务, Cron            |
-| 安全              | `security-review`, `coding-standards`                | 安全, 漏洞                |
-| 限流熔断          | `rate-limiting-patterns`, `circuit-breaker-patterns` | 限流, 熔断                |
-| REST API          | `rest-patterns`                                      | REST, API                 |
-| 代码规范          | `coding-standards`                                   | lint, type                |
-| 测试驱动          | `tdd-patterns`                                       | TDD                       |
-
-#### 3.3 移动端开发（mobile-specialist）
-
-| 平台         | 调用 Skill           | 触发关键词          |
-| ------------ | -------------------- | ------------------- |
-| iOS 原生     | `ios-native-dev`     | iOS, Swift, SwiftUI |
-| Android 原生 | `android-native-dev` | Android, Kotlin     |
-| React Native | `react-native-dev`   | React Native        |
-| 微信小程序   | `mini-program-dev`   | 微信小程序          |
-
-#### 3.4 专项技术（performance-specialist，按需）
-
-| 类型     | 调用 Skill                | 触发关键词     |
-| -------- | ------------------------- | -------------- |
-| 架构迁移 | `clean-architecture`      | 架构迁移, 重构 |
-| 性能攻坚 | `cache-strategy-patterns` | 性能瓶颈, 优化 |
-| 算法优化 | `ddd-patterns`            | 算法, 领域驱动 |
-| 技术选型 | `tech-selection-patterns` | 技术选型, 评估 |
 
 **并行策略**：
 

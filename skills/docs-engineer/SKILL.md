@@ -445,7 +445,10 @@ A2: 答案...
 ```
 .ai-team/experts/docs-engineer/
 ├── WORKSPACE.md          # 工作记录
-└── doc-templates/        # 文档模板
+└── templates/            # 文档模板
+    ├── api-doc-template.md
+    ├── readme-template.md
+    └── changelog-template.md
 ```
 
 ### 输入文档
