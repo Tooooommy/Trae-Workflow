@@ -82,7 +82,6 @@ traew update
 - **graphql-patterns** - GraphQL Schema
 - **express-patterns** - Node.js + Express
 - **fastapi-patterns** - FastAPI 异步
-- **django-patterns** - Django 架构
 
 ### 移动端
 
