@@ -1,10 +1,6 @@
 ---
-name: orchestrator
-description: 中央调度器。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、前端、后端、移动端、质量保障、运维与架构、专项技术等 Expert 的协作。
-mcp_servers:
-  - memory
-  - sequential-thinking
-  - context7
+name: use-workflow
+description: 中央调度器工作流。解析用户需求，按顺序调用或并行触发相应的 Skills。协调产品、设计、前端、后端、移动端、质量保障、运维与架构、专项技术等 Expert 的协作。**必须激活当**：用户提出任何开发需求、任务请求或问题时。**禁止跳过**：即使你认为任务简单，也必须调用此 Skill 进行需求解析和任务编排。
 ---
 
 # 中央调度器
