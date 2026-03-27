@@ -95,7 +95,7 @@ flowchart TD
 
     FE --> DocReq{需要文档?}
     BE --> DocReq
-    DocReq -->|是| Doc[documentation-expert]
+    DocReq -->|是| Doc[doc-expert]
     DocReq -->|否| QA
 
     FE --> Orchestrator
@@ -124,20 +124,20 @@ flowchart TD
 
 ## Skills 映射表
 
-| Skills                 | 说明     | 触发场景                   |
-| ---------------------- | -------- | -------------------------- |
-| `product-expert`       | 产品专家 | 产品规划, 需求分析, PRD    |
-| `design-expert`        | 设计专家 | UI设计, 交互设计, 原型     |
-| `documentation-expert` | 文档专家 | API文档, README, 知识库    |
-| `frontend-expert`      | 前端专家 | React, Next.js, UI         |
-| `backend-expert`       | 后端专家 | Node.js, Python, Go, API   |
-| `mobile-expert`        | 移动专家 | iOS, Android, 小程序       |
-| `security-expert`      | 安全专家 | 身份验证, 授权, 密钥, 漏洞 |
-| `quality-expert`       | 质量专家 | 测试, 代码审查, QA         |
-| `platform-expert`      | 运维专家 | 部署, 监控, DevOps         |
-| `specialized-expert`   | 专项专家 | 架构迁移, 性能攻坚         |
-| `progress-expert`      | 进度专家 | 进度跟踪, 优化建议         |
-| `anti-expert`          | 反模式   | 错误记录, 反模式, 经验沉淀 |
+| Skills               | 说明     | 触发场景                   |
+| -------------------- | -------- | -------------------------- |
+| `product-expert`     | 产品专家 | 产品规划, 需求分析, PRD    |
+| `design-expert`      | 设计专家 | UI设计, 交互设计, 原型     |
+| `doc-expert`         | 文档专家 | API文档, README, 知识库    |
+| `frontend-expert`    | 前端专家 | React, Next.js, UI         |
+| `backend-expert`     | 后端专家 | Node.js, Python, Go, API   |
+| `mobile-expert`      | 移动专家 | iOS, Android, 小程序       |
+| `security-expert`    | 安全专家 | 身份验证, 授权, 密钥, 漏洞 |
+| `quality-expert`     | 质量专家 | 测试, 代码审查, QA         |
+| `platform-expert`    | 运维专家 | 部署, 监控, DevOps         |
+| `specialized-expert` | 专项专家 | 架构迁移, 性能攻坚         |
+| `progress-expert`    | 进度专家 | 进度跟踪, 优化建议         |
+| `anti-expert`        | 反模式   | 错误记录, 反模式, 经验沉淀 |
 
 ---
 

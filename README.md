@@ -164,7 +164,7 @@ traew update
 
 - **anti-expert** - 反模式
 - **progress-expert** - 进度追踪
-- **documentation-expert** - 文档编写
+- **doc-expert** - 文档编写
 - **skill-creator** - Skill 创建指南
 - **vercel-react-best-practices** - Vercel React 最佳实践
 
