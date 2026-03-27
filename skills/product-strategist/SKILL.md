@@ -230,3 +230,42 @@ PRD_用户登录模块_v1.0_2026-03-26
 | 需求分析 | 产品与设计部 | PRD 初稿   |
 | 技术评审 | 工程技术部   | 技术可行性 |
 | 需求确认 | 全员         | PRD 定稿   |
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/product-strategist/
+├── WORKSPACE.md          # 工作记录
+└── drafts/               # 草稿目录
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| 用户 | 原始需求 | 用户对话 |
+| orchestrator-expert | 任务分配 | `.ai-team/orchestrator/task-board.json` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| PRD | `docs/01-requirements/PRD-*.md` | 产品需求文档 |
+| 用户故事 | `docs/01-requirements/user-stories-*.md` | 用户故事集合 |
+| MVP定义 | `docs/01-requirements/mvp-*.md` | MVP范围定义 |
+| 产品路线图 | `docs/01-requirements/roadmap-*.md` | 产品规划 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[用户需求] --> B[product-strategist]
+    B --> C[PRD]
+    C --> D[tech-architect]
+    C --> E[ux-engineer]
+    B --> F[docs/01-requirements/]
+```

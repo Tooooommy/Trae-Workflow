@@ -302,3 +302,42 @@ go build ./... && go vet ./... && golangci-lint run
 | 完成每个组件 | 组件级测试 |
 | 完成每个模块 | 完整验证   |
 | PR 前        | 全量验证   |
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/quality-engineer/
+├── WORKSPACE.md          # 工作记录
+└── test-reports/         # 测试报告
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| 各开发专家 | 代码 | `src/` |
+| tech-architect | 测试策略 | `docs/02-design/architecture-*.md` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| 测试代码 | `tests/` | 测试源代码 |
+| 测试报告 | `docs/04-testing/test-report-*.md` | 测试结果 |
+| 质量报告 | `docs/04-testing/quality-report-*.md` | 质量评估 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[代码] --> B[quality-engineer]
+    C[测试策略] --> B
+    B --> D[测试代码]
+    B --> E[测试报告]
+    D --> F[tests/]
+    E --> G[docs/04-testing/]
+```

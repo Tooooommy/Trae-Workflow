@@ -432,3 +432,43 @@ export class UserService {
 | 安全              | `security-auditor`                                         | 安全, 漏洞       |
 | REST API          | `rest-patterns`                                            | REST, API        |
 | 数据库迁移        | `database-dev`                                             | 迁移, schema     |
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/backend-specialist/
+├── WORKSPACE.md          # 工作记录
+└── api-specs/            # API规格
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| product-strategist | PRD | `docs/01-requirements/PRD-*.md` |
+| tech-architect | 技术方案 | `docs/02-design/architecture-*.md` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| API代码 | `src/` | 后端源代码 |
+| API文档 | `docs/03-implementation/api-*.md` | API使用文档 |
+| 数据模型 | `docs/02-design/data-model-*.md` | 数据库设计 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[PRD] --> B[backend-specialist]
+    C[技术方案] --> B
+    B --> D[API代码]
+    B --> E[数据模型]
+    D --> F[src/]
+    E --> G[docs/02-design/]
+    B --> H[docs/03-implementation/]
+```

@@ -28,7 +28,7 @@ description: 文档专家模式。根据代码和需求生成文档，包括 API
 
 ### API 文档模板
 
-```markdown
+````markdown
 # API 文档
 
 ## 用户接口 `/api/users`
@@ -39,11 +39,11 @@ description: 文档专家模式。根据代码和需求生成文档，包括 API
 
 **Query 参数**
 
-| 参数 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | ---- |
-| page | number | 否 | 页码，默认 1 |
-| limit | number | 否 | 每页数量，默认 20 |
-| search | string | 否 | 搜索关键词 |
+| 参数   | 类型   | 必填 | 说明              |
+| ------ | ------ | ---- | ----------------- |
+| page   | number | 否   | 页码，默认 1      |
+| limit  | number | 否   | 每页数量，默认 20 |
+| search | string | 否   | 搜索关键词        |
 
 **响应示例**
 
@@ -65,6 +65,7 @@ description: 文档专家模式。根据代码和需求生成文档，包括 API
   }
 }
 ```
+````
 
 ### 创建用户
 
@@ -92,7 +93,8 @@ description: 文档专家模式。根据代码和需求生成文档，包括 API
   }
 }
 ```
-```
+
+````
 
 ### README.md 模板
 
@@ -139,15 +141,15 @@ cp .env.example .env
 
 # 启动开发服务器
 npm run dev
-```
+````
 
 ### 环境变量
 
-| 变量 | 说明 | 默认值 |
-| ---- | ---- | ------ |
-| DATABASE_URL | 数据库连接地址 | - |
-| PORT | 服务端口 | 3000 |
-| NODE_ENV | 运行环境 | development |
+| 变量         | 说明           | 默认值      |
+| ------------ | -------------- | ----------- |
+| DATABASE_URL | 数据库连接地址 | -           |
+| PORT         | 服务端口       | 3000        |
+| NODE_ENV     | 运行环境       | development |
 
 ## 项目结构
 
@@ -170,12 +172,12 @@ src/
 
 ### 命令
 
-| 命令 | 说明 |
-| ---- | ---- |
-| npm run dev | 启动开发服务器 |
-| npm run build | 构建生产版本 |
-| npm run test | 运行测试 |
-| npm run lint | 代码检查 |
+| 命令          | 说明           |
+| ------------- | -------------- |
+| npm run dev   | 启动开发服务器 |
+| npm run build | 构建生产版本   |
+| npm run test  | 运行测试       |
+| npm run lint  | 代码检查       |
 
 ### 代码规范
 
@@ -190,7 +192,8 @@ src/
 ## License
 
 MIT
-```
+
+````
 
 ### 组件文档模板 (Storybook)
 
@@ -205,46 +208,47 @@ import { Button } from '@/components/common/Button'
 <Button variant="primary" size="md">
   点击我
 </Button>
-```
+````
 
 ## 变体 (Variants)
 
-| 变体 | 说明 | 使用场景 |
-| ---- | ---- | -------- |
-| primary | 主要按钮 | 主操作 |
-| secondary | 次要按钮 | 次要操作 |
-| outline | 边框按钮 | 替代样式 |
-| ghost | 幽灵按钮 | 轻量操作 |
-| danger | 危险按钮 | 删除等危险操作 |
+| 变体      | 说明     | 使用场景       |
+| --------- | -------- | -------------- |
+| primary   | 主要按钮 | 主操作         |
+| secondary | 次要按钮 | 次要操作       |
+| outline   | 边框按钮 | 替代样式       |
+| ghost     | 幽灵按钮 | 轻量操作       |
+| danger    | 危险按钮 | 删除等危险操作 |
 
 ## 尺寸 (Sizes)
 
-| 尺寸 | 说明 |
-| ---- | ---- |
-| sm | 小按钮 |
-| md | 中按钮 (默认) |
-| lg | 大按钮 |
+| 尺寸 | 说明          |
+| ---- | ------------- |
+| sm   | 小按钮        |
+| md   | 中按钮 (默认) |
+| lg   | 大按钮        |
 
 ## 状态
 
-| 状态 | 说明 |
-| ---- | ---- |
-| default | 默认状态 |
-| hover | 鼠标悬停 |
-| active | 点击状态 |
+| 状态     | 说明     |
+| -------- | -------- |
+| default  | 默认状态 |
+| hover    | 鼠标悬停 |
+| active   | 点击状态 |
 | disabled | 禁用状态 |
-| loading | 加载状态 |
+| loading  | 加载状态 |
 
 ## Props
 
-| 参数 | 类型 | 默认值 | 说明 |
-| ---- | ---- | ------ | ---- |
-| variant | 'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger' | 'primary' | 按钮样式 |
-| size | 'sm' \| 'md' \| 'lg' | 'md' | 按钮尺寸 |
-| disabled | boolean | false | 是否禁用 |
-| loading | boolean | false | 是否加载中 |
-| onClick | () => void | - | 点击回调 |
-```
+| 参数     | 类型                                                         | 默认值    | 说明       |
+| -------- | ------------------------------------------------------------ | --------- | ---------- |
+| variant  | 'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger' | 'primary' | 按钮样式   |
+| size     | 'sm' \| 'md' \| 'lg'                                         | 'md'      | 按钮尺寸   |
+| disabled | boolean                                                      | false     | 是否禁用   |
+| loading  | boolean                                                      | false     | 是否加载中 |
+| onClick  | () => void                                                   | -         | 点击回调   |
+
+````
 
 ### 技术白皮书模板
 
@@ -263,9 +267,11 @@ import { Button } from '@/components/common/Button'
 
 ### 架构设计
 
-```
+````
+
 [架构图]
-```
+
+````
 
 ### 核心设计
 
@@ -283,7 +289,7 @@ import { Button } from '@/components/common/Button'
 
 ```typescript
 // 关键代码示例
-```
+````
 
 ### 性能考虑
 
@@ -320,7 +326,8 @@ import { Button } from '@/components/common/Button'
 ## 结论
 
 总结本文档的主要内容和建议。
-```
+
+````
 
 ### 知识库模板
 
@@ -367,7 +374,7 @@ A2: 答案...
 | ---- | -------- | ------ |
 | YYYY-MM-DD | 初始版本 | 张三 |
 | YYYY-MM-DD | 更新内容 | 李四 |
-```
+````
 
 ### CHANGELOG 模板
 
@@ -404,14 +411,14 @@ A2: 答案...
 
 ## 文档生成工具
 
-| 工具 | 用途 |
-| ---- | ---- |
-| JSDoc | JavaScript 文档生成 |
-| TypeDoc | TypeScript 文档生成 |
-| Storybook | 组件文档 |
-| Swagger/OpenAPI | API 文档 |
-| Docusaurus | 项目文档站点 |
-| MkDocs | Markdown 文档站点 |
+| 工具            | 用途                |
+| --------------- | ------------------- |
+| JSDoc           | JavaScript 文档生成 |
+| TypeDoc         | TypeScript 文档生成 |
+| Storybook       | 组件文档            |
+| Swagger/OpenAPI | API 文档            |
+| Docusaurus      | 项目文档站点        |
+| MkDocs          | Markdown 文档站点   |
 
 ## 文档规范
 
@@ -422,9 +429,49 @@ A2: 答案...
 
 ## 质量门禁
 
-| 检查项 | 要求 |
-| ------ | ---- |
-| 文档覆盖 | 核心模块 100% |
-| 示例完整 | 每个 API 有示例 |
+| 检查项   | 要求                  |
+| -------- | --------------------- |
+| 文档覆盖 | 核心模块 100%         |
+| 示例完整 | 每个 API 有示例       |
 | 更新及时 | 代码变更后 24h 内更新 |
-| 链接有效 | 无死链和失效引用 |
+| 链接有效 | 无死链和失效引用      |
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/docs-engineer/
+├── WORKSPACE.md          # 工作记录
+└── doc-templates/        # 文档模板
+```
+
+### 输入文档
+
+| 来源                | 文档     | 路径                                    |
+| ------------------- | -------- | --------------------------------------- |
+| 各专家              | 工作成果 | 各专家输出目录                          |
+| orchestrator-expert | 文档需求 | `.ai-team/orchestrator/task-board.json` |
+
+### 输出文档
+
+| 文档       | 路径                                         | 说明        |
+| ---------- | -------------------------------------------- | ----------- |
+| API文档    | `docs/03-implementation/api-*.md`            | API使用文档 |
+| README     | 项目根目录                                   | 项目说明    |
+| 知识库更新 | `.ai-team/shared-context/knowledge-graph.md` | 知识图谱    |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[工作成果] --> B[docs-engineer]
+    C[文档需求] --> B
+    B --> D[API文档]
+    B --> E[README]
+    B --> F[知识库]
+    D --> G[docs/03-implementation/]
+    F --> H[shared-context/]
+```

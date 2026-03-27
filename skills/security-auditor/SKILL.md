@@ -441,3 +441,41 @@ test('enforces rate limits', async () => {
   expect(responses.filter((r) => r.status === 429).length).toBeGreaterThan(0);
 });
 ```
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/security-auditor/
+├── WORKSPACE.md          # 工作记录
+└── security-reports/     # 安全报告
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| tech-architect | 架构方案 | `docs/02-design/architecture-*.md` |
+| 各开发专家 | 代码 | `src/` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| 安全审计报告 | `docs/04-testing/security-report-*.md` | 安全审计结果 |
+| 安全建议 | `.ai-team/orchestrator/decision-registry/` | 安全决策记录 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[架构方案] --> B[security-auditor]
+    C[代码] --> B
+    B --> D[安全报告]
+    B --> E[安全建议]
+    D --> F[docs/04-testing/]
+    E --> G[decision-registry/]
+```

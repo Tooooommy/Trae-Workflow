@@ -96,3 +96,41 @@ description: 专项技术专家模式。负责"前瞻性技术探索与复杂专
 - 技术可行性分析报告
 - 核心技术组件设计方案
 - 最佳实践指南
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/performance-specialist/
+├── WORKSPACE.md          # 工作记录
+└── analysis-reports/     # 分析报告
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| quality-engineer | 性能问题报告 | `docs/04-testing/performance-report-*.md` |
+| tech-architect | 架构方案 | `docs/02-design/architecture-*.md` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| 性能优化方案 | `docs/02-design/performance-*.md` | 优化策略 |
+| 性能报告 | `docs/04-testing/performance-report-*.md` | 性能测试结果 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[性能问题] --> B[performance-specialist]
+    C[架构方案] --> B
+    B --> D[优化方案]
+    B --> E[性能报告]
+    D --> F[docs/02-design/]
+    E --> G[docs/04-testing/]
+```

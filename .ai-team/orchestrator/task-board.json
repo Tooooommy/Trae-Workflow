@@ -1,21 +1,64 @@
 {
-  "$schema": "./task-board.schema.json",
-  "version": "1.0.0",
   "project": {
-    "name": "",
-    "description": "",
-    "createdAt": "",
-    "updatedAt": ""
+    "id": "PROJ-2024-001",
+    "name": "社交图片分享应用MVP",
+    "version": "1.0.0",
+    "status": "in-progress", // pending, in-progress, review, completed, blocked
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T14:30:00Z"
   },
-  "sprints": [],
-  "backlog": [],
-  "inProgress": [],
-  "blocked": [],
-  "completed": [],
-  "metadata": {
-    "totalTasks": 0,
-    "completedTasks": 0,
-    "blockedTasks": 0,
-    "lastSync": ""
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "需求分析阶段",
+      "status": "completed",
+      "startDate": "2024-01-15",
+      "endDate": "2024-01-16",
+      "tasks": [
+        {
+          "id": "task-001",
+          "title": "编写产品需求文档",
+          "description": "基于初始需求，输出完整的PRD",
+          "assignee": "product-strategist",
+          "status": "completed",
+          "priority": "high",
+          "estimatedHours": 4,
+          "actualHours": 3.5,
+          "dependencies": [],
+          "inputFiles": [
+            "../shared-context/project-context.json",
+            "../shared-context/business-goals.md"
+          ],
+          "outputFiles": ["../../docs/01-requirements/prd-v1.0.md"],
+          "checkpoints": [
+            {
+              "name": "prd-outline",
+              "status": "approved",
+              "approvedBy": "orchestrator",
+              "timestamp": "2024-01-15T11:30:00Z"
+            }
+          ],
+          "comments": [
+            {
+              "expert": "product-strategist",
+              "timestamp": "2024-01-15T12:00:00Z",
+              "content": "已生成PRD初版，等待评审"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "experts": {
+    "product-strategist": {
+      "status": "available", // available, busy, blocked
+      "currentTask": null,
+      "recentActivity": "2024-01-15T12:00:00Z"
+    },
+    "tech-architect": {
+      "status": "available",
+      "currentTask": "task-002",
+      "recentActivity": "2024-01-15T13:00:00Z"
+    }
   }
 }

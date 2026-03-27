@@ -116,3 +116,43 @@ npm run build:weapp
 - 移动端应用程序
 - 移动端 SDK
 - 应用商店发布包
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/mobile-specialist/
+├── WORKSPACE.md          # 工作记录
+└── platform-builds/      # 平台构建
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| ux-engineer | 设计稿 | `docs/02-design/ui-design-*.md` |
+| backend-specialist | API文档 | `docs/03-implementation/api-*.md` |
+| tech-architect | 技术方案 | `docs/02-design/architecture-*.md` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| 移动端代码 | `src/mobile/` 或 `apps/` | 移动端源代码 |
+| 移动端文档 | `docs/03-implementation/mobile-*.md` | 移动端开发文档 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[设计稿] --> B[mobile-specialist]
+    C[API文档] --> B
+    B --> D[iOS代码]
+    B --> E[Android代码]
+    B --> F[小程序代码]
+    D --> G[src/mobile/]
+    B --> H[docs/03-implementation/]
+```

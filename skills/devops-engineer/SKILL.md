@@ -108,3 +108,42 @@ description: 运维与架构专家模式。负责系统的"稳定、安全与高
 - 部署流水线
 - 监控告警配置
 - 安全扫描报告
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/devops-engineer/
+├── WORKSPACE.md          # 工作记录
+└── deployment-configs/   # 部署配置
+```
+
+### 输入文档
+
+| 来源             | 文档     | 路径                               |
+| ---------------- | -------- | ---------------------------------- |
+| tech-architect   | 架构方案 | `docs/02-design/architecture-*.md` |
+| quality-engineer | 测试报告 | `docs/04-testing/test-report-*.md` |
+
+### 输出文档
+
+| 文档      | 路径                                 | 说明       |
+| --------- | ------------------------------------ | ---------- |
+| CI/CD配置 | `.github/workflows/`                 | 工作流配置 |
+| 部署文档  | `docs/05-deployment/deployment-*.md` | 部署指南   |
+| 监控配置  | `docs/05-deployment/monitoring-*.md` | 监控配置   |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[架构方案] --> B[devops-engineer]
+    C[测试报告] --> B
+    B --> D[CI/CD配置]
+    B --> E[部署文档]
+    D --> F[.github/workflows/]
+    E --> G[docs/05-deployment/]
+```

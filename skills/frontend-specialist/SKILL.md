@@ -253,3 +253,41 @@ export function useUserForm(defaultValues?: Partial<UserFormData>) {
 | 无障碍          | `a11y-patterns`       | 无障碍, WCAG            |
 | 表单验证        | `frontend-specialist` | 表单, react-hook-form   |
 | 状态管理        | `frontend-specialist` | zustand, context, redux |
+
+---
+
+## 工作区与文档目录
+
+### 专家工作区
+
+```
+.ai-team/experts/frontend-specialist/
+├── WORKSPACE.md          # 工作记录
+└── components/           # 组件文档
+```
+
+### 输入文档
+
+| 来源 | 文档 | 路径 |
+|------|------|------|
+| ux-engineer | 设计稿 | `docs/02-design/ui-design-*.md` |
+| backend-specialist | API文档 | `docs/03-implementation/api-*.md` |
+| tech-architect | 技术方案 | `docs/02-design/architecture-*.md` |
+
+### 输出文档
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| 组件文档 | `docs/03-implementation/component-*.md` | 组件使用文档 |
+| 页面文档 | `docs/03-implementation/page-*.md` | 页面结构文档 |
+
+### 协作关系
+
+```mermaid
+flowchart LR
+    A[设计稿] --> B[frontend-specialist]
+    C[API文档] --> B
+    B --> D[组件代码]
+    D --> E[src/]
+    B --> F[docs/03-implementation/]
+```
