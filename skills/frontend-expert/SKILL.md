@@ -248,9 +248,9 @@ export function useUserForm(defaultValues?: Partial<UserFormData>) {
 
 | 类型            | 调用 Skill          | 触发关键词              |
 | --------------- | ------------------- | ----------------------- |
-| React / Next.js | `nextjs-dev`   | React, Next.js          |
-| Vue.js          | `vue-patterns`      | Vue, Vue.js             |
+| React / Next.js | `nextjs-dev`        | React, Next.js          |
+| Vue.js          | `vue-dev`           | Vue, Vue.js             |
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式     |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG            |
-| 表单验证        | `frontend-expert` | 表单, react-hook-form   |
-| 状态管理        | `frontend-expert` | zustand, context, redux |
+| 表单验证        | `frontend-expert`   | 表单, react-hook-form   |
+| 状态管理        | `frontend-expert`   | zustand, context, redux |
