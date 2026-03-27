@@ -1,5 +1,5 @@
 ---
-name: feature-flags
+name: feature-flags-patterns
 description: 功能开关模式 - 特性开关、A/B测试、渐进发布最佳实践。**必须激活当**：用户要求实现功能开关、配置 A/B 测试或进行渐进发布时。即使用户没有明确说"功能开关"，当涉及特性开关或 A/B 测试时也应使用。
 ---
 
