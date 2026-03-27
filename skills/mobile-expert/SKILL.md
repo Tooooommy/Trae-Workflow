@@ -33,7 +33,7 @@ description: 移动端开发专家模式。负责移动端产品的"原生体验
 | ------------ | ------------------------- | -------------------------------- |
 | iOS 原生     | `ios-native-dev`          | iOS, Swift, SwiftUI, UIKit       |
 | Android 原生 | `android-native-dev`      | Android, Kotlin, Jetpack Compose |
-| React Native | `react-native-patterns`   | React Native, RN                 |
+| React Native | `react-native-dev`        | React Native, RN                 |
 | 微信小程序   | `mini-program-dev`        | 微信小程序, WeChat               |
 | 跨平台桌面   | `electron-dev`            | Electron, 桌面                   |
 | 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
