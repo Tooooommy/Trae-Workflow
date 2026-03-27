@@ -27,21 +27,21 @@ Orchestrator (调度) → Skills (执行) → Rules (约束) → MCP (连接)
 
 ---
 
-## 🎛️ 中央调度器
+## 🎛️ 协调中枢专家
 
-**use-workflow** - 解析用户需求，调用相应的 Skill 完成具体任务
+**orchestrator-expert** - 团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调
 
 ```mermaid
 flowchart TD
-    User[用户提出需求] --> Workflow[use-workflow]
-    Workflow --> Product[product-strategist]
-    Workflow --> Design[ux-engineer]
-    Workflow --> Frontend[frontend-specialist]
-    Workflow --> Backend[backend-specialist]
-    Workflow --> Mobile[mobile-specialist]
-    Workflow --> QA[quality-engineer]
-    Workflow --> Ops[devops-engineer]
-    Workflow --> User
+    User[用户提出需求] --> Orchestrator[orchestrator-expert]
+    Orchestrator --> Product[product-strategist]
+    Orchestrator --> Design[ux-engineer]
+    Orchestrator --> Frontend[frontend-specialist]
+    Orchestrator --> Backend[backend-specialist]
+    Orchestrator --> Mobile[mobile-specialist]
+    Orchestrator --> QA[quality-engineer]
+    Orchestrator --> Ops[devops-engineer]
+    Orchestrator --> User
 ```
 
 ---
@@ -175,7 +175,7 @@ traew update
 
 Trae-Workflow/
 ├── skills/ # 70+ 技能
-│   ├── use-workflow/     # 中央调度器
+│   ├── orchestrator-expert/  # 协调中枢
 │   ├── product-strategist/   # 产品战略
 │   ├── ux-engineer/    # 体验工程
 │   ├── frontend-specialist/ # 前端开发
