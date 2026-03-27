@@ -1,5 +1,5 @@
 ---
-name: shopify-app-patterns
+name: shopify-dev
 description: Shopify 应用（嵌入式应用）开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。基于官方的 `shopify-app-template-react-router` 模板。**必须激活当**：用户要求构建 Shopify 应用、开发嵌入式应用或集成 Shopify API 时。即使用户没有明确说"Shopify"，当涉及 Shopify 应用或电商集成时也应使用。
 ---
 
