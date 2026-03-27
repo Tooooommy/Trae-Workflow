@@ -42,7 +42,7 @@ description: 运维与架构专家模式。负责系统的"稳定、安全与高
 | 数据库   | `postgres-patterns`                         | 数据库, 慢查询, 优化      |
 | 消息队列 | `message-queue-patterns`                    | Kafka, RabbitMQ, 消息队列 |
 | 限流熔断 | `rate-limiting`, `circuit-breaker-patterns` | 限流, 熔断, 高并发        |
-| 灾难恢复 | `database-patterns`                         | 备份, 恢复, 容灾          |
+| 灾难恢复 | `database-dev`                         | 备份, 恢复, 容灾          |
 | 成本优化 | `cache-strategy-patterns`                   | 成本, 优化, 资源          |
 | 日志管理 | `logging-observability`                     | 日志, ELK, 日志分析       |
 

@@ -432,4 +432,4 @@ export class UserService {
 | 后台任务          | `tasks-patterns`                                          | 后台任务, Cron   |
 | 安全              | `security-expert`                                          | 安全, 漏洞       |
 | REST API          | `rest-patterns`                                            | REST, API        |
-| 数据库迁移        | `database-patterns`                                        | 迁移, schema     |
+| 数据库迁移        | `database-dev`                                        | 迁移, schema     |

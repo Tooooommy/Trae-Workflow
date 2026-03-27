@@ -1,5 +1,5 @@
 ---
-name: database-patterns
+name: database-dev
 description: 数据库模式和迁移最佳实践。涵盖数据库设计模式、模式变更、数据迁移、回滚以及零停机部署，适用于PostgreSQL、MySQL及常用ORM。**必须激活当**：用户要求设计数据库模式、创建数据库迁移、修改表结构、处理数据迁移或执行回滚时。
 ---
 
