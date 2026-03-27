@@ -559,40 +559,100 @@ mkdir -p src tests .github/workflows
 ### 2. 初始化核心文件
 
 ```bash
-# 任务看板
+# 任务看板（主状态文件）
 cat > .ai-team/orchestrator/task-board.json << 'EOF'
 {
   "project": {
+    "id": "",
     "name": "",
-    "description": "",
+    "version": "1.0.0",
+    "status": "pending",
     "createdAt": "",
     "updatedAt": ""
   },
-  "backlog": [],
-  "inProgress": [],
-  "blocked": [],
-  "completed": []
+  "phases": [],
+  "experts": {
+    "product-strategist": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "tech-architect": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "ux-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "frontend-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "backend-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "mobile-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "devops-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "security-auditor": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "quality-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "performance-specialist": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "docs-engineer": { "status": "available", "currentTask": null, "recentActivity": "" },
+    "retro-facilitator": { "status": "available", "currentTask": null, "recentActivity": "" }
+  }
 }
 EOF
 
 # 工作流日志
-touch .ai-team/orchestrator/workflow-log.md
+cat > .ai-team/orchestrator/workflow-log.md << 'EOF'
+# 工作流日志
+
+> 项目:
+> 创建时间:
+
+## 日志记录
+
+| 时间 | 专家 | 动作 | 状态 | 备注 |
+|------|------|------|------|------|
+EOF
 
 # 项目上下文
 cat > .ai-team/shared-context/project-context.json << 'EOF'
 {
   "project": {
+    "id": "",
     "name": "",
-    "techStack": {},
-    "constraints": {}
+    "version": "1.0.0",
+    "techStack": {
+      "frontend": "",
+      "backend": "",
+      "database": "",
+      "deployment": ""
+    },
+    "constraints": {
+      "budget": "",
+      "timeline": "",
+      "team": []
+    }
   },
   "stakeholders": [],
-  "milestones": []
+  "milestones": [],
+  "decisions": []
 }
 EOF
 
 # 知识图谱
-touch .ai-team/shared-context/knowledge-graph.md
+cat > .ai-team/shared-context/knowledge-graph.md << 'EOF'
+# 知识图谱
+
+> 项目:
+
+## 技术栈
+
+| 层级 | 技术 | 版本 | 说明 |
+|------|------|------|------|
+| 前端 | - | - | - |
+| 后端 | - | - | - |
+| 数据库 | - | - | - |
+| 部署 | - | - | - |
+
+## 核心概念
+
+_暂无_
+
+## 关键决策
+
+_暂无_
+
+## 经验教训
+
+_暂无_
+EOF
 ```
 
 ### 3. 初始化各专家工作区
@@ -620,87 +680,90 @@ for dir in 01-requirements 02-design 03-implementation 04-testing 05-deployment;
 done
 ```
 
-### 5. 快速初始化脚本
+### 5. 任务看板数据结构
 
-创建 `scripts/init-project.sh`：
-
-```bash
-#!/bin/bash
-# AI Team 项目初始化脚本
-
-PROJECT_NAME=${1:-"new-project"}
-
-# 创建目录结构
-mkdir -p .ai-team/orchestrator/decision-registry
-mkdir -p .ai-team/experts/{product-strategist,tech-architect,ux-engineer,frontend-specialist,backend-specialist,mobile-specialist,devops-engineer,security-auditor,quality-engineer,performance-specialist,docs-engineer,retro-facilitator}
-mkdir -p .ai-team/shared-context
-mkdir -p docs/{01-requirements,02-design,03-implementation,04-testing,05-deployment}
-mkdir -p src tests .github/workflows scripts
-
-# 初始化 task-board.json
-DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-cat > .ai-team/orchestrator/task-board.json << EOF
+```json
 {
   "project": {
-    "name": "$PROJECT_NAME",
-    "description": "",
-    "createdAt": "$DATE",
-    "updatedAt": "$DATE"
+    "id": "PROJ-2024-001",
+    "name": "社交图片分享应用MVP",
+    "version": "1.0.0",
+    "status": "in-progress",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-01-15T14:30:00Z"
   },
-  "backlog": [],
-  "inProgress": [],
-  "blocked": [],
-  "completed": []
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "需求分析阶段",
+      "status": "completed",
+      "startDate": "2024-01-15",
+      "endDate": "2024-01-16",
+      "tasks": [
+        {
+          "id": "task-001",
+          "title": "编写产品需求文档",
+          "description": "基于初始需求，输出完整的PRD",
+          "assignee": "product-strategist",
+          "status": "completed",
+          "priority": "high",
+          "estimatedHours": 4,
+          "actualHours": 3.5,
+          "dependencies": [],
+          "inputFiles": ["../shared-context/project-context.json"],
+          "outputFiles": ["../../docs/01-requirements/prd-v1.0.md"],
+          "checkpoints": [
+            {
+              "name": "prd-outline",
+              "status": "approved",
+              "approvedBy": "orchestrator",
+              "timestamp": "2024-01-15T11:30:00Z"
+            }
+          ],
+          "comments": [
+            {
+              "expert": "product-strategist",
+              "timestamp": "2024-01-15T12:00:00Z",
+              "content": "已生成PRD初版，等待评审"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "experts": {
+    "product-strategist": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": "2024-01-15T12:00:00Z"
+    }
+  }
 }
-EOF
-
-# 初始化其他文件
-touch .ai-team/orchestrator/workflow-log.md
-
-cat > .ai-team/shared-context/project-context.json << EOF
-{
-  "project": {
-    "name": "$PROJECT_NAME",
-    "techStack": {},
-    "constraints": {}
-  },
-  "stakeholders": [],
-  "milestones": []
-}
-EOF
-
-touch .ai-team/shared-context/knowledge-graph.md
-
-# 初始化专家工作区
-for expert in product-strategist tech-architect ux-engineer frontend-specialist backend-specialist mobile-specialist devops-engineer security-auditor quality-engineer performance-specialist docs-engineer retro-facilitator; do
-  cat > .ai-team/experts/$expert/WORKSPACE.md << EOF
-# $expert 工作区
-
-> 当前任务：暂无
-
-## 工作记录
-
-| 日期 | 任务 | 状态 | 输出 |
-|------|------|------|------|
-EOF
-done
-
-# 初始化文档目录
-for dir in 01-requirements 02-design 03-implementation 04-testing 05-deployment; do
-  echo "# ${dir#*-} 文档目录\n\n_暂无文档_" > docs/$dir/README.md
-done
-
-echo "✅ 项目 '$PROJECT_NAME' 初始化完成！"
-echo "📁 目录结构已创建"
-echo "📝 核心文件已初始化"
 ```
 
-### 使用方法
+#### 状态枚举
 
-```bash
-# 赋予执行权限
-chmod +x scripts/init-project.sh
+| 字段              | 可选值                                           |
+| ----------------- | ------------------------------------------------ |
+| project.status    | pending, in-progress, review, completed, blocked |
+| phase.status      | pending, in-progress, completed                  |
+| task.status       | pending, in-progress, review, completed, blocked |
+| task.priority     | critical, high, medium, low                      |
+| expert.status     | available, busy, blocked                         |
+| checkpoint.status | pending, approved, rejected                      |
 
-# 初始化新项目
-./scripts/init-project.sh my-awesome-project
+### 6. 使用方法
+
+初始化完成后，与 orchestrator-expert 对话启动项目：
+
 ```
+"我们需要开发一个具有社交功能的图片分享应用MVP，
+请在2周内给出可上线的版本。"
+```
+
+协调中枢将会：
+
+1. 创建项目阶段和任务
+2. 分配专家并更新 `experts` 状态
+3. 跟踪任务进度和检查点
+4. 记录工作流日志

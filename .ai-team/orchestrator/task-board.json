@@ -3,7 +3,7 @@
     "id": "PROJ-2024-001",
     "name": "社交图片分享应用MVP",
     "version": "1.0.0",
-    "status": "in-progress", // pending, in-progress, review, completed, blocked
+    "status": "in-progress",
     "createdAt": "2024-01-15T10:00:00Z",
     "updatedAt": "2024-01-15T14:30:00Z"
   },
@@ -51,7 +51,7 @@
   ],
   "experts": {
     "product-strategist": {
-      "status": "available", // available, busy, blocked
+      "status": "available",
       "currentTask": null,
       "recentActivity": "2024-01-15T12:00:00Z"
     },
@@ -59,6 +59,56 @@
       "status": "available",
       "currentTask": "task-002",
       "recentActivity": "2024-01-15T13:00:00Z"
+    },
+    "ux-engineer": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "frontend-specialist": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "backend-specialist": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "mobile-specialist": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "devops-engineer": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "security-auditor": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "quality-engineer": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "performance-specialist": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "docs-engineer": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
+    },
+    "retro-facilitator": {
+      "status": "available",
+      "currentTask": null,
+      "recentActivity": ""
     }
   }
 }
