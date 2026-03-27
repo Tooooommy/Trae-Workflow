@@ -199,7 +199,7 @@ flowchart TD
 | 组件设计        | `frontend-expert`   | 组件, UI            |
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
-| 国际化        | `i18n-patterns` | 多语言，本地化|
+| 国际化          | `i18n-patterns`     | 多语言，本地化      |
 
 #### 3.2 后端开发（backend-expert）
 
@@ -207,7 +207,6 @@ flowchart TD
 | ----------------- | ---------------------------------------------------- | ------------------------- |
 | Node.js / Express | `express-dev`                                        | Node.js, Express          |
 | Python / FastAPI  | `fastapi-dev`                                        | Python, FastAPI           |
-| Python / Django   | `django-dev`                                         | Python, Django            |
 | Go / Gin          | `golang-dev`                                         | Go, Gin                   |
 | Rust              | `rust-dev`                                           | Rust, async               |
 | GraphQL           | `graphql-patterns`                                   | GraphQL, Apollo           |
