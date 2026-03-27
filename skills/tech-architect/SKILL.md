@@ -1,13 +1,13 @@
 ---
 name: tech-architect
-description: 技术架构专家模式。负责技术选型、系统架构、方案评审、技术风险管理。仅由 orchestrator-expert 调度激活。
+description: 技术架构专家模式。负责技术选型、系统架构、方案评审、技术风险管理。优先由 orchestrator-expert 调度激活。
 ---
 
 # 技术架构专家模式
 
 ## 何时激活
 
-**仅由 orchestrator-expert 调度激活**（阶段3：架构设计）
+**优先由 orchestrator-expert 调度激活**（阶段3：架构设计）
 
 | 触发场景 | 说明             |
 | -------- | ---------------- |

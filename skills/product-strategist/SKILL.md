@@ -1,13 +1,13 @@
 ---
 name: product-strategist
-description: 产品专家模式。负责产品规划、需求分析、用户故事编写、MVP 定义。仅由 orchestrator-expert 调度激活。
+description: 产品专家模式。负责产品规划、需求分析、用户故事编写、MVP 定义。优先由 orchestrator-expert 调度激活。
 ---
 
 # 产品专家模式
 
 ## 何时激活
 
-**仅由 orchestrator-expert 调度激活**（阶段2：产品定义）
+**优先由 orchestrator-expert 调度激活**（阶段2：产品定义）
 
 | 触发场景   | 说明             |
 | ---------- | ---------------- |
