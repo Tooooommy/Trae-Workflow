@@ -1,5 +1,5 @@
 ---
-name: deployment-patterns
+name: devops-patterns
 description: 部署工作流、CI/CD流水线模式、Docker容器化、健康检查、回滚策略以及Web应用程序的生产就绪检查清单。**必须激活当**：用户要求部署应用、配置 CI/CD、设置容器化或实现健康检查时。即使用户没有明确说"部署"，当涉及 Docker 容器化、CI/CD 流水线或生产环境配置时也应使用。
 ---
 

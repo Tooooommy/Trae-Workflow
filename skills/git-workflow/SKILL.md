@@ -366,6 +366,6 @@ git revert <commit-hash>
 ## 相关技能
 
 - [ci-cd-patterns](../ci-cd-patterns/) — CI/CD 流程配置
-- [deployment-patterns](../deployment-patterns/) — 部署模式
+- [devops-patterns](../devops-patterns/) — 部署模式
 - [coding-standards](../coding-standards/) — 编码规范
 - [tdd-patterns](../tdd-patterns/) — 测试驱动开发
