@@ -34,7 +34,7 @@ description: 运维与架构专家模式。负责系统的"稳定、安全与高
 | 类型     | 调用 Skill                                  | 触发关键词                |
 | -------- | ------------------------------------------- | ------------------------- |
 | 架构设计 | `clean-architecture`                        | 架构, 重构, 微服务        |
-| CI/CD    | `git-workflow`, `devops-patterns`           | CI/CD, GitHub Actions     |
+| CI/CD    | `git-patterns`, `devops-patterns`           | CI/CD, GitHub Actions     |
 | Docker   | `docker-patterns`                           | Docker, 容器, K8s         |
 | 监控     | `logging-observability`                     | 监控, Prometheus, Grafana |
 | 安全     | `security-review`, `rate-limiting`          | 安全, 漏洞, 渗透          |

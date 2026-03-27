@@ -1,5 +1,5 @@
 ---
-name: git-workflow
+name: git-patterns
 description: Git 版本控制最佳实践 - 分支策略、提交规范、合并流程、版本发布。**必须激活当**：用户要求创建 Git 工作流、管理分支、编写提交信息或审查合并请求时。即使用户没有明确说"Git"，当涉及版本控制、分支管理或代码审查时也应使用。
 priority: high
 version: 1.0.0
