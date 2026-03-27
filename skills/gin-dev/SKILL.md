@@ -400,7 +400,7 @@ r.GET("/page", func(c *gin.Context) {
 
 | 技能                    | 说明            |
 | ----------------------- | --------------- |
-| golang-patterns         | Go 通用模式     |
+| golang-dev              | Go 通用模式     |
 | backend-expert          | 后端架构模式    |
 | postgres-patterns       | PostgreSQL 模式 |
 | cache-strategy-patterns | 缓存模式        |

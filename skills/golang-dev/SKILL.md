@@ -1,5 +1,5 @@
 ---
-name: golang-patterns
+name: golang-dev
 description: 用于构建健壮、高效且可维护的Go应用程序的惯用Go模式、最佳实践和约定。**必须激活当**：用户要求编写 Go 代码、实现 Go 模式或遵循 Go 最佳实践时。即使用户没有明确说"Go"，当涉及 Go 语言或 Go 编程时也应使用。
 ---
 
