@@ -35,7 +35,7 @@ description: 移动端开发专家模式。负责移动端产品的"原生体验
 | Android 原生 | `android-native-dev` | Android, Kotlin, Jetpack Compose |
 | React Native | `react-native-patterns`   | React Native, RN                 |
 | 微信小程序   | `mini-program-patterns`   | 微信小程序, WeChat               |
-| 跨平台桌面   | `electron-patterns`       | Electron, 桌面                   |
+| 跨平台桌面   | `electron-dev`       | Electron, 桌面                   |
 | 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
 | 响应式布局   | `tailwind-patterns`       | Tailwind, CSS, 响应式            |
 | 实时通信     | `webrtc-patterns`         | WebRTC, 实时音视频               |
