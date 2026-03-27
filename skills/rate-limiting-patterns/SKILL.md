@@ -1,5 +1,5 @@
 ---
-name: rate-limiting
+name: rate-limiting-patterns
 description: 限流模式 - API 保护、流量控制、防滥用最佳实践。**必须激活当**：用户要求实现限流、保护 API 或防止滥用时。即使用户没有明确说"限流"，当涉及 API 保护、流量控制或速率限制时也应使用。
 ---
 
