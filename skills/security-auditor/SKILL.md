@@ -200,31 +200,6 @@ export const authLimiter = rateLimit({
 
 ---
 
-## 区块链安全 (Solana)
-
-### 钱包验证
-
-```typescript
-import { verify } from '@solana/web3.js';
-
-async function verifyWallet(publicKey: string, signature: string, message: string) {
-  return verify(
-    Buffer.from(message),
-    Buffer.from(signature, 'base64'),
-    Buffer.from(publicKey, 'base64')
-  );
-}
-```
-
-### 交易验证清单
-
-- [ ] 已验证钱包签名
-- [ ] 已验证交易详情
-- [ ] 交易前检查余额
-- [ ] 没有盲签名交易
-
----
-
 ## 依赖安全
 
 ### 检查命令
