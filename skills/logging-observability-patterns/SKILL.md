@@ -1,5 +1,5 @@
 ---
-name: logging-observability
+name: logging-observability-patterns
 description: 日志与可观测性模式 - 结构化日志、指标、追踪三位一体。**必须激活当**：用户要求设置日志系统、配置可观测性或实现分布式追踪时。即使用户没有明确说"日志"，当涉及结构化日志、指标收集或链路追踪时也应使用。
 ---
 
