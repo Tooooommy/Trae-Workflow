@@ -1,205 +1,104 @@
 ---
 name: tech-architect
-description: 技术架构专家模式。负责技术选型、系统架构、方案评审、技术风险管理。当需要进行技术选型、系统架构设计、技术方案评审、架构迁移时使用此Skill。
+description: 技术架构专家模式。负责技术选型、系统架构、方案评审、技术风险管理。仅由 orchestrator-expert 调度激活。
 ---
 
 # 技术架构专家模式
 
-用于在项目启动、技术评估或架构演进时，从预先定义和验证过的"技术栈武器库"中，快速筛选出最匹配的全栈或专项技术方案。
-
 ## 何时激活
 
-- 启动一个新的**全栈Web应用**、**移动端应用**、**桌面应用**、**纯前端SPA**或**后端API服务**项目时。
-- 为现有项目增加一个具有不同技术需求（如实时通信、高并发）的新模块，需要进行技术评估时。
-- 对现有项目进行**技术栈现代化升级**或**架构重构**的评估阶段。
-- 需要为特定技术场景（如嵌入式应用、AI服务集成、支付集成）选择专项技术时。
-- 规划从**单体架构**向**微服务**或更复杂架构演进的技术路径时。
-- 开发**微信小程序**、**抖音小程序**或其他小程序应用时。
-- 需要构建**跨平台桌面应用**时。
+**仅由 orchestrator-expert 调度激活**（阶段3：架构设计）
 
-> **注意**：此技能为选型工具，不依赖特定技术栈。
+| 触发场景 | 说明             |
+| -------- | ---------------- |
+| 技术选型 | 为项目选择技术栈 |
+| 架构设计 | 设计系统架构     |
+| 方案评审 | 评审技术方案     |
+| 架构迁移 | 架构重构评估     |
 
-## 核心选型逻辑
-
-选型应遵循一个清晰的决策路径，确保技术方案与项目目标、团队能力和约束条件相匹配。
-
-1.  **确定项目类型与核心目标**：项目是Web全栈、移动端、管理后台还是纯后端API？核心目标是快速验证（MVP）、最佳性能，还是与特定平台（如Shopify、Vercel）深度集成？
-2.  **评估团队与约束条件**：
-    - **团队技能**：团队最熟悉的技术栈是什么？（例如，精通Python/FastAPI，还是Node.js/React）。
-    - **部署偏好**：是否有偏好的云服务商或部署平台？（例如，必须部署在Vercel，或已购买AWS服务）。
-    - **非功能性需求**：对性能、可扩展性，开发体验（DX）有何具体要求？
-3.  **匹配技术栈目录**：根据以上判断，从下方对应的"选型决策矩阵"中选择基准方案。
+## 核心概念
 
 ### 选型决策矩阵
 
-| 项目类型 / 核心目标                                        | 推荐方案                 | 备选方案     | 核心决策点与优势                                                                                                                                                                      |
-| :--------------------------------------------------------- | :----------------------- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **全栈 Web App** <br> _(需最佳开发体验、Vercel深度集成)_   | **NextJS 全栈方案**      | RemixJS 方案 | **决策点**：是否需要Next.js App Router、ISR/SSG等开箱即用的优化，以及是否计划使用Vercel部署。<br>**优势**：与Vercel无缝集成，功能全面，社区活跃，适合快速构建和迭代。                 |
-| **全栈 Web App** <br> _(需精细控制、遵循Web标准)_          | **RemixJS 全栈方案**     | NextJS 方案  | **决策点**：是否看重Remix的嵌套路由、渐进增强和数据加载模式，以及对部署平台（如Railway）的偏好。<br>**优势**：强调Web Fundamentals，数据加载与UI耦合紧密，可提供优异的用户体验。      |
-| **Shopify 嵌入式应用** <br> _(开发应用商店应用或结账扩展)_ | **Shopify APP 方案**     | -            | **决策点**：是否为Shopify平台开发应用。<br>**优势**：基于官方React Router模板，预置OAuth、会话管理，开箱即用，符合平台规范。                                                          |
-| **跨平台移动端 App** <br> _(需高性能、原生体验)_           | **React Native 方案**    | Flutter 方案 | **决策点**：是否需要React技术栈开发iOS和Android应用。<br>**优势**：使用Ignite获得高质量脚手架，配合Tamagui实现高性能、可定制UI，共享大部分业务逻辑。                                  |
-| **iOS 原生 App**                                           | **SwiftUI 方案**         | -            | **决策点**：是否需要最佳iOS性能和原生体验。<br>**优势**：Apple官方推荐的UI框架，与iOS系统深度集成，性能优异。                                                                         |
-| **Android 原生 App**                                       | **Jetpack Compose 方案** | -            | **决策点**：是否需要最佳Android性能和原生体验。<br>**优势**：Google官方推荐的现代UI工具包，声明式API，生产力高。                                                                      |
-| **Electron 桌面应用** <br> _(跨平台桌面软件)_              | **Electron 方案**        | -            | **决策点**：是否需要使用Web技术构建跨平台桌面应用。<br>**优势**：生态成熟，第三方库丰富，社区活跃，调试工具完善。                                                                     |
-| **微信小程序**                                             | **微信小程序方案**       | -            | **决策点**：是否需要在微信生态内开发应用。<br>**优势**：基于原生或框架开发，体积小，微信生态入口。                                                                                    |
-| **单页应用 (SPA) / 复杂管理后台**                          | **React 前端方案**       | Vue 3 方案   | **决策点**：项目是否为无需服务端渲染（SSR）的复杂交互界面。<br>**优势**：基于Vite的现代构建体验，功能全面的技术组合（状态管理、数据获取、UI组件），适合开发工具类、后台管理系统。     |
-| **后端 API 服务** <br> _(团队熟悉Python)_                  | **Python 后端方案**      | Node 方案    | **决策点**：团队是否熟悉Python生态，或项目是否需要集成数据科学/AI库。<br>**优势**：FastAPI性能优异，Pydantic提供强大的数据验证，TortoiseORM为异步原生，Celery处理后台任务，架构完整。 |
-| **后端 API 服务** <br> _(团队熟悉JS/TS)_                   | **Node 后端方案**        | Python 方案  | **决策点**：团队是否熟悉Node.js/TypeScript生态。<br>**优势**：Express成熟稳定，Prisma提供卓越的类型安全和开发体验，BullMQ处理异步任务，全栈可统一使用TypeScript。                     |
+| 项目类型         | 推荐方案         | 备选方案 |
+| ---------------- | ---------------- | -------- |
+| 全栈Web App      | NextJS           | RemixJS  |
+| Shopify应用      | Shopify APP      | -        |
+| 跨平台移动端     | React Native     | Flutter  |
+| iOS原生          | SwiftUI          | -        |
+| Android原生      | Jetpack Compose  | -        |
+| 桌面应用         | Electron         | -        |
+| 微信小程序       | 微信小程序方案   | -        |
+| SPA/管理后台     | React + Vite     | Vue 3    |
+| 后端API (Python) | FastAPI          | -        |
+| 后端API (Node)   | Express + Prisma | -        |
 
-## 架构设计模式摘要
+### 架构模式
 
-选定技术栈后，可参考以下高层架构模式进行设计。
+| 模式       | 适用场景                 |
+| ---------- | ------------------------ |
+| 全栈应用   | NextJS/RemixJS，SSR/SSG  |
+| 前后端分离 | React SPA + 后端API      |
+| 移动端应用 | React Native + 后端API   |
+| 桌面应用   | Electron + 后端API       |
+| 小程序     | 微信小程序 + 云开发/后端 |
 
-### 模式A：全栈应用 (NextJS/RemixJS)
+### 设计原则
 
-```bash
-用户请求
-↓
-[ CDN / 边缘网络 (Vercel/Railway) ]
-↓
-[ 应用服务器 (Next.js/Remix) ] 处理 SSR/路由/API
-↓
-[ 数据访问层 (Prisma/Supabase客户端/TortoiseORM) ]
-↓
-[ 数据存储 (PostgreSQL/Supabase) ] + [ 缓存 (Redis) ]
-```
+| 原则     | 说明                     |
+| -------- | ------------------------ |
+| 简单优先 | 优先选择成熟、简单的方案 |
+| 团队熟悉 | 选择团队熟悉的技术栈     |
+| 可扩展   | 预留扩展空间             |
+| 安全第一 | 安全作为架构基础         |
 
-### 模式B：前后端分离 (React SPA + 后端API)
+## 输入输出
 
-```bash
-浏览器 (React SPA on Vercel/S3)
-↓ (API调用)
-[ API网关 ]
-↓
-[ 后端API服务 (FastAPI/Express) ]
-↓
-[ 服务层 + 数据访问层 ]
-↓
-[ 数据库 (PostgreSQL) ] + [ 缓存 (Redis) ] + [ 消息队列 (RabbitMQ/BullMQ) ]
-```
+### 输入
 
-### 模式C：移动端应用 (React Native)
+| 来源                | 文档     | 路径                                  |
+| ------------------- | -------- | ------------------------------------- |
+| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
+| product-strategist  | PRD      | docs/01-requirements/PRD-\*.md        |
 
-```bash
-移动设备 (React Native App)
-↓ (API调用)
-[ 后端API服务 ] (同模式A或B)
-...
-```
+### 输出
 
-### 模式D：桌面应用 (Electron)
+| 文档     | 路径                                              | 说明         |
+| -------- | ------------------------------------------------- | ------------ |
+| 技术方案 | docs/02-design/architecture-\*.md                 | 系统架构设计 |
+| 技术选型 | docs/02-design/tech-selection-\*.md               | 技术选型决策 |
+| 数据模型 | docs/02-design/data-model-\*.md                   | 数据库设计   |
+| ADR      | .ai-team/orchestrator/decision-registry/ADR-\*.md | 架构决策记录 |
 
-```bash
-桌面客户端 (Electron)
-↓ (IPC通信)
-[ Node.js 主进程 ]
-↓ (网络请求)
-[ 后端API服务]
-...
-```
-
-### 模式E：微信小程序
-
-```bash
-微信客户端 (小程序)
-↓ (开放能力)
-[ 微信API ] ←→ [ 微信云开发/自有后端 ]
-```
-
-## 实施清单
-
-启动项目前，建议完成以下检查：
-
-- [ ] 已根据"选型决策矩阵"确定基准技术栈。
-- [ ] 已考虑团队技术背景与学习成本。
-- [ ] 已完成高层架构图设计，明确各组件职责。
-- [ ] 核心数据库表结构已设计，并考虑了主要查询路径和索引。
-- [ ] API接口规范（REST/GraphQL）与认证方案（JWT/OAuth）已确定。
-- [ ] 错误处理、日志记录（Structlog/Pino）策略已规划。
-- [ ] 缓存（Redis）、异步任务（Celery/BullMQ）的使用场景已评估。
-- [ ] 监控、告警和CI/CD部署流程已初步规划。
-
-### 项目类型特定检查
-
-**桌面应用**
-
-- [ ] 选择 Electron 作为桌面应用框架
-- [ ] 确定是否需要原生模块（Node.js FFI）
-- [ ] 规划自动更新策略
-
-**微信小程序**
-
-- [ ] 确定使用原生开发还是框架（Taro、Uni-app）
-- [ ] 选择云开发还是自有后端
-- [ ] 规划登录与用户体系
-
-## 输出物
-
-一次完整的技术选型输出通常包括：
-
-1. **技术栈列表**：针对当前项目定制的、包含具体版本号的技术栈YAML或Markdown列表。
-2. **系统架构图**：展示核心组件、数据流和外部依赖的高层示意图。
-3. **关键决策记录 (ADR)**：简要说明1-2个最重要的技术选型理由及考虑的替代方案。
-4. **实施路线图**：分阶段的开发、集成和上线计划。
-
-## 相关技能
-
-| 技能                    | 说明                         |
-| ----------------------- | ---------------------------- |
-| frontend-specialist     | React/Vue 前端模式           |
-| backend-specialist      | Node.js 后端模式             |
-| fastapi-dev             | FastAPI 后端模式             |
-| react-native-dev        | React Native 移动端          |
-| ios-native-dev          | SwiftUI iOS 原生             |
-| android-native-dev      | Jetpack Compose Android 原生 |
-| electron-dev            | Electron 桌面应用            |
-| mini-program-dev        | 微信小程序                   |
-| nextjs-dev              | Next.js 全栈方案             |
-| shopify-dev             | Shopify 应用方案             |
-| payment-patterns        | 支付集成方案                 |
-| quality-engineer        | 质量保障与验证流程           |
-| tdd-patterns            | 测试驱动开发                 |
-| security-auditor        | 安全最佳实践                 |
-| cache-strategy-patterns | 缓存策略                     |
-| message-queue-patterns  | 消息队列                     |
-
----
-
-## 工作区与文档目录
-
-### 专家工作区
-
-```
-.ai-team/experts/tech-architect/
-├── WORKSPACE.md          # 工作记录
-└── architecture-diagrams/ # 架构图
-```
-
-### 输入文档
-
-| 来源                | 文档     | 路径                                    |
-| ------------------- | -------- | --------------------------------------- |
-| product-strategist  | PRD      | `docs/01-requirements/PRD-*.md`         |
-| orchestrator-expert | 任务分配 | `.ai-team/orchestrator/task-board.json` |
-
-### 输出文档
-
-| 文档         | 路径                                               | 说明         |
-| ------------ | -------------------------------------------------- | ------------ |
-| 技术方案     | `docs/02-design/architecture-*.md`                 | 系统架构设计 |
-| 技术选型报告 | `docs/02-design/tech-selection-*.md`               | 技术选型决策 |
-| 架构决策记录 | `.ai-team/orchestrator/decision-registry/ADR-*.md` | ADR文档      |
-| 数据模型     | `docs/02-design/data-model-*.md`                   | 数据库设计   |
-
-### 协作关系
+## 协作关系
 
 ```mermaid
 flowchart LR
-    A[PRD] --> B[tech-architect]
-    B --> C[技术方案]
-    B --> D[架构决策]
-    C --> E[frontend-specialist]
-    C --> F[backend-specialist]
-    D --> G[decision-registry/]
-    B --> H[docs/02-design/]
+    A[orchestrator-expert] -->|任务工单| B[tech-architect]
+    C[product-strategist] -->|PRD| B
+    B -->|技术方案| D[frontend-specialist]
+    B -->|技术方案| E[backend-specialist]
+    B -->|ADR| F[decision-registry/]
+    B -->|状态更新| A
 ```
+
+## 工作流程
+
+1. 接收 orchestrator-expert 任务分配
+2. 读取 PRD，分析技术需求
+3. 进行技术选型，产出技术方案
+4. 设计数据模型和 API 规范
+5. 记录架构决策 (ADR)
+6. 更新 task-board.json 状态
+7. 通知 orchestrator-expert 完成
+
+## 实施检查清单
+
+- [ ] 技术栈已确定
+- [ ] 架构图已设计
+- [ ] 数据模型已设计
+- [ ] API 规范已确定
+- [ ] 认证方案已确定
+- [ ] 错误处理策略已规划
+- [ ] 缓存策略已评估
+- [ ] CI/CD 已规划
