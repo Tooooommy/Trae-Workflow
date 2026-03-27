@@ -25,23 +25,22 @@ flowchart TD
 当多个 Skills 可能适用时，按以下顺序：
 
 1. **流程 Skills**（优先）- 这些决定**如何**处理任务
-   - brainstorming（头脑风暴）
-   - debugging（调试）
+   - product-expert、design-expert 等
 2. **实现 Skills**（其次）- 这些指导执行
    - frontend-patterns、backend-patterns 等
 
 示例：
 
-- "Let's build X" → 先头脑风暴，再调用实现 Skills
+- "Let's build X" → 先调用流程 Skills，再调用实现 Skills
 - "Fix this bug" → 先调试，再调用领域特定 Skills
 
 ### 指令优先级
 
-| 优先级 | 来源         | 说明                           |
-| ------ | ------------ | ------------------------------ |
-| 最高   | 用户明确指令 | CLAUDE.md、GEMINI.md、直接请求 |
-| 中等   | Skills       | 与默认系统行为冲突时覆盖       |
-| 最低   | 系统提示     | 默认行为                       |
+| 优先级 | 来源         | 说明                          |
+| ------ | ------------ | ----------------------------- |
+| 最高   | 用户明确指令 | AGENTS.md、CLAUDE.md 直接请求 |
+| 中等   | Skills       | 与默认系统行为冲突时覆盖      |
+| 最低   | 系统提示     | 默认行为                      |
 
 > 如果用户指令说"不要用 TDD"而 Skill 说"总是用 TDD"，遵循用户指令。**用户拥有控制权**。
 
@@ -115,7 +114,7 @@ flowchart TD
     Orchestrator --> Progress[progress-expert]
     Progress --> Orchestrator
 
-    Orchestrator --> Anti[anti-patterns]
+    Orchestrator --> Anti[anti-expert]
     Anti --> Orchestrator
 
     Orchestrator --> User
@@ -138,7 +137,7 @@ flowchart TD
 | `platform-expert`      | 运维专家 | 部署, 监控, DevOps         |
 | `specialized-expert`   | 专项专家 | 架构迁移, 性能攻坚         |
 | `progress-expert`      | 进度专家 | 进度跟踪, 优化建议         |
-| `anti-patterns`        | 反模式   | 错误记录, 反模式, 经验沉淀 |
+| `anti-expert`          | 反模式   | 错误记录, 反模式, 经验沉淀 |
 
 ---
 
@@ -200,6 +199,7 @@ flowchart TD
 | 组件设计        | `frontend-expert`   | 组件, UI            |
 | Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
 | 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
+| 国际化        | `i18n-patterns` | 多语言，本地化|
 
 #### 3.2 后端开发（backend-expert）
 
@@ -339,7 +339,7 @@ flowchart TD
 | 测试失败           | 创建缺陷任务，指派回开发团队修复 |
 | 部署失败           | 返回阶段 5，排查后重试           |
 | 需架构专家支持     | 调用 specialized-expert          |
-| 发现错误或反模式   | 调用 anti-patterns 记录          |
+| 发现错误或反模式   | 调用 anti-expert 记录            |
 | 需要进度跟踪       | 调用 progress-expert             |
 
 ## 进度跟踪
@@ -361,7 +361,7 @@ flowchart TD
 
 ## 反模式沉淀
 
-调度器在以下情况调用 `anti-patterns`：
+调度器在以下情况调用 `anti-expert`：
 
 - 发现错误或设计失误时
 - 遇到技术债或架构问题
@@ -369,7 +369,7 @@ flowchart TD
 - 代码审查中发现反模式
 - 项目完成时总结经验
 
-由 `anti-patterns` 负责：
+由 `anti-expert` 负责：
 
 - 记录错误案例和解决方案
 - 总结常见反模式和避免方法
