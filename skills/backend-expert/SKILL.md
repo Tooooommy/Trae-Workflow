@@ -421,7 +421,6 @@ export class UserService {
 | ----------------- | ---------------------------------------------------------- | ---------------- |
 | Node.js / Express | `express-dev`                                              | Node.js, Express |
 | Python / FastAPI  | `fastapi-dev`                                              | Python, FastAPI  |
-| Go / Gin          | `golang-dev`                                               | Go, Gin          |
 | GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo  |
 | 实时通信          | `websocket-patterns`                                       | WebSocket, SSE   |
 | 支付集成          | `stripe-patterns`, `alipay-patterns`, `wechatpay-patterns` | 支付             |

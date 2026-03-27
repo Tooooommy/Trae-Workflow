@@ -81,7 +81,6 @@ traew update
 - **graphql-patterns** - GraphQL Schema
 - **express-dev** - Node.js + Express
 - **fastapi-dev** - FastAPI 异步
-- **golang-dev** - Go + Gin
 - **python-dev** - Python 后端
 
 ### 移动端
