@@ -151,14 +151,14 @@ python -m scripts.improve_description <skill-path>
 
 本项目 Skills 位于 `skills/` 目录：
 
-| 目录            | 说明           |
-| --------------- | -------------- |
-| frontend-expert | 前端开发模式   |
-| backend-expert  | 后端开发模式   |
-| mobile-expert   | 移动端模式     |
-| design-expert   | UI/UX 设计模式 |
-| tdd-patterns    | 测试驱动开发   |
-| security-review | 安全审查       |
+| 目录                | 说明           |
+| ------------------- | -------------- |
+| frontend-specialist | 前端开发模式   |
+| backend-specialist  | 后端开发模式   |
+| mobile-specialist   | 移动端模式     |
+| ux-engineer         | UI/UX 设计模式 |
+| tdd-patterns        | 测试驱动开发   |
+| security-auditor    | 安全审查       |
 
 ## 相关技能
 

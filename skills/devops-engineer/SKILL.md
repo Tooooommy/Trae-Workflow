@@ -1,5 +1,5 @@
 ---
-name: platform-expert
+name: devops-engineer
 description: 运维与架构专家模式。负责系统的"稳定、安全与高效"。当需要进行架构设计、CI/CD、监控安全、性能优化时使用此 Skill。
 ---
 

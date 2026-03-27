@@ -34,13 +34,13 @@ Orchestrator (调度) → Skills (执行) → Rules (约束) → MCP (连接)
 ```mermaid
 flowchart TD
     User[用户提出需求] --> Workflow[use-workflow]
-    Workflow --> Product[product-expert]
-    Workflow --> Design[design-expert]
-    Workflow --> Frontend[frontend-expert]
-    Workflow --> Backend[backend-expert]
-    Workflow --> Mobile[mobile-expert]
-    Workflow --> QA[quality-expert]
-    Workflow --> Ops[platform-expert]
+    Workflow --> Product[product-strategist]
+    Workflow --> Design[ux-engineer]
+    Workflow --> Frontend[frontend-specialist]
+    Workflow --> Backend[backend-specialist]
+    Workflow --> Mobile[mobile-specialist]
+    Workflow --> QA[quality-engineer]
+    Workflow --> Ops[devops-engineer]
     Workflow --> User
 ```
 
@@ -65,18 +65,18 @@ traew update
 
 ### 产品 & 设计
 
-- **product-expert** - 产品规划、需求分析、MVP 定义
-- **design-expert** - UI/UX 设计模式
+- **product-strategist** - 产品规划、需求分析、MVP 定义
+- **ux-engineer** - UI/UX 设计模式
 
 ### 前端 & UI
 
-- **frontend-expert** - React、Next.js、状态管理
+- **frontend-specialist** - React、Next.js、状态管理
 - **tailwind-patterns** - Tailwind CSS 原子化
 - **a11y-patterns** - 无障碍设计、WCAG
 
 ### 后端 & API
 
-- **backend-expert** - 后端架构模式
+- **backend-specialist** - 后端架构模式
 - **rest-patterns** - REST API 设计
 - **graphql-patterns** - GraphQL Schema
 - **express-dev** - Node.js + Express
@@ -85,7 +85,7 @@ traew update
 
 ### 移动端
 
-- **mobile-expert** - 移动端统一入口
+- **mobile-specialist** - 移动端统一入口
 - **ios-native-dev** - iOS Swift/SwiftUI
 - **android-native-dev** - Android Kotlin
 - **react-native-dev** - React Native
@@ -138,14 +138,14 @@ traew update
 
 ### 质量 & 平台
 
-- **quality-expert** - 质量保障与验证流程
-- **platform-expert** - 架构、CI/CD、监控、安全
-- **security-expert** - 安全最佳实践
+- **quality-engineer** - 质量保障与验证流程
+- **devops-engineer** - 架构、CI/CD、监控、安全
+- **security-auditor** - 安全最佳实践
 - **rate-limiting-patterns** - 限流模式
 
 ### 专项技术
 
-- **specialized-expert** - 技术专项入口
+- **performance-specialist** - 技术专项入口
 - **tech-selection-patterns** - 技术选型指南
 - **feature-flags-patterns** - 功能开关
 
@@ -162,9 +162,8 @@ traew update
 
 ### 其他
 
-- **anti-expert** - 反模式
-- **progress-expert** - 进度追踪
-- **doc-expert** - 文档编写
+- **retro-facilitator** - 复盘与改进
+- **docs-engineer** - 文档编写
 - **skill-creator** - Skill 创建指南
 - **vercel-react-best-practices** - Vercel React 最佳实践
 
@@ -177,13 +176,13 @@ traew update
 Trae-Workflow/
 ├── skills/ # 70+ 技能
 │   ├── use-workflow/     # 中央调度器
-│   ├── product-expert/   # 产品专家
-│   ├── design-expert/    # 设计专家
-│   ├── frontend-expert/ # 前端专家
-│   ├── backend-expert/   # 后端专家
-│   ├── mobile-expert/    # 移动端专家
-│   ├── quality-expert/   # 质量专家
-│   ├── platform-expert/  # 平台专家
+│   ├── product-strategist/   # 产品战略
+│   ├── ux-engineer/    # 体验工程
+│   ├── frontend-specialist/ # 前端开发
+│   ├── backend-specialist/   # 后端开发
+│   ├── mobile-specialist/    # 移动端开发
+│   ├── quality-engineer/   # 质量工程
+│   ├── devops-engineer/  # 运维工程
 │   └── **/              # 其他模式
 ├── project_rules/ # 项目规则
 ├── user_rules/    # 用户规则

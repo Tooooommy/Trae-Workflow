@@ -1,5 +1,5 @@
 ---
-name: frontend-expert
+name: frontend-specialist
 description: 前端开发专家模式。根据PRD和设计稿生成前端代码、API集成、组件开发。当需要进行React/Vue组件开发、页面开发、API集成、响应式UI实现时使用此Skill。
 ---
 
@@ -246,10 +246,10 @@ export function useUserForm(defaultValues?: Partial<UserFormData>) {
 
 ## 子技能映射
 
-| 类型            | 调用 Skill          | 触发关键词              |
-| --------------- | ------------------- | ----------------------- |
-| React / Next.js | `nextjs-dev`        | React, Next.js          |
-| Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式     |
-| 无障碍          | `a11y-patterns`     | 无障碍, WCAG            |
-| 表单验证        | `frontend-expert`   | 表单, react-hook-form   |
-| 状态管理        | `frontend-expert`   | zustand, context, redux |
+| 类型            | 调用 Skill            | 触发关键词              |
+| --------------- | --------------------- | ----------------------- |
+| React / Next.js | `nextjs-dev`          | React, Next.js          |
+| Tailwind CSS    | `tailwind-patterns`   | Tailwind, CSS, 样式     |
+| 无障碍          | `a11y-patterns`       | 无障碍, WCAG            |
+| 表单验证        | `frontend-specialist` | 表单, react-hook-form   |
+| 状态管理        | `frontend-specialist` | zustand, context, redux |

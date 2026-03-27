@@ -25,7 +25,7 @@ flowchart TD
 当多个 Skills 可能适用时，按以下顺序：
 
 1. **流程 Skills**（优先）- 这些决定**如何**处理任务
-   - product-expert、design-expert 等
+   - product-strategist、ux-engineer 等
 2. **实现 Skills**（其次）- 这些指导执行
    - frontend-patterns、backend-patterns 等
 
@@ -80,22 +80,22 @@ flowchart TD
 flowchart TD
     User[用户/PM提出需求] --> Orchestrator[中央调度器]
 
-    Orchestrator --> Product[product-expert]
+    Orchestrator --> Product[product-strategist]
     Product --> Orchestrator
 
-    Orchestrator --> Design[design-expert]
+    Orchestrator --> Design[ux-engineer]
     Design --> Orchestrator
 
     Orchestrator --> ParallelDev[并行开发]
-    ParallelDev --> FE[frontend-expert]
-    ParallelDev --> BE[backend-expert]
-    ParallelDev --> Mobile[mobile-expert]
-    ParallelDev --> Security[security-expert]
-    ParallelDev -.-> Expert[specialized-expert]
+    ParallelDev --> FE[frontend-specialist]
+    ParallelDev --> BE[backend-specialist]
+    ParallelDev --> Mobile[mobile-specialist]
+    ParallelDev --> Security[security-auditor]
+    ParallelDev -.-> Expert[performance-specialist]
 
     FE --> DocReq{需要文档?}
     BE --> DocReq
-    DocReq -->|是| Doc[doc-expert]
+    DocReq -->|是| Doc[docs-engineer]
     DocReq -->|否| QA
 
     FE --> Orchestrator
@@ -105,16 +105,16 @@ flowchart TD
     Expert -. 专家支持 .-> Orchestrator
     Doc --> Orchestrator
 
-    Orchestrator --> QA[quality-expert]
+    Orchestrator --> QA[quality-engineer]
     QA --> Orchestrator
 
-    Orchestrator --> Ops[platform-expert]
+    Orchestrator --> Ops[devops-engineer]
     Ops --> Orchestrator
 
-    Orchestrator --> Progress[progress-expert]
+    Orchestrator --> Progress[retro-facilitator]
     Progress --> Orchestrator
 
-    Orchestrator --> Anti[anti-expert]
+    Orchestrator --> Anti[retro-facilitator]
     Anti --> Orchestrator
 
     Orchestrator --> User
@@ -124,20 +124,20 @@ flowchart TD
 
 ## Skills 映射表
 
-| Skills               | 说明     | 触发场景                   |
-| -------------------- | -------- | -------------------------- |
-| `product-expert`     | 产品专家 | 产品规划, 需求分析, PRD    |
-| `design-expert`      | 设计专家 | UI设计, 交互设计, 原型     |
-| `doc-expert`         | 文档专家 | API文档, README, 知识库    |
-| `frontend-expert`    | 前端专家 | React, Next.js, UI         |
-| `backend-expert`     | 后端专家 | Node.js, Python, Go, API   |
-| `mobile-expert`      | 移动专家 | iOS, Android, 小程序       |
-| `security-expert`    | 安全专家 | 身份验证, 授权, 密钥, 漏洞 |
-| `quality-expert`     | 质量专家 | 测试, 代码审查, QA         |
-| `platform-expert`    | 运维专家 | 部署, 监控, DevOps         |
-| `specialized-expert` | 专项专家 | 架构迁移, 性能攻坚         |
-| `progress-expert`    | 进度专家 | 进度跟踪, 优化建议         |
-| `anti-expert`        | 反模式   | 错误记录, 反模式, 经验沉淀 |
+| Skills                   | 说明     | 触发场景                   |
+| ------------------------ | -------- | -------------------------- |
+| `product-strategist`     | 产品战略 | 产品规划, 需求分析, PRD    |
+| `ux-engineer`            | 体验工程 | UI设计, 交互设计, 原型     |
+| `docs-engineer`          | 文档工程 | API文档, README, 知识库    |
+| `frontend-specialist`    | 前端开发 | React, Next.js, UI         |
+| `backend-specialist`     | 后端开发 | Node.js, Python, API       |
+| `mobile-specialist`      | 移动开发 | iOS, Android, 小程序       |
+| `security-auditor`       | 安全审计 | 身份验证, 授权, 密钥, 漏洞 |
+| `quality-engineer`       | 质量工程 | 测试, 代码审查, QA         |
+| `devops-engineer`        | 运维工程 | 部署, 监控, DevOps         |
+| `performance-specialist` | 性能工程 | 架构迁移, 性能攻坚         |
+| `retro-facilitator`      | 复盘改进 | 复盘, 错误记录, 经验沉淀   |
+| `tech-architect`         | 技术架构 | 技术选型, 系统架构         |
 
 ---
 
@@ -163,7 +163,7 @@ flowchart TD
 
 ### 阶段 2：产品定义
 
-**调度**：product-expert → design-expert
+**调度**：product-strategist → ux-engineer
 
 **协同**：中央调度器（验证）
 
@@ -171,9 +171,9 @@ flowchart TD
 
 **动作**：
 
-1. **需求细化** - 调用 product-expert 生成产品需求文档
+1. **需求细化** - 调用 product-strategist 生成产品需求文档
 2. **用户确认** - 请求用户确认需求文档
-3. **交互原型** - 调用 design-expert 产出用户流程和交互原型
+3. **交互原型** - 调用 ux-engineer 产出用户流程和交互原型
 4. **UI 设计稿** - 产出高保真视觉设计稿
 5. **设计确认** - 请求用户确认设计稿
 
@@ -187,21 +187,21 @@ flowchart TD
 
 ### 阶段 3：并行开发
 
-**调度**：frontend-expert + backend-expert + mobile-expert + security-expert（并行）
+**调度**：frontend-specialist + backend-specialist + mobile-specialist + security-auditor（并行）
 
-**协同**：specialized-expert（按需）
+**协同**：performance-specialist（按需）
 
-#### 3.1 前端开发（frontend-expert）
+#### 3.1 前端开发（frontend-specialist）
 
-| 类型            | 调用 Skill          | 触发关键词          |
-| --------------- | ------------------- | ------------------- |
-| React / Next.js | `nextjs-dev`        | React, Next.js      |
-| 组件设计        | `frontend-expert`   | 组件, UI            |
-| Tailwind CSS    | `tailwind-patterns` | Tailwind, CSS, 样式 |
-| 无障碍          | `a11y-patterns`     | 无障碍, WCAG        |
-| 国际化          | `i18n-patterns`     | 多语言，本地化      |
+| 类型            | 调用 Skill            | 触发关键词          |
+| --------------- | --------------------- | ------------------- |
+| React / Next.js | `nextjs-dev`          | React, Next.js      |
+| 组件设计        | `frontend-specialist` | 组件, UI            |
+| Tailwind CSS    | `tailwind-patterns`   | Tailwind, CSS, 样式 |
+| 无障碍          | `a11y-patterns`       | 无障碍, WCAG        |
+| 国际化          | `i18n-patterns`       | 多语言，本地化      |
 
-#### 3.2 后端开发（backend-expert）
+#### 3.2 后端开发（backend-specialist）
 
 | 类型              | 调用 Skill                                           | 触发关键词                |
 | ----------------- | ---------------------------------------------------- | ------------------------- |
@@ -223,7 +223,7 @@ flowchart TD
 | 代码规范          | `coding-standards`                                   | lint, type                |
 | 测试驱动          | `tdd-patterns`                                       | TDD                       |
 
-#### 3.3 移动端开发（mobile-expert）
+#### 3.3 移动端开发（mobile-specialist）
 
 | 平台         | 调用 Skill           | 触发关键词          |
 | ------------ | -------------------- | ------------------- |
@@ -232,7 +232,7 @@ flowchart TD
 | React Native | `react-native-dev`   | React Native        |
 | 微信小程序   | `mini-program-dev`   | 微信小程序          |
 
-#### 3.4 专项技术（specialized-expert，按需）
+#### 3.4 专项技术（performance-specialist，按需）
 
 | 类型     | 调用 Skill                | 触发关键词     |
 | -------- | ------------------------- | -------------- |
@@ -243,13 +243,13 @@ flowchart TD
 
 **并行策略**：
 
-| 场景            | 调度策略                                              |
-| --------------- | ----------------------------------------------------- |
-| Web 前端 + 后端 | frontend-expert + backend-expert 并行                 |
-| Web + 移动端    | frontend-expert + backend-expert + mobile-expert 并行 |
-| 多端 API 联调   | 串行，后端先完成                                      |
-| 独立功能模块    | 按模块并行开发                                        |
-| 复杂算法需求    | specialized-expert 同步咨询                           |
+| 场景            | 调度策略                                                          |
+| --------------- | ----------------------------------------------------------------- |
+| Web 前端 + 后端 | frontend-specialist + backend-specialist 并行                     |
+| Web + 移动端    | frontend-specialist + backend-specialist + mobile-specialist 并行 |
+| 多端 API 联调   | 串行，后端先完成                                                  |
+| 独立功能模块    | 按模块并行开发                                                    |
+| 复杂算法需求    | performance-specialist 同步咨询                                   |
 
 **输出**：
 
@@ -261,7 +261,7 @@ flowchart TD
 
 ### 阶段 4：质量保障
 
-**调度**：quality-expert
+**调度**：quality-engineer
 
 **动作**：
 
@@ -286,7 +286,7 @@ flowchart TD
 
 ### 阶段 5：部署与上线
 
-**调度**：platform-expert
+**调度**：devops-engineer
 
 **动作**：
 
@@ -306,9 +306,9 @@ flowchart TD
 
 ### 阶段 6：闭环与迭代
 
-**调度**：platform-expert + quality-expert
+**调度**：devops-engineer + quality-engineer
 
-**协同**：product-expert
+**协同**：product-strategist
 
 **动作**：
 
@@ -335,13 +335,13 @@ flowchart TD
 | 技术方案评审不通过 | 返回阶段 3，重新设计             |
 | 测试失败           | 创建缺陷任务，指派回开发团队修复 |
 | 部署失败           | 返回阶段 5，排查后重试           |
-| 需架构专家支持     | 调用 specialized-expert          |
-| 发现错误或反模式   | 调用 anti-expert 记录            |
-| 需要进度跟踪       | 调用 progress-expert             |
+| 需架构专家支持     | 调用 performance-specialist      |
+| 发现错误或反模式   | 调用 retro-facilitator 记录      |
+| 需要进度跟踪       | 调用 retro-facilitator           |
 
 ## 进度跟踪
 
-调度器在以下情况调用 `progress-expert`：
+调度器在以下情况调用 `retro-facilitator`：
 
 - 项目启动时初始化进度文件
 - 阶段开始或完成时更新进度
@@ -349,7 +349,7 @@ flowchart TD
 - 发现阻塞事项时记录
 - 项目完成时生成总结报告
 
-由 `progress-expert` 负责：
+由 `retro-facilitator` 负责：
 
 - 创建和维护 progress.md 文件
 - 跟踪各阶段进度
@@ -358,7 +358,7 @@ flowchart TD
 
 ## 反模式沉淀
 
-调度器在以下情况调用 `anti-expert`：
+调度器在以下情况调用 `retro-facilitator`：
 
 - 发现错误或设计失误时
 - 遇到技术债或架构问题
@@ -366,7 +366,7 @@ flowchart TD
 - 代码审查中发现反模式
 - 项目完成时总结经验
 
-由 `anti-expert` 负责：
+由 `retro-facilitator` 负责：
 
 - 记录错误案例和解决方案
 - 总结常见反模式和避免方法
@@ -381,15 +381,15 @@ flowchart TD
 sequenceDiagram
     participant U as 用户
     participant O as 调度器
-    participant P as product-expert
-    participant D as design-expert
-    participant FE as frontend-expert
-    participant BE as backend-expert
-    participant M as mobile-expert
-    participant Sec as security-expert
-    participant S as specialized-expert
-    participant Q as quality-expert
-    participant Ops as platform-expert
+    participant P as product-strategist
+    participant D as ux-engineer
+    participant FE as frontend-specialist
+    participant BE as backend-specialist
+    participant M as mobile-specialist
+    participant Sec as security-auditor
+    participant S as performance-specialist
+    participant Q as quality-engineer
+    participant Ops as devops-engineer
 
     U->>O: 需求：登录+仪表盘
     O->>O: 阶段1：创建任务工单

@@ -1,5 +1,5 @@
 ---
-name: quality-expert
+name: quality-engineer
 description: 质量保障专家模式。负责产品的"质量保障与卓越工程"。涵盖测试策略、单元测试、集成测试、E2E 测试、代码审查、质量验证流程（verification-loop）。当需要进行测试策略、单元测试、集成测试、E2E 测试、代码审查或质量验证时使用此 Skill。
 ---
 
@@ -39,7 +39,7 @@ description: 质量保障专家模式。负责产品的"质量保障与卓越工
 | 代码审查   | `coding-standards`        | 代码审查, lint          |
 | API 测试   | `rest-patterns`           | API, 集成测试           |
 | 单元测试   | `tdd-patterns`            | 单元测试, Jest, pytest  |
-| 移动端测试 | `mobile-expert`           | iOS 测试, Android 测试  |
+| 移动端测试 | `mobile-specialist`       | iOS 测试, Android 测试  |
 | 数据库测试 | `postgres-patterns`       | 数据库测试, SQL         |
 | 缓存测试   | `cache-strategy-patterns` | 缓存测试, Redis         |
 | 负载测试   | `cache-strategy-patterns` | 负载测试, k6, artillery |

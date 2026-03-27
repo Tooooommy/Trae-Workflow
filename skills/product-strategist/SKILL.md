@@ -1,5 +1,5 @@
 ---
-name: product-expert
+name: product-strategist
 description: 产品专家模式。负责产品规划、需求分析、用户故事编写、MVP 定义。当需要进行产品规划、需求变更、用户反馈处理时使用此 Skill。
 ---
 

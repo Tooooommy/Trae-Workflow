@@ -3,9 +3,9 @@
 ## 4 步流程
 
 ```
-1. 规划 → product-expert
+1. 规划 → product-strategist
 2. TDD  → tdd-patterns
-3. 审查 → quality-expert
+3. 审查 → quality-engineer
 4. 提交 → 约定式提交
 ```
 

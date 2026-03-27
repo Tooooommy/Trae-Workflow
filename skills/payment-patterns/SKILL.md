@@ -506,4 +506,4 @@ async function handlePaymentError(error: unknown, provider: string) {
 | [wechatpay-patterns](../wechatpay-patterns/SKILL.md) | 微信支付详细集成 | Native、JSAPI、小程序     |
 | [paypal-patterns](../paypal-patterns/SKILL.md)       | PayPal 详细集成  | 订单、结账、退款          |
 | [douyinpay-patterns](../douyinpay-patterns/SKILL.md) | 抖音支付详细集成 | 订单、H5、回调处理        |
-| [security-expert](../security-expert/SKILL.md)       | 支付安全         | 签名、验签、密钥管理      |
+| [security-auditor](../security-auditor/SKILL.md)     | 支付安全         | 签名、验签、密钥管理      |

@@ -1,5 +1,5 @@
 ---
-name: doc-expert
+name: docs-engineer
 description: 文档专家模式。根据代码和需求生成文档，包括 API 文档、README、用户手册、技术白皮书等。当需要生成 API 文档、编写项目文档、维护知识库或编写技术文档时使用此Skill。
 ---
 

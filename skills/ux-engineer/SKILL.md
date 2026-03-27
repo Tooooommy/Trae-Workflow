@@ -1,5 +1,5 @@
 ---
-name: design-expert
+name: ux-engineer
 description: 设计专家模式。负责交互设计、视觉设计、品牌视觉、设计系统。当需要进行 UI 设计、交互设计、原型设计、设计系统维护时使用此 Skill。
 ---
 

@@ -444,9 +444,9 @@ const response = await fetch('https://api.example.com/users/123', {
 
 ## 相关技能
 
-| 技能 | 说明 |
-|------|------|
-| backend-expert | 后端开发 |
-| skill-creator | Skill 创建 |
-| design-expert | 设计模式 |
+| 技能                | 说明     |
+|---------------------|----------|
+| backend-specialist  | 后端开发 |
+| skill-creator       | Skill 创建 |
+| ux-engineer         | 设计模式 |
 `````

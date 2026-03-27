@@ -1,5 +1,5 @@
 ---
-name: security-expert
+name: security-auditor
 description: 安全专家模式。根据安全检查清单和安全最佳实践，生成安全代码和处理敏感数据。集成身份验证、授权、输入验证、密钥管理等安全功能。当需要进行身份验证、处理用户输入、管理密钥、创建API、处理支付或存储敏感数据时使用此Skill。
 ---
 
@@ -314,12 +314,12 @@ npm audit fix
 
 ## 子技能映射
 
-| 类型     | 调用 Skill        | 触发关键词               |
-| -------- | ----------------- | ------------------------ |
-| 前端安全 | `frontend-expert` | XSS, CSP, 前端安全       |
-| 后端安全 | `backend-expert`  | 身份验证, 授权, API 安全 |
-| 密钥管理 | `security-expert` | 密钥, 凭据, 环境变量     |
-| 渗透测试 | `security-expert` | 渗透测试, 漏洞扫描       |
+| 类型     | 调用 Skill            | 触发关键词               |
+| -------- | --------------------- | ------------------------ |
+| 前端安全 | `frontend-specialist` | XSS, CSP, 前端安全       |
+| 后端安全 | `backend-specialist`  | 身份验证, 授权, API 安全 |
+| 密钥管理 | `security-auditor`    | 密钥, 凭据, 环境变量     |
+| 渗透测试 | `security-auditor`    | 渗透测试, 漏洞扫描       |
 
 ## 附加内容
 

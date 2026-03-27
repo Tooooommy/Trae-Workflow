@@ -1,5 +1,5 @@
 ---
-name: backend-expert
+name: backend-specialist
 description: 后端开发专家模式。根据PRD和API文档生成后端代码、数据库Schema、API设计与文档、第三方服务集成。当需要进行Node.js/Python/Go后端开发、API设计、数据库设计、第三方服务集成时使用此Skill。
 ---
 
@@ -429,6 +429,6 @@ export class UserService {
 | NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
 | 缓存              | `cache-strategy-patterns`                                  | 缓存, 性能       |
 | 后台任务          | `tasks-patterns`                                           | 后台任务, Cron   |
-| 安全              | `security-expert`                                          | 安全, 漏洞       |
+| 安全              | `security-auditor`                                         | 安全, 漏洞       |
 | REST API          | `rest-patterns`                                            | REST, API        |
 | 数据库迁移        | `database-dev`                                             | 迁移, schema     |
