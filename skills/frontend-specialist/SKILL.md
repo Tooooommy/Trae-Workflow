@@ -107,12 +107,3 @@ flowchart LR
 | lint / type | 100%  |
 | 单元测试    | ≥ 80% |
 | 废弃警告    | 0     |
-
-## 子技能映射
-
-| 类型            | 调用 Skill        |
-| --------------- | ----------------- |
-| React / Next.js | nextjs-patterns   |
-| Tailwind CSS    | tailwind-patterns |
-| 无障碍          | a11y-patterns     |
-| 测试            | tdd-workflow      |

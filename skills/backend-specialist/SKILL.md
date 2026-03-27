@@ -119,19 +119,3 @@ flowchart LR
 | lint / type | 100%   |
 | 单元测试    | ≥ 80%  |
 | 安全扫描    | 0 高危 |
-
-## 子技能映射
-
-| 类型              | 调用 Skill                                           |
-| ----------------- | ---------------------------------------------------- |
-| Node.js / Express | express-patterns                                     |
-| Python / FastAPI  | fastapi-patterns                                     |
-| GraphQL           | graphql-patterns                                     |
-| 实时通信          | realtime-websocket                                   |
-| 支付集成          | stripe-patterns, alipay-patterns, wechatpay-patterns |
-| 消息队列          | message-queue-patterns                               |
-| 数据库            | postgres-patterns, mongodb-patterns                  |
-| 缓存              | caching-patterns                                     |
-| 后台任务          | background-jobs                                      |
-| 安全              | security-review                                      |
-| REST API          | rest-patterns                                        |
