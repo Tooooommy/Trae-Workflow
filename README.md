@@ -126,9 +126,6 @@ traew update
 
 ### Web & 跨平台
 
-- **webassembly-patterns** - WebAssembly 高性能计算
-- **webrtc-patterns** - WebRTC 实时通信
-
 ### 开发工具
 
 - **git-workflow** - Git 版本控制
