@@ -894,3 +894,97 @@ capabilities:
 | decisions         | 架构决策、基础设施决策                     |
 | dependencies      | 外部依赖、内部专家间依赖                   |
 | qualityAttributes | 性能、可靠性、安全性、可扩展性要求         |
+
+---
+
+## 任务工作指令模板
+
+当协调中枢分配任务时，生成详细的工作指令：
+
+位置: `.ai-team/experts/{expert-name}/tasks/{task-id}-instruction.yaml`
+
+```yaml
+task:
+  id: task-002
+  title: 技术架构设计
+  description: 基于PRD设计系统技术架构
+  phase: 设计阶段
+  priority: high
+
+context:
+  project: 社交图片分享应用MVP
+  inputDocuments:
+    - 路径: docs/01-requirements/prd-v1.0.md
+      类型: 需求文档
+      重要性: 必须
+    - 路径: .ai-team/shared-context/project-context.json
+      类型: 项目上下文
+      重要性: 必须
+  constraints:
+    - 技术栈: React, Node.js, MongoDB
+    - 时间: 需要在2天内完成
+    - 预算: 中等规模AWS资源
+
+requirements:
+  outputDocuments:
+    - 路径: docs/02-design/system-architecture.md
+      格式: Markdown
+      必需内容:
+        - 架构图
+        - 技术选型说明
+        - 数据模型设计
+        - API设计概览
+        - 部署架构
+    - 路径: docs/02-design/data-models.md
+      格式: Markdown
+      必需内容:
+        - 数据库表设计
+        - 索引策略
+        - 数据迁移计划
+
+qualityCriteria:
+  - 架构必须支持10万用户
+  - API响应时间 < 200ms
+  - 必须包含容灾方案
+  - 必须符合安全最佳实践
+
+collaboration:
+  requiredReviewers:
+    - security-auditor
+    - devops-engineer
+  dependencies:
+    - 等待: product-strategist完成PRD
+    - 阻塞: frontend-specialist开始开发
+
+instructions:
+  steps:
+    - 步骤1: 阅读输入文档，理解需求
+    - 步骤2: 绘制系统架构图
+    - 步骤3: 设计数据模型
+    - 步骤4: 设计API接口
+    - 步骤5: 编写架构文档
+    - 步骤6: 发送评审请求
+
+  thinkingProcess:
+    - 考虑: 如何平衡性能和开发速度？
+    - 考虑: 未来扩展性需求？
+    - 考虑: 团队技术栈熟悉度？
+
+  examples:
+    - 参考: docs/examples/architecture-template.md
+    - 模板: .ai-team/templates/architecture-design.md
+
+deadline: 2024-01-17T18:00:00Z
+```
+
+### 指令结构说明
+
+| 字段            | 说明                                                   |
+| --------------- | ------------------------------------------------------ |
+| task            | 任务基本信息 (id, title, description, phase, priority) |
+| context         | 项目上下文、输入文档、约束条件                         |
+| requirements    | 输出文档要求、格式、必需内容                           |
+| qualityCriteria | 质量验收标准                                           |
+| collaboration   | 评审者、依赖关系、阻塞关系                             |
+| instructions    | 执行步骤、思考过程、参考示例                           |
+| deadline        | 任务截止时间                                           |
