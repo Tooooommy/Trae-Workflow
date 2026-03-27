@@ -1,5 +1,5 @@
 ---
-name: express-patterns
+name: express-dev
 description: Node.js 现代全栈开发模式，基于 Express、TypeScript、PostgreSQL、Prisma、Redis 和 BullMQ。涵盖高性能 API 设计、类型安全、异步处理、安全实践。**必须激活当**：用户要求构建 Express API、设计路由、处理中间件或实现身份验证时。即使用户没有明确说"Express"，当涉及 Node.js API 开发或 Express 框架时也应使用。
 ---
 
