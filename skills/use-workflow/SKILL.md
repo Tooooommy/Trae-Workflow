@@ -208,7 +208,6 @@ flowchart TD
 | Node.js / Express | `express-dev`                                        | Node.js, Express          |
 | Python / FastAPI  | `fastapi-dev`                                        | Python, FastAPI           |
 | Go / Gin          | `golang-dev`                                         | Go, Gin                   |
-| Rust              | `rust-dev`                                           | Rust, async               |
 | GraphQL           | `graphql-patterns`                                   | GraphQL, Apollo           |
 | 实时通信          | `websocket-patterns`                                 | WebSocket, SSE            |
 | 支付集成          | `payment-patterns`                                   | 支付                      |

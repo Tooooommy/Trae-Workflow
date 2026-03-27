@@ -94,7 +94,6 @@ traew update
 ### 桌面端
 
 - **electron-patterns** - Electron 桌面应用
-- **tauri-patterns** - Tauri 桌面应用
 
 ### 架构 & 工程
 
