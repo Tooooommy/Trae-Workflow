@@ -428,8 +428,8 @@ export class UserService {
 | 消息队列          | `message-queue-patterns`                                   | Kafka, RabbitMQ  |
 | SQL 数据库        | `postgres-patterns`                                        | PostgreSQL, SQL  |
 | NoSQL 数据库      | `mongodb-patterns`                                         | MongoDB, NoSQL   |
-| 缓存              | `caching-patterns`                                         | 缓存, 性能       |
-| 后台任务          | `background-jobs`                                          | 后台任务, Cron   |
+| 缓存              | `cache-strategy-patterns`                                         | 缓存, 性能       |
+| 后台任务          | `tasks-patterns`                                          | 后台任务, Cron   |
 | 安全              | `security-expert`                                          | 安全, 漏洞       |
 | REST API          | `rest-patterns`                                            | REST, API        |
 | 数据库迁移        | `database-patterns`                                        | 迁移, schema     |

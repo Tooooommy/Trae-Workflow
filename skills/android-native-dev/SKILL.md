@@ -1,5 +1,5 @@
 ---
-name: android-native-patterns
+name: android-native-dev
 description: Android 原生开发、Jetpack Compose、MVVM 架构和 Kotlin 协程最佳实践。**必须激活当**：用户要求构建 Android 应用、使用 Jetpack Compose 或实现 MVVM 架构时。即使用户没有明确说"Android"，当涉及 Android 开发、Kotlin 或移动应用时也应使用。
 ---
 

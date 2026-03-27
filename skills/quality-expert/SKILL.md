@@ -30,22 +30,22 @@ description: 质量保障专家模式。负责产品的"质量保障与卓越工
 
 ## 测试类型与 Skill 映射
 
-| 类型       | 调用 Skill          | 触发关键词              |
-| ---------- | ------------------- | ----------------------- |
-| TDD        | `tdd-patterns`      | TDD, 测试驱动           |
-| E2E        | `e2e-testing`       | E2E, 端到端, Playwright |
-| 性能测试   | `caching-patterns`  | 性能, 压测, JMeter      |
-| 安全测试   | `security-review`   | 安全, 漏洞, 渗透        |
-| 代码审查   | `coding-standards`  | 代码审查, lint          |
-| API 测试   | `rest-patterns`     | API, 集成测试           |
-| 单元测试   | `tdd-patterns`      | 单元测试, Jest, pytest  |
-| 移动端测试 | `mobile-expert`     | iOS 测试, Android 测试  |
-| 数据库测试 | `postgres-patterns` | 数据库测试, SQL         |
-| 缓存测试   | `caching-patterns`  | 缓存测试, Redis         |
-| 负载测试   | `caching-patterns`  | 负载测试, k6, artillery |
-| 冒烟测试   | `tdd-patterns`      | 冒烟测试, 快速验证      |
-| 回归测试   | `tdd-patterns`      | 回归测试                |
-| 覆盖率     | `tdd-patterns`      | 覆盖率, coverage        |
+| 类型       | 调用 Skill                | 触发关键词              |
+| ---------- | ------------------------- | ----------------------- |
+| TDD        | `tdd-patterns`            | TDD, 测试驱动           |
+| E2E        | `e2e-testing`             | E2E, 端到端, Playwright |
+| 性能测试   | `cache-strategy-patterns` | 性能, 压测, JMeter      |
+| 安全测试   | `security-review`         | 安全, 漏洞, 渗透        |
+| 代码审查   | `coding-standards`        | 代码审查, lint          |
+| API 测试   | `rest-patterns`           | API, 集成测试           |
+| 单元测试   | `tdd-patterns`            | 单元测试, Jest, pytest  |
+| 移动端测试 | `mobile-expert`           | iOS 测试, Android 测试  |
+| 数据库测试 | `postgres-patterns`       | 数据库测试, SQL         |
+| 缓存测试   | `cache-strategy-patterns`  | 缓存测试, Redis         |
+| 负载测试   | `cache-strategy-patterns`  | 负载测试, k6, artillery |
+| 冒烟测试   | `tdd-patterns`            | 冒烟测试, 快速验证      |
+| 回归测试   | `tdd-patterns`            | 回归测试                |
+| 覆盖率     | `tdd-patterns`            | 覆盖率, coverage        |
 
 ## 测试流程
 

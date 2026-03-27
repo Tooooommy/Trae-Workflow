@@ -1,5 +1,5 @@
 ---
-name: circuit-breaker
+name: circuit-breaker-patterns
 description: 熔断器模式 - 服务弹性、故障隔离、自动恢复最佳实践。**必须激活当**：用户要求实现熔断器模式、处理服务故障或设计服务弹性时。即使用户没有明确说"熔断器"，当涉及服务容错或故障处理时也应使用。
 ---
 

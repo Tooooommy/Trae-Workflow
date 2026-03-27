@@ -31,20 +31,20 @@ description: 运维与架构专家模式。负责系统的"稳定、安全与高
 
 ## 任务与 Skill 映射
 
-| 类型     | 调用 Skill                            | 触发关键词                |
-| -------- | ------------------------------------- | ------------------------- |
-| 架构设计 | `clean-architecture`                  | 架构, 重构, 微服务        |
-| CI/CD    | `git-workflow`, `deployment-patterns` | CI/CD, GitHub Actions     |
-| Docker   | `docker-patterns`                     | Docker, 容器, K8s         |
-| 监控     | `logging-observability`               | 监控, Prometheus, Grafana |
-| 安全     | `security-review`, `rate-limiting`    | 安全, 漏洞, 渗透          |
-| 性能     | `caching-patterns`                    | 性能, 缓存, 优化          |
-| 数据库   | `postgres-patterns`                   | 数据库, 慢查询, 优化      |
-| 消息队列 | `message-queue-patterns`              | Kafka, RabbitMQ, 消息队列 |
-| 限流熔断 | `rate-limiting`, `circuit-breaker`    | 限流, 熔断, 高并发        |
-| 灾难恢复 | `database-patterns`                   | 备份, 恢复, 容灾          |
-| 成本优化 | `caching-patterns`                    | 成本, 优化, 资源          |
-| 日志管理 | `logging-observability`               | 日志, ELK, 日志分析       |
+| 类型     | 调用 Skill                                  | 触发关键词                |
+| -------- | ------------------------------------------- | ------------------------- |
+| 架构设计 | `clean-architecture`                        | 架构, 重构, 微服务        |
+| CI/CD    | `git-workflow`, `deployment-patterns`       | CI/CD, GitHub Actions     |
+| Docker   | `docker-patterns`                           | Docker, 容器, K8s         |
+| 监控     | `logging-observability`                     | 监控, Prometheus, Grafana |
+| 安全     | `security-review`, `rate-limiting`          | 安全, 漏洞, 渗透          |
+| 性能     | `cache-strategy-patterns`                   | 性能, 缓存, 优化          |
+| 数据库   | `postgres-patterns`                         | 数据库, 慢查询, 优化      |
+| 消息队列 | `message-queue-patterns`                    | Kafka, RabbitMQ, 消息队列 |
+| 限流熔断 | `rate-limiting`, `circuit-breaker-patterns` | 限流, 熔断, 高并发        |
+| 灾难恢复 | `database-patterns`                         | 备份, 恢复, 容灾          |
+| 成本优化 | `cache-strategy-patterns`                   | 成本, 优化, 资源          |
+| 日志管理 | `logging-observability`                     | 日志, ELK, 日志分析       |
 
 ## 运维流程
 

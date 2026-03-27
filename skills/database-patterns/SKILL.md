@@ -460,4 +460,4 @@ flowchart LR
 | `postgres-patterns` | PostgreSQL 详细模式 |
 | `clickhouse-io`     | ClickHouse 分析模式 |
 | `mongodb-patterns`  | MongoDB 文档模式    |
-| `caching-patterns`  | 缓存模式            |
+| `cache-strategy-patterns`  | 缓存模式            |

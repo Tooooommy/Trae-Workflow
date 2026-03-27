@@ -247,5 +247,5 @@ class IdempotentProcessor {
 | ----------------- | ------------------ |
 | kafka-patterns    | Kafka 分布式消息流 |
 | rabbitmq-patterns | RabbitMQ 消息队列  |
-| background-jobs   | 后台任务处理       |
+| tasks-patterns   | 后台任务处理       |
 | cqrs-patterns     | CQRS 事件溯源      |
