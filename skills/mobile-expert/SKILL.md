@@ -31,18 +31,18 @@ description: 移动端开发专家模式。负责移动端产品的"原生体验
 
 | 平台         | 调用 Skill                | 触发关键词                       |
 | ------------ | ------------------------- | -------------------------------- |
-| iOS 原生     | `ios-native-dev`     | iOS, Swift, SwiftUI, UIKit       |
-| Android 原生 | `android-native-dev` | Android, Kotlin, Jetpack Compose |
+| iOS 原生     | `ios-native-dev`          | iOS, Swift, SwiftUI, UIKit       |
+| Android 原生 | `android-native-dev`      | Android, Kotlin, Jetpack Compose |
 | React Native | `react-native-patterns`   | React Native, RN                 |
-| 微信小程序   | `mini-program-patterns`   | 微信小程序, WeChat               |
-| 跨平台桌面   | `electron-dev`       | Electron, 桌面                   |
+| 微信小程序   | `mini-program-dev`        | 微信小程序, WeChat               |
+| 跨平台桌面   | `electron-dev`            | Electron, 桌面                   |
 | 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
 | 响应式布局   | `tailwind-patterns`       | Tailwind, CSS, 响应式            |
 | 实时通信     | `webrtc-patterns`         | WebRTC, 实时音视频               |
 | 国际化       | `i18n-patterns`           | i18n, 国际化, 多语言             |
-| 后台任务     | `tasks-patterns`         | 后台任务, 推送通知               |
+| 后台任务     | `tasks-patterns`          | 后台任务, 推送通知               |
 | 安全编码     | `security-review`         | 安全, 加密, 数据保护             |
-| 性能优化     | `cache-strategy-patterns`        | 性能优化, 缓存                   |
+| 性能优化     | `cache-strategy-patterns` | 性能优化, 缓存                   |
 | 代码规范     | `coding-standards`        | lint, type, 代码规范             |
 | 测试驱动     | `tdd-patterns`            | TDD, 测试驱动                    |
 
