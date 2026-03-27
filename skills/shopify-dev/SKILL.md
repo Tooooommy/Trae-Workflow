@@ -64,8 +64,8 @@ my-shopify-app/
 
 ```tsx
 // app/routes/\_index.tsx
-import { json, type LoaderFunctionArgs } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { json, type LoaderFunctionArgs } from 'react-router';
+import { useLoaderData } from 'react-router';
 import { authenticate } from '~/shopify.server';
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -106,7 +106,7 @@ export default function AppIndex() {
 
 ```tsx
 // app/routes/\_index.create-product.tsx
-import { json, type ActionFunctionArgs } from '@remix-run/node';
+import { json, type ActionFunctionArgs } from 'react-router';
 import { authenticate } from '~/shopify.server';
 import { z } from 'zod';
 
@@ -150,7 +150,7 @@ export async function action({ request }: ActionFunctionArgs) {
 ```tsx
 // app/components/embedded/layout.tsx
 import { useEffect } from 'react';
-import { useLocation } from '@remix-run/react';
+import { useLocation } from 'react-router';
 import { NavigationMenu, TitleBar } from '@shopify/app-bridge-react';
 import { useAppBridge } from '@shopify/app-bridge-react';
 import { getSessionToken } from '@shopify/app-bridge-utils';
@@ -197,7 +197,7 @@ destination: '/app/settings',
 
 ```ts
 // app/routes/api.webhooks.ts
-import { type ActionFunctionArgs, json } from '@remix-run/node';
+import { type ActionFunctionArgs, json } from 'react-router';
 import { authenticate } from '~/shopify.server';
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -292,7 +292,7 @@ Shopify 嵌入式应用运行在 iframe 中，需配置 `Content-Security-Policy
 ### 测试策略
 
 - **单元测试 (Vitest)**：测试工具函数、数据转换逻辑、自定义 hooks。
-- **集成测试 (Vitest + @remix-run/testing)**：模拟 Shopify API 响应，测试 Loader 和 Action 的逻辑。
+- **集成测试 (Vitest + react-router)**：模拟 Shopify API 响应，测试 Loader 和 Action 的逻辑。
 - **E2E 测试 (Playwright)**：模拟完整的用户安装、授权和应用内操作流程。
 
 ### 模拟 Shopify 环境
@@ -328,7 +328,7 @@ export const mockAuthenticateWebhook = vi.fn().mockResolvedValue({
 ```tsx
 // tests/integration/routes/\_index.test.tsx
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { createRequest } from '@remix-run/node';
+import { createRequest } from 'react-router';
 import { loader } from '~/routes/\_index';
 import { authenticate } from '~/shopify.server';
 import { db } from '~/lib/db';
@@ -383,7 +383,7 @@ describe('应用主页 Loader', () => {
 ```tsx
 // tests/integration/routes/\_index.create-product.test.tsx
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { createRequest } from '@remix-run/node';
+import { createRequest } from 'react-router';
 import { action } from '~/routes/\_index.create-product';
 
 describe('创建产品 Action', () => {
