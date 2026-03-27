@@ -420,3 +420,123 @@ sequenceDiagram
     Ops->>O: 线上服务
     O->>U: 完成
 ```
+
+---
+
+## 系统架构
+
+### 核心设计理念
+
+**文档即状态，协作即流程**
+
+将整个项目开发过程抽象为一个状态机驱动的文档工作流，每个AI专家的输入输出都是结构化文档，协调中枢通过读取和更新这些文档来驱动整个流程。
+
+### 工作区结构
+
+```
+.ai-team/                    # AI团队工作区（自动化流程核心）
+├── orchestrator/           # 协调中枢工作目录
+│   ├── task-board.json     # 任务看板（主状态文件）
+│   ├── workflow-log.md     # 工作流执行日志
+│   └── decision-registry/  # 决策记录库
+├── experts/               # 各专家工作区
+│   ├── product-strategist/
+│   ├── tech-architect/
+│   ├── ux-engineer/
+│   ├── frontend-specialist/
+│   ├── backend-specialist/
+│   ├── mobile-specialist/
+│   ├── devops-engineer/
+│   ├── security-auditor/
+│   ├── quality-engineer/
+│   ├── performance-specialist/
+│   ├── docs-engineer/
+│   └── retro-facilitator/
+└── shared-context/        # 共享上下文
+    ├── project-context.json
+    └── knowledge-graph.md
+
+docs/                       # 正式项目文档（AI生成）
+├── 01-requirements/       # 需求文档
+├── 02-design/            # 设计文档
+├── 03-implementation/    # 实现文档
+├── 04-testing/          # 测试文档
+└── 05-deployment/       # 部署文档
+```
+
+### 核心文件说明
+
+| 文件                   | 类型     | 说明                     |
+| ---------------------- | -------- | ------------------------ |
+| `task-board.json`      | 状态机   | 任务看板，驱动整个工作流 |
+| `workflow-log.md`      | 日志     | 记录所有工作流执行历史   |
+| `decision-registry/`   | 知识库   | 存储所有关键决策         |
+| `project-context.json` | 上下文   | 项目全局上下文           |
+| `knowledge-graph.md`   | 知识图谱 | 项目知识网络             |
+
+### 任务状态流转
+
+```mermaid
+stateDiagram-v2
+    [*] --> backlog: 创建任务
+    backlog --> in_progress: 开始执行
+    in_progress --> blocked: 遇到阻塞
+    blocked --> in_progress: 阻塞解除
+    in_progress --> completed: 任务完成
+    in_progress --> cancelled: 任务取消
+    completed --> [*]
+    cancelled --> [*]
+```
+
+### 文档流转规则
+
+```mermaid
+flowchart LR
+    subgraph 输入
+        A[用户需求]
+    end
+
+    subgraph 专家处理
+        B[product-strategist] --> C[PRD]
+        D[tech-architect] --> E[技术方案]
+        F[ux-engineer] --> G[设计稿]
+        H[开发专家] --> I[代码]
+    end
+
+    subgraph 输出
+        C --> J[docs/01-requirements/]
+        E --> K[docs/02-design/]
+        G --> K
+        I --> L[docs/03-implementation/]
+    end
+
+    A --> B
+    C --> D
+    E --> F
+    G --> H
+```
+
+### 协调中枢工作流程
+
+1. **接收需求** → 解析用户意图，创建任务
+2. **更新状态** → 修改 `task-board.json`
+3. **分配专家** → 根据任务类型调用对应 Skill
+4. **记录日志** → 更新 `workflow-log.md`
+5. **同步上下文** → 更新 `shared-context/`
+6. **归档决策** → 存储到 `decision-registry/`
+
+### 使用示例
+
+用户只需与协调中枢对话：
+
+```
+"我们需要开发一个具有社交功能的图片分享应用MVP，
+请在2周内给出可上线的版本。"
+```
+
+协调中枢将会：
+
+1. 召唤 `product-strategist` 和 `tech-architect` 澄清范围
+2. 产出详细的任务时间线和分工
+3. 持续汇报进展、呈现方案选项、请求决策
+4. 最终交付整合结果

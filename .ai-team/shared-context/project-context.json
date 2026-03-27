@@ -1,0 +1,26 @@
+{
+  "$schema": "./project-context.schema.json",
+  "version": "1.0.0",
+  "project": {
+    "name": "",
+    "description": "",
+    "techStack": {
+      "frontend": [],
+      "backend": [],
+      "database": [],
+      "infrastructure": [],
+      "tools": []
+    },
+    "constraints": {
+      "performance": {},
+      "security": {},
+      "compliance": []
+    }
+  },
+  "stakeholders": [],
+  "milestones": [],
+  "risks": [],
+  "decisions": [],
+  "glossary": {},
+  "updatedAt": ""
+}

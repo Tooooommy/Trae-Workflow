@@ -1,0 +1,21 @@
+{
+  "$schema": "./task-board.schema.json",
+  "version": "1.0.0",
+  "project": {
+    "name": "",
+    "description": "",
+    "createdAt": "",
+    "updatedAt": ""
+  },
+  "sprints": [],
+  "backlog": [],
+  "inProgress": [],
+  "blocked": [],
+  "completed": [],
+  "metadata": {
+    "totalTasks": 0,
+    "completedTasks": 0,
+    "blockedTasks": 0,
+    "lastSync": ""
+  }
+}
