@@ -1,5 +1,5 @@
 ---
-name: gin-patterns
+name: gin-dev
 description: Gin Web 框架模式，涵盖路由组、中间件、参数绑定、验证和性能优化。适用于 Go 后端 API 开发、微服务架构和高性能 HTTP 服务。**必须激活当**：用户要求构建 Go 后端 API、使用 Gin 框架、设计 HTTP 中间件或优化 Go Web 服务性能时。
 ---
 
@@ -398,10 +398,10 @@ r.GET("/page", func(c *gin.Context) {
 
 ## 相关技能
 
-| 技能              | 说明            |
-| ----------------- | --------------- |
-| golang-patterns   | Go 通用模式     |
-| backend-expert    | 后端架构模式    |
-| postgres-patterns | PostgreSQL 模式 |
-| cache-strategy-patterns  | 缓存模式        |
-| kafka-patterns    | Kafka 消息模式  |
+| 技能                    | 说明            |
+| ----------------------- | --------------- |
+| golang-patterns         | Go 通用模式     |
+| backend-expert          | 后端架构模式    |
+| postgres-patterns       | PostgreSQL 模式 |
+| cache-strategy-patterns | 缓存模式        |
+| kafka-patterns          | Kafka 消息模式  |
