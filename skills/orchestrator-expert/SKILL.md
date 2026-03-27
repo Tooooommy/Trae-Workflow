@@ -540,3 +540,167 @@ flowchart LR
 2. 产出详细的任务时间线和分工
 3. 持续汇报进展、呈现方案选项、请求决策
 4. 最终交付整合结果
+
+---
+
+## 项目初始化流程
+
+### 1. 创建项目目录结构
+
+```bash
+# 创建核心目录
+mkdir -p .ai-team/orchestrator/decision-registry
+mkdir -p .ai-team/experts/{product-strategist,tech-architect,ux-engineer,frontend-specialist,backend-specialist,mobile-specialist,devops-engineer,security-auditor,quality-engineer,performance-specialist,docs-engineer,retro-facilitator}
+mkdir -p .ai-team/shared-context
+mkdir -p docs/{01-requirements,02-design,03-implementation,04-testing,05-deployment}
+mkdir -p src tests .github/workflows
+```
+
+### 2. 初始化核心文件
+
+```bash
+# 任务看板
+cat > .ai-team/orchestrator/task-board.json << 'EOF'
+{
+  "project": {
+    "name": "",
+    "description": "",
+    "createdAt": "",
+    "updatedAt": ""
+  },
+  "backlog": [],
+  "inProgress": [],
+  "blocked": [],
+  "completed": []
+}
+EOF
+
+# 工作流日志
+touch .ai-team/orchestrator/workflow-log.md
+
+# 项目上下文
+cat > .ai-team/shared-context/project-context.json << 'EOF'
+{
+  "project": {
+    "name": "",
+    "techStack": {},
+    "constraints": {}
+  },
+  "stakeholders": [],
+  "milestones": []
+}
+EOF
+
+# 知识图谱
+touch .ai-team/shared-context/knowledge-graph.md
+```
+
+### 3. 初始化各专家工作区
+
+```bash
+for expert in product-strategist tech-architect ux-engineer frontend-specialist backend-specialist mobile-specialist devops-engineer security-auditor quality-engineer performance-specialist docs-engineer retro-facilitator; do
+  cat > .ai-team/experts/$expert/WORKSPACE.md << EOF
+# ${expert} 工作区
+
+> 当前任务：暂无
+
+## 工作记录
+
+| 日期 | 任务 | 状态 | 输出 |
+|------|------|------|------|
+EOF
+done
+```
+
+### 4. 初始化文档目录
+
+```bash
+for dir in 01-requirements 02-design 03-implementation 04-testing 05-deployment; do
+  echo "# ${dir#*-} 文档目录\n\n_暂无文档_" > docs/$dir/README.md
+done
+```
+
+### 5. 快速初始化脚本
+
+创建 `scripts/init-project.sh`：
+
+```bash
+#!/bin/bash
+# AI Team 项目初始化脚本
+
+PROJECT_NAME=${1:-"new-project"}
+
+# 创建目录结构
+mkdir -p .ai-team/orchestrator/decision-registry
+mkdir -p .ai-team/experts/{product-strategist,tech-architect,ux-engineer,frontend-specialist,backend-specialist,mobile-specialist,devops-engineer,security-auditor,quality-engineer,performance-specialist,docs-engineer,retro-facilitator}
+mkdir -p .ai-team/shared-context
+mkdir -p docs/{01-requirements,02-design,03-implementation,04-testing,05-deployment}
+mkdir -p src tests .github/workflows scripts
+
+# 初始化 task-board.json
+DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+cat > .ai-team/orchestrator/task-board.json << EOF
+{
+  "project": {
+    "name": "$PROJECT_NAME",
+    "description": "",
+    "createdAt": "$DATE",
+    "updatedAt": "$DATE"
+  },
+  "backlog": [],
+  "inProgress": [],
+  "blocked": [],
+  "completed": []
+}
+EOF
+
+# 初始化其他文件
+touch .ai-team/orchestrator/workflow-log.md
+
+cat > .ai-team/shared-context/project-context.json << EOF
+{
+  "project": {
+    "name": "$PROJECT_NAME",
+    "techStack": {},
+    "constraints": {}
+  },
+  "stakeholders": [],
+  "milestones": []
+}
+EOF
+
+touch .ai-team/shared-context/knowledge-graph.md
+
+# 初始化专家工作区
+for expert in product-strategist tech-architect ux-engineer frontend-specialist backend-specialist mobile-specialist devops-engineer security-auditor quality-engineer performance-specialist docs-engineer retro-facilitator; do
+  cat > .ai-team/experts/$expert/WORKSPACE.md << EOF
+# $expert 工作区
+
+> 当前任务：暂无
+
+## 工作记录
+
+| 日期 | 任务 | 状态 | 输出 |
+|------|------|------|------|
+EOF
+done
+
+# 初始化文档目录
+for dir in 01-requirements 02-design 03-implementation 04-testing 05-deployment; do
+  echo "# ${dir#*-} 文档目录\n\n_暂无文档_" > docs/$dir/README.md
+done
+
+echo "✅ 项目 '$PROJECT_NAME' 初始化完成！"
+echo "📁 目录结构已创建"
+echo "📝 核心文件已初始化"
+```
+
+### 使用方法
+
+```bash
+# 赋予执行权限
+chmod +x scripts/init-project.sh
+
+# 初始化新项目
+./scripts/init-project.sh my-awesome-project
+```
