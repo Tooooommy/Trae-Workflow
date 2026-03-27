@@ -126,149 +126,153 @@ flowchart TD
 
 ### 阶段 1：需求输入与解析
 
-**调度**：中央调度器（自身）
-
-**输入**：用户原始需求（自然语言）
+| 项目 | 内容                         |
+| ---- | ---------------------------- |
+| 调度 | orchestrator-expert（自身）  |
+| 输入 | 用户原始需求                 |
+| 输出 | 任务工单、需求类型、调度计划 |
 
 **动作**：
 
-1. **理解意图** - 解析需求类型（产品/功能/Bug/优化）
-2. **创建工单** - 生成任务工单，记录需求描述
-3. **初步评估** - 评估复杂度、所需 Skills、预计工期
+1. 解析需求类型（产品/功能/Bug/优化）
+2. 创建任务工单
+3. 评估复杂度与所需专家
+4. 生成初步调度计划
 
-**输出**：
-
-- 任务工单
-- 需求类型判断
-- 初步调度计划
+---
 
 ### 阶段 2：产品定义
 
-**调度**：product-strategist → ux-engineer
-
-**协同**：中央调度器（验证）
-
-**输入**：任务工单
+| 项目 | 内容                             |
+| ---- | -------------------------------- |
+| 调度 | product-strategist → ux-engineer |
+| 输入 | 任务工单                         |
+| 输出 | PRD、用户故事、MVP定义、设计稿   |
 
 **动作**：
 
-1. **需求细化** - 调用 product-strategist 生成产品需求文档
-2. **用户确认** - 请求用户确认需求文档
-3. **交互原型** - 调用 ux-engineer 产出用户流程和交互原型
-4. **UI 设计稿** - 产出高保真视觉设计稿
-5. **设计确认** - 请求用户确认设计稿
+1. 调用 product-strategist 生成 PRD
+2. 请求用户确认需求文档
+3. 调用 ux-engineer 产出设计稿
+4. 请求用户确认设计稿
 
-**输出**：
+---
 
-- 产品需求文档（PRD）
-- 用户故事地图
-- 交互原型
-- UI 设计稿
-- 用户确认意见
+### 阶段 3：架构设计
 
-### 阶段 3：并行开发
+| 项目 | 内容                        |
+| ---- | --------------------------- |
+| 调度 | tech-architect              |
+| 协同 | security-auditor            |
+| 输入 | PRD、设计稿                 |
+| 输出 | 技术方案、数据模型、API设计 |
 
-**调度**：frontend-specialist + backend-specialist + mobile-specialist + security-auditor（并行）
+**动作**：
 
-**协同**：performance-specialist（按需）
+1. 调用 tech-architect 设计技术架构
+2. 调用 security-auditor 安全评审
+3. 产出技术方案文档
+4. 记录技术决策
+
+---
+
+### 阶段 4：并行开发
+
+| 项目 | 内容                                                                 |
+| ---- | -------------------------------------------------------------------- |
+| 调度 | frontend-specialist + backend-specialist + mobile-specialist（并行） |
+| 协同 | security-auditor、performance-specialist（按需）                     |
+| 输入 | 技术方案、设计稿                                                     |
+| 输出 | 源代码、单元测试、Git提交                                            |
 
 **并行策略**：
 
-| 场景            | 调度策略                                                          |
-| --------------- | ----------------------------------------------------------------- |
-| Web 前端 + 后端 | frontend-specialist + backend-specialist 并行                     |
-| Web + 移动端    | frontend-specialist + backend-specialist + mobile-specialist 并行 |
-| 多端 API 联调   | 串行，后端先完成                                                  |
-| 独立功能模块    | 按模块并行开发                                                    |
-| 复杂算法需求    | performance-specialist 同步咨询                                   |
+| 场景     | 调度策略                                      |
+| -------- | --------------------------------------------- |
+| Web应用  | frontend-specialist + backend-specialist 并行 |
+| 多端应用 | frontend + backend + mobile-specialist 并行   |
+| API联调  | 串行，后端先完成                              |
+| 性能需求 | 同步调用 performance-specialist               |
 
-**输出**：
+---
 
-- Web 前端代码
-- Web 后端代码
-- 移动端应用代码
-- 单元测试报告
-- Git 提交记录
+### 阶段 5：质量保障
 
-### 阶段 4：质量保障
-
-**调度**：quality-engineer
+| 项目 | 内容                         |
+| ---- | ---------------------------- |
+| 调度 | quality-engineer             |
+| 输入 | 源代码                       |
+| 输出 | 测试报告、缺陷报告、代码审计 |
 
 **动作**：
 
-1. **测试生成** - 自动生成测试用例
-2. **集成测试** - 执行 API 集成测试
-3. **系统测试** - 执行端到端系统测试
-4. **代码扫描** - 自动化代码质量扫描
-5. **安全扫描** - 安全漏洞检测
-6. **缺陷反馈** - 将缺陷列表反馈给调度器
+1. 生成测试用例
+2. 执行集成测试、系统测试
+3. 代码质量扫描
+4. 安全漏洞检测
+5. 缺陷反馈至调度器
 
 **缺陷处理**：
 
-- 严重问题 → 自动创建任务 → 指派回开发团队修复
-- 中低问题 → 记录待办 → 进入缺陷池
+| 严重程度 | 处理方式                |
+| -------- | ----------------------- |
+| 严重     | 创建任务 → 指派开发修复 |
+| 中低     | 记录待办 → 进入缺陷池   |
 
-**输出**：
+---
 
-- 测试报告
-- 缺陷报告
-- 代码审计报告
-- 安全扫描报告
+### 阶段 6：部署上线
 
-### 阶段 5：部署与上线
-
-**调度**：devops-engineer
-
-**动作**：
-
-1. **环境准备** - 准备测试/生产环境
-2. **CI/CD 执行** - 运行持续集成/持续部署流水线
-3. **自动化部署** - 部署至目标环境
-4. **监控配置** - 配置监控告警
-5. **健康检查** - 验证服务健康状态
-6. **灰度发布** - 按策略进行灰度发布（如需要）
-
-**输出**：
-
-- 线上服务
-- 访问链接
-- 监控面板
-- 发布记录
-
-### 阶段 6：闭环与迭代
-
-**调度**：devops-engineer + quality-engineer
-
-**协同**：product-strategist
+| 项目 | 内容                         |
+| ---- | ---------------------------- |
+| 调度 | devops-engineer              |
+| 输入 | 测试通过的代码               |
+| 输出 | 线上服务、监控面板、发布记录 |
 
 **动作**：
 
-1. **状态监控** - 持续监控系统运行状态
-2. **性能监控** - 追踪性能指标
-3. **用户反馈** - 收集用户反馈
-4. **数据分析** - 分析使用数据
-5. **迭代规划** - 将反馈纳入下一轮规划
+1. 环境准备
+2. CI/CD 执行
+3. 自动化部署
+4. 监控配置
+5. 健康检查
+6. 灰度发布（按需）
 
-**输出**：
+---
 
-- 线上监控报告
-- 用户反馈分析
-- 下一轮规划输入
+### 阶段 7：闭环迭代
+
+| 项目 | 内容                                  |
+| ---- | ------------------------------------- |
+| 调度 | devops-engineer + quality-engineer    |
+| 协同 | product-strategist、retro-facilitator |
+| 输入 | 线上服务                              |
+| 输出 | 监控报告、反馈分析、迭代规划          |
+
+**动作**：
+
+1. 状态监控
+2. 性能追踪
+3. 用户反馈收集
+4. 数据分析
+5. 调用 retro-facilitator 总结经验
+6. 下一轮规划输入
 
 ---
 
 ## 异常处理
 
-| 场景               | 处理方式                         |
-| ------------------ | -------------------------------- |
-| 用户需求不明确     | 返回阶段 1，请求用户补充         |
-| 设计稿未确认       | 返回阶段 2，重新设计             |
-| 技术方案评审不通过 | 返回阶段 3，重新设计             |
-| 测试失败           | 创建缺陷任务，指派回开发团队修复 |
-| 部署失败           | 返回阶段 5，排查后重试           |
-| 需架构专家支持     | 调用 performance-specialist      |
-| 发现错误或反模式   | 调用 retro-facilitator 记录      |
-| 需要进度跟踪       | 调用 retro-facilitator           |
+| 场景               | 处理方式                    |
+| ------------------ | --------------------------- |
+| 需求不明确         | 返回阶段1，请求用户补充     |
+| PRD未确认          | 返回阶段2，重新定义         |
+| 设计稿未确认       | 返回阶段2，重新设计         |
+| 技术方案评审不通过 | 返回阶段3，重新设计         |
+| 测试失败           | 创建缺陷任务，返回阶段4     |
+| 部署失败           | 返回阶段6，排查后重试       |
+| 需架构专家支持     | 调用 tech-architect         |
+| 需性能优化         | 调用 performance-specialist |
+| 发现反模式         | 调用 retro-facilitator 记录 |
 
 ## 进度跟踪
 
@@ -311,42 +315,37 @@ flowchart TD
 ```mermaid
 sequenceDiagram
     participant U as 用户
-    participant O as 调度器
+    participant O as orchestrator
     participant P as product-strategist
-    participant D as ux-engineer
+    participant UX as ux-engineer
+    participant TA as tech-architect
     participant FE as frontend-specialist
     participant BE as backend-specialist
-    participant M as mobile-specialist
-    participant Sec as security-auditor
-    participant S as performance-specialist
     participant Q as quality-engineer
-    participant Ops as devops-engineer
+    participant D as devops-engineer
 
     U->>O: 需求：登录+仪表盘
-    O->>O: 阶段1：创建任务工单
-    O->>P: 阶段2：产出PRD
-    P->>O: PRD确认
-    O->>D: 产出设计稿
-    D->>O: 设计稿确认
-    O->>U: 请求用户确认
-    U->>O: 确认通过
-    par 并行开发
-        O->>FE: 前端UI/组件
-        FE->>O: 前端代码
+    Note over O: 阶段1：需求解析
+    O->>P: 阶段2：产品定义
+    P->>O: PRD
+    O->>UX: 设计
+    UX->>O: 设计稿
+    O->>U: 确认
+    U->>O: 通过
+    O->>TA: 阶段3：架构设计
+    TA->>O: 技术方案
+    par 阶段4：并行开发
+        O->>FE: 前端
+        FE->>O: 代码
     and
-        O->>BE: 后端API/服务
-        BE->>O: 后端代码
-    and
-        O->>M: 移动端（如需要）
-        M->>O: 移动端代码
-    and
-        O->>Sec: 安全实现
-        Sec->>O: 安全方案
+        O->>BE: 后端
+        BE->>O: 代码
     end
-    O->>Q: 阶段4：质量保障
+    O->>Q: 阶段5：质量保障
     Q->>O: 测试报告
-    O->>Ops: 阶段5：部署上线
-    Ops->>O: 线上服务
+    O->>D: 阶段6：部署
+    D->>O: 线上服务
+    Note over O: 阶段7：闭环迭代
     O->>U: 完成
 ```
 
@@ -544,13 +543,15 @@ flowchart TB
 
 ### 阶段说明
 
-| 阶段       | 触发条件         | 激活专家                                | 输出产物                       |
-| ---------- | ---------------- | --------------------------------------- | ------------------------------ |
-| 项目初始化 | 用户提供项目概要 | orchestrator-expert                     | 目录结构、任务看板、共享上下文 |
-| 需求分析   | 项目初始化完成   | product-strategist                      | PRD、用户故事、MVP定义         |
-| 设计阶段   | PRD评审通过      | tech-architect, ux-engineer             | 架构设计、UI设计、数据模型     |
-| 设计评审   | 设计文档完成     | security-auditor, devops-engineer       | 评审报告、改进建议             |
-| 实现       | 设计评审通过     | frontend-specialist, backend-specialist | 源代码、API、组件              |
+| 阶段 | 名称     | 调度专家                           | 输入         | 输出        |
+| ---- | -------- | ---------------------------------- | ------------ | ----------- |
+| 1    | 需求解析 | orchestrator-expert                | 用户需求     | 任务工单    |
+| 2    | 产品定义 | product-strategist, ux-engineer    | 任务工单     | PRD、设计稿 |
+| 3    | 架构设计 | tech-architect, security-auditor   | PRD、设计稿  | 技术方案    |
+| 4    | 并行开发 | frontend/backend/mobile-specialist | 技术方案     | 源代码      |
+| 5    | 质量保障 | quality-engineer                   | 源代码       | 测试报告    |
+| 6    | 部署上线 | devops-engineer                    | 测试通过代码 | 线上服务    |
+| 7    | 闭环迭代 | devops/quality/retro-facilitator   | 线上服务     | 迭代规划    |
 
 ### 协调中枢核心职责
 
