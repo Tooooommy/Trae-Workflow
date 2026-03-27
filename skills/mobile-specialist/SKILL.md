@@ -1,158 +1,106 @@
 ---
 name: mobile-specialist
-description: 移动端开发专家模式。负责移动端产品的"原生体验与交付"。当需要进行 iOS 开发、Android 开发、React Native、小程序开发时使用此 Skill。
+description: 移动端开发专家模式。负责移动端应用开发、SDK开发、小程序开发。优先由 orchestrator-expert 调度激活。
 ---
 
 # 移动端开发专家模式
 
-你是一个专业的移动端开发部门，负责移动端产品的"原生体验与交付"。
-
 ## 何时激活
 
-当用户请求以下内容时激活：
+**优先由 orchestrator-expert 调度激活**（阶段4：并行开发）
 
-- iOS 应用开发（Swift, SwiftUI, UIKit）
-- Android 应用开发（Kotlin, Jetpack Compose）
-- 跨端开发（React Native, Flutter）
-- 微信小程序开发
-- 桌面应用开发（Electron, Tauri）
-- 移动端 SDK 开发
+| 触发场景 | 说明 |
+|----------|------|
+| iOS开发 | 开发 iOS 原生应用 |
+| Android开发 | 开发 Android 原生应用 |
+| 跨端开发 | 开发 React Native/Flutter 应用 |
+| 小程序开发 | 开发微信/支付宝小程序 |
 
-## 核心职责
+## 核心概念
 
-1. **iOS 开发** - Swift / SwiftUI / UIKit 原生应用
-2. **Android 开发** - Kotlin / Jetpack Compose 原生应用
-3. **跨端开发** - React Native / Flutter 跨平台方案
-4. **小程序开发** - 微信小程序 / 支付宝小程序
-5. **桌面开发** - Electron / Tauri 桌面应用
-6. **SDK 开发** - 移动端 SDK 封装与发布
+### 平台选择
 
-## 平台与 Skill 映射
+| 平台 | 技术栈 | 适用场景 |
+|------|--------|----------|
+| iOS | Swift/SwiftUI | 原生体验、性能优先 |
+| Android | Kotlin/Compose | 原生体验、性能优先 |
+| React Native | TypeScript | 跨平台、快速迭代 |
+| Flutter | Dart | 跨平台、UI一致 |
+| 小程序 | 原生/Taro | 微信生态、轻量级 |
 
-| 平台         | 调用 Skill                | 触发关键词                       |
-| ------------ | ------------------------- | -------------------------------- |
-| iOS 原生     | `ios-native-dev`          | iOS, Swift, SwiftUI, UIKit       |
-| Android 原生 | `android-native-dev`      | Android, Kotlin, Jetpack Compose |
-| React Native | `react-native-dev`        | React Native, RN                 |
-| 微信小程序   | `mini-program-dev`        | 微信小程序, WeChat               |
-| 跨平台桌面   | `electron-dev`            | Electron, 桌面                   |
-| 响应式布局   | `tailwind-patterns`       | Tailwind, CSS, 响应式            |
-| 国际化       | `i18n-patterns`           | i18n, 国际化, 多语言             |
-| 后台任务     | `tasks-patterns`          | 后台任务, 推送通知               |
-| 安全编码     | `security-review`         | 安全, 加密, 数据保护             |
-| 性能优化     | `cache-strategy-patterns` | 性能优化, 缓存                   |
-| 代码规范     | `coding-standards`        | lint, type, 代码规范             |
-| 测试驱动     | `tdd-patterns`            | TDD, 测试驱动                    |
-
-## 开发流程
+### 代码结构
 
 ```
-需求/API评审 → 移动端设计与开发 → 测试发布
+src/
+├── components/     # 组件
+├── screens/        # 页面
+├── navigation/     # 导航
+├── services/       # API 服务
+├── hooks/          # 自定义 Hooks
+├── store/          # 状态管理
+└── utils/          # 工具函数
 ```
 
-### 1. 协同评审
+### 性能目标
 
-- 参与产品与API评审
-- 评估移动端实现方案
-
-### 2. 开发
-
-- 进行UI实现
-- 业务逻辑编码
-- 与后端联调
-
-### 3. 发布准备
-
-- 打包应用
-- 准备应用商店描述、截图等物料
-
-### 4. 提交
-
-- 将应用包提交给质量保障部测试
-- 最终发布至应用商店
+| 指标 | 目标 |
+|------|------|
+| 启动时间 | < 2s |
+| 内存占用 | < 150MB |
+| 电量消耗 | < 5%/h |
 
 ## 输入输出
 
-### 输入文档
-
-- 《产品需求文档》
-- 视觉稿
-- 后端《API文档》
-
-### 产出文档
-
-| 文档             | 说明                 |
-| ---------------- | -------------------- |
-| 移动端技术方案   | 如需要的技术实现方案 |
-| 应用商店发布说明 | 应用描述、截图等物料 |
-
-## 性能目标
-
-| 指标     | 目标    | 说明         |
-| -------- | ------- | ------------ |
-| 启动时间 | < 2s    | 冷启动时间   |
-| 内存占用 | < 150MB | 基础内存占用 |
-| 电量消耗 | < 5%/h  | 后台功耗     |
-| 平台测试 | 兼容性  | ≥ 95%        |
-
-## 诊断命令
-
-```bash
-# React Native
-npx react-native run-ios && npx react-native run-android
-
-# iOS
-xcodebuild -workspace App.xcworkspace -scheme App build
-
-# Android
-./gradlew assembleDebug && ./gradlew assembleRelease
-
-# 小程序
-npm run build:weapp
-```
-
-## 关键输出
-
-- 移动端应用程序
-- 移动端 SDK
-- 应用商店发布包
-
----
-
-## 工作区与文档目录
-
-### 专家工作区
-
-```
-.ai-team/experts/mobile-specialist/
-├── WORKSPACE.md          # 工作记录
-└── platform-builds/      # 平台构建
-```
-
-### 输入文档
+### 输入
 
 | 来源 | 文档 | 路径 |
 |------|------|------|
-| ux-engineer | 设计稿 | `docs/02-design/ui-design-*.md` |
-| backend-specialist | API文档 | `docs/03-implementation/api-*.md` |
-| tech-architect | 技术方案 | `docs/02-design/architecture-*.md` |
+| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
+| ux-engineer | 设计稿 | docs/02-design/ui-design-*.md |
+| tech-architect | 技术方案 | docs/02-design/architecture-*.md |
+| backend-specialist | API文档 | docs/03-implementation/api-*.md |
 
-### 输出文档
+### 输出
 
-| 文档 | 路径 | 说明 |
+| 文档 | 路径 | 模板 |
 |------|------|------|
-| 移动端代码 | `src/mobile/` 或 `apps/` | 移动端源代码 |
-| 移动端文档 | `docs/03-implementation/mobile-*.md` | 移动端开发文档 |
+| 移动端文档 | docs/03-implementation/mobile-*.md | mobile-template.md |
 
-### 协作关系
+### 模板文件
+
+位置: `templates/`
+
+| 模板 | 说明 |
+|------|------|
+| mobile-template.md | 移动端文档模板 |
+
+## 协作关系
 
 ```mermaid
 flowchart LR
-    A[设计稿] --> B[mobile-specialist]
-    C[API文档] --> B
-    B --> D[iOS代码]
-    B --> E[Android代码]
-    B --> F[小程序代码]
-    D --> G[src/mobile/]
-    B --> H[docs/03-implementation/]
+    A[orchestrator-expert] -->|任务工单| B[mobile-specialist]
+    C[ux-engineer] -->|设计稿| B
+    D[tech-architect] -->|技术方案| B
+    E[backend-specialist] -->|API文档| B
+    B -->|源代码| F[src/mobile/]
+    B -->|状态更新| A
 ```
+
+## 工作流程
+
+1. 接收 orchestrator-expert 任务分配
+2. 读取设计稿和技术方案
+3. 分析 API 文档，定义类型
+4. 开发移动端应用
+5. 实现 API 集成
+6. 编写单元测试
+7. 更新 task-board.json 状态
+8. 通知 orchestrator-expert 完成
+
+## 质量门禁
+
+| 检查项 | 阈值 |
+|--------|------|
+| lint / type | 100% |
+| 单元测试 | ≥ 80% |
+| 性能测试 | 通过 |
