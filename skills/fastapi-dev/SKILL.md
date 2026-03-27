@@ -1,5 +1,5 @@
 ---
-name: fastapi-patterns
+name: fastapi-dev
 description: FastAPI 异步全栈开发模式，涵盖架构模式、安全实践、测试驱动开发和项目验证循环。基于 FastAPI、TortoiseORM、Celery 和现代 Python 工具链。**必须激活当**：用户要求构建 FastAPI API、设计 Pydantic 模型、实现依赖注入或处理异步任务时。即使用户没有明确说"FastAPI"，当涉及 Python API 开发或现代异步框架时也应使用。
 ---
 

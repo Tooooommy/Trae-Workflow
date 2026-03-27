@@ -420,7 +420,7 @@ export class UserService {
 | 类型              | 调用 Skill                                                 | 触发关键词       |
 | ----------------- | ---------------------------------------------------------- | ---------------- |
 | Node.js / Express | `express-dev`                                              | Node.js, Express |
-| Python / FastAPI  | `fastapi-patterns`                                         | Python, FastAPI  |
+| Python / FastAPI  | `fastapi-dev`                                              | Python, FastAPI  |
 | Go / Gin          | `golang-patterns`                                          | Go, Gin          |
 | GraphQL           | `graphql-patterns`                                         | GraphQL, Apollo  |
 | 实时通信          | `realtime-websocket`                                       | WebSocket, SSE   |
