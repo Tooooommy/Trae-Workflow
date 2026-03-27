@@ -1,0 +1,13 @@
+expert: frontend-specialist
+status: available
+currentTask: null
+recentWork: []
+workQueue: []
+specializations:
+  - react-development
+  - state-management
+  - performance-optimization
+capabilities:
+  - build-components
+  - implement-features
+  - optimize-bundle

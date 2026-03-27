@@ -767,3 +767,130 @@ done
 2. 分配专家并更新 `experts` 状态
 3. 跟踪任务进度和检查点
 4. 记录工作流日志
+
+---
+
+## 专家工作文档模板
+
+### 专家状态文件
+
+位置: `.ai-team/experts/{expert-name}/expert-status.yaml`
+
+```yaml
+expert: product-strategist
+status: available
+currentTask: null
+recentWork:
+  - taskId: task-001
+    description: 编写产品需求文档
+    startedAt: 2024-01-15T10:00:00Z
+    completedAt: 2024-01-15T12:00:00Z
+    outputFiles:
+      - ../../docs/01-requirements/prd-v1.0.md
+workQueue: []
+specializations:
+  - product-planning
+  - requirements-analysis
+  - market-research
+capabilities:
+  - generate-prd
+  - create-user-stories
+  - define-success-metrics
+```
+
+### 专家工作日志
+
+位置: `.ai-team/experts/{expert-name}/WORKSPACE.md`
+
+```markdown
+## 2024-01-15
+
+### 10:00-12:00: 任务 task-001
+
+**任务**: 编写产品需求文档
+**输入**:
+
+- project-context.json
+- business-goals.md
+  **输出**:
+- prd-v1.0.md
+  **关键决策**:
+
+1. 确定核心功能优先级: 图片上传 > 社交互动 > 用户管理
+2. 定义MVP范围: 排除高级滤镜和视频功能
+3. 设定成功指标: 日活用户 > 1000, 留存率 > 40%
+   **问题与阻塞**: 无
+   **下一步**: 等待tech-architect评审技术可行性
+```
+
+---
+
+## 共享上下文文档
+
+位置: `.ai-team/shared-context/project-context.json`
+
+```json
+{
+  "project": {
+    "name": "PicShare - 社交图片分享应用",
+    "vision": "让用户简单、快捷地分享生活瞬间",
+    "targetUsers": ["摄影爱好者", "旅行者", "学生群体"],
+    "timeline": {
+      "startDate": "2024-01-15",
+      "mvpDueDate": "2024-02-15",
+      "releaseDate": "2024-03-01"
+    },
+    "constraints": {
+      "budget": "中等",
+      "teamSize": "小型团队",
+      "techStack": ["React", "Node.js", "MongoDB"],
+      "platforms": ["Web", "iOS", "Android"]
+    }
+  },
+  "decisions": {
+    "architecture": {
+      "frontend": "采用React + TypeScript，支持SSR",
+      "backend": "Node.js + Express，RESTful API",
+      "database": "MongoDB for metadata, S3 for images",
+      "stateManagement": "Context API + Zustand"
+    },
+    "infrastructure": {
+      "hosting": "Vercel for frontend, AWS for backend",
+      "ciCd": "GitHub Actions",
+      "monitoring": "Sentry + Datadog"
+    }
+  },
+  "dependencies": {
+    "external": [
+      {
+        "name": "Cloudinary",
+        "purpose": "图片存储与处理",
+        "status": "pending-integration"
+      }
+    ],
+    "internal": [
+      {
+        "from": "frontend-specialist",
+        "to": "backend-specialist",
+        "dependency": "用户认证API",
+        "dueDate": "2024-01-20"
+      }
+    ]
+  },
+  "qualityAttributes": {
+    "performance": "页面加载时间 < 2s",
+    "reliability": "99.9% uptime",
+    "security": "OWASP Top 10 compliance",
+    "scalability": "支持10万用户"
+  }
+}
+```
+
+### 文档结构说明
+
+| 字段              | 说明                                       |
+| ----------------- | ------------------------------------------ |
+| project           | 项目基本信息、愿景、目标用户、时间线、约束 |
+| decisions         | 架构决策、基础设施决策                     |
+| dependencies      | 外部依赖、内部专家间依赖                   |
+| qualityAttributes | 性能、可靠性、安全性、可扩展性要求         |

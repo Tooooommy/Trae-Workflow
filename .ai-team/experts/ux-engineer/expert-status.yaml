@@ -1,0 +1,13 @@
+expert: ux-engineer
+status: available
+currentTask: null
+recentWork: []
+workQueue: []
+specializations:
+  - ui-design
+  - interaction-design
+  - design-systems
+capabilities:
+  - create-wireframes
+  - design-prototypes
+  - define-design-tokens

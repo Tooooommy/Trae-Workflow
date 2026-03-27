@@ -1,0 +1,13 @@
+expert: retro-facilitator
+status: available
+currentTask: null
+recentWork: []
+workQueue: []
+specializations:
+  - retrospective
+  - process-improvement
+  - knowledge-capture
+capabilities:
+  - facilitate-retro
+  - capture-lessons
+  - suggest-improvements

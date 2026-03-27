@@ -1,0 +1,13 @@
+expert: mobile-specialist
+status: available
+currentTask: null
+recentWork: []
+workQueue: []
+specializations:
+  - react-native
+  - ios-development
+  - android-development
+capabilities:
+  - build-mobile-apps
+  - integrate-native-modules
+  - optimize-mobile-performance

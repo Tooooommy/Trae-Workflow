@@ -1,0 +1,13 @@
+expert: tech-architect
+status: available
+currentTask: null
+recentWork: []
+workQueue: []
+specializations:
+  - system-design
+  - tech-selection
+  - architecture-patterns
+capabilities:
+  - design-architecture
+  - evaluate-tech-stack
+  - create-adr
