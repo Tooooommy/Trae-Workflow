@@ -29,19 +29,19 @@ Orchestrator (调度) → Skills (执行) → Rules (约束) → MCP (连接)
 
 ## 🎛️ 中央调度器
 
-**orchestrator** - 解析用户需求，调用相应的 Skill 完成具体任务
+**use-workflow** - 解析用户需求，调用相应的 Skill 完成具体任务
 
 ```mermaid
 flowchart TD
-    User[用户提出需求] --> Orchestrator[orchestrator]
-    Orchestrator --> Product[product-expert]
-    Orchestrator --> Design[design-expert]
-    Orchestrator --> Frontend[frontend-expert]
-    Orchestrator --> Backend[backend-expert]
-    Orchestrator --> Mobile[mobile-expert]
-    Orchestrator --> QA[quality-expert]
-    Orchestrator --> Ops[platform-expert]
-    Orchestrator --> User
+    User[用户提出需求] --> Workflow[use-workflow]
+    Workflow --> Product[product-expert]
+    Workflow --> Design[design-expert]
+    Workflow --> Frontend[frontend-expert]
+    Workflow --> Backend[backend-expert]
+    Workflow --> Mobile[mobile-expert]
+    Workflow --> QA[quality-expert]
+    Workflow --> Ops[platform-expert]
+    Workflow --> User
 ```
 
 ---
@@ -71,7 +71,6 @@ traew update
 ### 前端 & UI
 
 - **frontend-expert** - React、Next.js、状态管理
-- **vue-patterns** - Vue 3 组合式 API
 - **tailwind-patterns** - Tailwind CSS 原子化
 - **a11y-patterns** - 无障碍设计、WCAG
 
@@ -80,26 +79,22 @@ traew update
 - **backend-expert** - 后端架构模式
 - **rest-patterns** - REST API 设计
 - **graphql-patterns** - GraphQL Schema
-- **express-patterns** - Node.js + Express
-- **fastapi-patterns** - FastAPI 异步
+- **express-dev** - Node.js + Express
+- **fastapi-dev** - FastAPI 异步
+- **golang-dev** - Go + Gin
+- **python-dev** - Python 后端
 
 ### 移动端
 
 - **mobile-expert** - 移动端统一入口
-- **ios-native-patterns** - iOS Swift/SwiftUI
-- **android-native-patterns** - Android Kotlin
-- **react-native-patterns** - React Native
-- **mini-program-patterns** - 微信小程序
+- **ios-native-dev** - iOS Swift/SwiftUI
+- **android-native-dev** - Android Kotlin
+- **react-native-dev** - React Native
+- **mini-program-dev** - 微信小程序
 
 ### 桌面端
 
-- **electron-patterns** - Electron 桌面应用
-
-### 架构 & 工程
-
-- **clean-architecture** - 整洁架构
-- **cqrs-patterns** - CQRS 命令查询分离
-- **ddd-patterns** - 领域驱动设计
+- **electron-dev** - Electron 桌面应用
 
 ### 支付集成
 
@@ -118,23 +113,61 @@ traew update
 
 ### 性能 & 缓存
 
-- **caching-patterns** - 多级缓存策略
+- **cache-strategy-patterns** - 多级缓存策略
 - **redis-patterns** - Redis 数据结构
 - **postgres-patterns** - PostgreSQL 优化
-- **clickhouse-io** - ClickHouse 分析数据库
-- **logging-observability** - 日志与可观测性
+- **clickhouse-patterns** - ClickHouse 分析数据库
+- **mongodb-patterns** - MongoDB 文档数据库
+- **database-dev** - 数据库开发模式
+- **logging-observability-patterns** - 日志与可观测性
 
-### Web & 跨平台
+### 架构 & 工程
+
+- **clean-architecture** - 整洁架构
+- **cqrs-patterns** - CQRS 命令查询分离
+- **ddd-patterns** - 领域驱动设计
+- **circuit-breaker-patterns** - 熔断器模式
 
 ### 开发工具
 
-- **git-workflow** - Git 版本控制
+- **git-patterns** - Git 版本控制
 - **docker-patterns** - Docker 容器化
-- **deployment-patterns** - 部署流水线
+- **devops-patterns** - 部署流水线
 - **tdd-patterns** - 测试驱动开发
-- **e2e-testing** - Playwright E2E 测试
+- **e2e-test-patterns** - Playwright E2E 测试
+- **coding-standards** - 代码规范
+
+### 质量 & 平台
+
 - **quality-expert** - 质量保障与验证流程
 - **platform-expert** - 架构、CI/CD、监控、安全
+- **security-expert** - 安全最佳实践
+- **rate-limiting-patterns** - 限流模式
+
+### 专项技术
+
+- **specialized-expert** - 技术专项入口
+- **tech-selection-patterns** - 技术选型指南
+- **feature-flags-patterns** - 功能开关
+
+### 实时 & 通信
+
+- **websocket-patterns** - WebSocket 实时通信
+
+### 基础设施
+
+- **tasks-patterns** - 后台任务队列
+- **file-storage-patterns** - 文件存储
+- **email-patterns** - 邮件服务
+- **i18n-patterns** - 国际化
+
+### 其他
+
+- **anti-expert** - 反模式
+- **progress-expert** - 进度追踪
+- **documentation-expert** - 文档编写
+- **skill-creator** - Skill 创建指南
+- **vercel-react-best-practices** - Vercel React 最佳实践
 
 ---
 
@@ -143,34 +176,16 @@ traew update
 ```
 
 Trae-Workflow/
-├── agents/ # 1 个调度器
-│ └── orchestrator.md
 ├── skills/ # 70+ 技能
+│   ├── use-workflow/     # 中央调度器
+│   ├── product-expert/   # 产品专家
+│   ├── design-expert/    # 设计专家
+│   ├── frontend-expert/ # 前端专家
+│   ├── backend-expert/   # 后端专家
+│   ├── mobile-expert/    # 移动端专家
+│   ├── quality-expert/   # 质量专家
+│   ├── platform-expert/  # 平台专家
+│   └── **/              # 其他模式
 ├── project_rules/ # 项目规则
-├── user_rules/ # 用户规则
-├── .trae/ # 规则目录
-└── README.md
-
-```
-
----
-
-## 🔧 MCP 服务器
-
-| 服务器              | 用途        |
-| ------------------- | ----------- |
-| memory              | 长期记忆    |
-| sequential-thinking | 链式思维    |
-| context7            | 代码上下文  |
-| docker              | Docker 管理 |
-| github              | GitHub API  |
-
----
-
-## 📄 许可
-
-MIT
-
-```
-
+├── user_rules/    # 用户规则
 ```
