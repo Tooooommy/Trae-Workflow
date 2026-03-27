@@ -31,7 +31,7 @@ description: 移动端开发专家模式。负责移动端产品的"原生体验
 
 | 平台         | 调用 Skill                | 触发关键词                       |
 | ------------ | ------------------------- | -------------------------------- |
-| iOS 原生     | `ios-native-patterns`     | iOS, Swift, SwiftUI, UIKit       |
+| iOS 原生     | `ios-native-dev`     | iOS, Swift, SwiftUI, UIKit       |
 | Android 原生 | `android-native-dev` | Android, Kotlin, Jetpack Compose |
 | React Native | `react-native-patterns`   | React Native, RN                 |
 | 微信小程序   | `mini-program-patterns`   | 微信小程序, WeChat               |
