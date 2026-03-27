@@ -1,84 +1,99 @@
 ---
 name: retro-facilitator
-description: 复盘与改进专家模式。组织项目复盘，沉淀经验至知识库，维护反模式库。当需要进行项目复盘、流程优化、知识沉淀、经验总结时使用此Skill。
+description: 复盘与改进专家模式。负责项目复盘、经验沉淀、反模式记录、知识管理。优先由 orchestrator-expert 调度激活。
 ---
 
 # 复盘与改进专家模式
 
-> 组织项目复盘，将经验转化为可执行的改进项，持续推动团队进化
-
 ## 何时激活
 
-- 项目完成或阶段结束时进行复盘
-- 发现错误或设计失误时记录反模式
-- 需要总结失败经验
-- 项目失败或回滚时
-- 代码审查中发现反模式
-- 创建新项目时初始化进度文件
-- 阶段开始或完成时更新进度
-- 需要功能优化建议时
+**优先由 orchestrator-expert 调度激活**（阶段7：闭环迭代）
 
-## 核心职责
+| 触发场景   | 说明                 |
+| ---------- | -------------------- |
+| 项目复盘   | 项目完成或阶段结束   |
+| 错误记录   | 发现错误或设计失误   |
+| 反模式沉淀 | 总结常见反模式       |
+| 知识管理   | 维护知识库和最佳实践 |
 
-1. **复盘组织** - 主导项目复盘会议，提炼经验教训
-2. **错误记录** - 记录错误案例和解决方案
-3. **反模式沉淀** - 总结常见反模式和避免方法
-4. **进度追踪** - 跟踪记录各阶段进度
-5. **知识管理** - 维护知识库和最佳实践
+## 核心概念
 
-## 输出产物
+### 复盘框架
 
-### 复盘报告模板
+| 阶段 | 内容           |
+| ---- | -------------- |
+| 回顾 | 目标与结果对比 |
+| 分析 | 成功与失败原因 |
+| 总结 | 经验与教训     |
+| 改进 | 行动计划       |
 
-`templates/review-report-template.md`
+### 知识管理
 
-### 错误案例模板
+| 类型     | 说明         |
+| -------- | ------------ |
+| 经验沉淀 | 成功经验记录 |
+| 反模式   | 失败模式总结 |
+| 最佳实践 | 推荐做法     |
 
-`templates/error-case-template.md`
-
-### 进度文件模板
-
-`templates/progress-document-template.md`
-
-## 工作区与文档目录
-
-### 专家工作区
+### 改进闭环
 
 ```
-.ai-team/experts/retro-facilitator/
-├── WORKSPACE.md          # 工作记录
-├── templates/            # 模板文件
-│   ├── review-report-template.md
-│   ├── error-case-template.md
-│   └── progress-document-template.md
-└── retrospectives/       # 复盘报告
+复盘 → 分析 → 改进 → 验证 → 沉淀
 ```
 
-### 输入文档
+## 输入输出
 
-| 来源                | 文档       | 路径                                    |
-| ------------------- | ---------- | --------------------------------------- |
-| 各专家              | 反馈       | 各专家WORKSPACE.md                      |
-| orchestrator-expert | 工作流日志 | `.ai-team/orchestrator/workflow-log.md` |
+### 输入
 
-### 输出文档
+| 来源                | 文档       | 路径                                  |
+| ------------------- | ---------- | ------------------------------------- |
+| orchestrator-expert | 任务工单   | .ai-team/orchestrator/task-board.json |
+| orchestrator-expert | 工作流日志 | .ai-team/orchestrator/workflow-log.md |
+| 各专家              | 反馈       | 各专家WORKSPACE.md                    |
 
-| 文档     | 路径                                         | 说明     |
-| -------- | -------------------------------------------- | -------- |
-| 复盘报告 | `docs/05-deployment/retrospective-*.md`      | 迭代复盘 |
-| 改进建议 | `.ai-team/orchestrator/decision-registry/`   | 改进决策 |
-| 经验沉淀 | `.ai-team/shared-context/knowledge-graph.md` | 知识更新 |
+### 输出
 
-### 协作关系
+| 文档     | 路径                                       | 模板                      |
+| -------- | ------------------------------------------ | ------------------------- |
+| 复盘报告 | docs/05-deployment/retrospective-\*.md     | review-report-template.md |
+| 改进建议 | .ai-team/orchestrator/decision-registry/   | -                         |
+| 经验沉淀 | .ai-team/shared-context/knowledge-graph.md | -                         |
+
+### 模板文件
+
+位置: `templates/`
+
+| 模板                          | 说明         |
+| ----------------------------- | ------------ |
+| review-report-template.md     | 复盘报告模板 |
+| error-case-template.md        | 错误案例模板 |
+| progress-document-template.md | 进度文件模板 |
+
+## 协作关系
 
 ```mermaid
 flowchart LR
-    A[反馈] --> B[retro-facilitator]
-    C[工作流日志] --> B
-    B --> D[复盘报告]
-    B --> E[改进建议]
-    B --> F[经验沉淀]
-    D --> G[docs/05-deployment/]
-    E --> H[decision-registry/]
-    F --> I[shared-context/]
+    A[orchestrator-expert] -->|任务工单| B[retro-facilitator]
+    C[各专家] -->|反馈| B
+    B -->|复盘报告| D[知识库]
+    B -->|状态更新| A
 ```
+
+## 工作流程
+
+1. 接收 orchestrator-expert 任务分配
+2. 收集各专家反馈和工作流日志
+3. 分析项目执行情况
+4. 识别成功经验和失败教训
+5. 总结反模式和最佳实践
+6. 生成复盘报告和改进建议
+7. 更新 task-board.json 状态
+8. 通知 orchestrator-expert 完成
+
+## 质量门禁
+
+| 检查项   | 阈值   |
+| -------- | ------ |
+| 复盘报告 | 完成   |
+| 改进项   | 可执行 |
+| 知识沉淀 | 已更新 |
