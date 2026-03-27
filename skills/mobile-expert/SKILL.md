@@ -36,7 +36,7 @@ description: 移动端开发专家模式。负责移动端产品的"原生体验
 | React Native | `react-native-dev`        | React Native, RN                 |
 | 微信小程序   | `mini-program-dev`        | 微信小程序, WeChat               |
 | 跨平台桌面   | `electron-dev`            | Electron, 桌面                   |
-| 轻量桌面     | `tauri-patterns`          | Tauri, Rust                      |
+| 轻量桌面     | `tauri-dev`               | Tauri, Rust                      |
 | 响应式布局   | `tailwind-patterns`       | Tailwind, CSS, 响应式            |
 | 实时通信     | `webrtc-patterns`         | WebRTC, 实时音视频               |
 | 国际化       | `i18n-patterns`           | i18n, 国际化, 多语言             |
