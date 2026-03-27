@@ -267,18 +267,6 @@ test('enforces rate limits', async () => {
 | npm audit   | 0 高危 |
 | lint / type | 100%   |
 
----
-
-## 子技能映射
-
-| 类型     | 调用 Skill          | 触发关键词 |
-| -------- | ------------------- | ---------- |
-| 前端安全 | frontend-specialist | XSS, CSP   |
-| 后端安全 | backend-specialist  | 认证, 授权 |
-| 密钥管理 | security-auditor    | 密钥, 凭据 |
-
----
-
 ## 工作区与文档目录
 
 ### 专家工作区
