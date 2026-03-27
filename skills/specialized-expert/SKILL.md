@@ -42,7 +42,7 @@ description: 专项技术专家模式。负责"前瞻性技术探索与复杂专
 | CQRS/ES     | `cqrs-patterns`           | CQRS, 事件溯源         |
 | 消息队列    | `message-queue-patterns`  | RabbitMQ, 消息队列     |
 | WebAssembly | `webassembly-patterns`    | WASM, WebAssembly      |
-| 实时通信    | `realtime-websocket`      | WebSocket, SSE         |
+| 实时通信    | `websocket-patterns`      | WebSocket, SSE         |
 | 移动端优化  | `mobile-expert`           | 移动端优化, 性能       |
 | 前端优化    | `frontend-expert`         | 前端优化, 渲染性能     |
 
