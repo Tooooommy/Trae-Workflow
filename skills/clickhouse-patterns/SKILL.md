@@ -1,5 +1,5 @@
 ---
-name: clickhouse-io
+name: clickhouse-patterns
 description: ClickHouse数据库模式、查询优化、分析工作负载和数据工程最佳实践。适用于高性能分析查询和实时数据处理。**必须激活当**：用户要求使用 ClickHouse、设计分析查询、优化数据仓库或处理大数据集时。即使用户没有明确说"ClickHouse"，当涉及 OLAP、实时分析或大数据查询时也应使用。
 ---
 
@@ -17,7 +17,7 @@ description: ClickHouse数据库模式、查询优化、分析工作负载和数
 
 ## 技术栈版本
 
-| 技术              | 最低版本 | 推荐版本 |
+| 技术             | 最低版本 | 推荐版本 |
 | ---------------- | -------- | -------- |
 | ClickHouse       | 23.0+    | 最新     |
 | clickhouse-js    | 0.3.0+   | 最新     |
@@ -49,13 +49,13 @@ flowchart LR
 
 ## 表引擎选择
 
-| 引擎类型     | 使用场景                     | 特点                 |
-| ------------ | ---------------------------- | -------------------- |
-| MergeTree    | 主表引擎，通用场景           | 支持主键、索引、分区 |
-| SummingMergeTree | 预聚合表                 | 自动求和             |
-| ReplacingMergeTree | 最新值优先              | 自动去重             |
-| CollapsingMergeTree | 折叠-sign 值          | 支持软删除           |
-| AggregatingMergeTree | 物化视图聚合          | 高效预聚合           |
+| 引擎类型             | 使用场景           | 特点                 |
+| -------------------- | ------------------ | -------------------- |
+| MergeTree            | 主表引擎，通用场景 | 支持主键、索引、分区 |
+| SummingMergeTree     | 预聚合表           | 自动求和             |
+| ReplacingMergeTree   | 最新值优先         | 自动去重             |
+| CollapsingMergeTree  | 折叠-sign 值       | 支持软删除           |
+| AggregatingMergeTree | 物化视图聚合       | 高效预聚合           |
 
 ## 表设计模式
 
