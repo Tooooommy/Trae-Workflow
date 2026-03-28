@@ -1,5 +1,5 @@
 ---
-name: orchestrator-expert
+name: orchestrator
 description: 协调中枢专家。团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调。解析用户需求，按顺序调用或并行触发相应的 Skills。**必须激活当**：用户提出任何开发需求、任务请求或问题时。
 ---
 
@@ -150,7 +150,7 @@ flowchart LR
 
 | 阶段 | 名称     | 调度专家                          | 输入         | 输出               |
 | ---- | -------- | --------------------------------- | ------------ | ------------------ |
-| 1    | 需求解析 | orchestrator-expert               | 用户需求     | 任务工单、调度计划 |
+| 1    | 需求解析 | orchestrator                      | 用户需求     | 任务工单、调度计划 |
 | 2    | 产品定义 | product-strategist → ux-engineer  | 任务工单     | PRD、设计稿        |
 | 3    | 架构设计 | tech-architect + security-auditor | PRD、设计稿  | 技术方案、API设计  |
 | 4    | 并行开发 | frontend + backend + mobile       | 技术方案     | 源代码、单元测试   |
@@ -284,7 +284,7 @@ flowchart LR
 }
 ```
 
-详细协议: `templates/orchestrator-expert/message-protocol.json`
+详细协议: `templates/orchestrator/message-protocol.json`
 
 ---
 
@@ -326,7 +326,7 @@ docs/
 
 ## 模板文件
 
-位置: `templates/orchestrator-expert/`
+位置: `templates/orchestrator/`
 
 | 模板                          | 说明           |
 | ----------------------------- | -------------- |
@@ -349,4 +349,4 @@ docs/
 5. **同步上下文** → 更新 `shared-context/`
 6. **归档决策** → 存储到 `decision-registry/`
 
-详细初始化指南: `templates/orchestrator-expert/PROJECT_INIT.md`
+详细初始化指南: `templates/orchestrator/PROJECT_INIT.md`

@@ -1,13 +1,13 @@
 ---
 name: backend-specialist
-description: 后端开发专家模式。负责后端服务开发、API设计、数据库设计、第三方服务集成。优先由 orchestrator-expert 调度激活。
+description: 后端开发专家模式。负责后端服务开发、API设计、数据库设计、第三方服务集成。优先由 orchestrator 调度激活。
 ---
 
 # 后端开发专家模式
 
 ## 何时激活
 
-**优先由 orchestrator-expert 调度激活**（阶段4：并行开发）
+**优先由 orchestrator 调度激活**（阶段4：并行开发）
 
 | 触发场景   | 说明                  |
 | ---------- | --------------------- |
@@ -66,12 +66,12 @@ interface ApiResponse<T> {
 
 ### 输入
 
-| 来源                | 文档     | 路径                                  |
-| ------------------- | -------- | ------------------------------------- |
-| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
-| product-strategist  | PRD      | docs/01-requirements/PRD-\*.md        |
-| tech-architect      | 技术方案 | docs/02-design/architecture-\*.md     |
-| tech-architect      | 数据模型 | docs/02-design/data-model-\*.md       |
+| 来源               | 文档     | 路径                                  |
+| ------------------ | -------- | ------------------------------------- |
+| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
+| product-strategist | PRD      | docs/01-requirements/PRD-\*.md        |
+| tech-architect     | 技术方案 | docs/02-design/architecture-\*.md     |
+| tech-architect     | 数据模型 | docs/02-design/data-model-\*.md       |
 
 ### 输出
 
@@ -93,7 +93,7 @@ interface ApiResponse<T> {
 
 ```mermaid
 flowchart LR
-    A[orchestrator-expert] -->|任务工单| B[backend-specialist]
+    A[orchestrator] -->|任务工单| B[backend-specialist]
     C[product-strategist] -->|PRD| B
     D[tech-architect] -->|技术方案| B
     B -->|API文档| E[frontend-specialist]
@@ -103,14 +103,14 @@ flowchart LR
 
 ## 工作流程
 
-1. 接收 orchestrator-expert 任务分配
+1. 接收 orchestrator 任务分配
 2. 读取 PRD 和技术方案
 3. 设计 API 接口和数据模型
 4. 实现业务逻辑和服务层
 5. 编写 API 文档
 6. 编写单元测试
 7. 更新 task-board.json 状态
-8. 通知 orchestrator-expert 完成
+8. 通知 orchestrator 完成
 
 ---
 
@@ -136,7 +136,7 @@ flowchart LR
 | frontend-specialist | API文档  | API完成  |
 | quality-engineer    | 后端代码 | 开发完成 |
 | security-auditor    | API端点  | 安全评审 |
-| orchestrator-expert | 状态更新 | 任务完成 |
+| orchestrator        | 状态更新 | 任务完成 |
 
 ### 状态同步
 
@@ -156,7 +156,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `templates/orchestrator-expert/message-protocol.json`
+详细协议: `templates/orchestrator/message-protocol.json`
 
 ## 质量门禁
 

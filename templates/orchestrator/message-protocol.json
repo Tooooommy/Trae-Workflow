@@ -15,7 +15,7 @@
     "status": "available|busy|blocked|completed"
   },
   "receiver": {
-    "expert": "{expert-name}|orchestrator-expert|broadcast",
+    "expert": "{expert-name}|orchestrator|broadcast",
     "action": "start|continue|pause|complete|error"
   },
   "payload": {

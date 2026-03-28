@@ -29,11 +29,11 @@ Orchestrator (调度) → Skills (执行) → Rules (约束) → MCP (连接)
 
 ## 🎛️ 协调中枢专家
 
-**orchestrator-expert** - 团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调
+**orchestrator** - 团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调
 
 ```mermaid
 flowchart TD
-    User[用户提出需求] --> Orchestrator[orchestrator-expert]
+    User[用户提出需求] --> Orchestrator[orchestrator]
     Orchestrator --> Product[product-strategist]
     Orchestrator --> Design[ux-engineer]
     Orchestrator --> Frontend[frontend-specialist]
@@ -175,7 +175,7 @@ traew update
 
 Trae-Workflow/
 ├── skills/ # 70+ 技能
-│   ├── orchestrator-expert/  # 协调中枢
+│   ├── orchestrator/  # 协调中枢
 │   ├── product-strategist/   # 产品战略
 │   ├── ux-engineer/    # 体验工程
 │   ├── frontend-specialist/ # 前端开发

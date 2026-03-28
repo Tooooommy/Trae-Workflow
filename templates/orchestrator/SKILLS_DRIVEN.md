@@ -15,11 +15,11 @@ flowchart TD
         B[Git Hook]
         C[定时触发]
     end
-    
+
     subgraph 调度层
-        D[orchestrator-expert]
+        D[orchestrator]
     end
-    
+
     subgraph 执行层
         E[product-strategist]
         F[tech-architect]
@@ -29,13 +29,13 @@ flowchart TD
         J[quality-engineer]
         K[devops-engineer]
     end
-    
+
     subgraph 质量层
         L[安全审计]
         M[代码审查]
         N[测试验证]
     end
-    
+
     A --> D
     B --> D
     C --> D
@@ -53,10 +53,11 @@ flowchart TD
 ### 1. 用户需求触发
 
 ```
-用户输入 → orchestrator-expert 自动激活 → 解析并调度
+用户输入 → orchestrator 自动激活 → 解析并调度
 ```
 
 **触发关键词**：
+
 - `开始项目` / `开发` / `实现` → 完整流程
 - `修复` / `Bug` → 快速修复流程
 - `更新` / `修改` → 快速通道
@@ -83,12 +84,12 @@ echo "触发 AI 团队质量检查..."
 # .ai-team/config.yaml
 automation:
   schedule:
-    - cron: "0 9 * * *"    # 每天早上9点
-      task: "daily-review"
-      expert: "quality-engineer"
-    - cron: "0 0 * * 0"    # 每周日
-      task: "weekly-retro"
-      expert: "retro-facilitator"
+    - cron: '0 9 * * *' # 每天早上9点
+      task: 'daily-review'
+      expert: 'quality-engineer'
+    - cron: '0 0 * * 0' # 每周日
+      task: 'weekly-retro'
+      expert: 'retro-facilitator'
 ```
 
 ---
@@ -107,20 +108,20 @@ stateDiagram-v2
     质量保障 --> 部署上线: 通过门禁后自动
     部署上线 --> 闭环迭代: 自动
     闭环迭代 --> [*]
-    
+
     质量保障 --> 并行开发: 门禁未通过
     部署上线 --> 部署上线: 失败重试
 ```
 
 ### 质量门禁自动检查
 
-| 门禁 | 检查命令 | 失败处理 |
-|------|----------|----------|
-| Lint | `npm run lint` | 自动修复后重试 |
-| 类型 | `npm run typecheck` | 返回开发阶段 |
-| 测试 | `npm run test` | 返回开发阶段 |
-| 安全 | `npm audit` | 返回开发阶段 |
-| 覆盖率 | `npm run coverage` | 返回开发阶段 |
+| 门禁   | 检查命令            | 失败处理       |
+| ------ | ------------------- | -------------- |
+| Lint   | `npm run lint`      | 自动修复后重试 |
+| 类型   | `npm run typecheck` | 返回开发阶段   |
+| 测试   | `npm run test`      | 返回开发阶段   |
+| 安全   | `npm audit`         | 返回开发阶段   |
+| 覆盖率 | `npm run coverage`  | 返回开发阶段   |
 
 ---
 
@@ -133,14 +134,14 @@ stateDiagram-v2
 ```typescript
 interface SkillIO {
   input: {
-    taskBoard: TaskBoard;      // 从 task-board.json 读取
-    context: SharedContext;    // 从 shared-context/ 读取
-    previousOutput?: any;      // 上一阶段输出
+    taskBoard: TaskBoard; // 从 task-board.json 读取
+    context: SharedContext; // 从 shared-context/ 读取
+    previousOutput?: any; // 上一阶段输出
   };
   output: {
-    artifacts: File[];         // 产出文件
-    taskBoard: Partial<TaskBoard>;  // 状态更新
-    nextSkill?: string;        // 建议下一专家
+    artifacts: File[]; // 产出文件
+    taskBoard: Partial<TaskBoard>; // 状态更新
+    nextSkill?: string; // 建议下一专家
   };
 }
 ```
@@ -151,7 +152,7 @@ interface SkillIO {
 
 1. 更新 `task-board.json` 状态
 2. 写入产出文件到对应目录
-3. 通知 orchestrator-expert 进入下一阶段
+3. 通知 orchestrator 进入下一阶段
 
 ---
 
@@ -160,11 +161,12 @@ interface SkillIO {
 ### 场景：开发用户管理模块
 
 **Step 1: 用户输入**
+
 ```
 开始项目：开发用户管理模块，包含用户CRUD、角色权限、操作日志
 ```
 
-**Step 2: orchestrator-expert 自动执行**
+**Step 2: orchestrator 自动执行**
 
 ```mermaid
 sequenceDiagram
@@ -176,7 +178,7 @@ sequenceDiagram
     participant B as backend
     participant Q as quality
     participant D as devops
-    
+
     U->>O: 开始项目
     O->>O: 阶段1: 解析需求
     O->>P: 阶段2: 产品定义
@@ -234,8 +236,8 @@ tests/
 
 ```yaml
 project:
-  name: "user-management"
-  version: "1.0.0"
+  name: 'user-management'
+  version: '1.0.0'
 
 automation:
   autoDeploy: true
@@ -252,13 +254,13 @@ automation:
 
 experts:
   product-strategist:
-    autoConfirm: false  # 需要用户确认PRD
+    autoConfirm: false # 需要用户确认PRD
   tech-architect:
-    autoConfirm: false  # 需要用户确认技术方案
+    autoConfirm: false # 需要用户确认技术方案
   frontend-specialist:
-    framework: "react"
+    framework: 'react'
   backend-specialist:
-    framework: "express"
+    framework: 'express'
 ```
 
 ---
@@ -280,12 +282,12 @@ experts:
 
 ### 人工介入点
 
-| 阶段 | 介入点 | 说明 |
-|------|--------|------|
-| 产品定义 | PRD确认 | 可配置跳过 |
-| 架构设计 | 技术方案确认 | 可配置跳过 |
-| 质量保障 | 测试失败 | 自动返回开发 |
-| 部署上线 | 部署失败 | 自动回滚重试 |
+| 阶段     | 介入点       | 说明         |
+| -------- | ------------ | ------------ |
+| 产品定义 | PRD确认      | 可配置跳过   |
+| 架构设计 | 技术方案确认 | 可配置跳过   |
+| 质量保障 | 测试失败     | 自动返回开发 |
+| 部署上线 | 部署失败     | 自动回滚重试 |
 
 ---
 

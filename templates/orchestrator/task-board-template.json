@@ -42,7 +42,7 @@
       "name": "需求输入与解析",
       "status": "pending",
       "auto": true,
-      "expert": "orchestrator-expert",
+      "expert": "orchestrator",
       "tasks": [],
       "artifacts": []
     },
@@ -104,7 +104,7 @@
     }
   ],
   "experts": {
-    "orchestrator-expert": {
+    "orchestrator": {
       "status": "available",
       "currentTask": null,
       "completedTasks": 0

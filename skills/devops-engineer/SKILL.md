@@ -1,13 +1,13 @@
 ---
 name: devops-engineer
-description: DevOps工程师专家模式。负责CI/CD、部署自动化、监控告警、基础设施管理。优先由 orchestrator-expert 调度激活。
+description: DevOps工程师专家模式。负责CI/CD、部署自动化、监控告警、基础设施管理。优先由 orchestrator 调度激活。
 ---
 
 # DevOps工程师专家模式
 
 ## 何时激活
 
-**优先由 orchestrator-expert 调度激活**（阶段6：部署上线）
+**优先由 orchestrator 调度激活**（阶段6：部署上线）
 
 | 触发场景  | 说明             |
 | --------- | ---------------- |
@@ -51,11 +51,11 @@ flowchart LR
 
 ### 输入
 
-| 来源                | 文档     | 路径                                  |
-| ------------------- | -------- | ------------------------------------- |
-| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
-| quality-engineer    | 测试报告 | docs/04-testing/test-report-\*.md     |
-| tech-architect      | 技术方案 | docs/02-design/architecture-\*.md     |
+| 来源             | 文档     | 路径                                  |
+| ---------------- | -------- | ------------------------------------- |
+| orchestrator     | 任务工单 | .ai-team/orchestrator/task-board.json |
+| quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md     |
+| tech-architect   | 技术方案 | docs/02-design/architecture-\*.md     |
 
 ### 输出
 
@@ -77,7 +77,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A[orchestrator-expert] -->|任务工单| B[devops-engineer]
+    A[orchestrator] -->|任务工单| B[devops-engineer]
     C[quality-engineer] -->|测试报告| B
     D[tech-architect] -->|技术方案| B
     B -->|线上服务| E[生产环境]
@@ -86,14 +86,14 @@ flowchart LR
 
 ## 工作流程
 
-1. 接收 orchestrator-expert 任务分配
+1. 接收 orchestrator 任务分配
 2. 读取测试报告和技术方案
 3. 配置 CI/CD 流水线
 4. 执行部署流程
 5. 配置监控告警
 6. 验证服务可用性
 7. 更新 task-board.json 状态
-8. 通知 orchestrator-expert 完成
+8. 通知 orchestrator 完成
 
 ---
 
@@ -113,10 +113,10 @@ flowchart LR
 
 完成后自动通知：
 
-| 接收专家            | 传递内容 | 触发条件 |
-| ------------------- | -------- | -------- |
-| retro-facilitator   | 线上服务 | 部署成功 |
-| orchestrator-expert | 状态更新 | 任务完成 |
+| 接收专家          | 传递内容 | 触发条件 |
+| ----------------- | -------- | -------- |
+| retro-facilitator | 线上服务 | 部署成功 |
+| orchestrator      | 状态更新 | 任务完成 |
 
 ### 状态同步
 
@@ -136,7 +136,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `templates/orchestrator-expert/message-protocol.json`
+详细协议: `templates/orchestrator/message-protocol.json`
 
 ## 质量门禁
 

@@ -1,13 +1,13 @@
 ---
 name: frontend-specialist
-description: 前端开发专家模式。负责前端组件开发、页面实现、API集成。优先由 orchestrator-expert 调度激活。
+description: 前端开发专家模式。负责前端组件开发、页面实现、API集成。优先由 orchestrator 调度激活。
 ---
 
 # 前端开发专家模式
 
 ## 何时激活
 
-**优先由 orchestrator-expert 调度激活**（阶段4：并行开发）
+**优先由 orchestrator 调度激活**（阶段4：并行开发）
 
 | 触发场景 | 说明                |
 | -------- | ------------------- |
@@ -54,12 +54,12 @@ src/
 
 ### 输入
 
-| 来源                | 文档     | 路径                                  |
-| ------------------- | -------- | ------------------------------------- |
-| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
-| ux-engineer         | 设计稿   | docs/02-design/ui-design-\*.md        |
-| tech-architect      | 技术方案 | docs/02-design/architecture-\*.md     |
-| backend-specialist  | API文档  | docs/03-implementation/api-\*.md      |
+| 来源               | 文档     | 路径                                  |
+| ------------------ | -------- | ------------------------------------- |
+| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
+| ux-engineer        | 设计稿   | docs/02-design/ui-design-\*.md        |
+| tech-architect     | 技术方案 | docs/02-design/architecture-\*.md     |
+| backend-specialist | API文档  | docs/03-implementation/api-\*.md      |
 
 ### 输出
 
@@ -81,7 +81,7 @@ src/
 
 ```mermaid
 flowchart LR
-    A[orchestrator-expert] -->|任务工单| B[frontend-specialist]
+    A[orchestrator] -->|任务工单| B[frontend-specialist]
     C[ux-engineer] -->|设计稿| B
     D[tech-architect] -->|技术方案| B
     E[backend-specialist] -->|API文档| B
@@ -91,14 +91,14 @@ flowchart LR
 
 ## 工作流程
 
-1. 接收 orchestrator-expert 任务分配
+1. 接收 orchestrator 任务分配
 2. 读取设计稿和技术方案
 3. 分析 API 文档，定义类型
 4. 开发组件和页面
 5. 实现 API 集成
 6. 编写单元测试
 7. 更新 task-board.json 状态
-8. 通知 orchestrator-expert 完成
+8. 通知 orchestrator 完成
 
 ---
 
@@ -119,11 +119,11 @@ flowchart LR
 
 完成后自动通知：
 
-| 接收专家            | 传递内容 | 触发条件 |
-| ------------------- | -------- | -------- |
-| quality-engineer    | 前端代码 | 开发完成 |
-| docs-engineer       | 组件文档 | 文档需求 |
-| orchestrator-expert | 状态更新 | 任务完成 |
+| 接收专家         | 传递内容 | 触发条件 |
+| ---------------- | -------- | -------- |
+| quality-engineer | 前端代码 | 开发完成 |
+| docs-engineer    | 组件文档 | 文档需求 |
+| orchestrator     | 状态更新 | 任务完成 |
 
 ### 状态同步
 
@@ -143,7 +143,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `templates/orchestrator-expert/message-protocol.json`
+详细协议: `templates/orchestrator/message-protocol.json`
 
 ## 质量门禁
 

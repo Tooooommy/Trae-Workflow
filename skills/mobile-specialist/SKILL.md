@@ -1,13 +1,13 @@
 ---
 name: mobile-specialist
-description: 移动端开发专家模式。负责移动应用开发、跨平台实现、原生集成。优先由 orchestrator-expert 调度激活。
+description: 移动端开发专家模式。负责移动应用开发、跨平台实现、原生集成。优先由 orchestrator 调度激活。
 ---
 
 # 移动端开发专家模式
 
 ## 何时激活
 
-**优先由 orchestrator-expert 调度激活**（阶段4：并行开发）
+**优先由 orchestrator 调度激活**（阶段4：并行开发）
 
 | 触发场景   | 说明                  |
 | ---------- | --------------------- |
@@ -53,12 +53,12 @@ src/
 
 ### 输入
 
-| 来源                | 文档     | 路径                                  |
-| ------------------- | -------- | ------------------------------------- |
-| orchestrator-expert | 任务工单 | .ai-team/orchestrator/task-board.json |
-| ux-engineer         | 设计稿   | docs/02-design/ui-design-\*.md        |
-| tech-architect      | 技术方案 | docs/02-design/architecture-\*.md     |
-| backend-specialist  | API文档  | docs/03-implementation/api-\*.md      |
+| 来源               | 文档     | 路径                                  |
+| ------------------ | -------- | ------------------------------------- |
+| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
+| ux-engineer        | 设计稿   | docs/02-design/ui-design-\*.md        |
+| tech-architect     | 技术方案 | docs/02-design/architecture-\*.md     |
+| backend-specialist | API文档  | docs/03-implementation/api-\*.md      |
 
 ### 输出
 
@@ -78,7 +78,7 @@ src/
 
 ```mermaid
 flowchart LR
-    A[orchestrator-expert] -->|任务工单| B[mobile-specialist]
+    A[orchestrator] -->|任务工单| B[mobile-specialist]
     C[ux-engineer] -->|设计稿| B
     D[tech-architect] -->|技术方案| B
     E[backend-specialist] -->|API文档| B
@@ -88,13 +88,13 @@ flowchart LR
 
 ## 工作流程
 
-1. 接收 orchestrator-expert 任务分配
+1. 接收 orchestrator 任务分配
 2. 读取设计稿和技术方案
 3. 开发移动端组件和页面
 4. 实现 API 集成
 5. 性能优化和测试
 6. 更新 task-board.json 状态
-7. 通知 orchestrator-expert 完成
+7. 通知 orchestrator 完成
 
 ---
 
@@ -115,10 +115,10 @@ flowchart LR
 
 完成后自动通知：
 
-| 接收专家            | 传递内容   | 触发条件 |
-| ------------------- | ---------- | -------- |
-| quality-engineer    | 移动端代码 | 开发完成 |
-| orchestrator-expert | 状态更新   | 任务完成 |
+| 接收专家         | 传递内容   | 触发条件 |
+| ---------------- | ---------- | -------- |
+| quality-engineer | 移动端代码 | 开发完成 |
+| orchestrator     | 状态更新   | 任务完成 |
 
 ### 状态同步
 
@@ -138,7 +138,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `templates/orchestrator-expert/message-protocol.json`
+详细协议: `templates/orchestrator/message-protocol.json`
 
 ## 质量门禁
 
