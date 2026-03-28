@@ -67,7 +67,7 @@ docs/
 
 ### 模板文件
 
-位置: `templates/`
+位置: `templates/docs-engineer/`
 
 | 模板                  | 说明         |
 | --------------------- | ------------ |
@@ -136,7 +136,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `templates/message-protocol.json`
+详细协议: `templates/orchestrator-expert/message-protocol.json`
 
 ## 质量门禁
 

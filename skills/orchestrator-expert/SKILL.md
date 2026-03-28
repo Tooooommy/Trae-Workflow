@@ -284,7 +284,7 @@ flowchart LR
 }
 ```
 
-详细协议: `templates/message-protocol.json`
+详细协议: `templates/orchestrator-expert/message-protocol.json`
 
 ---
 
@@ -326,7 +326,7 @@ docs/
 
 ## 模板文件
 
-位置: `templates/`
+位置: `templates/orchestrator-expert/`
 
 | 模板                          | 说明           |
 | ----------------------------- | -------------- |
@@ -349,4 +349,4 @@ docs/
 5. **同步上下文** → 更新 `shared-context/`
 6. **归档决策** → 存储到 `decision-registry/`
 
-详细初始化指南: `templates/PROJECT_INIT.md`
+详细初始化指南: `templates/orchestrator-expert/PROJECT_INIT.md`
