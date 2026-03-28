@@ -272,38 +272,7 @@ stateDiagram-v2
 
 位置: `.ai-team/orchestrator/task-board.json`
 
-```json
-{
-  "project": {
-    "id": "PROJ-2024-001",
-    "name": "项目名称",
-    "status": "in-progress",
-    "createdAt": "2024-01-15T10:00:00Z"
-  },
-  "phases": [
-    {
-      "id": "phase-1",
-      "name": "需求分析阶段",
-      "status": "completed",
-      "tasks": [
-        {
-          "id": "task-001",
-          "title": "任务标题",
-          "assignee": "expert-name",
-          "status": "completed",
-          "priority": "high",
-          "dependencies": [],
-          "inputFiles": [],
-          "outputFiles": []
-        }
-      ]
-    }
-  ],
-  "experts": {
-    "product-strategist": { "status": "available", "currentTask": null }
-  }
-}
-```
+模板: `templates/task-board-template.json`
 
 ### 状态枚举
 

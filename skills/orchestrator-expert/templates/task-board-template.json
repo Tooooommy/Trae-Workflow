@@ -1,0 +1,100 @@
+{
+  "project": {
+    "id": "PROJ-{YEAR}-{NUMBER}",
+    "name": "{PROJECT_NAME}",
+    "status": "pending",
+    "createdAt": "{DATE}",
+    "updatedAt": "{DATE}"
+  },
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "需求输入与解析",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-2",
+      "name": "产品定义",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-3",
+      "name": "架构设计",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-4",
+      "name": "并行开发",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-5",
+      "name": "质量保障",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-6",
+      "name": "部署上线",
+      "status": "pending",
+      "tasks": []
+    },
+    {
+      "id": "phase-7",
+      "name": "闭环迭代",
+      "status": "pending",
+      "tasks": []
+    }
+  ],
+  "experts": {
+    "product-strategist": {
+      "status": "available",
+      "currentTask": null
+    },
+    "tech-architect": {
+      "status": "available",
+      "currentTask": null
+    },
+    "ux-engineer": {
+      "status": "available",
+      "currentTask": null
+    },
+    "frontend-specialist": {
+      "status": "available",
+      "currentTask": null
+    },
+    "backend-specialist": {
+      "status": "available",
+      "currentTask": null
+    },
+    "mobile-specialist": {
+      "status": "available",
+      "currentTask": null
+    },
+    "quality-engineer": {
+      "status": "available",
+      "currentTask": null
+    },
+    "devops-engineer": {
+      "status": "available",
+      "currentTask": null
+    },
+    "security-auditor": {
+      "status": "available",
+      "currentTask": null
+    },
+    "docs-engineer": {
+      "status": "available",
+      "currentTask": null
+    },
+    "retro-facilitator": {
+      "status": "available",
+      "currentTask": null
+    }
+  },
+  "recentActivity": ""
+}
