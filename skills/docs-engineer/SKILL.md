@@ -94,6 +94,53 @@ flowchart LR
 6. 更新 task-board.json 状态
 7. 通知 orchestrator-expert 完成
 
+---
+
+## 智能协作
+
+### 上下文感知
+
+自动获取：
+
+| 上下文 | 来源 | 用途 |
+|--------|------|------|
+| 各专家产出 | 各专家目录 | 文档素材 |
+| 源代码 | src/ | 代码文档 |
+| 项目状态 | shared-context | 当前进度 |
+
+### 输出传递
+
+完成后自动通知：
+
+| 接收专家 | 传递内容 | 触发条件 |
+|----------|----------|----------|
+| devops-engineer | 文档更新 | 文档完成 |
+| orchestrator-expert | 状态更新 | 任务完成 |
+
+### 状态同步
+
+```json
+{
+  "expert": "docs-engineer",
+  "phase": "phase-4-7",
+  "status": "completed",
+  "artifacts": [
+    "README.md",
+    "CHANGELOG.md",
+    "docs/03-implementation/api-*.md"
+  ],
+  "metrics": {
+    "documentCount": 0,
+    "apiDocumented": true
+  },
+  "nextExpert": ["devops-engineer"]
+}
+```
+
+### 协作协议
+
+详细协议: `.ai-team/shared-context/message-protocol.json`
+
 ## 质量门禁
 
 | 检查项   | 阈值          |

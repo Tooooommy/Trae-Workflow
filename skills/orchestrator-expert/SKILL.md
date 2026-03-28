@@ -378,3 +378,186 @@ stateDiagram-v2
 4. **记录日志** → 更新 `workflow-log.md`
 5. **同步上下文** → 更新 `shared-context/`
 6. **归档决策** → 存储到 `decision-registry/`
+
+---
+
+## Skills 驱动自动化
+
+### 核心理念
+
+通过 Skills 本身驱动整个开发流程，无需额外自动化脚本。
+
+### 自动触发
+
+| 触发方式 | 说明               | 示例                |
+| -------- | ------------------ | ------------------- |
+| 用户输入 | 关键词自动识别流程 | `开始项目：...`     |
+| 任务类型 | 自动选择工作流     | 新功能 → 7阶段      |
+| 质量门禁 | 自动检查和流转     | 测试失败 → 返回开发 |
+| 阶段完成 | 自动进入下一阶段   | 架构完成 → 开始开发 |
+
+### 自动执行流程
+
+```mermaid
+flowchart LR
+    A[用户输入] --> B[自动解析]
+    B --> C[自动路由]
+    C --> D[自动执行]
+    D --> E{质量门禁}
+    E -->|通过| F[自动流转]
+    E -->|失败| G[自动返回]
+    G --> D
+    F --> H[自动部署]
+    H --> I[自动反馈]
+```
+
+### 质量门禁自动检查
+
+| 门禁   | 命令                | 阈值     | 失败处理 |
+| ------ | ------------------- | -------- | -------- |
+| Lint   | `npm run lint`      | 0 errors | 自动修复 |
+| 类型   | `npm run typecheck` | 0 errors | 返回开发 |
+| 测试   | `npm run test`      | 通过     | 返回开发 |
+| 覆盖率 | `npm run coverage`  | ≥ 80%    | 返回开发 |
+| 安全   | `npm audit`         | 0 高危   | 返回开发 |
+
+### 快速启动命令
+
+| 命令               | 流程      | 说明        |
+| ------------------ | --------- | ----------- |
+| `开始项目：{描述}` | 完整7阶段 | 新功能开发  |
+| `修复Bug：{描述}`  | 快速修复  | Bug修复流程 |
+| `简单任务：{描述}` | 快速通道  | 单文件修改  |
+| `紧急修复：{描述}` | 紧急流程  | 生产问题    |
+
+### 配置文件
+
+项目配置: `.ai-team/automation/config.yaml`
+
+模板: `.ai-team/automation/config.template.yaml`
+
+详细文档: `.ai-team/automation/SKILLS_DRIVEN.md`
+
+---
+
+## 智能协调机制
+
+### 上下文感知
+
+每次调度前自动获取：
+
+| 上下文   | 来源               | 用途         |
+| -------- | ------------------ | ------------ |
+| 项目状态 | task-board.json    | 判断当前阶段 |
+| 历史决策 | decision-registry/ | 避免重复决策 |
+| 共享知识 | shared-context/    | 传递项目背景 |
+| 专家状态 | task-board.json    | 可用性检查   |
+
+### 智能决策引擎
+
+```mermaid
+flowchart TD
+    A[接收需求] --> B{复杂度评估}
+    B -->|高| C[完整7阶段]
+    B -->|中| D[快速修复]
+    B -->|低| E[快速通道]
+    B -->|紧急| F[紧急流程]
+
+    C --> G{并行需求?}
+    G -->|是| H[多专家并行]
+    G -->|否| I[串行调度]
+
+    H --> J[结果聚合]
+    I --> J
+    D --> J
+    E --> J
+    F --> J
+
+    J --> K{质量门禁}
+    K -->|通过| L[自动流转]
+    K -->|失败| M[智能回退]
+    M --> N{重试次数}
+    N -->|< 3| O[自动重试]
+    N -->|>= 3| P[人工介入]
+    O --> J
+```
+
+### 专家调度策略
+
+| 场景     | 调度策略                         | 说明               |
+| -------- | -------------------------------- | ------------------ |
+| Web应用  | frontend + backend 并行          | 独立开发，API Mock |
+| 多端应用 | frontend + backend + mobile 并行 | 共享后端API        |
+| API联调  | backend 先行                     | 前端等待API文档    |
+| 安全敏感 | security-auditor 同步介入        | 实时安全评审       |
+| 性能优化 | performance-specialist 后置介入  | 优化已完成功能     |
+
+### 依赖管理
+
+```mermaid
+flowchart LR
+    subgraph 阶段2
+        P[product-strategist]
+        UX[ux-engineer]
+    end
+
+    subgraph 阶段3
+        TA[tech-architect]
+        SA[security-auditor]
+    end
+
+    subgraph 阶段4
+        FE[frontend-specialist]
+        BE[backend-specialist]
+    end
+
+    P -->|PRD| TA
+    P -->|PRD| UX
+    UX -->|设计稿| FE
+    TA -->|技术方案| FE
+    TA -->|技术方案| BE
+    TA -->|安全评审| SA
+    BE -->|API文档| FE
+```
+
+### 消息协议
+
+专家间通信遵循统一协议：
+
+```json
+{
+  "id": "MSG-{TIMESTAMP}",
+  "type": "request|response|notification",
+  "sender": { "expert": "xxx", "phase": "phase-x" },
+  "receiver": { "expert": "xxx", "action": "start|complete" },
+  "payload": {
+    "taskId": "TASK-xxx",
+    "input": {},
+    "output": {},
+    "context": {}
+  }
+}
+```
+
+详细协议: `.ai-team/shared-context/message-protocol.json`
+
+### 状态同步
+
+每个专家完成后必须执行：
+
+1. **更新任务看板** → `task-board.json`
+2. **同步共享上下文** → `shared-context/project-context.json`
+3. **通知协调中枢** → 发送完成消息
+
+### 异常处理
+
+| 异常类型 | 检测方式   | 自动处理           |
+| -------- | ---------- | ------------------ |
+| 专家阻塞 | 超时检测   | 重新分配或人工介入 |
+| 依赖缺失 | 上下文检查 | 自动获取或提示     |
+| 质量失败 | 门禁检查   | 返回开发阶段       |
+| 部署失败 | 健康检查   | 自动回滚重试       |
+
+### 协作指南
+
+详细协作指南: `.ai-team/shared-context/COLLABORATION_GUIDE.md`

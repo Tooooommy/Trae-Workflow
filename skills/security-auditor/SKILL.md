@@ -93,6 +93,53 @@ flowchart LR
 7. 更新 task-board.json 状态
 8. 通知 orchestrator-expert 完成
 
+---
+
+## 智能协作
+
+### 上下文感知
+
+自动获取：
+
+| 上下文   | 来源                | 用途         |
+| -------- | ------------------- | ------------ |
+| 架构方案 | tech-architect      | 安全架构评审 |
+| 后端代码 | backend-specialist  | API安全检查  |
+| 前端代码 | frontend-specialist | XSS/CSRF检查 |
+| 项目状态 | shared-context      | 当前进度     |
+
+### 输出传递
+
+完成后自动通知：
+
+| 接收专家            | 传递内容 | 触发条件 |
+| ------------------- | -------- | -------- |
+| quality-engineer    | 安全报告 | 审计完成 |
+| 开发专家            | 安全建议 | 发现漏洞 |
+| orchestrator-expert | 状态更新 | 任务完成 |
+
+### 状态同步
+
+```json
+{
+  "expert": "security-auditor",
+  "phase": "phase-5",
+  "status": "completed",
+  "artifacts": ["docs/04-testing/security-report-*.md"],
+  "metrics": {
+    "highVulnerabilities": 0,
+    "mediumVulnerabilities": 0,
+    "lowVulnerabilities": 0
+  },
+  "securityGate": "passed|failed",
+  "nextExpert": ["quality-engineer"]
+}
+```
+
+### 协作协议
+
+详细协议: `.ai-team/shared-context/message-protocol.json`
+
 ## 质量门禁
 
 | 检查项    | 阈值     |

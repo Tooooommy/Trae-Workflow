@@ -103,6 +103,51 @@ flowchart LR
 6. 更新 task-board.json 状态
 7. 通知 orchestrator-expert 完成
 
+---
+
+## 智能协作
+
+### 上下文感知
+
+自动获取：
+
+| 上下文 | 来源 | 用途 |
+|--------|------|------|
+| PRD | product-strategist | 理解需求 |
+| 项目约束 | shared-context | 技术限制 |
+| 历史决策 | decision-registry | 架构一致性 |
+
+### 输出传递
+
+完成后自动通知：
+
+| 接收专家 | 传递内容 | 触发条件 |
+|----------|----------|----------|
+| frontend-specialist | 技术方案 | 架构确认后 |
+| backend-specialist | 技术方案 + 数据模型 | 架构确认后 |
+| security-auditor | 架构方案 | 安全评审需求 |
+| orchestrator-expert | 状态更新 | 任务完成 |
+
+### 状态同步
+
+```json
+{
+  "expert": "tech-architect",
+  "phase": "phase-3",
+  "status": "completed",
+  "artifacts": [
+    "docs/02-design/architecture-*.md",
+    "docs/02-design/data-model-*.md"
+  ],
+  "decisions": ["ADR-001"],
+  "nextExpert": ["frontend-specialist", "backend-specialist"]
+}
+```
+
+### 协作协议
+
+详细协议: `.ai-team/shared-context/message-protocol.json`
+
 ## 实施检查清单
 
 - [ ] 技术栈已确定

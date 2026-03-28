@@ -97,3 +97,42 @@ flowchart LR
 2. 分析需求，生成 PRD/用户故事/MVP
 3. 更新 task-board.json 状态
 4. 通知 orchestrator-expert 完成
+
+---
+
+## 智能协作
+
+### 上下文感知
+
+自动获取：
+
+| 上下文 | 来源 | 用途 |
+|--------|------|------|
+| 项目背景 | shared-context | 理解项目目标 |
+| 历史需求 | decision-registry | 避免重复定义 |
+
+### 输出传递
+
+完成后自动通知：
+
+| 接收专家 | 传递内容 | 触发条件 |
+|----------|----------|----------|
+| tech-architect | PRD | 需求确认后 |
+| ux-engineer | PRD | 需求确认后 |
+| orchestrator-expert | 状态更新 | 任务完成 |
+
+### 状态同步
+
+```json
+{
+  "expert": "product-strategist",
+  "phase": "phase-2",
+  "status": "completed",
+  "artifacts": ["docs/01-requirements/PRD-*.md"],
+  "nextExpert": ["tech-architect", "ux-engineer"]
+}
+```
+
+### 协作协议
+
+详细协议: `.ai-team/shared-context/message-protocol.json`

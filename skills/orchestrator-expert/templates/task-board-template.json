@@ -2,99 +2,180 @@
   "project": {
     "id": "PROJ-{YEAR}-{NUMBER}",
     "name": "{PROJECT_NAME}",
+    "description": "",
     "status": "pending",
+    "workflowType": "full",
     "createdAt": "{DATE}",
     "updatedAt": "{DATE}"
+  },
+  "automation": {
+    "enabled": true,
+    "autoDeploy": true,
+    "autoFix": true,
+    "requireConfirm": ["phase-2", "phase-3"]
+  },
+  "qualityGates": {
+    "lint": {
+      "enabled": true,
+      "threshold": 0,
+      "status": "pending"
+    },
+    "typeCheck": {
+      "enabled": true,
+      "threshold": 0,
+      "status": "pending"
+    },
+    "testCoverage": {
+      "enabled": true,
+      "threshold": 80,
+      "status": "pending"
+    },
+    "securityAudit": {
+      "enabled": true,
+      "threshold": 0,
+      "status": "pending"
+    }
   },
   "phases": [
     {
       "id": "phase-1",
       "name": "需求输入与解析",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "expert": "orchestrator-expert",
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-2",
       "name": "产品定义",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "requireConfirm": true,
+      "expert": "product-strategist",
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-3",
       "name": "架构设计",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "requireConfirm": true,
+      "expert": "tech-architect",
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-4",
       "name": "并行开发",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "experts": ["frontend-specialist", "backend-specialist"],
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-5",
       "name": "质量保障",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "expert": "quality-engineer",
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-6",
       "name": "部署上线",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "expert": "devops-engineer",
+      "tasks": [],
+      "artifacts": []
     },
     {
       "id": "phase-7",
       "name": "闭环迭代",
       "status": "pending",
-      "tasks": []
+      "auto": true,
+      "expert": "retro-facilitator",
+      "tasks": [],
+      "artifacts": []
     }
   ],
   "experts": {
+    "orchestrator-expert": {
+      "status": "available",
+      "currentTask": null,
+      "completedTasks": 0
+    },
     "product-strategist": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "tech-architect": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "ux-engineer": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "frontend-specialist": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "backend-specialist": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "mobile-specialist": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "quality-engineer": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "devops-engineer": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "security-auditor": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "docs-engineer": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     },
     "retro-facilitator": {
       "status": "available",
-      "currentTask": null
+      "currentTask": null,
+      "completedTasks": 0
     }
+  },
+  "context": {
+    "requirements": "",
+    "constraints": [],
+    "decisions": []
+  },
+  "metrics": {
+    "totalTasks": 0,
+    "completedTasks": 0,
+    "blockedTasks": 0,
+    "estimatedTime": null,
+    "actualTime": null
   },
   "recentActivity": ""
 }

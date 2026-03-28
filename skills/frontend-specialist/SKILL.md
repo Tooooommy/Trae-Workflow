@@ -100,6 +100,51 @@ flowchart LR
 7. 更新 task-board.json 状态
 8. 通知 orchestrator-expert 完成
 
+---
+
+## 智能协作
+
+### 上下文感知
+
+自动获取：
+
+| 上下文 | 来源 | 用途 |
+|--------|------|------|
+| 设计稿 | ux-engineer | UI实现依据 |
+| 技术方案 | tech-architect | 技术约束 |
+| API文档 | backend-specialist | 接口对接 |
+| 项目状态 | shared-context | 当前进度 |
+
+### 输出传递
+
+完成后自动通知：
+
+| 接收专家 | 传递内容 | 触发条件 |
+|----------|----------|----------|
+| quality-engineer | 前端代码 | 开发完成 |
+| docs-engineer | 组件文档 | 文档需求 |
+| orchestrator-expert | 状态更新 | 任务完成 |
+
+### 状态同步
+
+```json
+{
+  "expert": "frontend-specialist",
+  "phase": "phase-4",
+  "status": "completed",
+  "artifacts": ["src/frontend/"],
+  "metrics": {
+    "components": 0,
+    "testCoverage": 0
+  },
+  "nextExpert": ["quality-engineer"]
+}
+```
+
+### 协作协议
+
+详细协议: `.ai-team/shared-context/message-protocol.json`
+
 ## 质量门禁
 
 | 检查项      | 阈值  |

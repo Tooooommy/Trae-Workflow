@@ -1,0 +1,53 @@
+{
+  "protocol": {
+    "version": "1.0.0",
+    "name": "AI专家团队通信协议"
+  },
+  "message": {
+    "id": "{MSG-ID}",
+    "timestamp": "{ISO-8601}",
+    "type": "request|response|notification|error",
+    "priority": "critical|high|medium|low"
+  },
+  "sender": {
+    "expert": "{expert-name}",
+    "phase": "{phase-id}",
+    "status": "available|busy|blocked|completed"
+  },
+  "receiver": {
+    "expert": "{expert-name}|orchestrator-expert|broadcast",
+    "action": "start|continue|pause|complete|error"
+  },
+  "payload": {
+    "taskId": "{task-id}",
+    "input": {
+      "artifacts": [],
+      "context": {},
+      "constraints": []
+    },
+    "output": {
+      "artifacts": [],
+      "status": "success|partial|failed",
+      "metrics": {}
+    },
+    "context": {
+      "projectName": "",
+      "currentPhase": "",
+      "previousPhase": "",
+      "nextPhase": "",
+      "decisions": [],
+      "blockers": []
+    }
+  },
+  "routing": {
+    "waitForResponse": true,
+    "timeout": 300000,
+    "retryCount": 3,
+    "fallbackExpert": null
+  },
+  "metadata": {
+    "correlationId": "{CORRELATION-ID}",
+    "parentId": "{PARENT-MSG-ID}",
+    "tags": []
+  }
+}

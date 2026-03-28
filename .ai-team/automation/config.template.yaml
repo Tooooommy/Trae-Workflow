@@ -1,0 +1,118 @@
+project:
+  name: ""
+  version: "1.0.0"
+  description: ""
+
+automation:
+  autoDeploy: true
+  qualityGates:
+    lint: true
+    typeCheck: true
+    testCoverage: 80
+    securityAudit: true
+  autoFix: true
+
+workflow:
+  fullProcess:
+    enabled: true
+    phases:
+      - name: "需求解析"
+        expert: "orchestrator-expert"
+        auto: true
+      - name: "产品定义"
+        expert: "product-strategist"
+        auto: true
+        requireConfirm: true
+      - name: "架构设计"
+        expert: "tech-architect"
+        auto: true
+        requireConfirm: true
+      - name: "并行开发"
+        experts:
+          - "frontend-specialist"
+          - "backend-specialist"
+        auto: true
+      - name: "质量保障"
+        expert: "quality-engineer"
+        auto: true
+      - name: "部署上线"
+        expert: "devops-engineer"
+        auto: true
+      - name: "闭环迭代"
+        expert: "retro-facilitator"
+        auto: true
+
+  fastTrack:
+    enabled: true
+    maxComplexity: "low"
+    
+  quickFix:
+    enabled: true
+    autoTest: true
+    autoDeploy: false
+
+  emergency:
+    enabled: true
+    skipPhases:
+      - "产品定义"
+      - "架构设计"
+    autoDeploy: true
+
+experts:
+  product-strategist:
+    outputDir: "docs/01-requirements"
+    
+  tech-architect:
+    outputDir: "docs/02-design"
+    securityReview: true
+    
+  ux-engineer:
+    outputDir: "docs/02-design/ui"
+    
+  frontend-specialist:
+    framework: "react"
+    language: "typescript"
+    outputDir: "src/frontend"
+    
+  backend-specialist:
+    framework: "express"
+    language: "typescript"
+    outputDir: "src/backend"
+    
+  mobile-specialist:
+    framework: "react-native"
+    outputDir: "src/mobile"
+    
+  quality-engineer:
+    testDir: "tests"
+    coverageThreshold: 80
+    
+  devops-engineer:
+    deployDir: "deploy"
+    environments:
+      - "development"
+      - "staging"
+      - "production"
+      
+  security-auditor:
+    severity: "high"
+    
+  docs-engineer:
+    outputDir: "docs"
+    
+  retro-facilitator:
+    outputDir: "docs/retrospectives"
+
+notifications:
+  onComplete: true
+  onFailure: true
+  onBlocked: true
+  channels:
+    - type: "console"
+      enabled: true
+
+paths:
+  aiTeam: ".ai-team"
+  taskBoard: ".ai-team/orchestrator/task-board.json"
+  sharedContext: ".ai-team/shared-context"
+  workflowLog: ".ai-team/orchestrator/workflow-log.md"
