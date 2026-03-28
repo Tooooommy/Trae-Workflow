@@ -19,18 +19,19 @@ function log(message, level = 'info') {
 }
 
 function getInstalledVersion() {
-  const trackingPath = path.join(TRAECONFIG_DIR, 'tracking.json');
+  const repoSourceDir = path.join(TRAECONFIG_DIR, '.repo');
+  const packagePath = path.join(repoSourceDir, 'package.json');
 
-  if (fs.existsSync(trackingPath)) {
+  if (fs.existsSync(packagePath)) {
     try {
-      const tracking = fs.readJsonSync(trackingPath);
-      return tracking.version || 'unknown';
+      const pkg = fs.readJsonSync(packagePath);
+      return pkg.version || 'unknown';
     } catch {
       return 'unknown';
     }
   }
 
-  return 'unknown';
+  return 'not installed';
 }
 
 function version() {
@@ -54,7 +55,6 @@ function version() {
   log('  traew update           Update to latest version', 'gray');
   log('  traew status           Show installation status', 'gray');
   log('  traew config           Manage configuration', 'gray');
-  log('  traew init [path]      Initialize project rules', 'gray');
   log('  traew uninstall        Uninstall Trae Workflow', 'gray');
   log('  traew version          Show version info', 'gray');
   console.log('');

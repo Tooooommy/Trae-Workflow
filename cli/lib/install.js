@@ -36,16 +36,10 @@ function buildSetupArgs(options) {
   const args = [];
 
   if (options.backup) args.push('--backup');
-  if (options.skipMcp) args.push('--skip-mcp');
   if (options.skipSkills) args.push('--skip-skills');
-  if (options.skipAgents) args.push('--skip-agents');
   if (options.skipRules) args.push('--skip-rules');
-  if (options.skipTracking) args.push('--skip-tracking');
-  if (options.skipProjectRules) args.push('--skip-project-rules');
   if (options.quiet) args.push('--quiet');
   if (options.force) args.push('--force');
-  if (options.path) args.push('--project-path', options.path);
-  if (options.type) args.push('--project-type', options.type);
 
   return args;
 }
@@ -75,16 +69,10 @@ async function runPowerShellSetupScript(setupPath, options) {
   const args = [];
 
   if (options.backup) args.push('-Backup');
-  if (options.skipMcp) args.push('-SkipMCP');
   if (options.skipSkills) args.push('-SkipSkills');
-  if (options.skipAgents) args.push('-SkipAgents');
   if (options.skipRules) args.push('-SkipRules');
-  if (options.skipTracking) args.push('-SkipTracking');
-  if (options.skipProjectRules) args.push('-SkipProjectRules');
   if (options.quiet) args.push('-Quiet');
   if (options.force) args.push('-Force');
-  if (options.path) args.push(`-ProjectPath "${options.path}"`);
-  if (options.type) args.push(`-ProjectType "${options.type}"`);
 
   const command = `powershell -ExecutionPolicy Bypass -File "${setupPath}" ${args.join(' ')}`;
 
@@ -145,27 +133,17 @@ function showHelp() {
   log('Usage: traew install [repo] [options]', 'white');
   console.log('');
   log('Options:', 'warning');
-  log('  --backup                Backup existing config', 'white');
-  log('  --skip-mcp              Skip MCP config', 'white');
-  log('  --skip-skills           Skip Skills config', 'white');
-  log('  --skip-agents           Skip Agents config', 'white');
-  log('  --skip-rules            Skip Rules config', 'white');
-  log('  --skip-tracking         Skip Tracking config', 'white');
-  log('  --skip-project-rules    Skip Project Rules config', 'white');
-  log('  --quiet                 Quiet mode', 'white');
-  log('  --force                 Force execution', 'white');
-  log('  --path <path>           Project path for Project Rules', 'white');
-  log('  --type <type>           Project type', 'white');
-  log('  --local <dir>           Install from local directory', 'white');
+  log('  --backup         Backup existing config', 'white');
+  log('  --skip-skills    Skip Skills config', 'white');
+  log('  --skip-rules     Skip Rules config', 'white');
+  log('  --quiet          Quiet mode', 'white');
+  log('  --force          Force execution', 'white');
+  log('  --local <dir>    Install from local directory', 'white');
   console.log('');
   log('Examples:', 'warning');
   log('  traew install', 'gray');
   log('  traew install --backup', 'gray');
-  log('  traew install --path ~/myproject --type typescript', 'gray');
   log('  traew install --local ./Trae-Workflow', 'gray');
-  console.log('');
-  log('Supported project types:', 'warning');
-  log('  typescript, python, java, golang, rust, kotlin, swift', 'gray');
   console.log('');
 }
 

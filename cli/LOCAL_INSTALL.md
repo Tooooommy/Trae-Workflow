@@ -12,7 +12,7 @@
 ### 步骤 1：进入 CLI 目录
 
 ```bash
-cd "c:\Users\Administrator\Desktop\traeconf\Trae Workflow\cli"
+cd "path/to/Trae Workflow/cli"
 ```
 
 ### 步骤 2：安装依赖
@@ -23,12 +23,10 @@ npm install
 
 这会安装 package.json 中定义的所有依赖项：
 
-- axios
 - chalk
 - commander
-- ora
 - fs-extra
-- tar
+- adm-zip
 
 ### 步骤 3：本地链接（推荐）
 
@@ -44,7 +42,7 @@ npm link
 traew version
 ```
 
-应该显示：`Trae Workflow CLI v1.0.0`
+应该显示：`Trae Workflow CLI v2.1.0`
 
 ## 使用方法
 
@@ -61,7 +59,7 @@ traew install username/repo
 traew install --backup
 
 # 跳过某些组件
-traew install --skip-mcp --skip-skills
+traew install --skip-skills --skip-rules
 ```
 
 ### 其他命令
@@ -73,6 +71,12 @@ traew update
 # 查看当前版本
 traew version
 
+# 查看安装状态
+traew status
+
+# 查看配置
+traew config --list
+
 # 查看帮助
 traew install --help
 ```
@@ -83,7 +87,7 @@ traew install --help
 
 ```bash
 # Windows
-node "c:\Users\Administrator\Desktop\traeconf\Trae Workflow\cli\bin\trae.js" install
+node "path/to/Trae Workflow/cli/bin/trae.js" install
 
 # Linux/macOS
 node cli/bin/trae.js install
@@ -155,7 +159,7 @@ npm install
 
 ```bash
 # 1. 进入 CLI 目录
-cd "c:\Users\Administrator\Desktop\traeconf\Trae Workflow\cli"
+cd "path/to/Trae Workflow/cli"
 
 # 2. 安装依赖
 npm install

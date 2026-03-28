@@ -1,17 +1,12 @@
 # Trae Workflow Setup Script
-# Version: 2.1.0
+# Version: 3.1.0
 
 param(
     [switch]$Backup,
     [switch]$SkipSkills,
-    [switch]$SkipAgents,
     [switch]$SkipRules,
-    [switch]$SkipTracking,
-    [switch]$SkipProjectRules,
     [switch]$Quiet,
     [switch]$Force,
-    [string]$ProjectPath,
-    [string]$ProjectType,
     [switch]$Help
 )
 
@@ -19,7 +14,7 @@ $ErrorActionPreference = "Continue"
 $TraeConfigDir = "$env:USERPROFILE\.trae-cn"
 $ScriptDir = $PSScriptRoot
 $LogFile = "$ScriptDir\setup-$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
-$Version = "2.1.0"
+$Version = "3.1.0"
 
 function Write-Log {
     param([string]$Message, [string]$Level = "INFO")
@@ -73,25 +68,16 @@ function Show-Help {
     Write-Host "Usage: .\setup.ps1 [options]" -ForegroundColor White
     Write-Host ""
     Write-Host "Options:" -ForegroundColor Yellow
-    Write-Host "  -Backup              Backup existing config" -ForegroundColor White
-    Write-Host "  -SkipSkills          Skip Skills config" -ForegroundColor White
-    Write-Host "  -SkipAgents          Skip Agents config" -ForegroundColor White
-    Write-Host "  -SkipRules           Skip Rules config" -ForegroundColor White
-    Write-Host "  -SkipTracking        Skip Tracking config" -ForegroundColor White
-    Write-Host "  -SkipProjectRules    Skip Project Rules config" -ForegroundColor White
-    Write-Host "  -Quiet               Quiet mode" -ForegroundColor White
-    Write-Host "  -Force               Force execution" -ForegroundColor White
-    Write-Host "  -ProjectPath path    Project path for Project Rules" -ForegroundColor White
-    Write-Host "  -ProjectType type    Project type" -ForegroundColor White
-    Write-Host "  -Help                Show this help" -ForegroundColor White
+    Write-Host "  -Backup         Backup existing config" -ForegroundColor White
+    Write-Host "  -SkipSkills     Skip Skills config" -ForegroundColor White
+    Write-Host "  -SkipRules      Skip Rules config" -ForegroundColor White
+    Write-Host "  -Quiet          Quiet mode" -ForegroundColor White
+    Write-Host "  -Force          Force execution" -ForegroundColor White
+    Write-Host "  -Help           Show this help" -ForegroundColor White
     Write-Host ""
     Write-Host "Examples:" -ForegroundColor Yellow
     Write-Host "  .\setup.ps1" -ForegroundColor Gray
     Write-Host "  .\setup.ps1 -Backup" -ForegroundColor Gray
-    Write-Host "  .\setup.ps1 -ProjectPath 'C:\myproject' -ProjectType typescript" -ForegroundColor Gray
-    Write-Host ""
-    Write-Host "Supported project types:" -ForegroundColor Yellow
-    Write-Host "  typescript, python, java, golang, rust, kotlin, swift" -ForegroundColor Gray
     Write-Host ""
 }
 
@@ -104,88 +90,6 @@ function Test-Administrator {
 function Test-TraeRunning {
     $processes = Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like "*trae*" }
     return $processes.Count -gt 0
-}
-
-function Test-ConfigFile {
-    param([string]$FilePath)
-    
-    if (-not (Test-Path $FilePath)) {
-        return $false
-    }
-    
-    try {
-        $content = Get-Content $FilePath -Raw -Encoding UTF8
-        return $null -ne $content -and $content.Trim().Length -gt 0
-    } catch {
-        return $false
-    }
-}
-
-function Get-AvailableProjectTypes {
-    $projectRulesDir = "$ScriptDir\project_rules"
-    if (-not (Test-Path $projectRulesDir)) {
-        return @()
-    }
-    
-    return Get-ChildItem $projectRulesDir -Directory | Select-Object -ExpandProperty Name
-}
-
-function Initialize-ProjectRules {
-    param([string]$ProjectPath, [string]$ProjectType)
-    
-    if ([string]::IsNullOrEmpty($ProjectPath)) {
-        Write-Warning "Project path not specified, skipping Project Rules"
-        return $false
-    }
-    
-    if (-not (Test-Path $ProjectPath)) {
-        Write-Error "Project path does not exist: $ProjectPath"
-        return $false
-    }
-    
-    if ([string]::IsNullOrEmpty($ProjectType)) {
-        $availableTypes = Get-AvailableProjectTypes
-        if ($availableTypes.Count -eq 0) {
-            Write-Warning "No available Project Rules found"
-            return $false
-        }
-        
-        Write-Info "Available project types:"
-        for ($i = 0; $i -lt $availableTypes.Count; $i++) {
-            Write-Host "  $($i + 1). $($availableTypes[$i])" -ForegroundColor White
-        }
-        
-        $selection = Read-Host "Select project type (1-$($availableTypes.Count))"
-        if ($selection -match '^\d+$' -and $selection -gt 0 -and $selection -le $availableTypes.Count) {
-            $ProjectType = $availableTypes[$selection - 1]
-        } else {
-            Write-Error "Invalid selection"
-            return $false
-        }
-    }
-    
-    $sourceDir = "$ScriptDir\project_rules\$ProjectType"
-    if (-not (Test-Path $sourceDir)) {
-        Write-Error "Project type '$ProjectType' rules not found"
-        Write-Gray "Available types: $($availableTypes -join ', ')"
-        return $false
-    }
-    
-    $targetDir = "$ProjectPath\.trae\rules"
-    
-    try {
-        New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
-        Copy-Item "$sourceDir\*" $targetDir -Recurse -Force
-        
-        $ruleCount = (Get-ChildItem $targetDir -File).Count
-        Write-Success "      OK Copied $ruleCount rules to $targetDir"
-        Write-Log -Message "Project Rules initialized: $ProjectType -> $targetDir" -Level "INFO"
-        return $true
-    } catch {
-        Write-Error "      ERROR Project Rules initialization failed: $_"
-        Write-Log -Message "Project Rules initialization failed: $_" -Level "ERROR"
-        return $false
-    }
 }
 
 if ($Help) {
@@ -203,37 +107,9 @@ if (-not $Quiet) {
 
 Write-Log -Message "Setup script started (Version: $Version)" -Level "INFO"
 
-$totalSteps = 5
-
-if (-not (Test-Administrator)) {
-    Write-Warning "Note: Running as administrator is recommended"
-    if (-not $Force) {
-        $response = Read-Host "Continue? (Y/N)"
-        if ($response -ne "Y" -and $response -ne "y") {
-            Write-Log -Message "User cancelled" -Level "WARN"
-            exit 0
-        }
-    }
-}
-
-if (Test-TraeRunning) {
-    Write-Warning "Trae IDE is running"
-    Write-Warning "Please close Trae IDE before running this script"
-    if (-not $Force) {
-        $response = Read-Host "Continue? (Y/N)"
-        if ($response -ne "Y" -and $response -ne "y") {
-            Write-Log -Message "User cancelled" -Level "WARN"
-            exit 0
-        }
-    }
-}
-
-$totalSteps = 5
+$totalSteps = 2
 if (-not $SkipSkills) { $totalSteps++ }
-if (-not $SkipAgents) { $totalSteps++ }
 if (-not $SkipRules) { $totalSteps++ }
-if (-not $SkipProjectRules) { $totalSteps++ }
-if (-not $SkipTracking) { $totalSteps++ }
 
 $currentStep = 0
 
@@ -263,17 +139,8 @@ if ($Backup -or (Test-Path "$TraeConfigDir\skills")) {
         if (Test-Path "$TraeConfigDir\skills") {
             Copy-Item "$TraeConfigDir\skills" $BackupDir -Recurse -Force
         }
-        if (Test-Path "$TraeConfigDir\agents") {
-            Copy-Item "$TraeConfigDir\agents" $BackupDir -Recurse -Force
-        }
         if (Test-Path "$TraeConfigDir\user_rules") {
             Copy-Item "$TraeConfigDir\user_rules" $BackupDir -Recurse -Force
-        }
-        if (Test-Path "$TraeConfigDir\project_rules") {
-            Copy-Item "$TraeConfigDir\project_rules" $BackupDir -Recurse -Force
-        }
-        if (Test-Path "$TraeConfigDir\tracking.json") {
-            Copy-Item "$TraeConfigDir\tracking.json" $BackupDir -Force
         }
 
         Write-Success "      OK Backup completed: $BackupDir"
@@ -308,26 +175,6 @@ if (-not $SkipSkills) {
     Write-Gray "      Skipped Skills config"
 }
 
-if (-not $SkipAgents) {
-    Write-Progress -Message "Configuring Agents..."
-    try {
-        $AgentsDir = "$TraeConfigDir\agents"
-        New-Item -ItemType Directory -Force -Path $AgentsDir | Out-Null
-        Copy-Item "$ScriptDir\agents\*" $AgentsDir -Recurse -Force
-        
-        $AgentCount = (Get-ChildItem $AgentsDir -File -Filter "*.md").Count
-        Write-Success "      OK Copied $AgentCount agents"
-        Write-Log -Message "Agents copied: $AgentCount" -Level "INFO"
-    } catch {
-        Write-Error "      ERROR Agents config failed: $_"
-        Write-Log -Message "Agents config failed: $_" -Level "ERROR"
-        exit 1
-    }
-} else {
-    Write-Progress -Message "Skipping Agents config..."
-    Write-Gray "      Skipped Agents config"
-}
-
 if (-not $SkipRules) {
     Write-Progress -Message "Configuring User Rules..."
     try {
@@ -347,52 +194,6 @@ if (-not $SkipRules) {
     Write-Gray "      Skipped Rules config"
 }
 
-if (-not $SkipProjectRules) {
-    Write-Progress -Message "Configuring Project Rules..."
-    try {
-        $ProjectRulesDir = "$TraeConfigDir\project_rules"
-        New-Item -ItemType Directory -Force -Path $ProjectRulesDir | Out-Null
-        Copy-Item "$ScriptDir\project_rules\*" $ProjectRulesDir -Recurse -Force
-        
-        $ProjectRuleCount = (Get-ChildItem $ProjectRulesDir -Directory).Count
-        Write-Success "      OK Copied $ProjectRuleCount project rules"
-        Write-Log -Message "Project Rules copied: $ProjectRuleCount" -Level "INFO"
-    } catch {
-        Write-Error "      ERROR Project Rules config failed: $_"
-        Write-Log -Message "Project Rules config failed: $_" -Level "ERROR"
-        exit 1
-    }
-} else {
-    Write-Progress -Message "Skipping Project Rules config..."
-    Write-Gray "      Skipped Project Rules config"
-}
-
-if (-not $SkipTracking) {
-    Write-Progress -Message "Configuring Tracking..."
-    try {
-        if (Test-ConfigFile "$ScriptDir\tracking.json") {
-            Copy-Item "$ScriptDir\tracking.json" "$TraeConfigDir\tracking.json" -Force
-            Write-Success "      OK Tracking config copied"
-            Write-Log -Message "Tracking config copied" -Level "INFO"
-        } else {
-            Write-Warning "      WARN Tracking config file is invalid, skipping"
-            Write-Log -Message "Tracking config file validation failed, skipped" -Level "WARN"
-        }
-    } catch {
-        Write-Error "      ERROR Tracking config failed: $_"
-        Write-Log -Message "Tracking config failed: $_" -Level "ERROR"
-        exit 1
-    }
-} else {
-    Write-Progress -Message "Skipping Tracking config..."
-    Write-Gray "      Skipped Tracking config"
-}
-
-if (-not $SkipProjectRules -and -not [string]::IsNullOrEmpty($ProjectPath)) {
-    Write-Progress -Message "Initializing Project Rules..."
-    Initialize-ProjectRules -ProjectPath $ProjectPath -ProjectType $ProjectType
-}
-
 if (-not $Quiet) {
     Write-Host ""
     Write-Host "========================================" -ForegroundColor Cyan
@@ -406,36 +207,14 @@ if (-not $Quiet) {
     Write-Info "Directory structure:"
     Write-Gray "  $TraeConfigDir\"
     Write-Gray "  ├── skills\           (Skills directory)"
-    Write-Gray "  ├── agents\           (Agents directory)"
-    Write-Gray "  ├── user_rules\       (User rules directory)"
-    Write-Gray "  ├── project_rules\    (Project rules directory)"
-    Write-Gray "  └── tracking.json     (Tracking config)"
-    Write-Host ""
-    Write-Info "Project Rules usage:"
-    Write-Gray "  Project Rules should be copied to project directory:"
-    Write-Warning "  <project_root>/.trae/rules/"
-    Write-Host ""
-    Write-Gray "  Method 1: Use script to initialize"
-    Write-Gray "    .\setup.ps1 -ProjectPath 'C:\myproject' -ProjectType typescript"
-    Write-Host ""
-    Write-Gray "  Method 2: Manual copy"
-    Write-Gray "    Copy-Item -Path '$ScriptDir\project_rules\typescript\*' -Destination '.\.trae\rules\' -Recurse -Force"
-    Write-Host ""
-    Write-Gray "  Supported types: $(Get-AvailableProjectTypes -join ', ')"
-    Write-Host ""
-    Write-Gray "Environment variables (optional):"
-    Write-Gray "  [Environment]::SetEnvironmentVariable('GITHUB_PAT', 'your_token', 'User')"
-    Write-Gray "  [Environment]::SetEnvironmentVariable('EXA_API_KEY', 'your_key', 'User')"
+    Write-Gray "  └── user_rules\       (User rules directory)"
     Write-Host ""
 }
 
 if (-not $Quiet) {
     Write-Info "Summary:"
     Write-Host "  - Skills: $(if (-not $SkipSkills) { 'Configured' } else { 'Skipped' })"
-    Write-Host "  - Agents: $(if (-not $SkipAgents) { 'Configured' } else { 'Skipped' })"
     Write-Host "  - User Rules: $(if (-not $SkipRules) { 'Configured' } else { 'Skipped' })"
-    Write-Host "  - Project Rules: $(if (-not $SkipProjectRules) { 'Configured' } else { 'Skipped' })"
-    Write-Host "  - Tracking: $(if (-not $SkipTracking) { 'Configured' } else { 'Skipped' })"
     Write-Host ""
 }
 
@@ -445,9 +224,6 @@ if (-not $Quiet) {
 
     if (-not $SkipSkills -and -not (Test-Path "$TraeConfigDir\skills")) {
         $Issues += "Skills directory not found"
-    }
-    if (-not $SkipAgents -and -not (Test-Path "$TraeConfigDir\agents")) {
-        $Issues += "Agents directory not found"
     }
     if (-not $SkipRules -and -not (Test-Path "$TraeConfigDir\user_rules")) {
         $Issues += "User Rules directory not found"

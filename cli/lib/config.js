@@ -2,7 +2,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
 const chalk = require('chalk');
-const { execSync } = require('child_process');
 
 const TRAECONFIG_DIR = path.join(os.homedir(), '.trae-cn');
 
@@ -61,43 +60,18 @@ function openConfigDirectory() {
 
   try {
     if (platform === 'win32') {
+      const { execSync } = require('child_process');
       execSync(`explorer "${TRAECONFIG_DIR}"`);
     } else if (platform === 'darwin') {
+      const { execSync } = require('child_process');
       execSync(`open "${TRAECONFIG_DIR}"`);
     } else {
+      const { execSync } = require('child_process');
       execSync(`xdg-open "${TRAECONFIG_DIR}"`);
     }
     log('Opened config directory', 'success');
   } catch (error) {
     log(`Failed to open directory: ${error.message}`, 'error');
-  }
-}
-
-function showConfigValue(key) {
-  const configFiles = {
-    mcp: 'mcp.json',
-    tracking: 'tracking.json',
-  };
-
-  const fileName = configFiles[key];
-  if (!fileName) {
-    log(`Unknown config key: ${key}`, 'error');
-    log('Available keys: mcp, tracking', 'gray');
-    return;
-  }
-
-  const filePath = path.join(TRAECONFIG_DIR, fileName);
-
-  if (!fs.existsSync(filePath)) {
-    log(`Config file not found: ${fileName}`, 'error');
-    return;
-  }
-
-  try {
-    const content = fs.readJsonSync(filePath);
-    console.log(JSON.stringify(content, null, 2));
-  } catch (error) {
-    log(`Failed to read config: ${error.message}`, 'error');
   }
 }
 
@@ -109,11 +83,6 @@ function config(options) {
 
   if (options.edit) {
     openConfigDirectory();
-    return;
-  }
-
-  if (options.show) {
-    showConfigValue(options.show);
     return;
   }
 
@@ -133,11 +102,6 @@ function config(options) {
   log('  traew config --list         List all config files', 'white');
   log('  traew config --path         Show config directory path', 'white');
   log('  traew config --edit         Open config directory', 'white');
-  log('  traew config --show <key>   Show specific config value', 'white');
-  console.log('');
-  log('Available config keys:', 'warning');
-  log('  mcp       MCP servers configuration', 'gray');
-  log('  tracking  Tracking configuration', 'gray');
   console.log('');
 }
 

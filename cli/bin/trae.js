@@ -19,16 +19,10 @@ program
   .command('install [repo]')
   .description('Install Trae Workflow from GitHub repository')
   .option('-b, --backup', 'Backup existing config')
-  .option('--skip-mcp', 'Skip MCP config')
   .option('--skip-skills', 'Skip Skills config')
-  .option('--skip-agents', 'Skip Agents config')
   .option('--skip-rules', 'Skip Rules config')
-  .option('--skip-tracking', 'Skip Tracking config')
-  .option('--skip-project-rules', 'Skip Project Rules config')
   .option('-q, --quiet', 'Quiet mode')
   .option('-f, --force', 'Force execution')
-  .option('-p, --path <path>', 'Project path for Project Rules')
-  .option('-t, --type <type>', 'Project type')
   .option('-l, --local <dir>', 'Install from local directory')
   .action((repo, options) => {
     install(repo, options);
@@ -61,7 +55,6 @@ program
   .command('config')
   .description('Manage configuration')
   .option('-l, --list', 'List all config files')
-  .option('-s, --show <key>', 'Show specific config value')
   .option('-e, --edit', 'Open config directory in file manager')
   .option('--path', 'Show config directory path')
   .action((options) => {
@@ -75,16 +68,6 @@ program
   .option('-f, --force', 'Force uninstall without confirmation')
   .action((options) => {
     uninstall(options);
-  });
-
-program
-  .command('init [project-path]')
-  .description('Initialize Project Rules in a project directory')
-  .option('-t, --type <type>', 'Project type')
-  .option('-f, --force', 'Force overwrite existing rules')
-  .action((projectPath, options) => {
-    const { initProject } = require('../lib/init');
-    initProject(projectPath, options);
   });
 
 program.parse(process.argv);

@@ -30,16 +30,10 @@ function buildSetupArgs(options) {
   const args = [];
 
   if (options.backup) args.push('--backup');
-  if (options.skipMcp) args.push('--skip-mcp');
   if (options.skipSkills) args.push('--skip-skills');
-  if (options.skipAgents) args.push('--skip-agents');
   if (options.skipRules) args.push('--skip-rules');
-  if (options.skipTracking) args.push('--skip-tracking');
-  if (options.skipProjectRules) args.push('--skip-project-rules');
   if (options.quiet) args.push('--quiet');
   if (options.force) args.push('--force');
-  if (options.path) args.push('--project-path', options.path);
-  if (options.type) args.push('--project-type', options.type);
 
   return args;
 }
@@ -70,16 +64,10 @@ async function runPowerShellSetupScript(setupPath, options) {
   const args = [];
 
   if (options.backup) args.push('-Backup');
-  if (options.skipMcp) args.push('-SkipMCP');
   if (options.skipSkills) args.push('-SkipSkills');
-  if (options.skipAgents) args.push('-SkipAgents');
   if (options.skipRules) args.push('-SkipRules');
-  if (options.skipTracking) args.push('-SkipTracking');
-  if (options.skipProjectRules) args.push('-SkipProjectRules');
   if (options.quiet) args.push('-Quiet');
   if (options.force) args.push('-Force');
-  if (options.path) args.push(`-ProjectPath "${options.path}"`);
-  if (options.type) args.push(`-ProjectType "${options.type}"`);
 
   const command = `powershell -ExecutionPolicy Bypass -File "${setupPath}" ${args.join(' ')}`;
 
@@ -151,7 +139,7 @@ async function update(options = {}) {
   } catch (error) {
     log(`Update failed: ${error.message}`, 'error');
     log('Running fresh install instead...', 'info');
-    
+
     const { install } = require('./install');
     await install(DEFAULT_REPO, { ...options, force: true });
   }
