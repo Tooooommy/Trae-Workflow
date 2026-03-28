@@ -560,6 +560,54 @@ flowchart LR
 | 质量失败 | 门禁检查   | 返回开发阶段       |
 | 部署失败 | 健康检查   | 自动回滚重试       |
 
-### 协作指南
+---
 
-详细协作指南: `templates/COLLABORATION_GUIDE.md`
+## 模板文件
+
+位置: `templates/`
+
+| 模板                          | 说明               |
+| ----------------------------- | ------------------ |
+| task-board-template.json      | 任务看板模板       |
+| message-protocol.json         | 专家通信协议       |
+| project-context.template.json | 项目上下文模板     |
+| COLLABORATION_GUIDE.md        | 智能协作指南       |
+| PROJECT_INIT.md               | 项目初始化指南     |
+| SKILLS_DRIVEN.md              | Skills驱动开发流程 |
+| config.template.yaml          | 自动化配置模板     |
+
+---
+
+## 项目初始化
+
+当用户启动新项目时，自动创建以下结构：
+
+```
+project/
+├── .ai-team/                    # AI团队工作区（运行时）
+│   ├── orchestrator/
+│   │   ├── task-board.json      # 从模板复制
+│   │   ├── workflow-log.md
+│   │   └── decision-registry/
+│   ├── experts/                 # 各专家工作区
+│   │   ├── product-strategist/
+│   │   ├── tech-architect/
+│   │   ├── frontend-specialist/
+│   │   ├── backend-specialist/
+│   │   └── ...
+│   ├── shared-context/
+│   │   ├── project-context.json # 从模板复制
+│   │   └── knowledge-graph.md
+│   └── automation/
+│       └── config.yaml          # 从模板复制
+├── docs/                        # 项目文档
+│   ├── 01-requirements/
+│   ├── 02-design/
+│   ├── 03-implementation/
+│   ├── 04-testing/
+│   └── 05-deployment/
+├── src/                         # 源代码
+└── tests/                       # 测试代码
+```
+
+详细初始化指南: `templates/PROJECT_INIT.md`
