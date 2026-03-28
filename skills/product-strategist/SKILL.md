@@ -135,4 +135,4 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `.ai-team/shared-context/message-protocol.json`
+详细协议: `templates/message-protocol.json`

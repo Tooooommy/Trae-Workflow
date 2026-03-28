@@ -434,9 +434,11 @@ flowchart LR
 
 项目配置: `.ai-team/automation/config.yaml`
 
-模板: `.ai-team/automation/config.template.yaml`
+模板: `templates/config.template.yaml`
 
-详细文档: `.ai-team/automation/SKILLS_DRIVEN.md`
+详细文档: `templates/SKILLS_DRIVEN.md`
+
+初始化指南: `templates/PROJECT_INIT.md`
 
 ---
 
@@ -539,7 +541,7 @@ flowchart LR
 }
 ```
 
-详细协议: `.ai-team/shared-context/message-protocol.json`
+详细协议: `templates/message-protocol.json`
 
 ### 状态同步
 
@@ -560,4 +562,4 @@ flowchart LR
 
 ### 协作指南
 
-详细协作指南: `.ai-team/shared-context/COLLABORATION_GUIDE.md`
+详细协作指南: `templates/COLLABORATION_GUIDE.md`

@@ -120,22 +120,22 @@ flowchart LR
 
 自动获取：
 
-| 上下文 | 来源 | 用途 |
-|--------|------|------|
-| PRD | product-strategist | 业务需求 |
-| 技术方案 | tech-architect | 架构约束 |
-| 数据模型 | tech-architect | 数据结构 |
-| 项目状态 | shared-context | 当前进度 |
+| 上下文   | 来源               | 用途     |
+| -------- | ------------------ | -------- |
+| PRD      | product-strategist | 业务需求 |
+| 技术方案 | tech-architect     | 架构约束 |
+| 数据模型 | tech-architect     | 数据结构 |
+| 项目状态 | shared-context     | 当前进度 |
 
 ### 输出传递
 
 完成后自动通知：
 
-| 接收专家 | 传递内容 | 触发条件 |
-|----------|----------|----------|
-| frontend-specialist | API文档 | API完成 |
-| quality-engineer | 后端代码 | 开发完成 |
-| security-auditor | API端点 | 安全评审 |
+| 接收专家            | 传递内容 | 触发条件 |
+| ------------------- | -------- | -------- |
+| frontend-specialist | API文档  | API完成  |
+| quality-engineer    | 后端代码 | 开发完成 |
+| security-auditor    | API端点  | 安全评审 |
 | orchestrator-expert | 状态更新 | 任务完成 |
 
 ### 状态同步
@@ -156,7 +156,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `.ai-team/shared-context/message-protocol.json`
+详细协议: `templates/message-protocol.json`
 
 ## 质量门禁
 

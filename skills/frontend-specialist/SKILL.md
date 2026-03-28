@@ -108,21 +108,21 @@ flowchart LR
 
 自动获取：
 
-| 上下文 | 来源 | 用途 |
-|--------|------|------|
-| 设计稿 | ux-engineer | UI实现依据 |
-| 技术方案 | tech-architect | 技术约束 |
-| API文档 | backend-specialist | 接口对接 |
-| 项目状态 | shared-context | 当前进度 |
+| 上下文   | 来源               | 用途       |
+| -------- | ------------------ | ---------- |
+| 设计稿   | ux-engineer        | UI实现依据 |
+| 技术方案 | tech-architect     | 技术约束   |
+| API文档  | backend-specialist | 接口对接   |
+| 项目状态 | shared-context     | 当前进度   |
 
 ### 输出传递
 
 完成后自动通知：
 
-| 接收专家 | 传递内容 | 触发条件 |
-|----------|----------|----------|
-| quality-engineer | 前端代码 | 开发完成 |
-| docs-engineer | 组件文档 | 文档需求 |
+| 接收专家            | 传递内容 | 触发条件 |
+| ------------------- | -------- | -------- |
+| quality-engineer    | 前端代码 | 开发完成 |
+| docs-engineer       | 组件文档 | 文档需求 |
 | orchestrator-expert | 状态更新 | 任务完成 |
 
 ### 状态同步
@@ -143,7 +143,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `.ai-team/shared-context/message-protocol.json`
+详细协议: `templates/message-protocol.json`
 
 ## 质量门禁
 

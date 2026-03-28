@@ -113,21 +113,21 @@ flowchart LR
 
 自动获取：
 
-| 上下文 | 来源 | 用途 |
-|--------|------|------|
-| PRD | product-strategist | 理解功能需求 |
-| 技术方案 | tech-architect | 技术约束 |
-| 设计规范 | shared-context | 一致性保证 |
+| 上下文   | 来源               | 用途         |
+| -------- | ------------------ | ------------ |
+| PRD      | product-strategist | 理解功能需求 |
+| 技术方案 | tech-architect     | 技术约束     |
+| 设计规范 | shared-context     | 一致性保证   |
 
 ### 输出传递
 
 完成后自动通知：
 
-| 接收专家 | 传递内容 | 触发条件 |
-|----------|----------|----------|
-| frontend-specialist | 设计稿 | 设计确认后 |
-| mobile-specialist | 设计稿 | 移动端需求 |
-| orchestrator-expert | 状态更新 | 任务完成 |
+| 接收专家            | 传递内容 | 触发条件   |
+| ------------------- | -------- | ---------- |
+| frontend-specialist | 设计稿   | 设计确认后 |
+| mobile-specialist   | 设计稿   | 移动端需求 |
+| orchestrator-expert | 状态更新 | 任务完成   |
 
 ### 状态同步
 
@@ -143,7 +143,7 @@ flowchart LR
 
 ### 协作协议
 
-详细协议: `.ai-team/shared-context/message-protocol.json`
+详细协议: `templates/message-protocol.json`
 
 ## 上线检查清单
 
