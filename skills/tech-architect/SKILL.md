@@ -204,11 +204,11 @@ flowchart TD
 
 ### 输入
 
-| 来源               | 文档     | 路径                                  |
-| ------------------ | -------- | ------------------------------------- |
-| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
-| product-strategist | PRD      | docs/01-requirements/PRD-\*.md        |
-| product-strategist | 规划文档 | docs/01-requirements/plans/\*.md      |
+| 来源               | 文档     | 路径                             |
+| ------------------ | -------- | -------------------------------- |
+| orchestrator       | 任务工单 | docs/00-project/task-board.json  |
+| product-strategist | PRD      | docs/01-requirements/PRD-\*.md   |
+| product-strategist | 规划文档 | docs/01-requirements/plans/\*.md |
 
 ### 输出
 

@@ -51,11 +51,11 @@ flowchart LR
 
 ### 输入
 
-| 来源             | 文档     | 路径                                  |
-| ---------------- | -------- | ------------------------------------- |
-| orchestrator     | 任务工单 | .ai-team/orchestrator/task-board.json |
-| quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md     |
-| tech-architect   | 技术方案 | docs/02-design/architecture-\*.md     |
+| 来源             | 文档     | 路径                              |
+| ---------------- | -------- | --------------------------------- |
+| orchestrator     | 任务工单 | docs/00-project/task-board.json   |
+| quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md |
+| tech-architect   | 技术方案 | docs/02-design/architecture-\*.md |
 
 ### 输出
 
@@ -95,11 +95,11 @@ flowchart LR
 
 ## 输入规范
 
-| 输入项 | 来源 | 说明 |
-|--------|------|------|
-| 任务分配 | orchestrator | 阶段任务指令 |
+| 输入项   | 来源             | 说明         |
+| -------- | ---------------- | ------------ |
+| 任务分配 | orchestrator     | 阶段任务指令 |
 | 测试报告 | quality-engineer | 质量通过确认 |
-| 源代码 | 开发专家 | 部署对象 |
+| 源代码   | 开发专家         | 部署对象     |
 
 ## 输出规范
 
@@ -121,8 +121,8 @@ flowchart LR
 
 ### 产物模板
 
-| 产物 | 模板路径 |
-|------|----------|
+| 产物     | 模板路径                                         |
+| -------- | ------------------------------------------------ |
 | 部署文档 | templates/devops-engineer/deployment-template.md |
 | 监控配置 | templates/devops-engineer/monitoring-template.md |
 

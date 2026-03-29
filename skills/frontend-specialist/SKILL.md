@@ -56,7 +56,7 @@ src/
 
 | 来源               | 文档     | 路径                                  |
 | ------------------ | -------- | ------------------------------------- |
-| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
+| orchestrator       | 任务工单 | docs/00-project/task-board.json |
 | ux-engineer        | 设计稿   | docs/02-design/ui-design-\*.md        |
 | tech-architect     | 技术方案 | docs/02-design/architecture-\*.md     |
 | backend-specialist | API文档  | docs/03-implementation/api-\*.md      |

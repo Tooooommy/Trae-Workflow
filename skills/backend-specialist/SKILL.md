@@ -68,7 +68,7 @@ interface ApiResponse<T> {
 
 | 来源               | 文档     | 路径                                  |
 | ------------------ | -------- | ------------------------------------- |
-| orchestrator       | 任务工单 | .ai-team/orchestrator/task-board.json |
+| orchestrator       | 任务工单 | docs/00-project/task-board.json |
 | product-strategist | PRD      | docs/01-requirements/PRD-\*.md        |
 | tech-architect     | 技术方案 | docs/02-design/architecture-\*.md     |
 | tech-architect     | 数据模型 | docs/02-design/data-model-\*.md       |

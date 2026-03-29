@@ -53,7 +53,7 @@ docs/
 
 | 来源           | 文档     | 路径                                  |
 | -------------- | -------- | ------------------------------------- |
-| orchestrator   | 任务工单 | .ai-team/orchestrator/task-board.json |
+| orchestrator   | 任务工单 | docs/00-project/task-board.json |
 | 开发专家       | 源代码   | src/                                  |
 | tech-architect | 技术方案 | docs/02-design/architecture-\*.md     |
 
