@@ -84,37 +84,22 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取技术方案和源代码
-3. 执行安全扫描和审计
-4. 分析漏洞和风险
-5. 提出修复建议
-6. 生成安全报告
-7. 更新 task-board.json 状态
-8. 通知 orchestrator 完成
+2. 执行安全审计
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项 | 来源 | 说明 |
+|--------|------|------|
+| 任务分配 | orchestrator | 阶段任务指令 |
+| 架构方案 | tech-architect | 安全评审对象 |
+| 源代码 | 开发专家 | 代码审计对象 |
+| API端点 | backend-specialist | 接口安全检查 |
 
-自动获取：
-
-| 上下文   | 来源           | 用途     |
-| -------- | -------------- | -------- |
-| 技术方案 | tech-architect | 架构评审 |
-| 源代码   | 开发专家       | 代码审计 |
-| 项目状态 | shared-context | 当前进度 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家         | 传递内容 | 触发条件 |
-| ---------------- | -------- | -------- |
-| quality-engineer | 安全报告 | 审计完成 |
-| 开发专家         | 漏洞列表 | 发现漏洞 |
-| orchestrator     | 状态更新 | 任务完成 |
+## 输出规范
 
 ### 状态同步
 
@@ -134,9 +119,11 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物 | 模板路径 |
+|------|----------|
+| 安全审计报告 | templates/security-auditor/security-audit-report.md |
 
 ## 质量门禁
 

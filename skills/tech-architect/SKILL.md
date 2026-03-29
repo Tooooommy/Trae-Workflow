@@ -96,37 +96,21 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取 PRD，分析技术需求
-3. 进行技术选型，产出技术方案
-4. 设计数据模型和 API 规范
-5. 记录架构决策 (ADR)
-6. 更新 task-board.json 状态
-7. 通知 orchestrator 完成
+2. 设计架构方案，输出技术文档
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项   | 来源                 | 说明         |
+| -------- | -------------------- | ------------ |
+| 任务分配 | orchestrator         | 阶段任务指令 |
+| PRD      | product-strategist   | 需求文档     |
+| 项目约束 | project-context.json | 技术限制     |
 
-自动获取：
-
-| 上下文   | 来源               | 用途       |
-| -------- | ------------------ | ---------- |
-| PRD      | product-strategist | 理解需求   |
-| 项目约束 | shared-context     | 技术限制   |
-| 历史决策 | decision-registry  | 架构一致性 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家            | 传递内容            | 触发条件     |
-| ------------------- | ------------------- | ------------ |
-| frontend-specialist | 技术方案            | 架构确认后   |
-| backend-specialist  | 技术方案 + 数据模型 | 架构确认后   |
-| security-auditor    | 架构方案            | 安全评审需求 |
-| orchestrator        | 状态更新            | 任务完成     |
+## 输出规范
 
 ### 状态同步
 
@@ -141,9 +125,14 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物     | 模板路径                                            |
+| -------- | --------------------------------------------------- |
+| 架构方案 | templates/tech-architect/architecture-template.md   |
+| 数据模型 | templates/tech-architect/data-model-template.md     |
+| 技术选型 | templates/tech-architect/tech-selection-template.md |
+| ADR      | templates/tech-architect/adr-template.md            |
 
 ## 实施检查清单
 

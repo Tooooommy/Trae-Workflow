@@ -89,34 +89,21 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取源代码和技术方案
-3. 分析代码结构和功能
-4. 编写文档内容
-5. 审核文档质量
-6. 更新 task-board.json 状态
-7. 通知 orchestrator 完成
+2. 编写和整理项目文档
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项   | 来源           | 说明         |
+| -------- | -------------- | ------------ |
+| 任务分配 | orchestrator   | 阶段任务指令 |
+| 技术方案 | tech-architect | 架构说明     |
+| 源代码   | 开发专家       | 代码文档提取 |
 
-自动获取：
-
-| 上下文   | 来源           | 用途     |
-| -------- | -------------- | -------- |
-| 源代码   | 开发专家       | 文档依据 |
-| 技术方案 | tech-architect | 架构说明 |
-| 项目状态 | shared-context | 当前进度 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家     | 传递内容 | 触发条件 |
-| ------------ | -------- | -------- |
-| orchestrator | 状态更新 | 任务完成 |
+## 输出规范
 
 ### 状态同步
 
@@ -134,9 +121,13 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物      | 模板路径                                      |
+| --------- | --------------------------------------------- |
+| README    | templates/docs-engineer/readme-template.md    |
+| API文档   | templates/docs-engineer/api-doc-template.md   |
+| CHANGELOG | templates/docs-engineer/changelog-template.md |
 
 ## 质量门禁
 

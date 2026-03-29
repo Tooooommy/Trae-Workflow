@@ -15,26 +15,10 @@
     "requireConfirm": ["phase-2", "phase-3"]
   },
   "qualityGates": {
-    "lint": {
-      "enabled": true,
-      "threshold": 0,
-      "status": "pending"
-    },
-    "typeCheck": {
-      "enabled": true,
-      "threshold": 0,
-      "status": "pending"
-    },
-    "testCoverage": {
-      "enabled": true,
-      "threshold": 80,
-      "status": "pending"
-    },
-    "securityAudit": {
-      "enabled": true,
-      "threshold": 0,
-      "status": "pending"
-    }
+    "lint": { "enabled": true, "threshold": 0, "status": "pending" },
+    "typeCheck": { "enabled": true, "threshold": 0, "status": "pending" },
+    "testCoverage": { "enabled": true, "threshold": 80, "status": "pending" },
+    "securityAudit": { "enabled": true, "threshold": 0, "status": "pending" }
   },
   "phases": [
     {
@@ -104,66 +88,18 @@
     }
   ],
   "experts": {
-    "orchestrator": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "product-strategist": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "tech-architect": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "ux-engineer": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "frontend-specialist": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "backend-specialist": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "mobile-specialist": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "quality-engineer": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "devops-engineer": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "security-auditor": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "docs-engineer": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    },
-    "retro-facilitator": {
-      "status": "available",
-      "currentTask": null,
-      "completedTasks": 0
-    }
+    "orchestrator": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "product-strategist": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "tech-architect": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "ux-engineer": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "frontend-specialist": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "backend-specialist": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "mobile-specialist": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "quality-engineer": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "devops-engineer": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "security-auditor": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "docs-engineer": { "status": "available", "currentTask": null, "completedTasks": 0 },
+    "retro-facilitator": { "status": "available", "currentTask": null, "completedTasks": 0 }
   },
   "context": {
     "requirements": "",

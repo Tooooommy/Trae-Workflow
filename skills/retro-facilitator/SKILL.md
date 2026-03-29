@@ -88,35 +88,21 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 收集项目数据和反馈
-3. 分析成功和失败因素
-4. 总结经验和教训
-5. 提出改进建议
-6. 沉淀知识到共享上下文
-7. 更新 task-board.json 状态
-8. 通知 orchestrator 完成
+2. 执行项目复盘
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项   | 来源             | 说明         |
+| -------- | ---------------- | ------------ |
+| 任务分配 | orchestrator     | 阶段任务指令 |
+| 测试报告 | quality-engineer | 质量分析     |
+| 部署结果 | devops-engineer  | 交付分析     |
 
-自动获取：
-
-| 上下文   | 来源             | 用途     |
-| -------- | ---------------- | -------- |
-| 项目数据 | task-board.json  | 项目回顾 |
-| 测试报告 | quality-engineer | 质量分析 |
-| 部署结果 | devops-engineer  | 交付分析 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家     | 传递内容 | 触发条件 |
-| ------------ | -------- | -------- |
-| orchestrator | 状态更新 | 任务完成 |
+## 输出规范
 
 ### 状态同步
 
@@ -134,14 +120,10 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
-
-## 质量门禁
-
-| 检查项   | 阈值   |
-| -------- | ------ |
-| 复盘完成 | 100%   |
-| 改进项   | 已记录 |
-| 知识沉淀 | 已更新 |
+| 产物     | 模板路径                                                  |
+| -------- | --------------------------------------------------------- |
+| 复盘报告 | templates/retro-facilitator/review-report-template.md     |
+| 错误案例 | templates/retro-facilitator/error-case-template.md        |
+| 进度报告 | templates/retro-facilitator/progress-document-template.md |

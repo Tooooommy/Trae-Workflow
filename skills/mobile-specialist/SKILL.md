@@ -89,36 +89,22 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取设计稿和技术方案
-3. 开发移动端组件和页面
-4. 实现 API 集成
-5. 性能优化和测试
-6. 更新 task-board.json 状态
-7. 通知 orchestrator 完成
+2. 开发移动端功能
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项   | 来源               | 说明         |
+| -------- | ------------------ | ------------ |
+| 任务分配 | orchestrator       | 阶段任务指令 |
+| 设计稿   | ux-engineer        | UI/交互设计  |
+| 技术方案 | tech-architect     | 技术约束     |
+| API文档  | backend-specialist | 接口定义     |
 
-自动获取：
-
-| 上下文   | 来源               | 用途       |
-| -------- | ------------------ | ---------- |
-| 设计稿   | ux-engineer        | UI实现依据 |
-| 技术方案 | tech-architect     | 技术约束   |
-| API文档  | backend-specialist | 接口对接   |
-| 项目状态 | shared-context     | 当前进度   |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家         | 传递内容   | 触发条件 |
-| ---------------- | ---------- | -------- |
-| quality-engineer | 移动端代码 | 开发完成 |
-| orchestrator     | 状态更新   | 任务完成 |
+## 输出规范
 
 ### 状态同步
 
@@ -136,9 +122,11 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物       | 模板路径                                       |
+| ---------- | ---------------------------------------------- |
+| 移动端文档 | templates/mobile-specialist/mobile-template.md |
 
 ## 质量门禁
 

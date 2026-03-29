@@ -25,7 +25,7 @@
 
 | 技能 | 规则     | 模板 | 架构     |
 | ---- | -------- | ---- | -------- |
-| 58+  | 完整体系 | 30+  | 三层架构 |
+| 72   | 完整体系 | 30+  | 三层架构 |
 
 **三层架构**：`Orchestrator (调度) → Skills (执行) → Rules (约束)`
 
@@ -111,7 +111,7 @@ dir $env:USERPROFILE\.trae-cn\skills  # Windows
 
 ```
 ~/.trae-cn/
-├── skills/                    # 技能目录（58+ 技能）
+├── skills/                    # 技能目录（72 技能）
 │   ├── orchestrator/          # 协调中枢
 │   ├── product-strategist/    # 产品战略
 │   ├── frontend-specialist/   # 前端开发
@@ -163,49 +163,51 @@ flowchart TD
 
 ## 技能分类
 
+> 共 72 个技能，按领域分类
+
 ### 前端 & UI
 
-`tailwind-patterns` `a11y-patterns` `i18n-patterns` `vue-patterns` `react-patterns` `nextjs-patterns`
+`tailwind-patterns` `a11y-patterns` `i18n-patterns` `nextjs-dev` `vercel-react-best-practices` `markdown-patterns`
 
 ### 后端 & API
 
-`rest-patterns` `graphql-patterns` `express-patterns` `fastapi-patterns` `django-patterns` `python-patterns` `golang-patterns` `rust-patterns`
+`rest-patterns` `graphql-patterns` `express-dev` `fastapi-dev` `python-dev`
 
 ### 移动端
 
-`ios-native-patterns` `android-native-patterns` `react-native-patterns` `mini-program-patterns`
+`ios-native-dev` `android-native-dev` `react-native-dev` `mini-program-dev`
 
 ### 桌面端
 
-`electron-patterns` `tauri-patterns`
+`electron-dev`
 
 ### 支付集成
 
-`stripe-patterns` `alipay-patterns` `wechatpay-patterns` `paypal-patterns`
+`payment-patterns` `stripe-patterns` `alipay-patterns` `wechatpay-patterns` `paypal-patterns` `douyinpay-patterns`
 
 ### 数据 & 缓存
 
-`postgres-patterns` `mongodb-patterns` `clickhouse-io` `redis-patterns` `caching-patterns`
+`postgres-patterns` `mongodb-patterns` `clickhouse-patterns` `redis-patterns` `cache-strategy-patterns` `database-dev`
 
 ### 消息 & 实时
 
-`message-queue-patterns` `realtime-websocket` `webrtc-patterns`
+`message-queue-patterns` `kafka-patterns` `rabbitmq-patterns` `websocket-patterns`
 
 ### 架构 & 工程
 
-`clean-architecture` `ddd-patterns` `cqrs-patterns` `circuit-breaker` `monorepo-patterns`
+`clean-architecture` `ddd-patterns` `cqrs-patterns` `circuit-breaker-patterns` `microservice-patterns` `serverless-patterns`
 
 ### 开发工具
 
-`git-workflow` `docker-patterns` `deployment-patterns` `tdd-workflow` `e2e-testing` `database-migrations`
+`git-patterns` `docker-patterns` `devops-patterns` `tdd-patterns` `e2e-test-patterns` `coding-standards`
 
 ### 基础设施
 
-`background-jobs` `file-storage-patterns` `email-patterns` `rate-limiting` `logging-observability`
+`tasks-patterns` `file-storage-patterns` `email-patterns` `rate-limiting-patterns` `logging-observability-patterns`
 
 ### 其他
 
-`feature-flags` `security-review` `error-handling-patterns` `skill-creator` `analytics-tracking`
+`feature-flags-patterns` `auth-patterns` `error-handling-patterns` `skill-creator` `llm-patterns` `ml-patterns` `etl-patterns` `contract-test-patterns` `shopify-dev`
 
 ---
 
@@ -253,26 +255,13 @@ flowchart LR
 
 ```
 Trae Workflow/
-├── skills/                    # 58+ 技能
+├── skills/                    # 72 技能
 ├── templates/                 # 30+ 模板
 ├── user_rules/                # 用户规则
 ├── cli/                       # CLI 工具
 ├── setup.ps1                  # Windows 安装脚本
 ├── setup.sh                   # Linux/macOS 安装脚本
 └── README.md                  # 项目文档
-```
-
-### 模板目录
-
-```
-templates/
-├── orchestrator/              # 任务看板、通信协议
-├── product-strategist/        # PRD、用户故事
-├── tech-architect/            # 架构设计、ADR
-├── frontend-specialist/       # 组件模板
-├── backend-specialist/        # API 模板
-├── quality-engineer/          # 测试报告
-└── ...
 ```
 
 ---

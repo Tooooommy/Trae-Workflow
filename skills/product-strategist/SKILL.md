@@ -104,30 +104,19 @@ flowchart LR
 1. 接收 orchestrator 任务分配
 2. 分析需求，生成 PRD/用户故事/MVP
 3. 更新 task-board.json 状态
-4. 通知 orchestrator 完成
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项   | 来源                 | 说明         |
+| -------- | -------------------- | ------------ |
+| 任务分配 | orchestrator         | 阶段任务指令 |
+| 项目背景 | project-context.json | 项目元信息   |
+| 用户需求 | 文本输入             | 原始需求描述 |
 
-自动获取：
-
-| 上下文   | 来源              | 用途         |
-| -------- | ----------------- | ------------ |
-| 项目背景 | shared-context    | 理解项目目标 |
-| 历史需求 | decision-registry | 避免重复定义 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家       | 传递内容 | 触发条件   |
-| -------------- | -------- | ---------- |
-| tech-architect | PRD      | 需求确认后 |
-| ux-engineer    | PRD      | 需求确认后 |
-| orchestrator   | 状态更新 | 任务完成   |
+## 输出规范
 
 ### 状态同步
 
@@ -141,6 +130,10 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物     | 模板路径                                                |
+| -------- | ------------------------------------------------------- |
+| PRD      | templates/product-strategist/prd-template.md            |
+| 用户故事 | templates/product-strategist/user-story-template.md     |
+| MVP定义  | templates/product-strategist/mvp-definition-template.md |

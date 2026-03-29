@@ -157,7 +157,7 @@ main() {
     fi
 
     # Calculate total steps
-    total_steps=2
+    total_steps=4
     [[ "$SKIP_SKILLS" == false ]] && ((total_steps++))
     [[ "$SKIP_RULES" == false ]] && ((total_steps++))
 

@@ -87,36 +87,21 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取测试报告和技术方案
-3. 配置 CI/CD 流水线
-4. 执行部署流程
-5. 配置监控告警
-6. 验证服务可用性
-7. 更新 task-board.json 状态
-8. 通知 orchestrator 完成
+2. 执行部署和监控配置
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项 | 来源 | 说明 |
+|--------|------|------|
+| 任务分配 | orchestrator | 阶段任务指令 |
+| 测试报告 | quality-engineer | 质量通过确认 |
+| 源代码 | 开发专家 | 部署对象 |
 
-自动获取：
-
-| 上下文   | 来源             | 用途     |
-| -------- | ---------------- | -------- |
-| 测试报告 | quality-engineer | 部署准入 |
-| 技术方案 | tech-architect   | 部署架构 |
-| 项目状态 | shared-context   | 当前进度 |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家          | 传递内容 | 触发条件 |
-| ----------------- | -------- | -------- |
-| retro-facilitator | 线上服务 | 部署成功 |
-| orchestrator      | 状态更新 | 任务完成 |
+## 输出规范
 
 ### 状态同步
 
@@ -134,9 +119,12 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物 | 模板路径 |
+|------|----------|
+| 部署文档 | templates/devops-engineer/deployment-template.md |
+| 监控配置 | templates/devops-engineer/monitoring-template.md |
 
 ## 质量门禁
 

@@ -98,36 +98,21 @@ flowchart LR
 ## 工作流程
 
 1. 接收 orchestrator 任务分配
-2. 读取 PRD 和技术方案
-3. 设计 UI 界面和交互流程
-4. 创建设计系统和规范
-5. 输出设计稿和交互文档
-6. 更新 task-board.json 状态
-7. 通知 orchestrator 完成
+2. 设计 UI/交互方案
+3. 更新 task-board.json 状态
+4. 通过 nextExpert 传递任务
 
 ---
 
-## 智能协作
+## 输入规范
 
-### 上下文感知
+| 输入项 | 来源 | 说明 |
+|--------|------|------|
+| 任务分配 | orchestrator | 阶段任务指令 |
+| PRD | product-strategist | 功能需求 |
+| 技术方案 | tech-architect | 技术约束 |
 
-自动获取：
-
-| 上下文   | 来源               | 用途         |
-| -------- | ------------------ | ------------ |
-| PRD      | product-strategist | 理解功能需求 |
-| 技术方案 | tech-architect     | 技术约束     |
-| 设计规范 | shared-context     | 一致性保证   |
-
-### 输出传递
-
-完成后自动通知：
-
-| 接收专家            | 传递内容 | 触发条件   |
-| ------------------- | -------- | ---------- |
-| frontend-specialist | 设计稿   | 设计确认后 |
-| mobile-specialist   | 设计稿   | 移动端需求 |
-| orchestrator        | 状态更新 | 任务完成   |
+## 输出规范
 
 ### 状态同步
 
@@ -141,9 +126,13 @@ flowchart LR
 }
 ```
 
-### 协作协议
+### 产物模板
 
-详细协议: `templates/orchestrator/message-protocol.json`
+| 产物 | 模板路径 |
+|------|----------|
+| UI设计 | templates/ux-engineer/ui-design-template.md |
+| 设计系统 | templates/ux-engineer/design-system-template.md |
+| 交互规范 | templates/ux-engineer/interaction-template.md |
 
 ## 上线检查清单
 
