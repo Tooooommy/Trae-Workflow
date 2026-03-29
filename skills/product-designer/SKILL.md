@@ -70,39 +70,22 @@ flowchart LR
    - 阅读项目背景和用户需求
 
 2. **需求分析**
-   - 理解用户角色和使用场景
-   - 识别核心功能和优先级
+   - 理解用户角色和使用场景, 识别核心功能和优先级
+   - 编写PRD需求文档, 输出到 `docs/01-requirements/{project-name}-prd.md`
 
-3. **编写 PRD**
-   - 输出到 `docs/01-requirements/{project-name}-prd.md`
-   - 定义 Epic 和 Feature
-
-4. **需求分解**
+3. **需求分解**
+   - 拆解PRD需求文档为 Epic 和 Feature 层级
    - 创建 Epic 目录: `docs/01-requirements/{epic-name}/README.md`
    - 创建 Feature 目录: `{epic-name}/{feature-name}/README.md`
    - 生成 Specification: `YYYY-MM-DD-{specification-name}.md`
 
-5. **信息架构**
-   - 梳理页面结构和导航流程
-   - 绘制站点地图或页面流程图
+4. **设计规范**
+   - 理解PRD需求文档, 识别功能模块和交互流程
+   - 生成UI 设计文档, 输出到 `docs/02-design/ui-design-*.md`
+   - 生成交互设计文档, 输出到 `docs/02-design/interaction-*.md`
+   - 生成设计系统文档, 输出到 `docs/02-design/design-system-*.md`
 
-6. **交互设计**
-   - 设计用户操作流程
-   - 绘制线框图
-   - 定义交互状态和反馈机制
-
-7. **视觉设计**
-   - 基于项目类型选择布局模式（Hero-Centric/Dashboard/Editorial/E-commerce/Wizard）
-   - 生成完整设计系统（色彩、字体、间距、效果）
-   - 制作高保真设计稿
-   - 建立/维护设计系统文档
-
-8. **原型验证**
-   - 制作可交互原型
-   - 执行设计检查清单（对比度、触摸目标、响应式）
-   - 验证可访问性（WCAG AA标准）
-
-9. **输出文档**
+5. **输出文档**
    - PRD 文档
    - UI 设计文档（含设计稿、标注）
    - 交互规范文档
@@ -125,7 +108,7 @@ flowchart LR
 
 | 文档类型 | 路径格式                            | 说明         |
 | -------- | ----------------------------------- | ------------ |
-| UI设计   | `docs/02-design/ui-design-*.md`     | UI设计文档   |
+| UI设计   | `docs/02-design/ui-design-*.md`     | UI 设计文档  |
 | 交互规范 | `docs/02-design/interaction-*.md`   | 交互设计规范 |
 | 设计系统 | `docs/02-design/design-system-*.md` | 设计系统文档 |
 
@@ -152,59 +135,11 @@ docs/
 
 ## 自检清单
 
-### 需求检查
-
-- [ ] PRD 完整，无 "TBD"/"TODO"
-- [ ] Epic/Feature/Specification 目录结构完整
-- [ ] 每个需求都有可测试的验收标准
-- [ ] Specification 命名符合 `YYYY-MM-DD-{name}.md` 格式
-
-### 设计检查
-
-**可访问性**
-
-- [ ] 颜色对比度 ≥ 4.5:1
-- [ ] 所有图片有 Alt 文本
-- [ ] 表单有标签
-- [ ] 支持键盘导航（Tab顺序合理）
-- [ ] Focus状态可见
-- [ ] 支持 prefers-reduced-motion
-
-**触摸友好**
-
-- [ ] 触摸目标 ≥ 44×44px
-- [ ] 元素间间距 ≥ 8px
-- [ ] 所有可点击元素有 cursor-pointer
-- [ ] 有加载反馈
-- [ ] 错误提示明确
-
-**性能**
-
-- [ ] 图片使用 WebP/AVIF
-- [ ] 开启懒加载
-- [ ] 无布局抖动（CLS < 0.1）
-
-**响应式**
-
-- [ ] 移动端优先
-- [ ] 测试断点: 375px, 768px, 1024px, 1440px
-- [ ] 无水平滚动
-- [ ] 文字不截断
-
-**动效**
-
-- [ ] 过渡时间 150-300ms
-- [ ] Hover状态平滑
-- [ ] 不使用emoji作为图标（用SVG: Heroicons/Lucide）
-
-## 快速参考
-
-| 元素     | 规范      |
-| -------- | --------- |
-| 触摸目标 | ≥ 44×44px |
-| 间距基准 | 8px       |
-| 过渡时间 | 150-300ms |
-| 字体基准 | 16px      |
-| 对比度   | ≥ 4.5:1   |
-| 行高     | 1.5       |
-| 最大行宽 | 65ch      |
+| 类别         | 检查项                                                               |
+| ------------ | -------------------------------------------------------------------- |
+| **需求**     | PRD完整无TBD、目录结构完整、验收标准可测试、命名规范                 |
+| **可访问性** | 对比度≥4.5:1、Alt文本、表单标签、键盘导航、Focus可见、reduced-motion |
+| **触摸友好** | 触摸目标≥44px、间距≥8px、cursor-pointer、加载反馈、错误提示明确      |
+| **性能**     | WebP/AVIF、懒加载、CLS<0.1                                           |
+| **响应式**   | 移动端优先、断点375/768/1024/1440px、无水平滚动、文字不截断          |
+| **动效**     | 过渡150-300ms、Hover平滑、SVG图标(非emoji)                           |
