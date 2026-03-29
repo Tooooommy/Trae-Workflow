@@ -51,30 +51,54 @@ docs/
 
 | 类型 | 来源/输出      | 文档     | 路径                              | 说明         |
 | ---- | -------------- | -------- | --------------------------------- | ------------ |
-| 输入 | orchestrator   | 任务工单 | docs/00-project/task-board.json   | 阶段任务指令 |
 | 输入 | 开发专家       | 源代码   | src/                              | 代码文档提取 |
 | 输入 | tech-architect | 技术方案 | docs/02-design/architecture-\*.md | 架构说明     |
 | 输出 | docs-engineer  | API文档  | docs/03-implementation/api-\*.md  | API接口文档  |
 | 输出 | docs-engineer  | README   | README.md                         | 项目说明文档 |
 | 输出 | docs-engineer  | 更新日志 | CHANGELOG.md                      | 版本变更日志 |
 
-## 协作关系
+## 工作流程
 
 ```mermaid
 flowchart LR
-    A[orchestrator] -->|任务工单| B[docs-engineer]
-    C[开发专家] -->|源代码| B
-    D[tech-architect] -->|技术方案| B
-    B -->|文档| E[docs/]
-    B -->|状态更新| A
+    A[分析需求] --> B[收集素材]
+    B --> C[编写文档]
+    C --> D[审核校对]
+    D --> E[输出文档]
+    E --> F[传递任务]
 ```
 
-## 工作流程
+### 详细步骤
 
-1. 接收 orchestrator 任务分配
-2. 编写和整理项目文档
-3. 更新 task-board.json 状态
-4. 通过 nextExpert 传递任务
+1. **分析需求**
+   - 确定文档类型（API/技术/用户手册）
+   - 明确目标受众
+   - 确定文档范围和深度
+
+2. **收集素材**
+   - 读取源代码，提取接口定义
+   - 读取技术方案，理解架构设计
+   - 收集代码示例和配置说明
+
+3. **编写文档**
+   - 编写 API 文档（接口、参数、返回值、示例）
+   - 编写技术文档（架构、设计、实现细节）
+   - 编写用户手册（功能说明、操作指南）
+   - 更新 README 和 CHANGELOG
+
+4. **审核校对**
+   - 检查语法和拼写
+   - 验证代码示例可运行
+   - 检查链接有效性
+   - 确保与代码版本同步
+
+5. **输出文档**
+   - API 文档: `docs/03-implementation/api-*.md`
+   - README: `README.md`
+   - 更新日志: `CHANGELOG.md`
+
+6. **传递任务**
+   - 通过 nextExpert 将文档传递给 devops-engineer 进行部署
 
 ## 质量门禁
 
