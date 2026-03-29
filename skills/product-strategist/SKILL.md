@@ -56,22 +56,25 @@ flowchart LR
    - 获取项目背景和需求描述
 
 2. **编写 PRD 文档**
-   - 使用 `prd-template.md` 模板
-   - 输出到 `docs/01-requirements/PRD-{project-name}.md`
+   - 输出到 `docs/01-requirements/{project-name}-prd.md`
+   - 在 PRD 中定义所有 Epic 和 Feature
 
-3. **需求分解**
-   - 分析 PRD 中的功能点
+3. **创建 Epic 目录结构**
+   - 为每个 Epic 创建目录: `docs/01-requirements/{epic-name}/`
+   - 创建 Epic README.md，包含 Epic 概述和 Feature 列表
+
+4. **创建 Feature 目录**
+   - 在每个 Epic 目录下创建 Feature 目录: `{epic-name}/{feature-name}/`
+   - 创建 Feature README.md，包含 Feature 概述和 Specification 列表
+
+5. **生成 Specification 文档**
    - 将每个 Feature 拆分为多个 Specification
+   - 命名格式: `{epic-name}/{feature-name}/YYYY-MM-DD-{specification-name}.md`
    - 确定优先级（Must/Should/Could/Won't）
 
-4. **生成规划文档**
-   - 为每个 Specification 创建独立的规划文档
-   - 使用 `plan-template.md` 模板
-   - 命名格式: `docs/01-requirements/plans/YYYY-MM-DD-{feature-name}.md`
+6. **更新 task-board.json 状态**
 
-5. **更新 task-board.json 状态**
-
-6. **通过 nextExpert 传递任务**
+7. **通过 nextExpert 传递任务**
 
 ---
 
@@ -79,19 +82,33 @@ flowchart LR
 
 ### 主要输出
 
-| 文档类型 | 路径格式                                     | 说明         |
-| -------- | -------------------------------------------- | ------------ |
-| PRD      | `docs/01-requirements/PRD-*.md`              | 产品需求文档 |
-| 规划文档 | `docs/01-requirements/plans/YYYY-MM-DD-*.md` | 需求分解规划 |
+| 文档类型      | 路径格式                                                                             | 说明                           |
+| ------------- | ------------------------------------------------------------------------------------ | ------------------------------ |
+| PRD           | `docs/01-requirements/{project-name}-prd.md`                                         | 产品需求文档                   |
+| Epic规划      | `docs/01-requirements/{epic-name}/README.md`                                         | Epic概述和Feature列表          |
+| Feature规划   | `docs/01-requirements/{epic-name}/{feature-name}/README.md`                          | Feature概述和Specification列表 |
+| Specification | `docs/01-requirements/{epic-name}/{feature-name}/YYYY-MM-DD-{specification-name}.md` | 具体需求规格文档               |
 
-### 规划文档命名规则
+### 文档目录结构
 
 ```
-docs/01-requirements/plans/
-├── 2024-01-15-user-authentication.md    # 用户认证功能
-├── 2024-01-15-user-profile.md           # 用户资料功能
-├── 2024-01-16-payment-gateway.md        # 支付网关功能
-└── 2024-01-16-order-management.md       # 订单管理功能
+docs/01-requirements/
+├── user-system-prd.md                    # 主PRD文档
+├── user-system/                          # Epic: 用户系统
+│   ├── README.md                         # Epic概述
+│   ├── user-auth/                        # Feature: 用户认证
+│   │   ├── README.md                     # Feature概述
+│   │   ├── 2024-01-15-email-register.md  # Specification: 邮箱注册
+│   │   ├── 2024-01-15-phone-register.md  # Specification: 手机注册
+│   │   └── 2024-01-16-oauth-login.md     # Specification: 第三方登录
+│   └── user-profile/                     # Feature: 用户资料
+│       ├── README.md
+│       └── 2024-01-17-profile-edit.md
+└── order-system/                         # Epic: 订单系统
+    ├── README.md
+    └── order-create/
+        ├── README.md
+        └── 2024-01-18-cart-checkout.md
 ```
 
 ### 状态同步
@@ -101,21 +118,15 @@ docs/01-requirements/plans/
   "expert": "product-strategist",
   "phase": "phase-2",
   "status": "completed",
-  "artifacts": ["docs/01-requirements/PRD-*.md", "docs/01-requirements/plans/*.md"],
+  "artifacts": [
+    "docs/01-requirements/{project-name}-prd.md",
+    "docs/01-requirements/{epic-name}/README.md",
+    "docs/01-requirements/{epic-name}/{feature-name}/README.md",
+    "docs/01-requirements/{epic-name}/{feature-name}/*.md"
+  ],
   "nextExpert": ["tech-architect", "ux-engineer"]
 }
 ```
-
----
-
-## 模板文件
-
-位置: `templates/product-strategist/`
-
-| 模板             | 说明             |
-| ---------------- | ---------------- |
-| prd-template.md  | PRD文档模板      |
-| plan-template.md | 需求分解规划模板 |
 
 ---
 
@@ -148,9 +159,11 @@ flowchart LR
 完成工作后，自我审查：
 
 - [ ] **PRD 完整**: 产品需求文档已编写完成
+- [ ] **Epic 目录**: 每个 Epic 都有独立的目录和 README.md
+- [ ] **Feature 目录**: 每个 Feature 都有独立的目录和 README.md
 - [ ] **需求分解**: 所有 Feature 已拆分为 Specification
-- [ ] **规划文档**: 每个 Specification 都有对应的规划文档
-- [ ] **命名规范**: 规划文档使用 `YYYY-MM-DD-{feature-name}.md` 格式
-- [ ] **路径正确**: 规划文档保存在 `docs/01-requirements/plans/` 目录下
+- [ ] **Specification 文档**: 每个 Specification 都有对应的文档
+- [ ] **命名规范**: Specification 使用 `YYYY-MM-DD-{specification-name}.md` 格式
+- [ ] **路径正确**: 文档保存在 `docs/01-requirements/{epic-name}/{feature-name}/` 目录下
 - [ ] **无占位符**: 没有 "TBD", "TODO", "稍后" 等模糊内容
 - [ ] **验收标准**: 每个需求都有可测试的验收标准
