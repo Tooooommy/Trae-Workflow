@@ -100,12 +100,12 @@ flowchart TD
 
 ### 快速对照表
 
-| 流程            | 触发关键词                     | 阶段数 | 核心原则             | 典型场景   |
-| --------------- | ------------------------------ | ------ | -------------------- | ---------- |
-| 🔵 **完整流程** | 新功能、开发、实现、构建、创建 | 7阶段  | 内建质量、强制闭环   | 新功能开发 |
-| 🟡 **修复流程** | 修复、Bug、缺陷、问题、错误    | 3阶段  | 安全扫描、知识沉淀   | Bug修复    |
-| 🟢 **快速通道** | 更新、修改、配置、调整、优化   | 2阶段  | 自动卡点、透明化     | 配置变更   |
-| 🔴 **紧急流程** | 紧急、故障、生产、P0、线上问题 | 3阶段  | 止损优先、24小时复盘 | 生产故障   |
+| 流程         | 触发关键词                     | 阶段数 | 核心原则             | 典型场景   |
+| ------------ | ------------------------------ | ------ | -------------------- | ---------- |
+| **完整流程** | 新功能、开发、实现、构建、创建 | 7阶段  | 内建质量、强制闭环   | 新功能开发 |
+| **修复流程** | 修复、Bug、缺陷、问题、错误    | 3阶段  | 安全扫描、知识沉淀   | Bug修复    |
+| **快速通道** | 更新、修改、配置、调整、优化   | 2阶段  | 自动卡点、透明化     | 配置变更   |
+| **紧急流程** | 紧急、故障、生产、P0、线上问题 | 3阶段  | 止损优先、24小时复盘 | 生产故障   |
 
 ### 流程选择决策树
 
@@ -138,39 +138,40 @@ flowchart TD
 flowchart TD
     A[1.需求解析<br/>project-manager] --> B{需求明确?}
     B -->|否| A
-    B -->|是| C[2.产品设计<br/>product-designer]
-    C --> D[PRD文档]
-    D --> E[3.架构设计<br/>tech-architect]
-    E --> F{方案评审}
-    F -->|通过| G[4.并行开发<br/>dev-engineer]
-    F -->|不通过| C
+    B -->|是| C[生成项目上下文]
+    C --> D[2.产品设计<br/>product-designer]
+    D --> E[PRD文档]
+    E --> F[3.架构设计<br/>tech-architect]
+    F --> G{方案评审}
+    G -->|通过| H[4.并行开发<br/>dev-engineer]
+    G -->|不通过| D
 
-    G --> H[5.质量保障<br/>quality-engineer]
-    H -->|Bug| G
-    H -->|通过| I[6.安全审计<br/>security-auditor]
-    I -->|漏洞| G
-    I -->|通过| J[7.部署上线<br/>devops-engineer]
+    H --> I[5.质量保障<br/>quality-engineer]
+    I -->|Bug| H
+    I -->|通过| J[6.安全审计<br/>security-auditor]
+    J -->|漏洞| H
+    J -->|通过| K[7.部署上线<br/>devops-engineer]
 
-    J --> K[8.闭环迭代<br/>retro-facilitator]
-    K --> L[知识沉淀]
-    L --> M[优化流程]
-    M --> A
+    K --> L[8.闭环迭代<br/>retro-facilitator]
+    L --> M[知识沉淀]
+    M --> N[优化流程]
+    N --> A
 
     subgraph "设计阶段"
-        C --> D --> E
+        D --> E --> F
     end
 
     subgraph "开发质量闭环"
-        G
         H
         I
+        J
     end
 ```
 
 | 阶段       | 专家                              | 输入         | 输出               | 并行/串行 | 异常处理          |
 | ---------- | --------------------------------- | ------------ | ------------------ | --------- | ----------------- |
-| 1.需求解析 | project-manager                   | 用户需求     | 明确的需求描述     | 串行      | 不明确→返回澄清   |
-| 2.产品设计 | product-designer                  | 需求描述     | PRD文档            | 串行      | 未确认→返回重定   |
+| 1.需求解析 | project-manager                   | 用户需求     | 项目上下文文档     | 串行      | 不明确→返回澄清   |
+| 2.产品设计 | product-designer                  | 项目上下文   | PRD文档            | 串行      | 未确认→返回重定   |
 | 3.架构设计 | tech-architect + security-auditor | PRD文档      | 技术方案、安全规范 | 串行      | 评审不通过→重设计 |
 | 4.并行开发 | dev-engineer + docs-engineer      | PRD+技术方案 | 源代码、文档       | 串行      | 测试失败→返回修复 |
 | 5.质量保障 | quality-engineer                  | 源代码       | 测试报告           | **并行**  | Bug→返回开发      |
@@ -301,12 +302,13 @@ flowchart LR
 
 ### 自动记录
 
-| 记录类型 | 存储位置                             |
-| -------- | ------------------------------------ |
-| 决策记录 | `docs/00-project/decision-registry/` |
-| 工作日志 | `docs/00-project/workflow-log.md`    |
-| 任务看板 | `docs/00-project/task-board.json`    |
-| 经验沉淀 | `docs/00-project/knowledge-graph.md` |
+| 记录类型   | 存储位置                             | 说明                                 | 生成阶段 |
+| ---------- | ------------------------------------ | ------------------------------------ | -------- |
+| 项目上下文 | `docs/00-project/project-context.md` | 需求解析产出，供product-designer使用 | 阶段1    |
+| 决策记录   | `docs/00-project/decision-registry/` | 关键决策记录                         | 全程     |
+| 工作日志   | `docs/00-project/workflow-log.md`    | 执行过程记录                         | 全程     |
+| 任务看板   | `docs/00-project/task-board.json`    | 任务状态跟踪                         | 全程     |
+| 经验沉淀   | `docs/00-project/knowledge-graph.md` | 知识库更新                           | 阶段8    |
 
 ### 反馈闭环
 
@@ -327,17 +329,33 @@ flowchart LR
 
 ```
 docs/
-├── 00-project/              # 项目管理（自动记录）
-│   ├── task-board.json      # 任务看板
-│   ├── workflow-log.md      # 执行日志
-│   ├── decision-registry/   # 决策记录
-│   └── knowledge-graph.md   # 知识图谱
-├── 01-requirements/         # 需求文档
-├── 02-design/              # 设计文档
-├── 03-implementation/      # 实现文档
-├── 04-testing/             # 测试文档
-└── 05-deployment/          # 部署文档
+├── 00-project/                    # 项目管理（project-manager维护）
+│   ├── project-context.md         # 项目上下文（阶段1产出）⭐
+│   ├── task-board.json            # 任务看板
+│   ├── workflow-log.md            # 执行日志
+│   ├── decision-registry/         # 决策记录
+│   └── knowledge-graph.md         # 知识图谱
+├── 01-requirements/               # 需求文档（product-designer维护）
+│   ├── {project-name}-prd.md      # PRD文档（阶段2产出）⭐
+│   └── {epic-name}/
+│       ├── README.md
+│       └── {feature-name}/
+│           ├── README.md
+│           └── YYYY-MM-DD-{spec}.md
+├── 02-design/                     # 设计文档（tech-architect维护）
+│   ├── architecture.md            # 架构设计（阶段3产出）⭐
+│   ├── api-design.md
+│   └── database-schema.md
+├── 03-implementation/             # 实现文档（dev-engineer维护）
+├── 04-testing/                    # 测试文档（quality-engineer维护）
+└── 05-deployment/                 # 部署文档（devops-engineer维护）
 ```
+
+**关键产出文档**（⭐标记）：
+
+- **阶段1** - project-manager → `project-context.md`
+- **阶段2** - product-designer → `{project-name}-prd.md`
+- **阶段3** - tech-architect → `architecture.md`
 
 ---
 
@@ -345,10 +363,11 @@ docs/
 
 位置: `templates/project-manager/`
 
-| 模板                          | 说明           |
-| ----------------------------- | -------------- |
-| task-board-template.json      | 任务看板模板   |
-| project-context-template.json | 项目上下文模板 |
+| 模板                          | 说明               | 使用场景                                           |
+| ----------------------------- | ------------------ | -------------------------------------------------- |
+| project-context-template.md   | 项目上下文文档模板 | 阶段1：project-manager生成，供product-designer使用 |
+| task-board-template.json      | 任务看板模板       | 全程：跟踪任务状态                                 |
+| project-context-template.json | 项目上下文JSON模板 | 可选：结构化项目数据                               |
 
 ---
 
@@ -365,22 +384,26 @@ docs/
 **自动执行**：
 
 ```
-阶段1: 解析需求 → 创建任务工单
-阶段2: product-designer → PRD完成
-阶段3: tech-architect → 技术方案完成
-阶段4: frontend + backend 并行开发
-阶段5: quality-engineer → 测试通过
-阶段6: devops-engineer → 部署成功
-阶段7: 闭环迭代 → 项目完成
+阶段1: project-manager 解析需求 → 生成项目上下文文档
+阶段2: product-designer 分析拆解 → 生成 PRD 文档
+阶段3: tech-architect 架构设计 → 生成技术方案
+阶段4: dev-engineer 并行开发 → 输出源代码
+阶段5: quality-engineer 质量保障 → 测试通过
+阶段6: security-auditor 安全审计 → 安全通过
+阶段7: devops-engineer 部署上线 → 服务上线
+阶段8: retro-facilitator 闭环迭代 → 知识沉淀
 ```
 
 **自动产出**：
 
 ```
 docs/
-├── 01-requirements/user-management-prd.md
+├── 00-project/
+│   └── project-context.md          # 项目上下文（阶段1产出）
+├── 01-requirements/
+│   └── user-management-prd.md      # PRD文档（阶段2产出）
 ├── 02-design/
-│   ├── architecture.md
+│   ├── architecture.md             # 架构设计（阶段3产出）
 │   ├── api-design.md
 │   └── database-schema.md
 └── 03-implementation/
