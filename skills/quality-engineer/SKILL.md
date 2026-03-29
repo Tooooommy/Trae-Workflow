@@ -47,29 +47,13 @@ description: 质量工程师专家模式。负责测试策略、测试用例设�
 
 ## 输入输出
 
-### 输入
-
-| 来源           | 文档     | 路径                                  |
-| -------------- | -------- | ------------------------------------- |
-| orchestrator   | 任务工单 | docs/00-project/task-board.json |
-| 各开发专家     | 源代码   | src/                                  |
-| tech-architect | 技术方案 | docs/02-design/architecture-\*.md     |
-
-### 输出
-
-| 文档     | 路径                                 | 模板                       |
-| -------- | ------------------------------------ | -------------------------- |
-| 测试报告 | docs/04-testing/test-report-\*.md    | test-report-template.md    |
-| 质量报告 | docs/04-testing/quality-report-\*.md | quality-report-template.md |
-
-### 模板文件
-
-位置: `templates/quality-engineer/`
-
-| 模板                       | 说明         |
-| -------------------------- | ------------ |
-| test-report-template.md    | 测试报告模板 |
-| quality-report-template.md | 质量报告模板 |
+| 类型 | 来源/输出        | 文档     | 路径                                 | 说明         |
+| ---- | ---------------- | -------- | ------------------------------------ | ------------ |
+| 输入 | orchestrator     | 任务工单 | docs/00-project/task-board.json      | 阶段任务指令 |
+| 输入 | 各开发专家       | 源代码   | src/                                 | 待测试代码   |
+| 输入 | tech-architect   | 技术方案 | docs/02-design/architecture-\*.md    | 技术约束     |
+| 输出 | quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md    | 测试报告文档 |
+| 输出 | quality-engineer | 质量报告 | docs/04-testing/quality-report-\*.md | 质量报告文档 |
 
 ## 协作关系
 
@@ -88,44 +72,6 @@ flowchart LR
 2. 执行测试和质量检查
 3. 更新 task-board.json 状态
 4. 通过 nextExpert 传递任务
-
----
-
-## 输入规范
-
-| 输入项     | 来源                | 说明         |
-| ---------- | ------------------- | ------------ |
-| 任务分配   | orchestrator        | 阶段任务指令 |
-| 前端代码   | frontend-specialist | 待测试代码   |
-| 后端代码   | backend-specialist  | 待测试代码   |
-| 移动端代码 | mobile-specialist   | 待测试代码   |
-
-## 输出规范
-
-### 状态同步
-
-```json
-{
-  "expert": "quality-engineer",
-  "phase": "phase-5",
-  "status": "completed",
-  "artifacts": ["docs/04-testing/test-report-*.md"],
-  "metrics": {
-    "testCoverage": 0,
-    "passedTests": 0,
-    "failedTests": 0
-  },
-  "qualityGate": "passed|failed",
-  "nextExpert": ["devops-engineer"]
-}
-```
-
-### 产物模板
-
-| 产物     | 模板路径                                              |
-| -------- | ----------------------------------------------------- |
-| 测试报告 | templates/quality-engineer/test-report-template.md    |
-| 质量报告 | templates/quality-engineer/quality-report-template.md |
 
 ## 质量门禁
 
