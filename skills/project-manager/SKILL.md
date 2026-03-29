@@ -62,7 +62,7 @@ flowchart TD
 
 技能本身会告诉你属于哪种类型。
 
-## 任务路由
+## 任务路由（优化版）
 
 ```mermaid
 flowchart TD
@@ -72,22 +72,34 @@ flowchart TD
     B -->|更新/修改/配置| E[快速通道]
     B -->|紧急/故障/生产问题| F[紧急流程]
 
-    C --> C1[需求与设计<br/>product/tech/ux]
-    C1 --> C2[开发与内建质量<br/>dev/quality/security]
-    C2 --> C3[集成与审计<br/>devops/security/quality]
-    C3 --> C4[发布与沉淀<br/>devops/docs]
-    C4 --> C5[复盘与改进<br/>retro]
+    C --> C1[需求解析<br/>project-manager]
+    C1 --> C2{并行设计}
+    C2 --> C2a[产品定义<br/>product-designer]
+    C2 --> C2b[架构设计<br/>tech-architect + security]
+    C2a & C2b --> C3{方案评审}
+    C3 -->|通过| C4[并行开发<br/>dev-engineer + docs]
+    C3 -->|不通过| C2
+    C4 --> C5{并行质量保障}
+    C5 --> C5a[功能测试<br/>quality-engineer]
+    C5 --> C5b[安全审计<br/>security-auditor]
+    C5a & C5b --> C6[部署上线<br/>devops-engineer]
+    C6 --> C7[复盘改进<br/>retro-facilitator]
+    C7 --> C8[知识沉淀<br/>docs-engineer]
 
-    D --> D1[评估与定案<br/>project-manager/tech/dev/quality]
-    D1 --> D2[修复与验证<br/>dev/quality/security]
-    D2 --> D3[部署与同步<br/>devops/docs]
+    D --> D1[评估定案<br/>project-manager]
+    D1 --> D2[修复验证<br/>dev + quality + security]
+    D2 --> D3[部署同步<br/>devops + docs]
 
-    E --> E1[执行与自检<br/>对应专家]
-    E1 --> E2[记录与通知<br/>系统]
+    E --> E1[执行自检<br/>对应专家]
+    E1 --> E2[记录通知<br/>project-manager]
 
-    F --> F1[响应与止损<br/>5分钟/30分钟]
-    F1 --> F2[排查与修复<br/>tech/dev/quality]
-    F2 --> F3[复盘与加固<br/>24小时内]
+    F --> F1[响应止损<br/>5分钟/30分钟]
+    F1 --> F2[排查修复<br/>tech + dev + security]
+    F2 --> F3[复盘加固<br/>24小时内]
+
+    subgraph "完整流程 - 7阶段"
+        C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7 --> C8
+    end
 ```
 
 | 流程     | 触发词             | 阶段  | 核心原则             |
@@ -97,62 +109,125 @@ flowchart TD
 | **通道** | 更新、修改、配置   | 2阶段 | 自动卡点、透明化     |
 | **紧急** | 紧急、故障、生产   | 3阶段 | 止损优先、24小时复盘 |
 
-## 7阶段工作流
+## 7阶段工作流（优化版）
 
 ```mermaid
-flowchart LR
-    A[1.需求解析<br/>project-manager] --> B[2.产品定义<br/>product-designer]
-    B --> C[3.架构设计<br/>tech/security]
-    C --> D[4.并行开发<br/>dev-engineer]
-    D --> E[5.质量保障<br/>quality]
-    E --> F[6.部署上线<br/>devops]
-    F --> G[7.闭环迭代<br/>retro]
+flowchart TD
+    A[1.需求解析<br/>project-manager] --> B{任务分解}
+    B --> C[2a.产品定义<br/>product-designer]
+    B --> D[2b.架构设计<br/>tech-architect]
+    C & D --> E{方案评审}
+    E -->|通过| F[3.并行开发<br/>dev-engineer]
+    E -->|不通过| B
 
-    E -.->|测试失败| D
-    G -.->|改进任务| A
+    F --> G[4.质量保障<br/>quality-engineer]
+    G -->|Bug| F
+    G -->|通过| H[5.安全审计<br/>security-auditor]
+    H -->|漏洞| F
+    H -->|通过| I[6.部署上线<br/>devops-engineer]
+
+    I --> J[7.闭环迭代<br/>retro-facilitator]
+    J --> K[知识沉淀]
+    K --> L[优化流程]
+    L --> A
+
+    subgraph "并行设计阶段"
+        C
+        D
+    end
+
+    subgraph "开发质量闭环"
+        F
+        G
+        H
+    end
 ```
 
-| 阶段   | 专家             | 输入         | 输出         | 异常处理          |
-| ------ | ---------------- | ------------ | ------------ | ----------------- |
-| 1.需求 | project-manager  | 用户需求     | 任务工单     | 不明确→返回补充   |
-| 2.产品 | product-designer | 任务工单     | PRD、设计稿  | 未确认→返回重定   |
-| 3.架构 | tech + security  | PRD、设计稿  | 技术方案     | 评审不通过→重设计 |
-| 4.开发 | dev-engineer     | 技术方案     | 源代码、测试 | 测试失败→返回修复 |
-| 5.质量 | quality          | 源代码       | 测试报告     | -                 |
-| 6.部署 | devops           | 测试通过代码 | 线上服务     | 失败→排查重试     |
-| 7.闭环 | retro            | 线上服务     | 改进任务     | 创建任务→跟踪     |
+| 阶段        | 专家                              | 输入         | 输出               | 并行/串行 | 异常处理          |
+| ----------- | --------------------------------- | ------------ | ------------------ | --------- | ----------------- |
+| 1.需求解析  | project-manager                   | 用户需求     | 任务工单           | 串行      | 不明确→返回补充   |
+| 2a.产品定义 | product-designer                  | 任务工单     | PRD、原型          | **并行**  | 未确认→返回重定   |
+| 2b.架构设计 | tech-architect + security-auditor | 任务工单     | 技术方案、安全规范 | **并行**  | 评审不通过→重设计 |
+| 3.并行开发  | dev-engineer + docs-engineer      | PRD+技术方案 | 源代码、文档       | 串行      | 测试失败→返回修复 |
+| 4.质量保障  | quality-engineer                  | 源代码       | 测试报告           | **并行**  | Bug→返回开发      |
+| 5.安全审计  | security-auditor                  | 源代码       | 安全报告           | **并行**  | 漏洞→返回修复     |
+| 6.部署上线  | devops-engineer                   | 测试通过代码 | 线上服务           | 串行      | 失败→排查重试     |
+| 7.闭环迭代  | retro-facilitator                 | 项目数据     | 改进任务           | 串行      | 创建任务→跟踪     |
+
+### 流程优化亮点
+
+1. **并行设计**：产品定义与架构设计并行，缩短前期周期
+2. **安全左移**：安全审计从架构阶段介入，开发中持续扫描
+3. **质量内建**：测试与开发并行，Bug即时反馈修复
+4. **文档同步**：docs-engineer贯穿全程，实时更新文档
 
 ---
 
-## 协作架构
+## 协作架构（优化版）
 
-### 专家分层
+### 专家分层与协作关系
 
 ```mermaid
 flowchart TB
-    subgraph 调度层
-        O[orchestrator<br/>协调中枢]
+    subgraph 调度层["📋 调度层"]
+        PM[project-manager<br/>项目经理]
     end
-    subgraph 产品层
-        PD[product-designer]
+
+    subgraph 设计层["🎨 设计层（并行）"]
+        PD[product-designer<br/>产品设计师]
+        TA[tech-architect<br/>技术架构师]
+        SA1[security-auditor<br/>安全架构]
     end
-    subgraph 架构层
-        TA[tech-architect] --- SA[security-auditor]
+
+    subgraph 实现层["💻 实现层"]
+        DEV[dev-engineer<br/>开发工程师]
+        DO[docs-engineer<br/>文档工程师]
     end
-    subgraph 开发层
-        DEV[dev-engineer]
+
+    subgraph 质量层["✅ 质量层（并行）"]
+        QE[quality-engineer<br/>质量工程师]
+        SA2[security-auditor<br/>安全审计]
     end
-    subgraph 质量层
-        QE[quality-engineer] --- DO[docs-engineer]
+
+    subgraph 交付层["🚀 交付层"]
+        DE[devops-engineer<br/>DevOps工程师]
     end
-    subgraph 运维层
-        DE[devops-engineer] --> RF[retro-facilitator]
+
+    subgraph 改进层["📈 改进层"]
+        RF[retro-facilitator<br/>复盘主持人]
     end
-    O --> PD
-    PD --> TA
-    TA --> DEV
-    QE --> DE
+
+    PM -->|调度| PD
+    PM -->|调度| TA
+    PD <-->|方案对齐| TA
+    TA <-->|安全规范| SA1
+
+    PD -->|PRD| DEV
+    TA -->|技术方案| DEV
+    SA1 -->|安全规范| DEV
+    DEV <-->|文档同步| DO
+
+    DEV -->|代码| QE
+    DEV -->|代码| SA2
+    QE <-->|Bug反馈| DEV
+    SA2 <-->|漏洞修复| DEV
+
+    QE -->|测试通过| DE
+    SA2 -->|安全通过| DE
+
+    DE -->|上线完成| RF
+    RF -->|改进建议| PM
 ```
+
+### 协作原则
+
+| 原则         | 说明                   | 实践                 |
+| ------------ | ---------------------- | -------------------- |
+| **并行协作** | 产品设计与架构设计并行 | 缩短前期周期 30-50%  |
+| **安全左移** | 安全从架构阶段介入     | 减少后期漏洞修复成本 |
+| **质量内建** | 测试与开发并行         | Bug发现即修复        |
+| **文档同步** | 文档与代码同步更新     | 避免文档滞后         |
+| **持续反馈** | 各阶段即时反馈         | 快速迭代优化         |
 
 ## 质量门禁
 
