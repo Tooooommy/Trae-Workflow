@@ -1,9 +1,9 @@
 ---
-name: orchestrator
-description: 协调中枢专家。团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调。解析用户需求，按顺序调用或并行触发相应的 Skills。**必须激活当**：用户提出任何开发需求、任务请求或问题时。
+name: project-manager
+description: 项目经理专家。团队的智能中枢，负责任务分解、资源调度、进度同步与风险协调。解析用户需求，按顺序调用或并行触发相应的 Skills。**必须激活当**：用户提出任何开发需求、任务请求或问题时。
 ---
 
-# 协调中枢专家
+# 项目经理专家
 
 > 团队的智能中枢、胶水和催化剂，确保AI专家团队能高效协同
 
@@ -78,7 +78,7 @@ flowchart TD
     C3 --> C4[发布与沉淀<br/>devops/docs]
     C4 --> C5[复盘与改进<br/>retro]
 
-    D --> D1[评估与定案<br/>orchestrator/tech/dev/quality]
+    D --> D1[评估与定案<br/>project-manager/tech/dev/quality]
     D1 --> D2[修复与验证<br/>dev/quality/security]
     D2 --> D3[部署与同步<br/>devops/docs]
 
@@ -101,7 +101,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A[1.需求解析<br/>orchestrator] --> B[2.产品定义<br/>product-designer]
+    A[1.需求解析<br/>project-manager] --> B[2.产品定义<br/>product-designer]
     B --> C[3.架构设计<br/>tech/security]
     C --> D[4.并行开发<br/>dev-engineer]
     D --> E[5.质量保障<br/>quality]
@@ -114,7 +114,7 @@ flowchart LR
 
 | 阶段   | 专家             | 输入         | 输出         | 异常处理          |
 | ------ | ---------------- | ------------ | ------------ | ----------------- |
-| 1.需求 | orchestrator     | 用户需求     | 任务工单     | 不明确→返回补充   |
+| 1.需求 | project-manager  | 用户需求     | 任务工单     | 不明确→返回补充   |
 | 2.产品 | product-designer | 任务工单     | PRD、设计稿  | 未确认→返回重定   |
 | 3.架构 | tech + security  | PRD、设计稿  | 技术方案     | 评审不通过→重设计 |
 | 4.开发 | dev-engineer     | 技术方案     | 源代码、测试 | 测试失败→返回修复 |
@@ -244,7 +244,7 @@ docs/
 
 ## 模板文件
 
-位置: `templates/orchestrator/`
+位置: `templates/project-manager/`
 
 | 模板                          | 说明           |
 | ----------------------------- | -------------- |

@@ -1,13 +1,13 @@
 ---
 name: devops-engineer
-description: DevOps工程师专家模式。负责CI/CD、部署自动化、监控告警、基础设施管理。优先由 orchestrator 调度激活。
+description: DevOps工程师专家模式。负责CI/CD、部署自动化、监控告警、基础设施管理。优先由 project-manager 调度激活。
 ---
 
 # DevOps工程师专家模式
 
 ## 何时激活
 
-**优先由 orchestrator 调度激活**（阶段6：部署上线）
+**优先由 project-manager 调度激活**（阶段6：部署上线）
 
 | 触发场景  | 说明             |
 | --------- | ---------------- |

@@ -90,7 +90,7 @@ ls ~/.trae-cn/skills  # Linux/macOS
 dir $env:USERPROFILE\.trae-cn\skills  # Windows
 
 # 重启 Trae IDE 后测试
-# - orchestrator - 开始新项目
+# - project-manager - 开始新项目
 # - tdd-patterns - TDD 工作流
 # - quality-engineer - 代码审查
 ```
@@ -112,7 +112,7 @@ dir $env:USERPROFILE\.trae-cn\skills  # Windows
 ```
 ~/.trae-cn/
 ├── skills/                    # 技能目录（70+ 技能）
-│   ├── orchestrator/          # 协调中枢
+│   ├── project-manager/       # 项目经理
 │   ├── product-strategist/    # 产品战略
 │   ├── dev-engineer/          # 开发工程师
 │   └── ...
@@ -134,11 +134,11 @@ dir $env:USERPROFILE\.trae-cn\skills  # Windows
 
 ### 协调中枢
 
-**orchestrator** - 智能中枢，负责任务分解、资源调度、进度同步
+**project-manager** - 项目经理，负责任务分解、资源调度、进度同步
 
 ```mermaid
 flowchart TD
-    User[用户需求] --> O[orchestrator]
+    User[用户需求] --> O[project-manager]
     O --> P[product-designer]
     O --> T[tech-architect]
     O --> D[dev-engineer]
@@ -149,13 +149,13 @@ flowchart TD
 
 ### 专家分工
 
-| 类型     | 专家                                               | 职责                           |
-| -------- | -------------------------------------------------- | ------------------------------ |
-| **产品** | product-designer                                   | 产品规划、PRD、交互/视觉设计   |
-| **架构** | tech-architect                                     | 技术选型、架构设计             |
-| **开发** | dev-engineer                                       | 前端、后端、移动端开发         |
-| **质量** | quality-engineer, security-auditor, docs-engineer  | 测试、安全、文档               |
-| **运维** | devops-engineer, retro-facilitator                 | CI/CD、复盘总结                |
+| 类型     | 专家                                              | 职责                         |
+| -------- | ------------------------------------------------- | ---------------------------- |
+| **产品** | product-designer                                  | 产品规划、PRD、交互/视觉设计 |
+| **架构** | tech-architect                                    | 技术选型、架构设计           |
+| **开发** | dev-engineer                                      | 前端、后端、移动端开发       |
+| **质量** | quality-engineer, security-auditor, docs-engineer | 测试、安全、文档             |
+| **运维** | devops-engineer, retro-facilitator                | CI/CD、复盘总结              |
 
 ---
 
@@ -239,7 +239,7 @@ flowchart LR
 
 | 阶段        | 专家              | 产出        |
 | ----------- | ----------------- | ----------- |
-| 1. 需求解析 | orchestrator      | 任务工单    |
+| 1. 需求解析 | project-manager   | 任务工单    |
 | 2. 产品定义 | product-designer  | PRD、设计稿 |
 | 3. 架构设计 | tech-architect    | 技术方案    |
 | 4. 并行开发 | dev-engineer      | 源代码      |

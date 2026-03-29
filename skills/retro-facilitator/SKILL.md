@@ -1,13 +1,13 @@
 ---
 name: retro-facilitator
-description: 复盘专家模式。负责项目复盘、经验总结、改进建议、知识沉淀。优先由 orchestrator 调度激活。
+description: 复盘专家模式。负责项目复盘、经验总结、改进建议、知识沉淀。优先由 project-manager 调度激活。
 ---
 
 # 复盘专家模式
 
 ## 何时激活
 
-**优先由 orchestrator 调度激活**（阶段7：闭环迭代）
+**优先由 project-manager 调度激活**（阶段7：闭环迭代）
 
 | 触发场景 | 说明           |
 | -------- | -------------- |

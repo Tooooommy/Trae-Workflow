@@ -1,13 +1,13 @@
 ---
 name: docs-engineer
-description: 文档工程师专家模式。负责技术文档编写、API文档、用户手册。优先由 orchestrator 调度激活。
+description: 文档工程师专家模式。负责技术文档编写、API文档、用户手册。优先由 project-manager 调度激活。
 ---
 
 # 文档工程师专家模式
 
 ## 何时激活
 
-**优先由 orchestrator 调度激活**（阶段5-7：质量保障/部署/迭代）
+**优先由 project-manager 调度激活**（阶段5-7：质量保障/部署/迭代）
 
 | 触发场景 | 说明         |
 | -------- | ------------ |

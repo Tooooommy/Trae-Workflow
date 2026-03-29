@@ -127,7 +127,7 @@
 
 - PRD: `docs/01-requirements/prd-v1.0.md`
 - 技术方案: `docs/02-design/system-architecture.md`
-- 工作流日志: `.ai-team/orchestrator/workflow-log.md`
+- 工作流日志: `.ai-team/project-manager/workflow-log.md`
 
 ### 反馈收集
 

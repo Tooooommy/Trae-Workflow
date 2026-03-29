@@ -1,13 +1,13 @@
 ---
 name: quality-engineer
-description: 质量工程师专家模式。负责测试策略、测试用例设计、测试执行、质量报告。优先由 orchestrator 调度激活。
+description: 质量工程师专家模式。负责测试策略、测试用例设计、测试执行、质量报告。优先由 project-manager 调度激活。
 ---
 
 # 质量工程师专家模式
 
 ## 何时激活
 
-**优先由 orchestrator 调度激活**（阶段5：质量保障）
+**优先由 project-manager 调度激活**（阶段5：质量保障）
 
 | 触发场景 | 说明               |
 | -------- | ------------------ |

@@ -1,13 +1,13 @@
 ---
 name: security-auditor
-description: 安全审计专家模式。负责安全审计、漏洞扫描、安全策略制定。优先由 orchestrator 调度激活。
+description: 安全审计专家模式。负责安全审计、漏洞扫描、安全策略制定。优先由 project-manager 调度激活。
 ---
 
 # 安全审计专家模式
 
 ## 何时激活
 
-**优先由 orchestrator 调度激活**（阶段3/5：架构设计/质量保障）
+**优先由 project-manager 调度激活**（阶段3/5：架构设计/质量保障）
 
 | 触发场景 | 说明         |
 | -------- | ------------ |
