@@ -138,45 +138,45 @@ flowchart TD
 flowchart TD
     A[1.需求解析<br/>project-manager] --> B{需求明确?}
     B -->|否| A
-    B -->|是| C[2a.产品定义<br/>product-designer]
-    B -->|是| D[2b.架构设计<br/>tech-architect]
-    C & D --> E{方案评审}
-    E -->|通过| F[3.并行开发<br/>dev-engineer]
-    E -->|不通过| C
+    B -->|是| C[2.产品设计<br/>product-designer]
+    C --> D[PRD文档]
+    D --> E[3.架构设计<br/>tech-architect]
+    E --> F{方案评审}
+    F -->|通过| G[4.并行开发<br/>dev-engineer]
+    F -->|不通过| C
 
-    F --> G[4.质量保障<br/>quality-engineer]
-    G -->|Bug| F
-    G -->|通过| H[5.安全审计<br/>security-auditor]
-    H -->|漏洞| F
-    H -->|通过| I[6.部署上线<br/>devops-engineer]
+    G --> H[5.质量保障<br/>quality-engineer]
+    H -->|Bug| G
+    H -->|通过| I[6.安全审计<br/>security-auditor]
+    I -->|漏洞| G
+    I -->|通过| J[7.部署上线<br/>devops-engineer]
 
-    I --> J[7.闭环迭代<br/>retro-facilitator]
-    J --> K[知识沉淀]
-    K --> L[优化流程]
-    L --> A
+    J --> K[8.闭环迭代<br/>retro-facilitator]
+    K --> L[知识沉淀]
+    L --> M[优化流程]
+    M --> A
 
-    subgraph "并行设计阶段"
-        C
-        D
+    subgraph "设计阶段"
+        C --> D --> E
     end
 
     subgraph "开发质量闭环"
-        F
         G
         H
+        I
     end
 ```
 
-| 阶段        | 专家                              | 输入         | 输出               | 并行/串行 | 异常处理          |
-| ----------- | --------------------------------- | ------------ | ------------------ | --------- | ----------------- |
-| 1.需求解析  | project-manager                   | 用户需求     | 明确的需求描述     | 串行      | 不明确→返回澄清   |
-| 2a.产品定义 | product-designer                  | 需求描述     | PRD、原型          | **并行**  | 未确认→返回重定   |
-| 2b.架构设计 | tech-architect + security-auditor | 需求描述     | 技术方案、安全规范 | **并行**  | 评审不通过→重设计 |
-| 3.并行开发  | dev-engineer + docs-engineer      | PRD+技术方案 | 源代码、文档       | 串行      | 测试失败→返回修复 |
-| 4.质量保障  | quality-engineer                  | 源代码       | 测试报告           | **并行**  | Bug→返回开发      |
-| 5.安全审计  | security-auditor                  | 源代码       | 安全报告           | **并行**  | 漏洞→返回修复     |
-| 6.部署上线  | devops-engineer                   | 测试通过代码 | 线上服务           | 串行      | 失败→排查重试     |
-| 7.闭环迭代  | retro-facilitator                 | 项目数据     | 改进任务           | 串行      | 创建任务→跟踪     |
+| 阶段       | 专家                              | 输入         | 输出               | 并行/串行 | 异常处理          |
+| ---------- | --------------------------------- | ------------ | ------------------ | --------- | ----------------- |
+| 1.需求解析 | project-manager                   | 用户需求     | 明确的需求描述     | 串行      | 不明确→返回澄清   |
+| 2.产品设计 | product-designer                  | 需求描述     | PRD文档            | 串行      | 未确认→返回重定   |
+| 3.架构设计 | tech-architect + security-auditor | PRD文档      | 技术方案、安全规范 | 串行      | 评审不通过→重设计 |
+| 4.并行开发 | dev-engineer + docs-engineer      | PRD+技术方案 | 源代码、文档       | 串行      | 测试失败→返回修复 |
+| 5.质量保障 | quality-engineer                  | 源代码       | 测试报告           | **并行**  | Bug→返回开发      |
+| 6.安全审计 | security-auditor                  | 源代码       | 安全报告           | **并行**  | 漏洞→返回修复     |
+| 7.部署上线 | devops-engineer                   | 测试通过代码 | 线上服务           | 串行      | 失败→排查重试     |
+| 8.闭环迭代 | retro-facilitator                 | 项目数据     | 改进任务           | 串行      | 创建任务→跟踪     |
 
 ### 流程优化亮点
 
