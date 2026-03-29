@@ -148,12 +148,12 @@ flowchart TD
 问题定位 → 修复实现 → 单元测试 → 部署验证
 ```
 
-| 步骤     | 调度专家                    | 输出         |
-| -------- | --------------------------- | ------------ |
-| 问题定位 | backend/frontend-specialist | 问题分析报告 |
-| 修复实现 | 对应专家                    | 修复代码     |
-| 单元测试 | quality-engineer            | 测试用例     |
-| 部署验证 | devops-engineer             | 部署结果     |
+| 步骤     | 调度专家         | 输出         |
+| -------- | ---------------- | ------------ |
+| 问题定位 | dev-engineer     | 问题分析报告 |
+| 修复实现 | dev-engineer     | 修复代码     |
+| 单元测试 | quality-engineer | 测试用例     |
+| 部署验证 | devops-engineer  | 部署结果     |
 
 #### 紧急流程
 
@@ -175,7 +175,7 @@ flowchart TD
 | 1    | 需求解析 | orchestrator                      | 用户需求     | 任务工单、调度计划 |
 | 2    | 产品定义 | product-strategist → ux-engineer  | 任务工单     | PRD、设计稿        |
 | 3    | 架构设计 | tech-architect + security-auditor | PRD、设计稿  | 技术方案、API设计  |
-| 4    | 并行开发 | frontend + backend + mobile       | 技术方案     | 源代码、单元测试   |
+| 4    | 并行开发 | dev-engineer                      | 技术方案     | 源代码、单元测试   |
 | 5    | 质量保障 | quality-engineer                  | 源代码       | 测试报告           |
 | 6    | 部署上线 | devops-engineer                   | 测试通过代码 | 线上服务           |
 | 7    | 闭环迭代 | retro-facilitator                 | 线上服务     | 改进建议           |
@@ -195,11 +195,11 @@ flowchart LR
 
 ### 并行策略
 
-| 场景     | 调度策略                         |
-| -------- | -------------------------------- |
-| Web应用  | frontend + backend 并行          |
-| 多端应用 | frontend + backend + mobile 并行 |
-| API联调  | backend 先行，前端等待API文档    |
+| 场景     | 调度策略                    |
+| -------- | --------------------------- |
+| Web应用  | dev-engineer 并行开发前后端 |
+| 多端应用 | dev-engineer 并行开发各端   |
+| API联调  | 后端先行，前端等待API文档   |
 
 ### 异常处理
 
@@ -229,7 +229,7 @@ flowchart TB
         TA[tech-architect] --- SA[security-auditor]
     end
     subgraph 开发层
-        FE[frontend-specialist] --- BE[backend-specialist] --- MO[mobile-specialist]
+        DEV[dev-engineer]
     end
     subgraph 质量层
         QE[quality-engineer] --- DO[docs-engineer]
@@ -239,7 +239,7 @@ flowchart TB
     end
     O --> P
     UX --> TA
-    TA --> FE
+    TA --> DEV
     QE --> DE
 ```
 
@@ -249,11 +249,9 @@ flowchart TB
 flowchart LR
     P[product-strategist] -->|PRD| TA[tech-architect]
     P -->|PRD| UX[ux-engineer]
-    TA -->|技术方案| FE[frontend-specialist]
-    TA -->|技术方案| BE[backend-specialist]
+    TA -->|技术方案| DEV[dev-engineer]
     TA -->|安全评审| SA[security-auditor]
-    BE -->|API文档| FE
-    UX -->|设计稿| FE
+    UX -->|设计稿| DEV
 ```
 
 ---

@@ -111,10 +111,10 @@ dir $env:USERPROFILE\.trae-cn\skills  # Windows
 
 ```
 ~/.trae-cn/
-├── skills/                    # 技能目录（72 技能）
+├── skills/                    # 技能目录（70+ 技能）
 │   ├── orchestrator/          # 协调中枢
 │   ├── product-strategist/    # 产品战略
-│   ├── frontend-specialist/   # 前端开发
+│   ├── dev-engineer/          # 开发工程师
 │   └── ...
 └── user_rules/                # 用户规则目录
     ├── core-principles.md     # 核心原则
@@ -141,23 +141,21 @@ flowchart TD
     User[用户需求] --> O[orchestrator]
     O --> P[product-strategist]
     O --> U[ux-engineer]
-    O --> F[frontend-specialist]
-    O --> B[backend-specialist]
-    O --> M[mobile-specialist]
+    O --> D[dev-engineer]
     O --> Q[quality-engineer]
-    O --> D[devops-engineer]
+    O --> DO[devops-engineer]
     O --> User
 ```
 
 ### 专家分工
 
-| 类型     | 专家                                                                      | 职责                           |
-| -------- | ------------------------------------------------------------------------- | ------------------------------ |
-| **产品** | product-strategist, ux-engineer                                           | 需求分析、MVP 定义、UI/UX 设计 |
-| **开发** | frontend-specialist, backend-specialist, mobile-specialist, data-engineer | 前端、后端、移动端、数据管道   |
-| **质量** | quality-engineer, security-auditor, docs-engineer                         | 测试、安全、文档               |
-| **运维** | devops-engineer, retro-facilitator                                        | CI/CD、复盘总结                |
-| **架构** | tech-architect                                                            | 技术选型、架构设计             |
+| 类型     | 专家                                              | 职责                           |
+| -------- | ------------------------------------------------- | ------------------------------ |
+| **产品** | product-strategist, ux-engineer                   | 需求分析、MVP 定义、UI/UX 设计 |
+| **开发** | dev-engineer                                      | 前端、后端、移动端开发         |
+| **质量** | quality-engineer, security-auditor, docs-engineer | 测试、安全、文档               |
+| **运维** | devops-engineer, retro-facilitator                | CI/CD、复盘总结                |
+| **架构** | tech-architect                                    | 技术选型、架构设计             |
 
 ---
 
@@ -175,7 +173,7 @@ flowchart TD
 
 ### 移动端
 
-`ios-native-dev` `android-native-dev` `react-native-dev` `mini-program-dev`
+`react-native-dev` `mini-program-dev`
 
 ### 桌面端
 
@@ -244,7 +242,7 @@ flowchart LR
 | 1. 需求解析 | orchestrator       | 任务工单    |
 | 2. 产品定义 | product-strategist | PRD、设计稿 |
 | 3. 架构设计 | tech-architect     | 技术方案    |
-| 4. 并行开发 | frontend + backend | 源代码      |
+| 4. 并行开发 | dev-engineer       | 源代码      |
 | 5. 质量保障 | quality-engineer   | 测试报告    |
 | 6. 部署上线 | devops-engineer    | 线上服务    |
 | 7. 闭环迭代 | retro-facilitator  | 改进建议    |

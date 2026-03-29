@@ -273,7 +273,7 @@ VALUES ('avatars', 'avatars', true);
 
 | 技能                    | 说明                     |
 | ----------------------- | ------------------------ |
-| backend-specialist      | API 和后端模式           |
+| dev-engineer            | 开发工程师模式           |
 | database-dev            | 数据库模式和迁移最佳实践 |
 | clickhouse-patterns     | ClickHouse 分析模式      |
 | cache-strategy-patterns | 缓存模式                 |

@@ -412,7 +412,7 @@ flowchart LR
 
 | 技能                      | 说明                |
 | ------------------------- | ------------------- |
-| `backend-specialist`      | API 和后端模式      |
+| `dev-engineer`            | 开发工程师模式      |
 | `postgres-patterns`       | PostgreSQL 详细模式 |
 | `clickhouse-patterns`     | ClickHouse 分析模式 |
 | `mongodb-patterns`        | MongoDB 文档模式    |

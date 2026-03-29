@@ -150,6 +150,6 @@ flowchart LR
 
 **状态**: Draft / Ready / In Progress / Completed
 
-**负责人**: {frontend-specialist / backend-specialist}
+**负责人**: dev-engineer
 
 **预计工期**: {X} 天

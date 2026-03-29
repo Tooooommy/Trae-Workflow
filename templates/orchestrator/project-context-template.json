@@ -27,9 +27,7 @@
       "uiDesign": { "path": "docs/02-design/ui-design-*.md", "status": "pending", "author": "ux-engineer" }
     },
     "implementation": {
-      "frontend": { "path": "src/frontend/", "status": "pending", "author": "frontend-specialist" },
-      "backend": { "path": "src/backend/", "status": "pending", "author": "backend-specialist" },
-      "mobile": { "path": "src/mobile/", "status": "pending", "author": "mobile-specialist" }
+      "sourceCode": { "path": "src/", "status": "pending", "author": "dev-engineer" }
     },
     "testing": {
       "testReport": { "path": "docs/04-testing/test-report-*.md", "status": "pending", "author": "quality-engineer" },

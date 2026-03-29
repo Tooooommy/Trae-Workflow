@@ -42,8 +42,7 @@ description: 专项技术专家模式。负责"前瞻性技术探索与复杂专
 | CQRS/ES    | `cqrs-patterns`           | CQRS, 事件溯源         |
 | 消息队列   | `message-queue-patterns`  | RabbitMQ, 消息队列     |
 | 实时通信   | `websocket-patterns`      | WebSocket, SSE         |
-| 移动端优化 | `mobile-specialist`       | 移动端优化, 性能       |
-| 前端优化   | `frontend-specialist`     | 前端优化, 渲染性能     |
+| 性能优化   | `dev-engineer`            | 性能优化, 渲染         |
 
 ## 工作流程
 

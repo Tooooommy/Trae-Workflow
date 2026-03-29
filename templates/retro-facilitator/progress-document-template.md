@@ -75,8 +75,7 @@
 | product-strategist | task-001 | available | 低 |
 | tech-architect | task-002 | busy | 高 |
 | ux-engineer | task-003 | busy | 中 |
-| frontend-specialist | task-004 | busy | 高 |
-| backend-specialist | task-005 | busy | 高 |
+| dev-engineer | task-004 | busy | 高 |
 
 ### 任务分配
 
