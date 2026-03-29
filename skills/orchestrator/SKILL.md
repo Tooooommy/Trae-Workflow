@@ -101,7 +101,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A[1.需求解析<br/>orchestrator] --> B[2.产品定义<br/>product/ux]
+    A[1.需求解析<br/>orchestrator] --> B[2.产品定义<br/>product-designer]
     B --> C[3.架构设计<br/>tech/security]
     C --> D[4.并行开发<br/>dev-engineer]
     D --> E[5.质量保障<br/>quality]
@@ -110,25 +110,17 @@ flowchart LR
 
     E -.->|测试失败| D
     G -.->|改进任务| A
-
-    style A fill:#e1f5fe
-    style B fill:#e1f5fe
-    style C fill:#e1f5fe
-    style D fill:#fff3e0
-    style E fill:#f3e5f5
-    style F fill:#e8f5e9
-    style G fill:#fce4ec
 ```
 
-| 阶段   | 专家            | 输入         | 输出         | 异常处理          |
-| ------ | --------------- | ------------ | ------------ | ----------------- |
-| 1.需求 | orchestrator    | 用户需求     | 任务工单     | 不明确→返回补充   |
-| 2.产品 | product → ux    | 任务工单     | PRD、设计稿  | 未确认→返回重定   |
-| 3.架构 | tech + security | PRD、设计稿  | 技术方案     | 评审不通过→重设计 |
-| 4.开发 | dev-engineer    | 技术方案     | 源代码、测试 | 测试失败→返回修复 |
-| 5.质量 | quality         | 源代码       | 测试报告     | -                 |
-| 6.部署 | devops          | 测试通过代码 | 线上服务     | 失败→排查重试     |
-| 7.闭环 | retro           | 线上服务     | 改进任务     | 创建任务→跟踪     |
+| 阶段   | 专家             | 输入         | 输出         | 异常处理          |
+| ------ | ---------------- | ------------ | ------------ | ----------------- |
+| 1.需求 | orchestrator     | 用户需求     | 任务工单     | 不明确→返回补充   |
+| 2.产品 | product-designer | 任务工单     | PRD、设计稿  | 未确认→返回重定   |
+| 3.架构 | tech + security  | PRD、设计稿  | 技术方案     | 评审不通过→重设计 |
+| 4.开发 | dev-engineer     | 技术方案     | 源代码、测试 | 测试失败→返回修复 |
+| 5.质量 | quality          | 源代码       | 测试报告     | -                 |
+| 6.部署 | devops           | 测试通过代码 | 线上服务     | 失败→排查重试     |
+| 7.闭环 | retro            | 线上服务     | 改进任务     | 创建任务→跟踪     |
 
 ---
 
@@ -142,7 +134,7 @@ flowchart TB
         O[orchestrator<br/>协调中枢]
     end
     subgraph 产品层
-        P[product-strategist] --> UX[ux-engineer]
+        PD[product-designer]
     end
     subgraph 架构层
         TA[tech-architect] --- SA[security-auditor]
@@ -156,8 +148,8 @@ flowchart TB
     subgraph 运维层
         DE[devops-engineer] --> RF[retro-facilitator]
     end
-    O --> P
-    UX --> TA
+    O --> PD
+    PD --> TA
     TA --> DEV
     QE --> DE
 ```
@@ -275,7 +267,7 @@ docs/
 
 ```
 阶段1: 解析需求 → 创建任务工单
-阶段2: product-strategist → PRD完成
+阶段2: product-designer → PRD完成
 阶段3: tech-architect → 技术方案完成
 阶段4: frontend + backend 并行开发
 阶段5: quality-engineer → 测试通过
