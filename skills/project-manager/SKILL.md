@@ -68,7 +68,7 @@ description: |
 - [ ] **探索项目上下文** - 检查现有文件、文档、最近提交
 - [ ] **提出澄清问题** - 一次一个问题，理解目的/约束/成功标准
 - [ ] **确认需求范围** - 明确本次迭代的边界
-- [ ] **编写项目文档** - 生成项目上下文, `docs/00-project/YYYY-MM-DD-<topic>-context.md`
+- [ ] **编写项目文档** - 生成项目上下文, `docs/00-project/YYYY-MM-DD-<topic-name>-context.md`
 
 ## 任务路由
 
@@ -184,7 +184,7 @@ flowchart LR
 ```
 docs/
 ├── 00-project/                    # 项目管理（project-manager维护）
-│   ├── YYYY-MM-DD-<topic>-context.md         # 项目上下文
+│   ├── YYYY-MM-DD-<topic-name>-context.md         # 项目上下文
 ├── 01-requirements/               # 需求文档（product-designer维护）
 │   ├── {project-name}-prd.md      # PRD文档
 │   └── {epic-name}/
@@ -199,44 +199,4 @@ docs/
 ├── 03-implementation/             # 实现文档（dev-engineer维护）
 ├── 04-testing/                    # 测试文档（quality-engineer维护）
 └── 05-deployment/                 # 部署文档（devops-engineer维护）
-```
-
-## 完整示例
-
-### 场景：开发用户管理模块
-
-**用户输入**：
-
-```
-开始项目：开发用户管理模块，包含用户CRUD、角色权限、操作日志
-```
-
-**自动执行**：
-
-```
-阶段1: project-manager 解析需求 → 生成项目上下文文档
-阶段2: product-designer 分析拆解 → 生成 PRD 文档
-阶段3: tech-architect 架构设计 → 生成技术方案
-阶段4: dev-engineer 并行开发 → 输出源代码
-阶段5: quality-engineer 质量保障 → 测试通过
-阶段6: security-auditor 安全审计 → 安全通过
-阶段7: devops-engineer 部署上线 → 服务上线
-阶段8: retro-facilitator 闭环迭代 → 知识沉淀
-```
-
-**自动产出**：
-
-```
-docs/
-├── 00-project/
-│   └── project-context.md          # 项目上下文（阶段1产出）
-├── 01-requirements/
-│   └── user-management-prd.md      # PRD文档（阶段2产出）
-├── 02-design/
-│   ├── architecture.md             # 架构设计（阶段3产出）
-│   ├── api-design.md
-│   └── database-schema.md
-└── 03-implementation/
-    ├── frontend-spec.md
-    └── backend-spec.md
 ```
