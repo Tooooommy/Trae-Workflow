@@ -42,15 +42,15 @@ flowchart TD
     W1 -->|是| W3{Vercel?}
     W1 -->|否| W4[React SPA]
     W3 -->|是| W5[NextJS]
-    W3 -->|否| W6[RemixJS]
+    W3 -->|否| W5[NextJS]
 
     M1 -->|是| M2[React Native]
     M1 -->|否| M3{iOS?}
     M3 -->|是| M4[SwiftUI]
     M3 -->|否| M5[Jetpack Compose]
 
-    Step2 -.->|全栈TS| F1[NextJS/Remix]
-    Step2 -.->|SPA| F2[React/Vue]
+    Step2 -.->|全栈TS| F1[NextJS]
+    Step2 -.->|SPA| F2[React]
     Step2 -.->|移动端| F3[React Native]
 
     Step3 -.->|Python| B2[FastAPI]
@@ -85,7 +85,7 @@ flowchart TD
 
 | 项目类型    | 关键问题                   | 推荐方向                          |
 | ----------- | -------------------------- | --------------------------------- |
-| **Web应用** | 是否需要SEO/首屏渲染？     | SSR选NextJS/Remix，SPA选React     |
+| **Web应用** | 是否需要SEO/首屏渲染？     | SSR选NextJS，SPA选React           |
 | **移动端**  | 是否跨平台？性能要求？     | 跨平台选RN，原生选SwiftUI/Compose |
 | **桌面端**  | 是否需要原生能力？包大小？ | 选Electron或Tauri                 |
 | **小程序**  | 是否微信生态？             | 微信小程序方案                    |
@@ -93,45 +93,45 @@ flowchart TD
 
 ### 第二层：Web应用细化
 
-| 场景                         | 推荐方案                | 备选方案    | 决策要点                      |
-| ---------------------------- | ----------------------- | ----------- | ----------------------------- |
-| **企业官网/博客** (内容驱动) | **NextJS** (SSG)        | Astro       | 静态生成、SEO友好、Vercel部署 |
-| **电商平台** (需SEO+动态)    | **NextJS** (SSR/ISR)    | Remix       | 服务端渲染、增量静态再生      |
-| **SaaS应用** (复杂交互)      | **NextJS** (App Router) | Remix       | 全栈能力、API路由、数据库集成 |
-| **管理后台** (纯交互)        | **React SPA**           | Vue 3       | 无需SEO、复杂状态管理         |
-| **实时应用** (聊天/协作)     | **NextJS** + WebSocket  | Remix + SSE | 实时通信、状态同步            |
+| 场景                         | 推荐方案                | 决策要点                      |
+| ---------------------------- | ----------------------- | ----------------------------- |
+| **企业官网/博客** (内容驱动) | **NextJS** (SSG)        | 静态生成、SEO友好、Vercel部署 |
+| **电商平台** (需SEO+动态)    | **NextJS** (SSR/ISR)    | 服务端渲染、增量静态再生      |
+| **SaaS应用** (复杂交互)      | **NextJS** (App Router) | 全栈能力、API路由、数据库集成 |
+| **管理后台** (纯交互)        | **React SPA**           | 无需SEO、复杂状态管理         |
+| **实时应用** (聊天/协作)     | **NextJS** + WebSocket  | 实时通信、状态同步            |
 
 ### 第三层：移动端细化
 
-| 场景                     | 推荐方案            | 备选方案                | 决策要点                    |
-| ------------------------ | ------------------- | ----------------------- | --------------------------- |
-| **MVP/快速验证**         | **React Native**    | Flutter                 | 热更新、跨平台、生态成熟    |
-| **性能敏感** (游戏/图形) | **原生开发**        | React Native + 原生模块 | 60fps、原生API访问          |
-| **iOS独占**              | **SwiftUI**         | UIKit                   | Apple生态、最新特性         |
-| **Android独占**          | **Jetpack Compose** | 传统XML                 | Material Design、Kotlin优先 |
+| 场景                     | 推荐方案            | 决策要点                    |
+| ------------------------ | ------------------- | --------------------------- |
+| **MVP/快速验证**         | **React Native**    | 热更新、跨平台、生态成熟    |
+| **性能敏感** (游戏/图形) | **原生开发**        | 60fps、原生API访问          |
+| **iOS独占**              | **SwiftUI**         | Apple生态、最新特性         |
+| **Android独占**          | **Jetpack Compose** | Material Design、Kotlin优先 |
 
 ### 第四层：后端细化
 
-| 场景            | 推荐方案             | 备选方案         | 决策要点             |
-| --------------- | -------------------- | ---------------- | -------------------- |
-| **AI/数据服务** | **FastAPI**          | Django           | Python生态、模型集成 |
-| **高并发API**   | **FastAPI**          | Express          | 异步性能、类型安全   |
-| **全栈TS项目**  | **Express + Prisma** | NestJS           | 统一语言、类型共享   |
-| **微服务**      | **Express/FastAPI**  | gRPC             | 轻量级、服务拆分     |
-| **Serverless**  | **NextJS API**       | FastAPI + Lambda | 边缘部署、自动扩缩容 |
+| 场景            | 推荐方案             | 决策要点             |
+| --------------- | -------------------- | -------------------- |
+| **AI/数据服务** | **FastAPI**          | Python生态、模型集成 |
+| **高并发API**   | **FastAPI**          | 异步性能、类型安全   |
+| **全栈TS项目**  | **Express + Prisma** | 统一语言、类型共享   |
+| **微服务**      | **Express/FastAPI**  | 轻量级、服务拆分     |
+| **Serverless**  | **NextJS API**       | 边缘部署、自动扩缩容 |
 
 ---
 
 ## 架构模式
 
-### 模式A：全栈应用 (NextJS/RemixJS)
+### 模式A：全栈应用 (NextJS)
 
 ```
 用户请求
 ↓
 [ CDN / 边缘网络 (Vercel/Cloudflare) ]
 ↓
-[ 应用服务器 (Next.js/Remix) ] - SSR/SSG/API路由
+[ 应用服务器 (Next.js) ] - SSR/SSG/API路由
 ↓
 [ 数据访问层 (Prisma/Supabase/Drizzle) ]
 ↓
@@ -204,25 +204,10 @@ flowchart TD
 
 | 类型 | 来源/输出          | 文档     | 路径                                                  | 说明         |
 | ---- | ------------------ | -------- | ----------------------------------------------------- | ------------ |
-| 输入 | orchestrator       | 任务工单 | docs/00-project/task-board.json                       | 阶段任务指令 |
 | 输入 | product-strategist | PRD      | docs/01-requirements/{project-name}-prd.md            | 产品需求文档 |
 | 输入 | product-strategist | 规划文档 | docs/01-requirements/{epic-name}/{feature-name}/\*.md | 需求规格文档 |
 | 输出 | tech-architect     | 技术方案 | docs/02-design/architecture-{project-name}.md         | 技术架构文档 |
 | 输出 | tech-architect     | 数据方案 | docs/02-design/data-schema-{project-name}.md          | 数据方案文档 |
-
----
-
-## 协作关系
-
-```mermaid
-flowchart LR
-    A[orchestrator] -->|任务工单| B[tech-architect]
-    C[product-strategist] -->|PRD + 规划| B
-    B -->|技术方案| D[frontend-specialist]
-    B -->|技术方案| E[backend-specialist]
-    B -->|数据方案| E
-    B -->|状态更新| A
-```
 
 ---
 
@@ -264,10 +249,6 @@ flowchart LR
 - **存储策略**: 数据库选型、分库分表
 - **缓存策略**: 缓存层级、失效策略
 - **数据安全**: 加密、备份、脱敏
-
-### 5. 更新状态并传递任务
-
-更新 `task-board.json`，通过 `nextExpert` 传递任务给 frontend-specialist 和 backend-specialist。
 
 ---
 
