@@ -1,73 +1,109 @@
-# [Feature Name] 开发计划
+# [Feature Name] Implementation Plan
 
-> **目标**: [一句话描述要实现的功能]
+> **执行要求**: 按照本计划逐条执行，每个任务使用 checkbox (`- [ ]`) 跟踪进度。
 
-**技术栈**: [关键技术/库]
+**Goal:** [一句话描述要实现的功能]
+
+**Architecture:** [2-3句话描述技术方案]
+
+**Tech Stack:** [关键技术/库版本]
 
 ---
 
 ## 文件结构
 
-- Create: `src/components/Button.tsx`
-- Modify: `src/pages/Home.tsx:45-60`
-- Test: `src/components/Button.test.tsx`
+| 文件                                  | 操作   | 说明          |
+| ------------------------------------- | ------ | ------------- |
+| `src/components/[Component].tsx`      | Create | [组件说明]    |
+| `src/components/[Component].test.tsx` | Create | [测试说明]    |
+| `src/api/[api].ts`                    | Modify | [API修改说明] |
 
 ---
 
 ## 任务分解
 
-### Task 1: [组件名称]
+### Task 1: [组件/功能名称]
 
-**文件**:
-- Create: `src/components/Button.tsx`
-- Test: `src/components/Button.test.tsx`
+**Files:**
+
+- Create: `src/components/[Component].tsx`
+- Modify: `src/pages/[Page].tsx:[line-range]`
+- Test: `src/components/[Component].test.tsx`
 
 - [ ] **Step 1: 编写失败的测试**
 
 ```typescript
-// src/components/Button.test.tsx
+// src/components/[Component].test.tsx
 import { render, screen } from '@testing-library/react';
-import { Button } from './Button';
+import { [Component] } from './[Component]';
 
-test('renders button with text', () => {
-  render(<Button>Click me</Button>);
-  expect(screen.getByText('Click me')).toBeInTheDocument();
+test('renders [Component] with [expected]', () => {
+  render(<[Component] prop="value" />);
+  expect(screen.getByText('expected')).toBeInTheDocument();
 });
 ```
 
 - [ ] **Step 2: 运行测试确认失败**
 
-运行: `npm test -- Button.test.tsx`
-预期: FAIL - "Button not defined"
+Run: `npm test -- [Component].test.tsx`
+Expected: FAIL with "[Component] not defined"
 
 - [ ] **Step 3: 编写最小实现**
 
 ```typescript
-// src/components/Button.tsx
-export function Button({ children }: { children: React.ReactNode }) {
-  return <button>{children}</button>;
+// src/components/[Component].tsx
+export function [Component]({ prop }: { prop: string }) {
+  return <div>{prop}</div>;
 }
 ```
 
 - [ ] **Step 4: 运行测试确认通过**
 
-运行: `npm test -- Button.test.tsx`
-预期: PASS
+Run: `npm test -- [Component].test.tsx`
+Expected: PASS
 
 - [ ] **Step 5: 提交**
 
 ```bash
-git add src/components/Button.tsx src/components/Button.test.tsx
-git commit -m "feat: add Button component"
+git add src/components/[Component].tsx src/components/[Component].test.tsx
+git commit -m "feat: add [Component] component with tests"
 ```
 
 ---
 
-## 自检清单
+### Task 2: [下一个组件/功能]
 
-- [ ] 所有任务步骤使用 checkbox (`- [ ]`) 语法
-- [ ] 每个任务 2-5 分钟可完成
-- [ ] 包含完整的代码示例
-- [ ] 包含具体的运行命令和预期输出
-- [ ] 无 "TBD", "TODO", "稍后" 等占位符
-- [ ] 函数名、类型名在不同任务中保持一致
+**Files:**
+
+- Create: `src/[path]/[file].ts`
+- Modify: `src/[path]/[existing].ts:[line-range]`
+- Test: `src/[path]/[file].test.ts`
+
+- [ ] **Step 1: 编写失败的测试**
+
+```typescript
+// 完整的测试代码
+```
+
+- [ ] **Step 2: 运行测试确认失败**
+
+Run: `npm test -- [file].test.ts`
+Expected: FAIL with "..."
+
+- [ ] **Step 3: 编写最小实现**
+
+```typescript
+// 完整的实现代码（仅满足测试）
+```
+
+- [ ] **Step 4: 运行测试确认通过**
+
+Run: `npm test -- [file].test.ts`
+Expected: PASS
+
+- [ ] **Step 5: 提交**
+
+```bash
+git add src/[path]/[file].ts src/[path]/[file].test.ts
+git commit -m "feat: add [feature description]"
+```
