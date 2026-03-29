@@ -49,29 +49,13 @@ flowchart LR
 
 ## 输入输出
 
-### 输入
-
-| 来源             | 文档     | 路径                              |
-| ---------------- | -------- | --------------------------------- |
-| orchestrator     | 任务工单 | docs/00-project/task-board.json   |
-| quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md |
-| tech-architect   | 技术方案 | docs/02-design/architecture-\*.md |
-
-### 输出
-
-| 文档     | 路径                                | 模板                   |
-| -------- | ----------------------------------- | ---------------------- |
-| 部署文档 | docs/05-deployment/deployment-\*.md | deployment-template.md |
-| 监控文档 | docs/05-deployment/monitoring-\*.md | monitoring-template.md |
-
-### 模板文件
-
-位置: `templates/devops-engineer/`
-
-| 模板                   | 说明         |
-| ---------------------- | ------------ |
-| deployment-template.md | 部署文档模板 |
-| monitoring-template.md | 监控文档模板 |
+| 类型 | 来源/输出        | 文档     | 路径                                | 说明         |
+| ---- | ---------------- | -------- | ----------------------------------- | ------------ |
+| 输入 | orchestrator     | 任务工单 | docs/00-project/task-board.json     | 阶段任务指令 |
+| 输入 | quality-engineer | 测试报告 | docs/04-testing/test-report-\*.md   | 质量通过确认 |
+| 输入 | tech-architect   | 技术方案 | docs/02-design/architecture-\*.md   | 技术约束     |
+| 输出 | devops-engineer  | 部署文档 | docs/05-deployment/deployment-\*.md | 部署方案文档 |
+| 输出 | devops-engineer  | 监控文档 | docs/05-deployment/monitoring-\*.md | 监控配置文档 |
 
 ## 协作关系
 
@@ -90,41 +74,6 @@ flowchart LR
 2. 执行部署和监控配置
 3. 更新 task-board.json 状态
 4. 通过 nextExpert 传递任务
-
----
-
-## 输入规范
-
-| 输入项   | 来源             | 说明         |
-| -------- | ---------------- | ------------ |
-| 任务分配 | orchestrator     | 阶段任务指令 |
-| 测试报告 | quality-engineer | 质量通过确认 |
-| 源代码   | 开发专家         | 部署对象     |
-
-## 输出规范
-
-### 状态同步
-
-```json
-{
-  "expert": "devops-engineer",
-  "phase": "phase-6",
-  "status": "completed",
-  "artifacts": ["docs/05-deployment/"],
-  "metrics": {
-    "deployTime": "2024-01-01T00:00:00Z",
-    "environment": "production"
-  },
-  "nextExpert": ["retro-facilitator"]
-}
-```
-
-### 产物模板
-
-| 产物     | 模板路径                                         |
-| -------- | ------------------------------------------------ |
-| 部署文档 | templates/devops-engineer/deployment-template.md |
-| 监控配置 | templates/devops-engineer/monitoring-template.md |
 
 ## 质量门禁
 

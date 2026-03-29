@@ -49,31 +49,14 @@ docs/
 
 ## 输入输出
 
-### 输入
-
-| 来源           | 文档     | 路径                                  |
-| -------------- | -------- | ------------------------------------- |
-| orchestrator   | 任务工单 | docs/00-project/task-board.json |
-| 开发专家       | 源代码   | src/                                  |
-| tech-architect | 技术方案 | docs/02-design/architecture-\*.md     |
-
-### 输出
-
-| 文档     | 路径                             | 模板                  |
-| -------- | -------------------------------- | --------------------- |
-| API文档  | docs/03-implementation/api-\*.md | api-doc-template.md   |
-| README   | README.md                        | readme-template.md    |
-| 更新日志 | CHANGELOG.md                     | changelog-template.md |
-
-### 模板文件
-
-位置: `templates/docs-engineer/`
-
-| 模板                  | 说明         |
-| --------------------- | ------------ |
-| api-doc-template.md   | API文档模板  |
-| readme-template.md    | README模板   |
-| changelog-template.md | 更新日志模板 |
+| 类型 | 来源/输出      | 文档     | 路径                              | 说明         |
+| ---- | -------------- | -------- | --------------------------------- | ------------ |
+| 输入 | orchestrator   | 任务工单 | docs/00-project/task-board.json   | 阶段任务指令 |
+| 输入 | 开发专家       | 源代码   | src/                              | 代码文档提取 |
+| 输入 | tech-architect | 技术方案 | docs/02-design/architecture-\*.md | 架构说明     |
+| 输出 | docs-engineer  | API文档  | docs/03-implementation/api-\*.md  | API接口文档  |
+| 输出 | docs-engineer  | README   | README.md                         | 项目说明文档 |
+| 输出 | docs-engineer  | 更新日志 | CHANGELOG.md                      | 版本变更日志 |
 
 ## 协作关系
 
@@ -92,42 +75,6 @@ flowchart LR
 2. 编写和整理项目文档
 3. 更新 task-board.json 状态
 4. 通过 nextExpert 传递任务
-
----
-
-## 输入规范
-
-| 输入项   | 来源           | 说明         |
-| -------- | -------------- | ------------ |
-| 任务分配 | orchestrator   | 阶段任务指令 |
-| 技术方案 | tech-architect | 架构说明     |
-| 源代码   | 开发专家       | 代码文档提取 |
-
-## 输出规范
-
-### 状态同步
-
-```json
-{
-  "expert": "docs-engineer",
-  "phase": "phase-5",
-  "status": "completed",
-  "artifacts": ["docs/", "README.md"],
-  "metrics": {
-    "documents": 0,
-    "linksValid": true
-  },
-  "nextExpert": []
-}
-```
-
-### 产物模板
-
-| 产物      | 模板路径                                      |
-| --------- | --------------------------------------------- |
-| README    | templates/docs-engineer/readme-template.md    |
-| API文档   | templates/docs-engineer/api-doc-template.md   |
-| CHANGELOG | templates/docs-engineer/changelog-template.md |
 
 ## 质量门禁
 
