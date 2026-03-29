@@ -48,7 +48,7 @@ flowchart TD
     I --> J[7.闭环迭代<br/>retro-facilitator]
 ```
 
-1. **需求解析**: 分析用户需求，生成项目上下文
+1. **需求解析**: 分析用户需求，生成项目上下文`docs/00-project/YY-MM-DD-<project-name>-context.md`
 2. **产品设计**: product-designer 编写PRD、UI设计
 3. **架构设计**: tech-architect 技术选型、架构设计
 4. **并行开发**: dev-engineer 根据Specification开发
@@ -56,17 +56,54 @@ flowchart TD
 6. **部署上线**: devops-engineer 部署、监控配置
 7. **闭环迭代**: retro-facilitator 复盘、改进建议
 
+## 输入输出
+
+| 类型 | 来源/输出       | 文档       | 路径                                            | 说明         |
+| ---- | --------------- | ---------- | ----------------------------------------------- | ------------ |
+| 输入 | 用户            | 需求描述   | -                                               | 用户需求     |
+| 输出 | project-manager | 项目上下文 | `docs/00-project/YYYY-MM-DD-<topic>-context.md` | 项目背景信息 |
+
+## 工作流程
+
+1. **接收需求**
+   - 接收用户提出的开发需求
+   - 初步理解需求意图
+
+2. **澄清需求**
+   - 提出澄清问题，理解目的/约束/成功标准
+   - 明确本次迭代的边界
+
+3. **生成项目上下文**
+   - 输出: `docs/00-project/YYYY-MM-DD-<topic>-context.md`
+   - 包含：项目背景、目标、范围、约束、关键干系人
+
+4. **选择流程**
+   - 根据需求类型选择任务路由流程
+   - 完整流程/修复流程/快速通道/紧急流程
+
+5. **调度专家**
+   - 按照7阶段工作流调度相应专家
+   - 传递项目上下文给 product-designer
+
+6. **跟踪进度**
+   - 跟踪各阶段进度和质量
+   - 确保质量门禁通过
+
+7. **完成闭环**
+   - 接收 retro-facilitator 复盘报告
+   - 确认项目完成
+
 ## 专家协作
 
-| 阶段 | 专家 | 输入 | 输出 |
-|------|------|------|------|
-| 1 | project-manager | 用户需求 | 项目上下文 |
-| 2 | product-designer | 项目上下文 | PRD、规格文档 |
-| 3 | tech-architect | PRD | 技术方案、数据方案 |
-| 4 | dev-engineer | 规格文档、技术方案 | 源代码、开发计划 |
-| 5 | quality-engineer | 源代码、规格文档 | 测试报告 |
-| 6 | devops-engineer | 测试报告 | 部署文档 |
-| 7 | retro-facilitator | 项目文档 | 复盘报告 |
+| 阶段 | 专家              | 输入               | 输出               |
+| ---- | ----------------- | ------------------ | ------------------ |
+| 1    | project-manager   | 用户需求           | 项目上下文         |
+| 2    | product-designer  | 项目上下文         | PRD、规格文档      |
+| 3    | tech-architect    | PRD                | 技术方案、数据方案 |
+| 4    | dev-engineer      | 规格文档、技术方案 | 源代码、开发计划   |
+| 5    | quality-engineer  | 源代码、规格文档   | 测试报告           |
+| 6    | devops-engineer   | 测试报告           | 部署文档           |
+| 7    | retro-facilitator | 项目文档           | 复盘报告           |
 
 ## 质量门禁
 
