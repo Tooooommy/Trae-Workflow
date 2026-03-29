@@ -68,21 +68,9 @@ description: |
 - [ ] **探索项目上下文** - 检查现有文件、文档、最近提交
 - [ ] **提出澄清问题** - 一次一个问题，理解目的/约束/成功标准
 - [ ] **确认需求范围** - 明确本次迭代的边界
-- [ ] **编写项目文档** - 编写项目计划文档
+- [ ] **编写项目文档** - 生成项目上下文, `docs/00-project/YYYY-MM-DD-<topic>-context.md`
 
 ## 任务路由
-
-### 流程速查表
-
-| 流程         | 关键词（匹配任意）                               | 阶段数 | 核心原则             | 典型场景   |
-| ------------ | ------------------------------------------------ | ------ | -------------------- | ---------- |
-| **完整流程** | 新功能、开发、实现、构建、创建、添加、支持、集成 | 7阶段  | 内建质量、强制闭环   | 新功能开发 |
-| **修复流程** | 修复、Bug、缺陷、问题、错误、异常、失效、不工作  | 3阶段  | 安全扫描、知识沉淀   | Bug修复    |
-| **快速通道** | 更新、修改、配置、调整、优化、变更、设置、参数   | 2阶段  | 自动卡点、透明化     | 配置变更   |
-| **紧急流程** | 紧急、故障、生产、P0、线上、事故、崩溃、不可用   | 3阶段  | 止损优先、24小时复盘 | 生产故障   |
-| **需求澄清** | 其他不明确的需求                                 | -      | 明确意图             | 需求不明确 |
-
-### 流程选择决策树
 
 ```mermaid
 flowchart TD
@@ -96,6 +84,14 @@ flowchart TD
     Q4 -->|是| Full[完整流程<br/>标准开发]
     Q4 -->|否| Clarify[需求澄清<br/>明确意图]
 ```
+
+| 流程         | 关键词（匹配任意）                               | 阶段数 | 核心原则             | 典型场景   |
+| ------------ | ------------------------------------------------ | ------ | -------------------- | ---------- |
+| **完整流程** | 新功能、开发、实现、构建、创建、添加、支持、集成 | 7阶段  | 内建质量、强制闭环   | 新功能开发 |
+| **修复流程** | 修复、Bug、缺陷、问题、错误、异常、失效、不工作  | 3阶段  | 安全扫描、知识沉淀   | Bug修复    |
+| **快速通道** | 更新、修改、配置、调整、优化、变更、设置、参数   | 2阶段  | 自动卡点、透明化     | 配置变更   |
+| **紧急流程** | 紧急、故障、生产、P0、线上、事故、崩溃、不可用   | 3阶段  | 止损优先、24小时复盘 | 生产故障   |
+| **需求澄清** | 其他不明确的需求                                 | -      | 明确意图             | 需求不明确 |
 
 ## 7阶段工作流
 
@@ -133,91 +129,11 @@ flowchart TD
     end
 ```
 
-| 阶段       | 专家                              | 输入         | 输出               | 并行/串行 | 异常处理          |
-| ---------- | --------------------------------- | ------------ | ------------------ | --------- | ----------------- |
-| 1.需求解析 | project-manager                   | 用户需求     | 项目上下文文档     | 串行      | 不明确→返回澄清   |
-| 2.产品设计 | product-designer                  | 项目上下文   | PRD文档            | 串行      | 未确认→返回重定   |
-| 3.架构设计 | tech-architect + security-auditor | PRD文档      | 技术方案、安全规范 | 串行      | 评审不通过→重设计 |
-| 4.并行开发 | dev-engineer + docs-engineer      | PRD+技术方案 | 源代码、文档       | 串行      | 测试失败→返回修复 |
-| 5.质量保障 | quality-engineer                  | 源代码       | 测试报告           | **并行**  | Bug→返回开发      |
-| 6.安全审计 | security-auditor                  | 源代码       | 安全报告           | **并行**  | 漏洞→返回修复     |
-| 7.部署上线 | devops-engineer                   | 测试通过代码 | 线上服务           | 串行      | 失败→排查重试     |
-| 8.闭环迭代 | retro-facilitator                 | 项目数据     | 改进任务           | 串行      | 创建任务→跟踪     |
-
-### 流程优化亮点
-
 1. **并行设计**：产品定义与架构设计并行，缩短前期周期
 2. **安全左移**：安全审计从架构阶段介入，开发中持续扫描
 3. **质量内建**：测试与开发并行，Bug即时反馈修复
 4. **文档同步**：docs-engineer贯穿全程，实时更新文档
-
----
-
-## 协作架构（优化版）
-
-### 专家分层与协作关系
-
-```mermaid
-flowchart TB
-    subgraph 调度层["📋 调度层"]
-        PM[project-manager<br/>项目经理]
-    end
-
-    subgraph 设计层["🎨 设计层（并行）"]
-        PD[product-designer<br/>产品设计师]
-        TA[tech-architect<br/>技术架构师]
-        SA1[security-auditor<br/>安全架构]
-    end
-
-    subgraph 实现层["💻 实现层"]
-        DEV[dev-engineer<br/>开发工程师]
-        DO[docs-engineer<br/>文档工程师]
-    end
-
-    subgraph 质量层["✅ 质量层（并行）"]
-        QE[quality-engineer<br/>质量工程师]
-        SA2[security-auditor<br/>安全审计]
-    end
-
-    subgraph 交付层["🚀 交付层"]
-        DE[devops-engineer<br/>DevOps工程师]
-    end
-
-    subgraph 改进层["📈 改进层"]
-        RF[retro-facilitator<br/>复盘主持人]
-    end
-
-    PM -->|调度| PD
-    PM -->|调度| TA
-    PD <-->|方案对齐| TA
-    TA <-->|安全规范| SA1
-
-    PD -->|PRD| DEV
-    TA -->|技术方案| DEV
-    SA1 -->|安全规范| DEV
-    DEV <-->|文档同步| DO
-
-    DEV -->|代码| QE
-    DEV -->|代码| SA2
-    QE <-->|Bug反馈| DEV
-    SA2 <-->|漏洞修复| DEV
-
-    QE -->|测试通过| DE
-    SA2 -->|安全通过| DE
-
-    DE -->|上线完成| RF
-    RF -->|改进建议| PM
-```
-
-### 协作原则
-
-| 原则         | 说明                   | 实践                 |
-| ------------ | ---------------------- | -------------------- |
-| **并行协作** | 产品设计与架构设计并行 | 缩短前期周期 30-50%  |
-| **安全左移** | 安全从架构阶段介入     | 减少后期漏洞修复成本 |
-| **质量内建** | 测试与开发并行         | Bug发现即修复        |
-| **文档同步** | 文档与代码同步更新     | 避免文档滞后         |
-| **持续反馈** | 各阶段即时反馈         | 快速迭代优化         |
+5. **持续反馈**：各阶段即时反馈，快速迭代优化
 
 ## 质量门禁
 
@@ -261,33 +177,6 @@ flowchart LR
 | 部署失败 | 健康检查 | 自动回滚       | 重试次数 >= 3 |
 | 依赖缺失 | 启动错误 | 自动安装       | 安装失败      |
 
----
-
-## 知识沉淀
-
-### 自动记录
-
-| 记录类型   | 存储位置                             | 说明                                 | 生成阶段 |
-| ---------- | ------------------------------------ | ------------------------------------ | -------- |
-| 项目上下文 | `docs/00-project/project-context.md` | 需求解析产出，供product-designer使用 | 阶段1    |
-| 决策记录   | `docs/00-project/decision-registry/` | 关键决策记录                         | 全程     |
-| 工作日志   | `docs/00-project/workflow-log.md`    | 执行过程记录                         | 全程     |
-| 任务看板   | `docs/00-project/task-board.json`    | 任务状态跟踪                         | 全程     |
-| 经验沉淀   | `docs/00-project/knowledge-graph.md` | 知识库更新                           | 阶段8    |
-
-### 反馈闭环
-
-```mermaid
-flowchart LR
-    A[项目完成] --> B[retro-facilitator]
-    B --> C[复盘分析]
-    C --> D[经验沉淀]
-    D --> E[知识库更新]
-    E --> F[下次项目优化]
-```
-
----
-
 ## 项目结构
 
 ### 项目文档结构
@@ -295,46 +184,22 @@ flowchart LR
 ```
 docs/
 ├── 00-project/                    # 项目管理（project-manager维护）
-│   ├── project-context.md         # 项目上下文（阶段1产出）⭐
-│   ├── task-board.json            # 任务看板
-│   ├── workflow-log.md            # 执行日志
-│   ├── decision-registry/         # 决策记录
-│   └── knowledge-graph.md         # 知识图谱
+│   ├── YYYY-MM-DD-<topic>-context.md         # 项目上下文
 ├── 01-requirements/               # 需求文档（product-designer维护）
-│   ├── {project-name}-prd.md      # PRD文档（阶段2产出）⭐
+│   ├── {project-name}-prd.md      # PRD文档
 │   └── {epic-name}/
 │       ├── README.md
 │       └── {feature-name}/
 │           ├── README.md
 │           └── YYYY-MM-DD-{spec}.md
 ├── 02-design/                     # 设计文档（tech-architect维护）
-│   ├── architecture.md            # 架构设计（阶段3产出）⭐
+│   ├── architecture.md            # 架构设计
 │   ├── api-design.md
 │   └── database-schema.md
 ├── 03-implementation/             # 实现文档（dev-engineer维护）
 ├── 04-testing/                    # 测试文档（quality-engineer维护）
 └── 05-deployment/                 # 部署文档（devops-engineer维护）
 ```
-
-**关键产出文档**（⭐标记）：
-
-- **阶段1** - project-manager → `project-context.md`
-- **阶段2** - product-designer → `{project-name}-prd.md`
-- **阶段3** - tech-architect → `architecture.md`
-
----
-
-## 模板文件
-
-位置: `templates/project-manager/`
-
-| 模板                          | 说明               | 使用场景                                           |
-| ----------------------------- | ------------------ | -------------------------------------------------- |
-| project-context-template.md   | 项目上下文文档模板 | 阶段1：project-manager生成，供product-designer使用 |
-| task-board-template.json      | 任务看板模板       | 全程：跟踪任务状态                                 |
-| project-context-template.json | 项目上下文JSON模板 | 可选：结构化项目数据                               |
-
----
 
 ## 完整示例
 
