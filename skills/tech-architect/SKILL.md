@@ -202,20 +202,13 @@ flowchart TD
 
 ## 输入输出
 
-### 输入
-
-| 来源               | 文档     | 路径                             |
-| ------------------ | -------- | -------------------------------- |
-| orchestrator       | 任务工单 | docs/00-project/task-board.json  |
-| product-strategist | PRD      | docs/01-requirements/PRD-\*.md   |
-| product-strategist | 规划文档 | docs/01-requirements/plans/\*.md |
-
-### 输出
-
-| 文档     | 路径                              | 模板                     |
-| -------- | --------------------------------- | ------------------------ |
-| 技术方案 | docs/02-design/architecture-\*.md | architecture-template.md |
-| 数据方案 | docs/02-design/data-schema-\*.md  | data-schema-template.md  |
+| 类型 | 来源/输出          | 文档     | 路径                                                  | 说明         |
+| ---- | ------------------ | -------- | ----------------------------------------------------- | ------------ |
+| 输入 | orchestrator       | 任务工单 | docs/00-project/task-board.json                       | 阶段任务指令 |
+| 输入 | product-strategist | PRD      | docs/01-requirements/{project-name}-prd.md            | 产品需求文档 |
+| 输入 | product-strategist | 规划文档 | docs/01-requirements/{epic-name}/{feature-name}/\*.md | 需求规格文档 |
+| 输出 | tech-architect     | 技术方案 | docs/02-design/architecture-{project-name}.md         | 技术架构文档 |
+| 输出 | tech-architect     | 数据方案 | docs/02-design/data-schema-{project-name}.md          | 数据方案文档 |
 
 ---
 
