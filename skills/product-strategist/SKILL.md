@@ -72,10 +72,6 @@ flowchart LR
    - 命名格式: `{epic-name}/{feature-name}/YYYY-MM-DD-{specification-name}.md`
    - 确定优先级（Must/Should/Could/Won't）
 
-6. **更新 task-board.json 状态**
-
-7. **通过 nextExpert 传递任务**
-
 ---
 
 ## 输出规范
@@ -109,37 +105,6 @@ docs/01-requirements/
     └── order-create/
         ├── README.md
         └── 2024-01-18-cart-checkout.md
-```
-
-### 状态同步
-
-```json
-{
-  "expert": "product-strategist",
-  "phase": "phase-2",
-  "status": "completed",
-  "artifacts": [
-    "docs/01-requirements/{project-name}-prd.md",
-    "docs/01-requirements/{epic-name}/README.md",
-    "docs/01-requirements/{epic-name}/{feature-name}/README.md",
-    "docs/01-requirements/{epic-name}/{feature-name}/*.md"
-  ],
-  "nextExpert": ["tech-architect", "ux-engineer"]
-}
-```
-
----
-
-## 协作关系
-
-```mermaid
-flowchart LR
-    A[orchestrator] -->|任务工单| B[product-strategist]
-    B -->|PRD| C[tech-architect]
-    B -->|PRD| D[ux-engineer]
-    B -->|规划文档| E[frontend-specialist]
-    B -->|规划文档| F[backend-specialist]
-    B -->|状态更新| A
 ```
 
 ---
