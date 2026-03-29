@@ -111,8 +111,26 @@ flowchart LR
 
 #### 快速修复流程（Bug修复）
 
-```
-评估与定案 → 修复与验证 → 部署与同步
+```mermaid
+flowchart LR
+    A[评估与定案] --> B[修复与验证]
+    B --> C[部署与同步]
+
+    A1[orchestrator] --> A
+    A2[tech-architect] --> A
+    A3[dev-engineer] --> A
+    A4[quality-engineer] --> A
+
+    B1[dev-engineer] --> B
+    B2[quality-engineer] --> B
+    B3[security-auditor] --> B
+
+    C1[devops-engineer] --> C
+    C2[docs-engineer] --> C
+
+    style A fill:#f9f,stroke:#333
+    style B fill:#bbf,stroke:#333
+    style C fill:#bfb,stroke:#333
 ```
 
 | 步骤          | 核心活动                                                | 参与专家                                                     | 关键产出                                 |
